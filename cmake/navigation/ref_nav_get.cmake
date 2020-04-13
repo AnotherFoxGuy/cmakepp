@@ -28,6 +28,7 @@
 ## * @ref_nav_get_example(a.d)
 ## * @ref_nav_get_example()
 ## * @ref_nav_get_example(&a.b.c)
+#cmake_policy(SET CMP0054 NEW)
 
 function(ref_nav_get current_value)
     set(expression ${ARGN})
