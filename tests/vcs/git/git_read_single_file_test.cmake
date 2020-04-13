@@ -14,7 +14,7 @@ function(test)
  assert("${res}" STREQUAL "hello world")
 
 
- git_read_single_file("https://github.com/toeb/cmakepp" "master" LICENSE)
+ git_read_single_file("https://github.com/AnotherFoxGuy/cmakepp" "master" LICENSE)
  ans(res)
 
 

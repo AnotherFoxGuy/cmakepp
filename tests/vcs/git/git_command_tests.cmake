@@ -32,7 +32,7 @@ function(test)
 
   ## clone remote repo (of cmakepp)
   pushd(dir3 --create)
-  git(clone "https://github.com/toeb/cmakepp" . --exit-code)
+  git(clone "https://github.com/AnotherFoxGuy/cmakepp" . --exit-code)
   ans(ret)
   assert("${ret}" EQUAL 0)
   assert(EXISTS "${test_dir}/dir3/cmake/vcs/git/git.cmake")

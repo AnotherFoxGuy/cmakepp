@@ -16,7 +16,7 @@ It can be accessed conveniently by these global functions
 ```
 
 ## pull a github package to current user's home dir from github
-pull_package("toeb/cmakepp" "~/current_cmakepp")
+pull_package("AnotherFoxGuy/cmakepp" "~/current_cmakepp")
 
 ## pull a bitbucket package to pwd
 pull_package("eigen/eigen")

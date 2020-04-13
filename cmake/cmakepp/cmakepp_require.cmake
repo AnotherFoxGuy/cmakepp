@@ -20,7 +20,7 @@ function(cmakepp_require )
   endif()
 
   ## download cmakepp
-  set(git_uri "https://github.com/toeb/cmakepp")
+  set(git_uri "https://github.com/AnotherFoxGuy/cmakepp")
   set(cmakepp_uri "${git_uri}/releases/download/v0.0.3/cmakepp.cmake")
   set(target_file "${CMAKE_CURRENT_BINARY_DIR}/__cmakepp.cmake")
 

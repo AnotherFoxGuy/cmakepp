@@ -1,12 +1,10 @@
-![cmakepp logo](https://raw.githubusercontent.com/toeb/cmakepp/master/logo.png "cmakepp logo")
+![cmakepp logo](https://raw.githubusercontent.com/AnotherFoxGuy/cmakepp/master/logo.png "cmakepp logo")
 
 ## A CMake Enhancement Suite
-[![Travis branch](https://img.shields.io/travis/toeb/cmakepp/master.svg)](https://travis-ci.org/toeb/cmakepp)
-[![GitHub stars](https://img.shields.io/github/stars/toeb/cmakepp.svg?)](https://github.com/toeb/cmakepp/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/toeb/cmakepp.svg)](https://github.com/toeb/cmakepp/network)
-[![GitHub issues](https://img.shields.io/github/issues/toeb/cmakepp.svg)](https://github.com/toeb/cmakepp/issues)
-[![Build Status](https://webapi.biicode.com/v1/badges/toeb/toeb/cmakepp/master?pleasegithubstopcachingmycoolbadge)](https://www.biicode.com/toeb/cmakepp)
-[![Project Stats](https://www.ohloh.net/p/cmakepp/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/cmakepp)
+[![Travis branch](https://img.shields.io/travis/AnotherFoxGuy/cmakepp/master.svg)](https://travis-ci.org/AnotherFoxGuy/cmakepp)
+[![GitHub stars](https://img.shields.io/github/stars/AnotherFoxGuy/cmakepp.svg?)](https://github.com/AnotherFoxGuy/cmakepp/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/AnotherFoxGuy/cmakepp.svg)](https://github.com/AnotherFoxGuy/cmakepp/network)
+[![GitHub issues](https://img.shields.io/github/issues/AnotherFoxGuy/cmakepp.svg)](https://github.com/AnotherFoxGuy/cmakepp/issues)
 
 
 # Usage
@@ -46,8 +44,6 @@ Look through the files in the package.  Most functions will be commented and the
 * [HTTP Client](cmake/web/README.md)
 
 
-
-
 # Samples 
 
 I have developed some samples to show off `cmakepp`'s capabilities. Here you can find an overview of these samples
@@ -55,11 +51,6 @@ I have developed some samples to show off `cmakepp`'s capabilities. Here you can
 https://github.com/open-source-parsers/jsoncpp/archive/1.6.0.tar.gz
 https://github.com/leethomason/tinyxml2/archive/2.2.0.tar.gz
 https://yaml-cpp.googlecode.com/files/yaml-cpp-0.5.1.tar.gz
-
-
-
-
-
 
 
 * [Compiling a simple progam by including `cmakepp` and pulling `eigen` library ](samples/01-include-cmakepp-pull-eigen/README.md)
@@ -73,17 +64,12 @@ https://yaml-cpp.googlecode.com/files/yaml-cpp-0.5.1.tar.gz
 * [Dynamic Calls, Return Values and Exceptions](samples/11-return-values-and-exceptions/README.md)
 
 
-
-
-
-
 # Getting `cmakepp` 
 
 You have multiple options to install `cmakepp` the only prerequisite for all options is that [`CMake`](http://www.cmake.org) is installed with a version `>=2.8.12`.  `cmakepp` will also work with version less than `2.8.12` however some functions might fail.
 
 
 * [Install by Console](#install_console) - Recommended
-* Use the [Biicode Block](https://www.biicode.com/toeb/cmakepp)
 * [Download a release](#install_download) and include it in your cmake script file - If you do not want to run the tests or have access to the single function files this option is for you.
   - [Manually setup aliases](#install_aliases)
 * Clone the repository and include `cmakepp.cmake` in your `CMakeLists.txt` (or other cmake script)
@@ -96,12 +82,12 @@ For ease of use I provide you with simple copy paste code for your console of ch
 *Bash*
 ```
 #!bin/bash
-wget https://raw.github.com/toeb/cmakepp/master/install.cmake && cmake -P install.cmake && rm install.cmake
+wget https://raw.github.com/AnotherFoxGuy/cmakepp/master/install.cmake && cmake -P install.cmake && rm install.cmake
 ```
 
 *Powershell*
 ```
-((new-object net.webclient).DownloadString('https://raw.github.com/toeb/cmakepp/master/install.cmake')) |`
+((new-object net.webclient).DownloadString('https://raw.github.com/AnotherFoxGuy/cmakepp/master/install.cmake')) |`
 out-file -Encoding ascii install.cmake; `
 cmake -P install.cmake; `
 rm install.cmake;
@@ -111,7 +97,7 @@ rm install.cmake;
 
 ## <a name="install_download"></a> Install by Downloading a Release
 
-You can go ahead and download the current release from [here](https://github.com/toeb/cmakepp/releases).  A release supplies you with a standalone version of  `cmakepp` which contains every function of `cmakepp`.  This standalone  file can be included in any of your `CMake` scripts.
+You can go ahead and download the current release from [here](https://github.com/AnotherFoxGuy/cmakepp/releases).  A release supplies you with a standalone version of  `cmakepp` which contains every function of `cmakepp`.  This standalone  file can be included in any of your `CMake` scripts.
 
 The following code shows you how you can retrieve and include it in any of your script files.
 
@@ -119,7 +105,7 @@ The following code shows you how you can retrieve and include it in any of your 
 ```
 ## downloads and includes `cmakepp.cmake` 
 if(NOT EXISTS "cmakepp.cmake")
-  file(DOWNLOAD "https://github.com/toeb/cmakepp/releases/download/v0.0.4/cmakepp.cmake" "cmakepp.cmake")
+  file(DOWNLOAD "https://github.com/AnotherFoxGuy/cmakepp/releases/download/v0.0.4/cmakepp.cmake" "cmakepp.cmake")
 endif()
 include("cmakepp.cmake")
 ```

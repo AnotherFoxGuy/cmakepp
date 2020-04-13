@@ -1,5 +1,5 @@
 function(test)
-  git_repository_name("https://github.com/toeb/cmakepp.git")
+  git_repository_name("https://github.com/AnotherFoxGuy/cmakepp.git")
   ans(res)
   assert("${res}" STREQUAL "cmakepp")
 

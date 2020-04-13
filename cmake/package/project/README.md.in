@@ -147,7 +147,7 @@ A package dependency is defined as follows:
 ```
 <package dependency> ::= { <admissable uri> : <package constraint> }
 ## example:
-{ 'github:toeb/cmakepp':true }
+{ 'github:AnotherFoxGuy/cmakepp':true }
 { 'http://www.cmake.org/files/v3.2/cmake-3.2.1.tar.gz':false }
 { 'bitbucket:toeb/test_repo_hg':null}
 { 'github:toeb/cppdynamic':{ ... } }

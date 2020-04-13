@@ -25,12 +25,12 @@ The `dependency`s plural form is `dependencies`. It combines the `dependency`s i
 ```
 { 'bitbucket:eigen/eigen':true }
 { 
-  'github:toeb/cmakepp':{ 
+  'github:AnotherFoxGuy/cmakepp':{ 
     content_dir: 'cmake/cmakepp',
     version: '>=0.0.5'
   }
 }
-{ 'github:toeb/cmakepp/tags/v0.0.4':false }
+{ 'github:AnotherFoxGuy/cmakepp/tags/v0.0.4':false }
 ```
 
 

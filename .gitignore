@@ -18,3 +18,4 @@ tmp
 bin
 release
 cmakepp.sublime-workspace
+.idea/

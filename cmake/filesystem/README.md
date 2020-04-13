@@ -41,7 +41,7 @@ cd(dir3)
 
 # execute() uses the current pwd() as the working dir so the following
 # clones the cmakepp repo into ${CMAKE_SOURCE_DIR}/dir1/dir3
-git(clone https://github.com/toeb/cmakepp.git ".")
+git(clone https://github.com/AnotherFoxGuy/cmakepp.git ".")
 
 
 # remove all files and folders

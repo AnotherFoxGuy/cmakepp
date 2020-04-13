@@ -24,7 +24,7 @@ map()
  val(projects)
   map()
     kv(name cmakepp)
-    kv(url https://github.org/toeb/cmakepp)
+    kv(url https://github.org/AnotherFoxGuy/cmakepp)
   end()
   map()
     key(name)
@@ -54,7 +54,7 @@ address_print(${themap})
   "projects":[
     {
       "name":"cmakepp",
-      "url":"https://github.org/toeb/cmakepp"
+      "url":"https://github.org/AnotherFoxGuy/cmakepp"
     },
     {
       "name":"cutil",

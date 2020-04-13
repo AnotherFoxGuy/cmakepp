@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.12)
 set(current_dir "${CMAKE_CURRENT_SOURCE_DIR}")
 ## get cmakepp
 if(NOT EXISTS "${current_dir}/cmakepp.cmake")
-  file(DOWNLOAD "https://github.com/toeb/cmakepp/releases/download/v0.0.3/cmakepp.cmake" "${current_dir}/cmakepp.cmake")
+  file(DOWNLOAD "https://github.com/AnotherFoxGuy/cmakepp/releases/download/v0.0.3/cmakepp.cmake" "${current_dir}/cmakepp.cmake")
 endif()
 
 include("${current_dir}/cmakepp.cmake")

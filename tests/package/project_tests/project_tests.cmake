@@ -83,7 +83,7 @@ auto lib::myclass::add(int lhs, int rhs)const -> int{
 
   json_print("${project}")
 
-  project_change_dependencies(${project} "github:toeb/cmakepp")
+  project_change_dependencies(${project} "github:AnotherFoxGuy/cmakepp")
 
 
 
