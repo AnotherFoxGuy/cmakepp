@@ -18,8 +18,7 @@ macro(arguments_cmake_code __args_start __args_end)
                 set(__args_invocation_complete true)
             endif ()
         else ()
-
-            if (${__args_current_token} MATCHES "[ \\$\"\\(\\)#\\^\t\r\n\\\;]")
+            if ("${__args_current_token}" MATCHES "[ \\$\"\\(\\)#\\^\t\r\n\\\;]")
                 ## encoded list encode cmake string...
                 ## @ todo this has to be extracted however it does not work correctly because
                 ## of macro evaluation when using cmake_string_escape2

@@ -25,7 +25,7 @@ function(test)
   ## works for lambdas
   call2("[]()return(1)")
   ans(res)
-  assert("${res}" STREQUAL 1) 
+  assert("${res}" STREQUAL 1)
 
   ## works for cmake code
   call2("function(__)\nreturn(3)\nendfunction()")
@@ -39,7 +39,7 @@ function(test)
   ## works for cmake functions
   call2(f2)
   ans(res)
-  assert(${res} STREQUAL 4)  
+  assert(${res} STREQUAL 4)
 
   ## works for cmake files
   fwrite("asd.cmake" "function(fk)\n return(9)\nendfunction()")
@@ -48,15 +48,12 @@ function(test)
   assert(${res} STREQUAL 9)
 
 
-
-
-  ## performacne comparison 
+  ## performacne comparison
   ## eval is the fastest dynamic call call2 is slower (1/4 slower)
-  
+
   function(f1 a b)
     return_math("${a} + ${b}")
   endfunction()
-
 
 
   set(len 1000)
