@@ -8,25 +8,21 @@
 ##
 ## it can also be used as a module file with cmake's find_package() 
 
-
-cmake_minimum_required(VERSION 2.8.7)
+cmake_minimum_required(VERSION 3.0)
 
 get_property(is_included GLOBAL PROPERTY cmakepp_include_guard)
-if(is_included)
-  _return()
-endif()
+if (is_included)
+    _return()
+endif ()
 set_property(GLOBAL PROPERTY cmakepp_include_guard true)
 
-
-cmake_policy(SET CMP0007 NEW)
-cmake_policy(SET CMP0012 NEW)
-if(POLICY CMP0053)
-  ## for template compile
-  cmake_policy(SET CMP0053 OLD)
-endif()
-if(POLICY CMP0054)
-  cmake_policy(SET CMP0054 OLD)
-endif()
+#if(POLICY CMP0053)
+#  ## for template compile
+#  cmake_policy(SET CMP0053 OLD)
+#endif()
+if (POLICY CMP0054)
+    cmake_policy(SET CMP0054 NEW)
+endif ()
 # installation dir of cmakepp
 set(cmakepp_base_dir "${CMAKE_CURRENT_LIST_DIR}")
 
@@ -37,17 +33,17 @@ include(CMakeParseArguments)
 # get temp dir which is needed by a couple of functions in cmakepp
 # first uses env variable TMP if it does not exists TMPDIR is used
 # if both do not exists current_list_dir/tmp is used
-if(UNIX)
-  set(cmakepp_tmp_dir $ENV{TMPDIR} /var/tmp)
-else()
-  set(cmakepp_tmp_dir $ENV{TMP}  ${CMAKE_CURRENT_LIST_DIR}/tmp)
-endif()
+if (UNIX)
+    set(cmakepp_tmp_dir $ENV{TMPDIR} /tmp)
+else ()
+    set(cmakepp_tmp_dir $ENV{TMP} ${CMAKE_CURRENT_LIST_DIR}/tmp)
+endif ()
 list(GET cmakepp_tmp_dir 0 cmakepp_tmp_dir)
 file(TO_CMAKE_PATH "${cmakepp_tmp_dir}" cmakepp_tmp_dir)
 
 # dummy function which is overwritten and in this form just returns the temp_dir
 function(cmakepp_config key)
-	return("${cmakepp_tmp_dir}")
+    return("${cmakepp_tmp_dir}")
 endfunction()
 
 ## create invoke later functions 
@@ -79,38 +75,38 @@ map_set(global "unused_command_line_args" ${command_line_args})
 ## todo... change this 
 # setup cmakepp config
 map()
-	kv(base_dir
-		LABELS --cmakepp-base-dir
-		MIN 1 MAX 1
-		DISPLAY_NAME "cmakepp installation dir"
-		DEFAULT "${CMAKE_CURRENT_LIST_DIR}"
-		)
-  kv(keep_temp 
-    LABELS --keep-tmp --keep-temp -kt 
-    MIN 0 MAX 0 
-    DESCRIPTION "does not delete temporary files after") 
-  kv(temp_dir
-  	LABELS --temp-dir
-  	MIN 1 MAX 1
-  	DESCRIPTION "the directory used for temporary files"
-  	DEFAULT "${cmakepp_tmp_dir}/cutil/temp"
-  	)
-  kv(cache_dir
-  	LABELS --cache-dir
-  	MIN 1 MAX 1
-  	DESCRIPTION "the directory used for caching data"
-  	DEFAULT "${cmakepp_tmp_dir}/cutil/cache"
-  	)
-  kv(bin_dir
-    LABELS --bin-dir
-    MIN 1 MAX 1
-    DEFAULT "${CMAKE_CURRENT_LIST_DIR}/bin"
-    )
-  kv(cmakepp_path
-    LABELS --cmakepp-path
-    MIN 1 MAX 1
-    DEFAULT "${CMAKE_CURRENT_LIST_FILE}"
-    )
+kv(base_dir
+        LABELS --cmakepp-base-dir
+        MIN 1 MAX 1
+        DISPLAY_NAME "cmakepp installation dir"
+        DEFAULT "${CMAKE_CURRENT_LIST_DIR}"
+        )
+kv(keep_temp
+        LABELS --keep-tmp --keep-temp -kt
+        MIN 0 MAX 0
+        DESCRIPTION "does not delete temporary files after")
+kv(temp_dir
+        LABELS --temp-dir
+        MIN 1 MAX 1
+        DESCRIPTION "the directory used for temporary files"
+        DEFAULT "${cmakepp_tmp_dir}/cutil/temp"
+        )
+kv(cache_dir
+        LABELS --cache-dir
+        MIN 1 MAX 1
+        DESCRIPTION "the directory used for caching data"
+        DEFAULT "${cmakepp_tmp_dir}/cutil/cache"
+        )
+kv(bin_dir
+        LABELS --bin-dir
+        MIN 1 MAX 1
+        DEFAULT "${CMAKE_CURRENT_LIST_DIR}/bin"
+        )
+kv(cmakepp_path
+        LABELS --cmakepp-path
+        MIN 1 MAX 1
+        DEFAULT "${CMAKE_CURRENT_LIST_FILE}"
+        )
 
 end()
 ans(cmakepp_config_definition)
@@ -133,10 +129,9 @@ parameter_definition("")
 ## then invoke either cli mode
 cmake_entry_point()
 ans(entry_point)
-if("${CMAKE_CURRENT_LIST_FILE}" STREQUAL "${entry_point}")
-  cmakepp_cli()
-endif()
-
+if ("${CMAKE_CURRENT_LIST_FILE}" STREQUAL "${entry_point}")
+    cmakepp_cli()
+endif ()
 
 
 ## variables expected by cmake's find_package method
