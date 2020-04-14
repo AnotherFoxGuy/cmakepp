@@ -13,31 +13,31 @@
 ## the path is relative and it is qualified 
 ## by prepending the specified <base dir>
 function(path_qualify_from base_dir path)
-  string(REPLACE \\ / path "${path}")
-  get_filename_component(realpath "${path}" ABSOLUTE)
-  
-  ## windows absolute path
-  if(WIN32 AND "_${path}" MATCHES "^_[a-zA-Z]:\\/")
+    string(REPLACE \\ / path "${path}")
+    get_filename_component(realpath "${path}" ABSOLUTE)
+
+    ## windows absolute path
+    if (WIN32 AND "_${path}" MATCHES "^_[a-zA-Z]:\\/")
+        return_ref(realpath)
+    endif ()
+
+    ## posix absolute path
+    if ("_${path}" MATCHES "^_\\/")
+        return_ref(realpath)
+    endif ()
+
+
+    ## home path
+    if ("_${path}" MATCHES "^_~\\/?(.*)")
+        home_dir()
+        ans(base_dir)
+        set(path "${CMAKE_MATCH_1}")
+    endif ()
+
+    set(path "${base_dir}/${path}")
+
+    ## relative path
+    get_filename_component(realpath "${path}" ABSOLUTE)
+
     return_ref(realpath)
-  endif()
-   
-   ## posix absolute path
-  if("_${path}" MATCHES "^_\\/")
-    return_ref(realpath)
-  endif()
-
-
-  ## home path
-  if("_${path}" MATCHES "^_~\\/?(.*)")
-    home_dir()
-    ans(base_dir)
-    set(path "${CMAKE_MATCH_1}")
-  endif()
-
-  set(path "${base_dir}/${path}")
-
-  ## relative path
-  get_filename_component(realpath "${path}" ABSOLUTE)
-  
-  return_ref(realpath)
 endfunction()
