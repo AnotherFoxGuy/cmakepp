@@ -1,3 +1,6 @@
 version: "{build}"
 build: false
-test_script: cmake -P build/script.cmake
+test_script:
+  - cmd: cmake -P build/script.cmake
+on_success:
+  - cmd: cmake -P build/after_success.cmake
