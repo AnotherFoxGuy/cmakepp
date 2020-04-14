@@ -13,10 +13,9 @@ addons:
       - cmake
 
 script:
-  - cmake -P build/script.cmake
+  - cmake -P cmakepp.cmake test_execute_glob tests/**.cmake --recurse
 
-after_success:
-  - "cmake -P build/after_success.cmake"
+after_success: "cmake -P build/after_success.cmake"
 after_failure: "cmake -P build/after_failure.cmake"
 after_script: "cmake -P build/after_script.cmake"
 branches:

@@ -3,7 +3,6 @@ message(STATUS "running test for cmake functions")
 # include cmakepp
 include("${CMAKE_CURRENT_LIST_DIR}/../cmakepp.cmake")
 
-
 ## execute all tests in test directory
 if("$ENV{CMAKEPP_TEST_EXECUTE_PARALLEL}_" STREQUAL "true_" )
   ## removed package source tests as they fail non deterministically

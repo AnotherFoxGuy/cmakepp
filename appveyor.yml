@@ -1,3 +1,3 @@
-version: 1.0-build{build}+appveyor
-build: off
-test_script: cmake -P build/script.cmake
+version: "{build}"
+build: false
+test_script: cmake -P cmakepp.cmake test_execute_glob tests/**.cmake --recurse
