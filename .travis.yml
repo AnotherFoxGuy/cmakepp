@@ -12,8 +12,7 @@ addons:
     packages:
       - cmake
 
-script:
-  - cmake -P cmakepp.cmake test_execute_glob_parallel --recurse --no-status tests/**.cmake
+script: cmake -P build/script.cmake
 
 after_success: "cmake -P build/after_success.cmake"
 after_failure: "cmake -P build/after_failure.cmake"
