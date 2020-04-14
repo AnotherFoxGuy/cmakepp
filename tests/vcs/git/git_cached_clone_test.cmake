@@ -16,8 +16,4 @@ function(test)
 
     message("${res}")
 
-
-
-
-
 endfunction()

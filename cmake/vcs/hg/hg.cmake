@@ -6,13 +6,12 @@
 # input args etc.
 # else only console output is returned
 function(hg)
-  find_package(Hg)
-  if(NOT HG_FOUND)
-    message(FATAL_ERROR "mercurial is not installed")
-  endif()
+    find_package(Hg)
+    if (NOT HG_FOUND)
+        message(FATAL_ERROR "mercurial is not installed")
+    endif ()
 
-   wrap_executable(hg "${HG_EXECUTABLE}")
-   hg(${ARGN})
-   return_ans()
-
+    wrap_executable(hg "${HG_EXECUTABLE}")
+    hg(${ARGN})
+    return_ans()
 endfunction()
