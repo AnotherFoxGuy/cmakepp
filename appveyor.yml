@@ -1,4 +1,11 @@
 version: "{build}"
+pull_requests:
+  do_not_increment_build_number: true
+install:
+  - cmd: >-
+      git config --global user.email "Test@AnotherFoxGuy.com"
+
+      git config --global user.name "Test"
 build: false
 test_script:
   - cmd: cmake -P build/script.cmake

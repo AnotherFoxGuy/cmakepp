@@ -12,7 +12,7 @@ function(shell cmd)
         ans(shell_script)
         # make script executable
         execute_process(COMMAND "chmod" "+x" "${shell_script}")
-    else()
+    else ()
         message(FATAL_ERROR "Shell not suported: ${shell}")
     endif ()
 
