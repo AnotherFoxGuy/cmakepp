@@ -28,4 +28,3 @@ function(cmakepp_compile target_file)
         endif ()
     endforeach ()
 endfunction()
-
