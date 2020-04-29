@@ -4,7 +4,7 @@
 	"description":"a CMake Enhancement Suite",
 	"license":"MIT",
 	"authors":"toeb = Tobias P. Becker <toeb@thetoeb.de>",
-  "owner":"toeb"
+	"owner":"toeb"
 }
 
 

@@ -1,4 +1,4 @@
-![cmakepp logo](https://raw.githubusercontent.com/AnotherFoxGuy/cmakepp/master/logo.png "cmakepp logo")
+![cmakepp logo](https://cdn.statically.io/gh/AnotherFoxGuy/cmakepp/master/logo.png "cmakepp logo")
 
 ## A CMake Enhancement Suite
 [![Travis branch](https://img.shields.io/travis/AnotherFoxGuy/cmakepp/master.svg)](https://travis-ci.org/AnotherFoxGuy/cmakepp)
@@ -11,10 +11,9 @@
 Look through the files in the package.  Most functions will be commented and the other's usage can be inferred.  All functions are avaiable as soon as you include the `cmakepp.cmake` file.  To find functionality browse the `README.md` files throughout this project.
 
 
-<%=template_run_file("cmake/README.md.in")%>
+<%=template_run_file('cmake/README.md.in')%>
 
-
-<%=template_run_file("samples/README.md.in")%>
+<%=template_run_file('samples/README.md.in')%>
 
 # Getting `cmakepp` 
 
@@ -216,24 +215,9 @@ This is possible by overwriting CMakes default return() function with a macro. I
 * a stack machine would also be a possiblity as this would allow returning multiple values. I have decided using the simpler single return value appoach as it is possible to return a structured list or a map if multiple return values are needed.
 
 
-
 ## <a name="cmakepp_cli"></a>`cmakepp` Console Client
 
 `cmakepp` can be used as a platform independent console application. When you start `cmakepp.cmake` in script mode it parse the passed command line arguments and execute the specified `cmakepp` function returning the value in a serialization format. When you install `cmakepp` it will create an alias for `cmake -P /path/to/cmakepp.cmake` called `cmakepp`.
-
-```bash
-## return content of this directory using the cmakepp.cmake file
-> cmake -P /path/to/cmakepp.cmake glob *.cmake --relative
-<%=cmakepp_cli(glob *.cmake --relative --silent)%>
-
-## perform a http GET request using the cmakepp alias
-> cmakepp http_get http://httpbin.org/get?key=value --json
-<%=cmakepp_cli(http_get http://httpbin.org/get?key=value --silent --json --json)%>
-
-## parse an uri using the cmakepp alias
-> cmakepp uri http+https://toeb:pass@@www.example.com/path/to/file.ext?key=value&key2.subkey=value2 --select "scheme: @@scheme key2.subkey: @@params.key2.subkey"
-<%=cmakepp_cli(uri http+https://toeb:pass@@www.example.com/path/to/file.ext?key=value&key2.subkey=value2 --silent --select "scheme: @@scheme key2.subkey: @@params.key2.subkey")%>
-```
 
 ## <a name="icmakepp"></a>Interactive CMake Shell
 
