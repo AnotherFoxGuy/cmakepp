@@ -16,8 +16,6 @@ While my original thought was only 'how is the best way to generate markdown' I 
 When I was finished with implementing my solution I noticed I had a far more mighty tool at hand than I anticipated:  I could let the functions which I was documenting run and add the result to my documentation.  For Example see the comments for [ls](#) and the resulting [README.md](#)
 
 
-
-
 ## Template Process
 
 The template process is as follows:
@@ -154,9 +152,6 @@ template_compile("Hello <%%={user.name}%%>,
 template_out("${__ans}")
 %>
 ```
-
-
-
 
 ## Caveats
 

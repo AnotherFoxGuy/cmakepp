@@ -13,8 +13,6 @@ While my original thought was only 'how is the best way to generate markdown' I 
 When I was finished with implementing my solution I noticed I had a far more mighty tool at hand than I anticipated:  I could let the functions which I was documenting run and add the result to my documentation.  For Example see the comments for [ls](#) and the resulting [README.md](#)
 
 
-
-
 ## Template Process
 
 The template process is as follows:
@@ -98,7 +96,7 @@ I am writing you from within a template file!  Here are some things I like:
 
 
 Thanks for Reading! Write me at toeb@thetoeb.de
-(path of this file: D:/projects/cmakepp/cmake/templating/README.md.in)
+(path of this file: README.md.in)
 ```
 
 ## Implementation
@@ -127,11 +125,8 @@ template_out("*\ ")
 template_out_format(${i})
 template_out("\n")
 endforeach()
- template_end()
+template_end()
 ```
-
-
-
 
 ## Caveats
 
@@ -141,92 +136,8 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 ### Function List
 
 
-* [template_compile](#template_compile)
-* [template_compile_file](#template_compile_file)
-* [template_execute](#template_execute)
-* [template_run](#template_run)
-* [template_run_file](#template_run_file)
-* [template_begin](#template_begin)
-* [template_end](#template_end)
-* [template_guard](#template_guard)
-* [template_out](#template_out)
-* [template_output_stream](#template_output_stream)
-* [template_out_format](#template_out_format)
-* [template_out_json](#template_out_json)
 
 ### Function Descriptions
-
-## <a name="template_compile"></a> `template_compile`
-
-
-
-
-
-## <a name="template_compile_file"></a> `template_compile_file`
-
-
-
-
-
-## <a name="template_execute"></a> `template_execute`
-
-
-
-
-
-## <a name="template_run"></a> `template_run`
-
-
-
-
-
-## <a name="template_run_file"></a> `template_run_file`
-
-
-
-
-
-## <a name="template_begin"></a> `template_begin`
-
-
-
-
-
-## <a name="template_end"></a> `template_end`
-
-
-
-
-
-## <a name="template_guard"></a> `template_guard`
-
-
-
-
-
-## <a name="template_out"></a> `template_out`
-
-
-
-
-
-## <a name="template_output_stream"></a> `template_output_stream`
-
-
-
-
-
-## <a name="template_out_format"></a> `template_out_format`
-
-
-
-
-
-## <a name="template_out_json"></a> `template_out_json`
-
-
-
-
 
 
 

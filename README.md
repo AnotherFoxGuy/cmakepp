@@ -1,4 +1,4 @@
-![cmakepp logo](https://raw.githubusercontent.com/AnotherFoxGuy/cmakepp/master/logo.png "cmakepp logo")
+![cmakepp logo](https://cdn.statically.io/gh/AnotherFoxGuy/cmakepp/master/logo.png "cmakepp logo")
 
 ## A CMake Enhancement Suite
 [![Travis branch](https://img.shields.io/travis/AnotherFoxGuy/cmakepp/master.svg)](https://travis-ci.org/AnotherFoxGuy/cmakepp)
@@ -8,8 +8,7 @@
 
 
 # Usage
-Look through the files in the package.  Most functions will be commented and the other's usage can be inferred.  All functions are available as soon as you include the `cmakepp.cmake` file.  To find functionality browse the `README.md` files throughout this project.
-
+Look through the files in the package.  Most functions will be commented and the other's usage can be inferred.  All functions are avaiable as soon as you include the `cmakepp.cmake` file.  To find functionality browse the `README.md` files throughout this project.
 
 
 # Feature Overview
@@ -17,35 +16,57 @@ Look through the files in the package.  Most functions will be commented and the
 `cmakepp` has a lot of different functions. I tried to subdivide them into some meaningful sections. 
 
 
-* [Buildserver](cmake/buildserver/README.md)
-* [Creating Checksums](cmake/checksum/README.md)
-* [CMake handling functions](cmake/cmake/README.md)
-* [Collections](cmake/collections/README.md)
-* [Date/Time](cmake/datetime/README.md)
-* [Events](cmake/events/README.md)
-* [`cmakepp` Expression Syntax](cmake/expr/README.md)
-* [Filesystem](cmake/filesystem/README.md)
-* [Functions](cmake/function/README.md)
-* [Logging Functions](cmake/log/README.md)
-* [Maps - Structured Data in CMake](cmake/map/README.md)
-* [Navigation Functions](cmake/navigation/README.md)
-* [Objects ](cmake/object/README.md)
-* [Dependency Management](cmake/package/README.md)
-* [User Data](cmake/persistence/README.md)
-* [Process Management](cmake/process/README.md)
-* [Quick Map Syntax](cmake/quickmap/README.md)
-* [Reference Values](cmake/ref/README.md)
-* [Windows Registry](cmake/reg/README.md)
-* [Parsing and handling semantic versions](cmake/semver/README.md)
-* [String Functions](cmake/string/README.md)
-* [Tasks and Promises](cmake/task/README.md)
-* [Templating ](cmake/templating/README.md)
-* [Uniform Resource Identifiers (URIs)](cmake/uri/README.md)
-* [HTTP Client](cmake/web/README.md)
+
+* [Buildserver](buildserver/README.md)
+
+* [Creating Checksums](checksum/README.md)
+
+* [CMake handling functions](cmake/README.md)
+
+* [Collections](collections/README.md)
+
+* [Date/Time](datetime/README.md)
+
+* [Events](events/README.md)
+
+* [`cmakepp` Expression Syntax](expr/README.md)
+
+* [Filesystem](filesystem/README.md)
+
+* [Functions](function/README.md)
+
+* [Logging Functions](log/README.md)
+
+* [Maps - Structured Data in CMake](map/README.md)
+
+* [Navigation Functions](navigation/README.md)
+
+* [Objects ](object/README.md)
+
+* [User Data](persistence/README.md)
+
+* [Process Management](process/README.md)
+
+* [Quick Map Syntax](quickmap/README.md)
+
+* [Reference Values](ref/README.md)
+
+* [Windows Registry](reg/README.md)
+
+* [Parsing and handling semantic versions](semver/README.md)
+
+* [String Functions](string/README.md)
+
+* [Tasks and Promises](task/README.md)
+
+* [Templating ](templating/README.md)
+
+* [Uniform Resource Identifiers (URIs)](uri/README.md)
+
+* [HTTP Client](web/README.md)
 
 
-# Samples 
-
+# Samples
 I have developed some samples to show off `cmakepp`'s capabilities. Here you can find an overview of these samples
 
 https://github.com/open-source-parsers/jsoncpp/archive/1.6.0.tar.gz
@@ -53,15 +74,23 @@ https://github.com/leethomason/tinyxml2/archive/2.2.0.tar.gz
 https://yaml-cpp.googlecode.com/files/yaml-cpp-0.5.1.tar.gz
 
 
-* [Compiling a simple progam by including `cmakepp` and pulling `eigen` library ](samples/01-include-cmakepp-pull-eigen/README.md)
-* [Including and using `cmakepp` in `CMakeLists.txt`](samples/02-include-cmakepp-in-CMakeLists/README.md)
-* [Downloading and Including `cmakepp` in a `CMakeLists.txt`](samples/03-download-include-cmakepp-in-CMakeLists/README.md)
-* [Creating a Compressed Package](samples/04-create-simple-compressed-package/README.md)
-* [Creating and Installing a Package with an Install Hook](samples/05-create-install-simple-package-with-install-script/README.md)
-* [Installing and Using Projects with vanilla `CMake`](samples/06-vanilla-cmake-project-with-install/README.md)
-* [Working with Packages](samples/09-using-real-world-packages/README.md)
-* [Using the `CMakeLists` Generator - CMake Reflection](samples/10-cmakelists-generator/README.md)
-* [Dynamic Calls, Return Values and Exceptions](samples/11-return-values-and-exceptions/README.md)
+
+
+* [Compiling a simple progam by including `cmakepp` and pulling `eigen` library ](01-include-cmakepp-pull-eigen/README.md)
+
+* [Including and using `cmakepp` in `CMakeLists.txt`](02-include-cmakepp-in-CMakeLists/README.md)
+
+* [Downloading and Including `cmakepp` in a `CMakeLists.txt`](03-download-include-cmakepp-in-CMakeLists/README.md)
+
+* [Creating a Compressed Package](04-create-simple-compressed-package/README.md)
+
+* [Creating and Installing a Package with an Install Hook](05-create-install-simple-package-with-install-script/README.md)
+
+* [Installing and Using Projects with vanilla `CMake`](06-vanilla-cmake-project-with-install/README.md)
+
+* [Using the `CMakeLists` Generator - CMake Reflection](10-cmakelists-generator/README.md)
+
+* [Dynamic Calls, Return Values and Exceptions](11-return-values-and-exceptions/README.md)
 
 
 # Getting `cmakepp` 
@@ -91,8 +120,6 @@ wget https://raw.github.com/AnotherFoxGuy/cmakepp/master/install.cmake && cmake 
 out-file -Encoding ascii install.cmake; `
 cmake -P install.cmake; `
 rm install.cmake;
-
-
 ```
 
 ## <a name="install_download"></a> Install by Downloading a Release
@@ -189,10 +216,10 @@ To describe cmake functions I use formalisms which I found most useful they shou
 * `<identifier> ::= /[a-zA-Z_][a-zA-Z0-9_]*/` denotes a identifier which can be used for definitions
 * `<datatype> ::= "<" "any"|"bool"|"number"|""|"void"|""|<structured data> <?"...">">"` denotes a datatype. the elipses denotes that multiple values in array form are described else the datatype can be `any`, `bool`, `number`, `<structured data>` etc.. 
 * `<named definition> ::= "<"<identifier>">"`
-* `<definition> ::= "<" "?"? <identifier>"&"?|<identifier>"&"?":"<datatype>|<datatype>> ("="  ">"`  denotes a possibly named piece of data. this is used in signatures and object descriptions e.g. `generate_greeting(<firstname:<string>> <?lastname:<string>>)-><string>` specifies a function which which takes a required parameter called `first_name` which is of type `string` and an optional parameter called `lastname` which is of type `string` and returns a `string`
+* `<definition> ::= "<" "?"? <identifier>"&"?|<identifier>"&"?":"<datatype>|<datatype>> ("=" )? ">"`  denotes a possibly named piece of data. this is used in signatures and object descriptions e.g. `generate_greeting(<firstname:<string>> <?lastname:<string>>)-><string>` specifies a function which which takes a required parameter called `first_name` which is of type `string` and an optional parameter called `lastname` which is of type `string` and returns a `string`
   - `&` indicates that the identifier is a reference - a variable exists with the name passed in the named identifier
   - `?` indicates optionality (no need to specify the value)
-  - `=  indicates the default value which is used when the specified value is not specified
+  - `= ` indicates the default value which is used when the specified value is not specified
 * `<structured data> ::= "{"<keyvalue:(<named definition>|(<identifier>":"<datatype>))...>|"}"`  the structured date is sometimes multiline
   - `{ <name:<string>> <age:<int>> }`
   - `{ name:<string> age:<int>}` 
@@ -262,39 +289,9 @@ This is possible by overwriting CMakes default return() function with a macro. I
 * a stack machine would also be a possiblity as this would allow returning multiple values. I have decided using the simpler single return value appoach as it is possible to return a structured list or a map if multiple return values are needed.
 
 
-
 ## <a name="cmakepp_cli"></a>`cmakepp` Console Client
 
 `cmakepp` can be used as a platform independent console application. When you start `cmakepp.cmake` in script mode it parse the passed command line arguments and execute the specified `cmakepp` function returning the value in a serialization format. When you install `cmakepp` it will create an alias for `cmake -P /path/to/cmakepp.cmake` called `cmakepp`.
-
-```bash
-## return content of this directory using the cmakepp.cmake file
-> cmake -P /path/to/cmakepp.cmake glob *.cmake --relative
-[
- "cmakepp.cmake",
- "install.cmake",
- "package.cmake"
-]
-
-## perform a http GET request using the cmakepp alias
-> cmakepp http_get http://httpbin.org/get?key=value --json
-{
- "args":{
-  "key":"value"
- },
- "headers":{
-  "Accept":"*/*",
-  "Host":"httpbin.org",
-  "User-Agent":"curl/7.38.0"
- },
- "origin":"85.180.182.43",
- "url":"http://httpbin.org/get?key=value"
-}
-
-## parse an uri using the cmakepp alias
-> cmakepp uri http+https://toeb:pass@www.example.com/path/to/file.ext?key=value&key2.subkey=value2 --select "scheme: @scheme key2.subkey: @params.key2.subkey"
-"scheme: http+https key2.subkey: value2"
-```
 
 ## <a name="icmakepp"></a>Interactive CMake Shell
 
