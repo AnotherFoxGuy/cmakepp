@@ -1,6 +1,7 @@
 function(markdown_template_function_descriptions)
+    string(REPLACE "\;" ";" files "${ARGN}")
     set(res)
-    foreach (template_path ${ARGN})
+    foreach (template_path ${files})
         fread("${template_path}")
         ans(content)
         cmake_script_comment_header("${content}" --depth 2)

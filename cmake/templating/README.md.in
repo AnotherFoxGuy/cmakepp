@@ -160,9 +160,9 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 
 ### Function List
 
-<%= markdown_template_function_list(${function_files}) %>
+@markdown_template_function_list('${function_files}')
 
 ### Function Descriptions
 
-<%= markdown_template_function_descriptions(${function_files}) %>
+<%= markdown_template_function_descriptions('${function_files}') %>
 

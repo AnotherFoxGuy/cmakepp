@@ -4,8 +4,8 @@
 
 <% assign(function_files = glob("**.cmake" --relative)) %>
 
-<%= markdown_template_function_list(${function_files}) %>
+<%= markdown_template_function_list('${function_files}') %>
 
 ### Function Details
 
-<%= markdown_template_function_descriptions(${function_files}) %>
+<%= markdown_template_function_descriptions('${function_files}') %>

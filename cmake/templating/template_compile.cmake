@@ -1,33 +1,33 @@
-## `(<input:<string>>)-><cmake code>`
-##
-##  
-## creates and returns cmake code from specified template string
-## the syntax is as follows
-## * `<%%` `%%>` encloses cmake code
-## * `<%%%` and `%%%>` escape `<%%` and `%%>` resp.
-## * shorthands
-##     * `<%%=` runs the function specified if possible (only single line function calls allowed) or formats the following nonspace string using the `format()` function (allows things like `<%%="${var} {format.expression[3].navigation.key}%%>`) 
-##     * single line function calls are `func(.....)` but not `func(... \n ....)` 
-##     * `@@<cmake function call>` is replaced with `<%%= <cmake function call> %%>`
-##     * `@@<navigation expression>` is replaced with `<%%= {<navigation expression>}%%>`
-##
-## **Examples:**
-## * assume `add(lhs rhs) => {lhs+rhs}`
-## * assume `data = {a:1,b:[2,3,4],c:{d:5,b:[6,7,8]}}`
-## * assume `data2 = "hello!"`
-## * `@@@@` => `@@`
-## * `<%%%` => `<%%`
-## * `%%%>` => `%%>`
-## * `@@data2` => `hello!`
-## * `@@add(1 4)` => `5`
-## * `@foreach(i RANGE 1 3)@i@endforeach()` => `123`
-## * `<%%= ${data2} %%>` => `hello!`
-## * `<%%= ${data2} ${data2} bye! %%>` => `hello!;hello!;bye!`
-## * `<%%= "${data2} ${data2} bye!" %%>` => `hello! hello! bye!`
-## * `<%%= add(1 4) %%> => `5`
-## * `<%% template_out(hi) %%>` => `hi`
-##
-## **NOTE** *never use ascii 16 17 18 28 29 31* as these special chars are used internally
+# `(<input:<string>>)-><cmake code>`
+#
+#
+# creates and returns cmake code from specified template string
+# the syntax is as follows
+# * `<%%` `%%>` encloses cmake code
+# * `<%%%` and `%%%>` escape `<%%` and `%%>` resp.
+# * shorthands
+#     * `<%%=` runs the function specified if possible (only single line function calls allowed) or formats the following nonspace string using the `format()` function (allows things like `<%%="${var} {format.expression[3].navigation.key}%%>`)
+#     * single line function calls are `func(.....)` but not `func(... \n ....)`
+#     * `@@<cmake function call>` is replaced with `<%%= <cmake function call> %%>`
+#     * `@@<navigation expression>` is replaced with `<%%= {<navigation expression>}%%>`
+#
+# **Examples:**
+# * assume `add(lhs rhs) => {lhs+rhs}`
+# * assume `data = {a:1,b:[2,3,4],c:{d:5,b:[6,7,8]}}`
+# * assume `data2 = "hello!"`
+# * `@@@@` => `@@`
+# * `<%%%` => `<%%`
+# * `%%%>` => `%%>`
+# * `@@data2` => `hello!`
+# * `@@add(1 4)` => `5`
+# * `@foreach(i RANGE 1 3)@i@endforeach()` => `123`
+# * `<%%= ${data2} %%>` => `hello!`
+# * `<%%= ${data2} ${data2} bye! %%>` => `hello!;hello!;bye!`
+# * `<%%= "${data2} ${data2} bye!" %%>` => `hello! hello! bye!`
+# * `<%%= add(1 4) %%> => `5`
+# * `<%% template_out(hi) %%>` => `hi`
+#
+# **NOTE** *never use ascii 16 17 18 28 29 31* as these special chars are used internally
 function(template_compile input)
     regex_cmake()
     ## encode input
@@ -147,7 +147,6 @@ function(template_compile input)
     endforeach ()
 
     address_append_string("${result}" "\ntemplate_end()")
-
 
     address_get(${result})
     ans(res)

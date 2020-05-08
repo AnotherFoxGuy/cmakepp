@@ -8,7 +8,7 @@
 ##
 ## it can also be used as a module file with cmake's find_package() 
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.1)
 
 get_property(is_included GLOBAL PROPERTY cmakepp_include_guard)
 if (is_included)
@@ -16,10 +16,10 @@ if (is_included)
 endif ()
 set_property(GLOBAL PROPERTY cmakepp_include_guard true)
 
-if(POLICY CMP0053)
-  ## for template compile
-  cmake_policy(SET CMP0053 NEW)
-endif()
+if (POLICY CMP0053)
+    ## for template compile
+    cmake_policy(SET CMP0053 NEW)
+endif ()
 if (POLICY CMP0054)
     cmake_policy(SET CMP0054 NEW)
 endif ()
