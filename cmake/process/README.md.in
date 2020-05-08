@@ -8,7 +8,7 @@ This section how to manage processes and external programs.  Besides replacement
 
 ## Function List
 
-<%= markdown_template_function_list(${function_files}) %>
+<%= markdown_template_function_list('${function_files}') %>
 
 
 ## Common Definitions
@@ -230,5 +230,5 @@ To communicate with you processes you can use any of the following well known me
 
 ## Function Descriptions
 
-<%= markdown_template_function_descriptions(${function_files}) %>
+<%= markdown_template_function_descriptions('${function_files}') %>
 

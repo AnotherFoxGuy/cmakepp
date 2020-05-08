@@ -175,9 +175,9 @@ I provide the following functions for you to interact with `expr`.
     cmakepp_enable_expressions.cmake
     ) %>
 
-@markdown_template_function_list(${function_files})
+@markdown_template_function_list('${function_files}')
 
-@markdown_template_function_descriptions(${function_files})
+@markdown_template_function_descriptions('${function_files}')
 
 @markdown_section(expr_definition "The Expression Language Definition")
 

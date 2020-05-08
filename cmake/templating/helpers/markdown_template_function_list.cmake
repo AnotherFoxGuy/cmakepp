@@ -1,6 +1,6 @@
-function(markdown_template_function_list files)
+function(markdown_template_function_list)
     set(function_list)
-    _message("XD ${files}")
+    string(REPLACE "\;" ";" files "${ARGN}")
     foreach (file ${files})
         cmake_script_parse_file(${file} --first-function-header)
         ans(function_def)
