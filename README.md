@@ -17,53 +17,53 @@ Look through the files in the package.  Most functions will be commented and the
 
 
 
-* [Buildserver](buildserver/README.md)
+* [Buildserver](cmake/buildserver/README.md)
 
-* [Creating Checksums](checksum/README.md)
+* [Creating Checksums](cmake/checksum/README.md)
 
-* [CMake handling functions](cmake/README.md)
+* [CMake handling functions](cmake/cmake/README.md)
 
-* [Collections](collections/README.md)
+* [Collections](cmake/collections/README.md)
 
-* [Date/Time](datetime/README.md)
+* [Date/Time](cmake/datetime/README.md)
 
-* [Events](events/README.md)
+* [Events](cmake/events/README.md)
 
-* [`cmakepp` Expression Syntax](expr/README.md)
+* [`cmakepp` Expression Syntax](cmake/expr/README.md)
 
-* [Filesystem](filesystem/README.md)
+* [Filesystem](cmake/filesystem/README.md)
 
-* [Functions](function/README.md)
+* [Functions](cmake/function/README.md)
 
-* [Logging Functions](log/README.md)
+* [Logging Functions](cmake/log/README.md)
 
-* [Maps - Structured Data in CMake](map/README.md)
+* [Maps - Structured Data in CMake](cmake/map/README.md)
 
-* [Navigation Functions](navigation/README.md)
+* [Navigation Functions](cmake/navigation/README.md)
 
-* [Objects ](object/README.md)
+* [Objects ](cmake/object/README.md)
 
-* [User Data](persistence/README.md)
+* [User Data](cmake/persistence/README.md)
 
-* [Process Management](process/README.md)
+* [Process Management](cmake/process/README.md)
 
-* [Quick Map Syntax](quickmap/README.md)
+* [Quick Map Syntax](cmake/quickmap/README.md)
 
-* [Reference Values](ref/README.md)
+* [Reference Values](cmake/ref/README.md)
 
-* [Windows Registry](reg/README.md)
+* [Windows Registry](cmake/reg/README.md)
 
-* [Parsing and handling semantic versions](semver/README.md)
+* [Parsing and handling semantic versions](cmake/semver/README.md)
 
-* [String Functions](string/README.md)
+* [String Functions](cmake/string/README.md)
 
-* [Tasks and Promises](task/README.md)
+* [Tasks and Promises](cmake/task/README.md)
 
-* [Templating ](templating/README.md)
+* [Templating ](cmake/templating/README.md)
 
-* [Uniform Resource Identifiers (URIs)](uri/README.md)
+* [Uniform Resource Identifiers (URIs)](cmake/uri/README.md)
 
-* [HTTP Client](web/README.md)
+* [HTTP Client](cmake/web/README.md)
 
 
 # Samples
@@ -76,21 +76,21 @@ https://yaml-cpp.googlecode.com/files/yaml-cpp-0.5.1.tar.gz
 
 
 
-* [Compiling a simple progam by including `cmakepp` and pulling `eigen` library ](01-include-cmakepp-pull-eigen/README.md)
+* [Compiling a simple progam by including `cmakepp` and pulling `eigen` library ](samples/01-include-cmakepp-pull-eigen/README.md)
 
-* [Including and using `cmakepp` in `CMakeLists.txt`](02-include-cmakepp-in-CMakeLists/README.md)
+* [Including and using `cmakepp` in `CMakeLists.txt`](samples/02-include-cmakepp-in-CMakeLists/README.md)
 
-* [Downloading and Including `cmakepp` in a `CMakeLists.txt`](03-download-include-cmakepp-in-CMakeLists/README.md)
+* [Downloading and Including `cmakepp` in a `CMakeLists.txt`](samples/03-download-include-cmakepp-in-CMakeLists/README.md)
 
-* [Creating a Compressed Package](04-create-simple-compressed-package/README.md)
+* [Creating a Compressed Package](samples/04-create-simple-compressed-package/README.md)
 
-* [Creating and Installing a Package with an Install Hook](05-create-install-simple-package-with-install-script/README.md)
+* [Creating and Installing a Package with an Install Hook](samples/05-create-install-simple-package-with-install-script/README.md)
 
-* [Installing and Using Projects with vanilla `CMake`](06-vanilla-cmake-project-with-install/README.md)
+* [Installing and Using Projects with vanilla `CMake`](samples/06-vanilla-cmake-project-with-install/README.md)
 
-* [Using the `CMakeLists` Generator - CMake Reflection](10-cmakelists-generator/README.md)
+* [Using the `CMakeLists` Generator - CMake Reflection](samples/10-cmakelists-generator/README.md)
 
-* [Dynamic Calls, Return Values and Exceptions](11-return-values-and-exceptions/README.md)
+* [Dynamic Calls, Return Values and Exceptions](samples/11-return-values-and-exceptions/README.md)
 
 
 # Getting `cmakepp` 

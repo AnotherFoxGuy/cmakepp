@@ -136,8 +136,189 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 ### Function List
 
 
+* [eval_predicate_template_cmake](#eval_predicate_template_cmake)
+* [map_filter_template_key](#map_filter_template_key)
+* [map_template_evaluate_scoped](#map_template_evaluate_scoped)
+* [template_compile](#template_compile)
+* [template_compile_file](#template_compile_file)
+* [template_execute](#template_execute)
+* [template_run](#template_run)
+* [template_run_file](#template_run_file)
+* [template_run_scoped](#template_run_scoped)
+* [template_begin](#template_begin)
+* [template_end](#template_end)
+* [template_guard](#template_guard)
+* [template_out](#template_out)
+* [template_out_format](#template_out_format)
+* [template_out_json](#template_out_json)
+* [template_output_stream](#template_output_stream)
 
 ### Function Descriptions
+
+## <a name="eval_predicate_template_cmake"></a> `eval_predicate_template_cmake`
+
+
+
+
+
+## <a name="map_filter_template_key"></a> `map_filter_template_key`
+
+
+
+
+
+## <a name="map_template_evaluate_scoped"></a> `map_template_evaluate_scoped`
+
+
+
+
+
+## <a name="template_compile"></a> `template_compile`
+
+
+
+
+
+## <a name="template_compile_file"></a> `template_compile_file`
+
+
+ `(<file path>)-> <cmake code>`
+ 
+ reads the contents of the specified path and generates a template from it
+ * return
+   * the generated template code
+
+
+
+
+
+## <a name="template_execute"></a> `template_execute`
+
+ `(<template file:<file path>> <?output file:<file path>>)-><file path>`
+
+ compiles the specified template file to the speciefied output file
+ if no output file is given the template file is expected to end with `.in`) and the 
+ output file will be set to the same path without the `.in` ending
+
+ Uses  see [`template_run_file`](#template_run_file) internally. 
+
+ returns the path to which it was compiled
+
+
+
+
+
+## <a name="template_run"></a> `template_run`
+
+ `(<template:<string>>)-><generated content:<string>>`
+
+  this function takes the input string compiles it and evaluates it
+  returning the result of the evaluations
+
+
+
+
+
+## <a name="template_run_file"></a> `template_run_file`
+
+
+ `(<template_path:<file path>>)-><generated content:string>`
+  
+ opens the specified template and runs it in its directory
+ keeps track of recursive template calling
+ * returns 
+    * the output of the template
+ * scope
+    * `pwd()` is set to the templates path
+    * `${template_path}` is set to the path of the current template
+    * `${template_dir}` is set to the directory of the current template
+    * `${root_template_dir}` is set to the directory of the first template run
+    * `${root_template_path}` is set to the path of the first template run
+    * `${parent_template_dir}` is set to the calling templates dir 
+    * `${parent_template_path}`  is set to the calling templates path
+ 
+ 
+
+
+
+
+## <a name="template_run_scoped"></a> `template_run_scoped`
+
+
+
+
+
+## <a name="template_begin"></a> `template_begin`
+
+ `()-><void>`
+ begins a new template after calling this inner template functions start
+ to work (like template_out())
+
+
+
+
+
+## <a name="template_end"></a> `template_end`
+
+ `()-><generated content:<string>>`
+ ends the current template and returns the generated content
+
+
+
+
+## <a name="template_guard"></a> `template_guard`
+
+
+ `()-><template output:<address>>`
+
+ fails if not executed inside of a template else returns the 
+ template output ref
+
+
+
+
+
+## <a name="template_out"></a> `template_out`
+
+ `(<string...>) -> <void>`
+ 
+ writes the specified string(s) to the templates output stream
+ fails if not called inside a template
+
+
+
+
+
+## <a name="template_out_format"></a> `template_out_format`
+
+ `(<format string...?>-><void>`
+
+ formats the specified string and and append it to the template output stream
+
+
+
+
+
+## <a name="template_out_json"></a> `template_out_json`
+
+ `(<structured data...>) -> <void>`
+ 
+ writes the serialized data to the templates output
+ fails if not called inside a template
+
+
+
+
+
+## <a name="template_output_stream"></a> `template_output_stream`
+
+ `()-><template output stream:<address>>`
+
+ returns the output ref for the template
+
+
+
+
 
 
 

@@ -8,7 +8,7 @@ return()
 
 
 
-  
+
 
 
 return()
@@ -79,8 +79,8 @@ return()
     endif()
 
 
-    
-    
+
+
     ast_new(
       "${tokens}"         # tokens
       "range"             # expression_type
