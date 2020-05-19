@@ -11,7 +11,7 @@
 ## * `--lean`
 ## *example*
 ## ```
-##  execute(cmake -E echo_append hello) -> '@execute(cmake -E echo_append hello)'
+##  execute(cmake -E echo_append hello) -> '@execute(""cmake", "-E", "echo_append", "hello"")'
 ## ```
 function(execute)
   set(args ${ARGN})

@@ -28,6 +28,7 @@ So I have created somewhat alot of functions which does things that you might ne
 * [string_ends_with](#string_ends_with)
 * [string_eval](#string_eval)
 * [string_find](#string_find)
+* [string_indent](#string_indent)
 * [string_isempty](#string_isempty)
 * [string_isnumeric](#string_isnumeric)
 * [string_length](#string_length)
@@ -58,9 +59,10 @@ So I have created somewhat alot of functions which does things that you might ne
 * [string_take_delimited](#string_take_delimited)
 * [string_take_regex](#string_take_regex)
 * [string_take_whitespace](#string_take_whitespace)
+* [string_to_target_name](#string_to_target_name)
+* [string_to_title](#string_to_title)
 * [string_tolower](#string_tolower)
 * [string_toupper](#string_toupper)
-* [string_to_title](#string_to_title)
 * [string_trim](#string_trim)
 * [string_trim_to_difference](#string_trim_to_difference)
 
@@ -265,6 +267,12 @@ So I have created somewhat alot of functions which does things that you might ne
   string_find("${input}" "with") # => 4
   string_find("${input}" "swi") # => 3
 
+
+
+
+
+
+## <a name="string_indent"></a> `string_indent`
 
 
 
@@ -616,6 +624,7 @@ So I have created somewhat alot of functions which does things that you might ne
  See **Examples** for passing references.
 
  **Examples**
+ 
   set(input "a@b@c")
   string_split_at_first(partA partB "${input}" "@") # => partA equals "a", partB equals "b@c"
 
@@ -805,6 +814,32 @@ So I have created somewhat alot of functions which does things that you might ne
 
 
 
+## <a name="string_to_target_name"></a> `string_to_target_name`
+
+
+
+
+
+## <a name="string_to_title"></a> `string_to_title`
+
+ `(<input:<string>>)-><string>`
+
+ Transforms the input string to title case.
+ Tries to be smart and keeps some words small.
+ List of words that are kept small:
+ "a, an, and, as, at, but, by, en, for, if, in, of, on, or, the, to, via, vs, v, v., vs."
+
+ **Examples**
+  set(input "the function string_totitle works")
+  string_to_title("${input}") # => "The Function string_totitle Works"
+  set(input "testing a small word")
+  string_to_title("${input}") # => "Testing a Small Word"
+
+
+
+
+
+
 ## <a name="string_tolower"></a> `string_tolower`
 
  `(<input:<string>>)-><string>`
@@ -827,26 +862,6 @@ So I have created somewhat alot of functions which does things that you might ne
  
  **Examples**
   string_tolower("lower") # => "LOWER"
-
-
-
-
-
-
-## <a name="string_to_title"></a> `string_to_title`
-
- `(<input:<string>>)-><string>`
-
- Transforms the input string to title case.
- Tries to be smart and keeps some words small.
- List of words that are kept small:
- "a, an, and, as, at, but, by, en, for, if, in, of, on, or, the, to, via, vs, v, v., vs."
-
- **Examples**
-  set(input "the function string_totitle works")
-  string_to_title("${input}") # => "The Function string_totitle Works"
-  set(input "testing a small word")
-  string_to_title("${input}") # => "Testing a Small Word"
 
 
 

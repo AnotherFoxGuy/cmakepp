@@ -150,6 +150,6 @@ function(template_compile input)
 
     address_get(${result})
     ans(res)
-    _message("template_compile\n~~~~~~~~~~~~~~\n${res}\n~~~~~~~~~~~~~~")
+#    _message("template_compile\n~~~~~~~~~~~~~~\n${res}\n~~~~~~~~~~~~~~")
     return_ref(res)
 endfunction()

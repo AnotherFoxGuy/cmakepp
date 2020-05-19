@@ -30,12 +30,19 @@ Due to the "variable variable" system (ie names of variables are string which ca
 * [map_tryget](#map_tryget)
 * [dfs](#dfs)
 * [dfs_callback](#dfs_callback)
+* [map_conditional_default](#map_conditional_default)
+* [map_conditional_evaluate](#map_conditional_evaluate)
+* [map_conditional_if](#map_conditional_if)
+* [map_conditional_predicate_eval](#map_conditional_predicate_eval)
+* [map_conditional_single](#map_conditional_single)
+* [map_conditional_switch](#map_conditional_switch)
 * [list_match](#list_match)
 * [map_all_paths](#map_all_paths)
 * [map_at](#map_at)
 * [map_capture](#map_capture)
 * [map_capture_new](#map_capture_new)
 * [map_clear](#map_clear)
+* [map_coerce](#map_coerce)
 * [map_copy_shallow](#map_copy_shallow)
 * [map_count](#map_count)
 * [map_defaults](#map_defaults)
@@ -50,15 +57,15 @@ Due to the "variable variable" system (ie names of variables are string which ca
 * [map_has_any](#map_has_any)
 * [map_invert](#map_invert)
 * [map_isempty](#map_isempty)
+* [map_key_at](#map_key_at)
 * [map_keys_append](#map_keys_append)
 * [map_keys_clear](#map_keys_clear)
 * [map_keys_remove](#map_keys_remove)
 * [map_keys_set](#map_keys_set)
 * [map_keys_sort](#map_keys_sort)
-* [map_key_at](#map_key_at)
 * [map_match](#map_match)
-* [map_matches](#map_matches)
 * [map_match_properties](#map_match_properties)
+* [map_matches](#map_matches)
 * [map_omit](#map_omit)
 * [map_omit_regex](#map_omit_regex)
 * [map_overwrite](#map_overwrite)
@@ -86,7 +93,9 @@ Due to the "variable variable" system (ie names of variables are string which ca
 * [map_iterator](#map_iterator)
 * [map_iterator_break](#map_iterator_break)
 * [map_iterator_next](#map_iterator_next)
+* [map_dfs_references_once](#map_dfs_references_once)
 * [map_import_properties](#map_import_properties)
+* [map_import_properties_all](#map_import_properties_all)
 * [map_match_obj](#map_match_obj)
 * [map_clone](#map_clone)
 * [map_clone_deep](#map_clone_deep)
@@ -96,19 +105,23 @@ Due to the "variable variable" system (ie names of variables are string which ca
 * [map_foreach](#map_foreach)
 * [map_issubsetof](#map_issubsetof)
 * [map_merge](#map_merge)
+* [map_permutate](#map_permutate)
 * [map_union](#map_union)
 
 ### Function Descriptions
 
 ## <a name="is_map"></a> `is_map`
 
+ `(<any>...)-><bool>`
+
+ returns true iff the specified value is a map
+ note to self: cannot make this a macro because string will be evaluated
 
 
 
 
 ## <a name="map_append"></a> `map_append`
 
- appends a value to the end of a map entry
 
 
 
@@ -121,6 +134,10 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_append_unique"></a> `map_append_unique`
 
+ map_append_unique 
+ 
+ appends values to the <map>.<prop> and ensures 
+ that <map>.<prop> stays unique 
 
 
 
@@ -157,13 +174,13 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_keys"></a> `map_keys`
 
- returns all keys for the specified map
 
 
 
 
 ## <a name="map_new"></a> `map_new`
 
+ optimized version
 
 
 
@@ -176,13 +193,16 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_remove_item"></a> `map_remove_item`
 
+ map_remove_item
+
+ removes the specified items from <map>.<prop>
+ returns the number of items removed
 
 
 
 
 ## <a name="map_set"></a> `map_set`
 
- set a value in the map
 
 
 
@@ -201,149 +221,141 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_tryget"></a> `map_tryget`
 
- tries to get the value map[key] and returns NOTFOUND if
- it is not found
 
 
 
 
 ## <a name="dfs"></a> `dfs`
 
- iterates a the graph with root nodes in ${ARGN}
- in depth first order
- expand must consider cycles
 
 
 
 
 ## <a name="dfs_callback"></a> `dfs_callback`
 
- emits events parsing a list of map type elements 
- expects a callback function that takes the event type string as a first argument
- follwowing events are called (available context variables are listed as subelements: 
- value
-   - list_length (may be 0 or 1 which is good for a null check)
-   - content_length (contains the length of the content)
-   - node (contains the value)
- list_begin
-   - list_length (number of elements the list contains)
-   - content_length (accumulated length of list elements + semicolon separators)
-   - node (contains all values of the lsit)
- list_end
-   - list_length(number of elements in list)
-   - node (whole list)
-   - list_char_length (length of list content)
-   - content_length (accumulated length of list elements + semicolon separators)
- list_element_begin
-   - list_length(number of elements in list)
-   - node (whole list)
-   - list_char_length (length of list content)
-   - content_length (accumulated length of list elements + semicolon separators)
-   - list_element (contains current list element)
-   - list_element_index (contains current index )   
- list_element_end
-   - list_length(number of elements in list)
-   - node (whole list)
-   - list_char_length (length of list content)
-   - content_length (accumulated length of list elements + semicolon separators)
-   - list_element (contains current list element)
-   - list_element_index (contains current index )
- visited_reference
-   - node (contains ref to revisited map)
- unvisited_reference
-   - node (contains ref to unvisited map)
- map_begin
-   - node( contains ref to map)
-   - map_keys (contains all keys of map)
-   - map_length (contains number of keys of map)
- map_end
-   - node( contains ref to map)
-   - map_keys (contains all keys of map)
-   - map_length (contains number of keys of map)
- map_element_begin
-   - node( contains ref to map)
-   - map_keys (contains all keys of map)
-   - map_length (contains number of keys of map)
-   - map_element_key (current key)
-   - map_element_value (current value)
-   - map_element_index (current index)
- map_element_end
-   - node( contains ref to map)
-   - map_keys (contains all keys of map)
-   - map_length (contains number of keys of map)
-   - map_element_key (current key)
-   - map_element_value (current value)
-   - map_element_index (current index)
+
+
+
+
+## <a name="map_conditional_default"></a> `map_conditional_default`
+
+
+
+
+
+## <a name="map_conditional_evaluate"></a> `map_conditional_evaluate`
+
+
+
+
+
+## <a name="map_conditional_if"></a> `map_conditional_if`
+
+
+
+
+
+## <a name="map_conditional_predicate_eval"></a> `map_conditional_predicate_eval`
+
+
+
+
+
+## <a name="map_conditional_single"></a> `map_conditional_single`
+
+
+
+
+
+## <a name="map_conditional_switch"></a> `map_conditional_switch`
+
 
 
 
 
 ## <a name="list_match"></a> `list_match`
 
- matches the object list 
 
 
 
 
 ## <a name="map_all_paths"></a> `map_all_paths`
 
- returns all possible paths for the map
- (currently crashing on cycles cycles)
- todo: implement
 
 
 
 
 ## <a name="map_at"></a> `map_at`
 
+ returns the value at idx
 
 
 
 
 ## <a name="map_capture"></a> `map_capture`
 
+ captures the listed variables in the map
 
 
 
 
 ## <a name="map_capture_new"></a> `map_capture_new`
 
+ captures a new map from the given variables
+ example
+ set(a 1)
+ set(b 2)
+ set(c 3)
+ map_capture_new(a b c)
+ ans(res)
+ json_print(${res})
+ --> 
+ {
+   "a":1,
+   "b":2,
+   "c":3 
+ }
 
 
 
 
 ## <a name="map_clear"></a> `map_clear`
 
- removes all properties from map
+
+
+
+
+## <a name="map_coerce"></a> `map_coerce`
+
+ if `mapOrDefaultValue` is a map then just returns the map
+ if not `mapOrDefaultValue` is assigned to a new map under the specified defaultKey
 
 
 
 
 ## <a name="map_copy_shallow"></a> `map_copy_shallow`
 
- copies the values of the source map into the target map by assignment
- (shallow copy)
 
 
 
 
 ## <a name="map_count"></a> `map_count`
 
+ `(<map>)-><uint>`
+
+ returns the number of elements for the specified map
 
 
 
 
 ## <a name="map_defaults"></a> `map_defaults`
 
- sets all undefined properties of map to the default value
 
 
 
 
 ## <a name="map_ensure"></a> `map_ensure`
 
- ensures that the specified vars are a map
- parsing structured data if necessary
 
 
 
@@ -356,6 +368,7 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_fill"></a> `map_fill`
 
+ files non existing or null values of lhs with values of rhs
 
 
 
@@ -368,18 +381,27 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_from_keyvaluelist"></a> `map_from_keyvaluelist`
 
- adds the keyvalues list to the map (if not map specified created one)
 
 
 
 
 ## <a name="map_get_default"></a> `map_get_default`
 
+ `(<map> <key> <any...>)-><any...>`
+
+ returns the value stored in map.key or 
+ sets the value at map.key to ARGN and returns 
+ the value
 
 
 
 
 ## <a name="map_get_map"></a> `map_get_map`
+
+ `(<map> <key>)-><map>`
+
+ returns a map for the specified key
+ creating it if it does not exist
 
 
 
@@ -387,30 +409,31 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_has_all"></a> `map_has_all`
 
- returns true if map has all keys specified
-as varargs
 
 
 
 
 ## <a name="map_has_any"></a> `map_has_any`
 
- returns true if map has any of the keys
- specified as varargs
 
 
 
 
 ## <a name="map_invert"></a> `map_invert`
 
- returns a copy of map with key values inverted
- only works correctly for bijective maps
 
 
 
 
 ## <a name="map_isempty"></a> `map_isempty`
 
+
+
+
+
+## <a name="map_key_at"></a> `map_key_at`
+
+ returns the key at the specified position
 
 
 
@@ -445,13 +468,15 @@ as varargs
 
 
 
-## <a name="map_key_at"></a> `map_key_at`
-
-
-
-
-
 ## <a name="map_match"></a> `map_match`
+
+ checks if all fields specified in actual rhs are equal to the values in expected lhs
+ recursively checks submaps
+
+
+
+
+## <a name="map_match_properties"></a> `map_match_properties`
 
 
 
@@ -459,42 +484,31 @@ as varargs
 
 ## <a name="map_matches"></a> `map_matches`
 
- returns a function which returns true of all 
-
-
-
-
-## <a name="map_match_properties"></a> `map_match_properties`
-
- returns true if map's properties match all properties of attrs
 
 
 
 
 ## <a name="map_omit"></a> `map_omit`
 
- returns a copy of map without the specified keys (argn)
 
 
 
 
 ## <a name="map_omit_regex"></a> `map_omit_regex`
 
- returns a map with all properties except those matched by any of the specified regexes
 
 
 
 
 ## <a name="map_overwrite"></a> `map_overwrite`
 
+ overwrites all values of lhs with rhs
 
 
 
 
 ## <a name="map_pairs"></a> `map_pairs`
 
- returns a list key;value;key;value;...
- only works if key and value are not lists (ie do not contain ;)
 
 
 
@@ -507,18 +521,12 @@ as varargs
 
 ## <a name="map_path_get"></a> `map_path_get`
 
- returns the value at the specified path (path is specified as path fragment list)
- e.g. map = {a:{b:{c:{d:{e:3}}}}}
- map_path_get(${map} a b c d e)
- returns 3
- this function is somewhat faster than map_navigate()
 
 
 
 
 ## <a name="map_path_set"></a> `map_path_set`
 
- todo implement
 
 
 
@@ -537,14 +545,12 @@ as varargs
 
 ## <a name="map_pick"></a> `map_pick`
 
- returns a copy of map returning only the whitelisted keys
 
 
 
 
 ## <a name="map_pick_regex"></a> `map_pick_regex`
 
- returns a map containing all properties whose keys were matched by any of the specified regexes
 
 
 
@@ -569,6 +575,7 @@ as varargs
 
 ## <a name="map_property_length"></a> `map_property_length`
 
+ returns the length of the specified property
 
 
 
@@ -587,19 +594,24 @@ as varargs
 
 ## <a name="map_rename"></a> `map_rename`
 
+ renames a key in the specified map
 
 
 
 
 ## <a name="map_set_default"></a> `map_set_default`
 
+ `()-><bool>`
+
+ sets the value of the specified prop if it does not exist
+ ie if map_has returns false for the specified property
+ returns true iff value was set
 
 
 
 
 ## <a name="map_to_keyvaluelist"></a> `map_to_keyvaluelist`
 
- converts a map to a key value list 
 
 
 
@@ -612,42 +624,58 @@ as varargs
 
 ## <a name="map_unpack"></a> `map_unpack`
 
+ unpacks the specified reference to a map
+ let a map be stored in the var 'themap'
+ let it have the key/values a/1 b/2 c/3
+ map_unpack(themap) will create the variables
+ ${themap.a} contains 1
+ ${themap.b} contains 2
+ ${themap.c} contains 3
 
 
 
 
 ## <a name="map_values"></a> `map_values`
 
- returns all values of the map which are passed as ARNG
 
 
 
 
 ## <a name="mm"></a> `mm`
 
+ function which generates a map 
+ out of the passed args 
+ or just returns the arg if it is already valid
 
 
 
 
 ## <a name="map_iterator"></a> `map_iterator`
 
+ initializes a new mapiterator
 
 
 
 
 ## <a name="map_iterator_break"></a> `map_iterator_break`
 
- use this macro inside of a while(true) loop it breaks when the iterator is over
- e.g. this prints all key values in the map
- while(true) 
-   map_iterator_break(myiterator)
-   message("${myiterator.key} = ${myiterator.value}")
- endwhile()
 
 
 
 
 ## <a name="map_iterator_next"></a> `map_iterator_next`
+
+ this function moves the map iterator to the next position
+ and returns true if it was possible
+ e.g.
+ map_iterator_next(myiterator) 
+ ans(ok) ## is true if iterator had a next element
+ variables ${myiterator.key} and ${myiterator.value} are available
+
+
+
+
+## <a name="map_dfs_references_once"></a> `map_dfs_references_once`
 
 
 
@@ -655,12 +683,26 @@ as varargs
 
 ## <a name="map_import_properties"></a> `map_import_properties`
 
+ imports the specified properties into the current scope
+ e.g map = {a:1,b:2,c:3}
+ map_import_properties(${map} a c)
+ -> ${a} == 1 ${b} == 2
+
+
+
+
+## <a name="map_import_properties_all"></a> `map_import_properties_all`
+
+ 
+ imports all properties of map into local scope
 
 
 
 
 ## <a name="map_match_obj"></a> `map_match_obj`
 
+ returns true if actual has all properties (and recursive properties)
+ that expected has
 
 
 
@@ -685,29 +727,20 @@ as varargs
 
 ## <a name="map_equal"></a> `map_equal`
 
- compares two maps and returns true if they are equal
- order of list values is important
- order of map keys is not important
- cycles are respected.
 
 
 
 
 ## <a name="map_equal_obj"></a> `map_equal_obj`
 
+ compares two maps for value equality
+ lhs and rhs may be objectish 
 
 
 
 
 ## <a name="map_foreach"></a> `map_foreach`
 
- executes action (key, value)->void
- on every key value pair in map
- exmpl: map = {id:'1',val:'3'}
- map_foreach("${map}" "(k,v)-> message($k $v)")
- prints 
-  id;1
-  val;3
 
 
 
@@ -720,18 +753,22 @@ as varargs
 
 ## <a name="map_merge"></a> `map_merge`
 
- creates a union from all all maps passed as ARGN and combines them in result
- you can merge two maps by typing map_union(${map1} ${map1} ${map2})
- maps are merged in order ( the last one takes precedence)
+
+
+
+
+## <a name="map_permutate"></a> `map_permutate`
+
+ 
+ permutates the specified input map 
+ takes every key of the input map and treats the value as a list
+ the result is n maps which contain one value per key
 
 
 
 
 ## <a name="map_union"></a> `map_union`
 
- creates a union from all all maps passed as ARGN and combines them in the first
- you can merge two maps by typing map_union(${map1} ${map1} ${map2})
- maps are merged in order ( the last one takes precedence)
 
 
 
