@@ -3,5 +3,6 @@
 assign(readmes = glob("cmake/*/README.md" --relative))
 string(REPLACE "//" "/" readmes "${readmes}")
 %>
-<% foreach(readme ${readmes})%>- <%=markdown_template_link('${readme}')%>
+* Modules
+<% foreach(readme ${readmes})%>     * <%=markdown_template_link('${readme}')%>
 <% endforeach() %>
