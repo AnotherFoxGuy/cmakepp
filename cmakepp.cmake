@@ -56,12 +56,10 @@ endfunction()
 # endfunction()
 
 include("${cmakepp_base_dir}/cmake/type/parameter_definition.cmake")
-
 include("${cmakepp_base_dir}/cmake/task/task_enqueue.cmake")
 
 ## includes all cmake files of cmakepp 
 include("${cmakepp_base_dir}/cmake/core/require.cmake")
-
 require("${cmakepp_base_dir}/cmake/*.cmake")
 
 ## include task_enqueue last
@@ -135,8 +133,6 @@ endif ()
 
 
 ## variables expected by cmake's find_package method
-
-
 set(CMAKEPP_FOUND true)
 
 set(CMAKEPP_VERSION_MAJOR "0")
