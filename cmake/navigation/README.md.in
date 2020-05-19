@@ -31,4 +31,3 @@ Here are some **Examples**:
 ## Function Descriptions
 
 <%= markdown_template_function_descriptions('${function_files}') %>
-

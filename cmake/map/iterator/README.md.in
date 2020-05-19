@@ -8,7 +8,7 @@
 
 For a more intuitive way to work with maps I developed a `map_iterator` which which allows forward iteration of all maps. The syntax is held simple so that you can quickly go through a map as you can see in the following example:
 
-### Example 
+### Example
 
 *Iterate through a maps's key/value pairs and prints them*
 
@@ -35,8 +35,8 @@ c = 3
 * `<map iterator ref> ::= <iterator&>` a variable which contains an iterator
 * `map_iterator(<map>): <map iterator>` creates a map iterator for the specied map
 * `map_iterator_next(<iterator ref>):<bool>` returns true if the iterator could be advanced to the next key, also sets the variables `<iterator ref>.key` and `<iterator ref>.value` in the current scope
-* `map_iterator_current(<iterator ref>):<value>` also sets `<iterator ref>.key` and `<iterator ref>.value` 
-* `map_iterator_break(<iterator>)` only usable inside a loop (normally a while loop) it calls `break()` when the iterator has ended also sets `<iterator ref>.key` and `<iterator ref>.value` 
+* `map_iterator_current(<iterator ref>):<value>` also sets `<iterator ref>.key` and `<iterator ref>.value`
+* `map_iterator_break(<iterator>)` only usable inside a loop (normally a while loop) it calls `break()` when the iterator has ended also sets `<iterator ref>.key` and `<iterator ref>.value`
 
 
 ### Function List
@@ -46,4 +46,3 @@ c = 3
 ### Function Descriptions
 
 <%= markdown_template_function_descriptions('${function_files}') %>
-

@@ -1,7 +1,7 @@
 ##
-## 
+##
 ## creates a temporary file containing the specified content
-## returns the path for that file 
+## returns the path for that file
 function(fwrite_temp content)
     set(ext ${ARGN})
 

@@ -75,4 +75,3 @@ function(ast_reduce_code_inner ast)
 
     return_ref(result)
 endfunction()
-

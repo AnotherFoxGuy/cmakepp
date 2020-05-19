@@ -1,6 +1,6 @@
 # Collections
 
-`CMake` is missing a lot of helper functions when it comes to collections. 
+`CMake` is missing a lot of helper functions when it comes to collections.
 However using the `list` function that `CMake` provides it is possible to add alot of functions that help the developer.
 
 <%
@@ -15,5 +15,3 @@ However using the `list` function that `CMake` provides it is possible to add al
 ### Function Descriptions
 
 @markdown_template_function_descriptions('${function_files}')
-
-

@@ -1,12 +1,12 @@
-## cmakepp 
+## cmakepp
 ##
 ## An enhancement suite for CMake
-## 
 ##
-## This file is the entry point for cmakepp. If you want to use the functions 
+##
+## This file is the entry point for cmakepp. If you want to use the functions
 ## just include this file.
 ##
-## it can also be used as a module file with cmake's find_package() 
+## it can also be used as a module file with cmake's find_package()
 
 cmake_minimum_required(VERSION 3.1)
 
@@ -46,12 +46,12 @@ function(cmakepp_config key)
     return("${cmakepp_tmp_dir}")
 endfunction()
 
-## create invoke later functions 
+## create invoke later functions
 # function(task_enqueue callable)
 #   ## semicolon encode before string_encode_semicolon exists
 #   string(ASCII  31 us)
 #   string(REPLACE ";" "${us}" callable "${callable}")
-#   set_property(GLOBAL APPEND PROPERTY __initial_invoke_later_list "${callable}") 
+#   set_property(GLOBAL APPEND PROPERTY __initial_invoke_later_list "${callable}")
 #   return()
 # endfunction()
 
@@ -59,7 +59,7 @@ include("${cmakepp_base_dir}/cmake/type/parameter_definition.cmake")
 
 include("${cmakepp_base_dir}/cmake/task/task_enqueue.cmake")
 
-## includes all cmake files of cmakepp 
+## includes all cmake files of cmakepp
 include("${cmakepp_base_dir}/cmake/core/require.cmake")
 
 require("${cmakepp_base_dir}/cmake/*.cmake")
@@ -72,7 +72,7 @@ parse_command_line(command_line_args "${command_line_args}") # parses quoted com
 map_set(global "command_line_args" ${command_line_args})
 map_set(global "unused_command_line_args" ${command_line_args})
 
-## todo... change this 
+## todo... change this
 # setup cmakepp config
 map()
 kv(base_dir

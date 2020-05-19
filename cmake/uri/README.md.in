@@ -1,6 +1,6 @@
 # Uniform Resource Identifiers (URIs)
 
-Uniform Resource Identifiers are often used for more than just internet addresses.  They are able to identify any type of resource and are truly cross platform.  Even something as simple as parsing a path can take on complex forms in edge cases.  My motivation for writing an URI parser was that I needed a sure way to identify a path in a command line call. 
+Uniform Resource Identifiers are often used for more than just internet addresses.  They are able to identify any type of resource and are truly cross platform.  Even something as simple as parsing a path can take on complex forms in edge cases.  My motivation for writing an URI parser was that I needed a sure way to identify a path in a command line call.
 
 My work is based arround [RFC2396](https://www.ietf.org/rfc/rfc2396.txt) by Berners Lee et al.  The standard is enhanced by allowing delimited URIs and Windows Paths as URIs. You can always turn this behaviour off however and use flags to use the pure standard.
 
@@ -68,4 +68,3 @@ assign(function_files = glob("**.cmake" --relative))
 ## Function Descriptions
 
 <%= markdown_template_function_descriptions('${function_files}') %>
-

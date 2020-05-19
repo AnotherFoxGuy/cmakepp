@@ -1,6 +1,6 @@
 # Feature Overview
 
-`cmakepp` has a lot of different functions. I tried to subdivide them into some meaningful sections. 
+`cmakepp` has a lot of different functions. I tried to subdivide them into some meaningful sections.
 
 <%
 # this reads all files in the current dir

@@ -6,7 +6,7 @@
 ## **scope**
 ## * `pwd()` influences the relative paths
 ## **returns**
-## * list of files matching the specified glob expressions 
+## * list of files matching the specified glob expressions
 function(glob)
     set(args ${ARGN})
     list_extract_flag(args --relative)

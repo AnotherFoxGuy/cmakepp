@@ -1,6 +1,6 @@
 # `CMake` Script Parsing, Token Manipulation, Reflection
 
-CMake's language lends itself to be parsed and tokenized easily. The [specification](http://www.cmake.org/cmake/help/v3.0/manual/cmake-language.7.html#syntax) shows which tokens are available.  Since the functional blocks of CMake only are `command_invocations`s the language's structure very simple.  
+CMake's language lends itself to be parsed and tokenized easily. The [specification](http://www.cmake.org/cmake/help/v3.0/manual/cmake-language.7.html#syntax) shows which tokens are available.  Since the functional blocks of CMake only are `command_invocations`s the language's structure very simple.
 
 My parser takes any cmake code (the version of code supported is still to be determined as for example bracket arguments are not supported but bracket comments are) and creates a list of tokens.  These tokens are also part of a linked list.  This linked list can be used to modify token values or add new tokens which in essence allows reflection and manipulation of the source code.
 
@@ -43,5 +43,3 @@ My parser takes any cmake code (the version of code supported is still to be det
 ## Function Descriptions
 
 @markdown_template_function_descriptions('${function_files}')
-
-

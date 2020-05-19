@@ -6,5 +6,3 @@
 	"authors":"toeb = Tobias P. Becker <toeb@thetoeb.de>",
 	"owner":"toeb"
 }
-
-

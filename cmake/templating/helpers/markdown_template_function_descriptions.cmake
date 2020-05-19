@@ -20,4 +20,3 @@ function(markdown_template_function_descriptions)
     endforeach ()
     return_ref(res)
 endfunction()
-

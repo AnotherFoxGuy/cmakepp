@@ -1,10 +1,10 @@
 ## `(<template file:<file path>> <?output file:<file path>>)-><file path>`
 ##
 ## compiles the specified template file to the speciefied output file
-## if no output file is given the template file is expected to end with `.in`) and the 
+## if no output file is given the template file is expected to end with `.in`) and the
 ## output file will be set to the same path without the `.in` ending
 ##
-## Uses  see [`template_run_file`](#template_run_file) internally. 
+## Uses  see [`template_run_file`](#template_run_file) internally.
 ##
 ## returns the path to which it was compiled
 ##

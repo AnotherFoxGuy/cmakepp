@@ -1,4 +1,4 @@
-## 
+##
 ##
 ## sets __ans in parent scope
 macro(arguments_expression_eval_cached type arguments argn start end)

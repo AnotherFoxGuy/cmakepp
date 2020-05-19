@@ -1,13 +1,13 @@
 ## `(<process start info> [--process-handle] [--exit-code] [--async] [--silent-fail] [--success-callback <callable>]  [--error-callback <callable>] [--state-changed-callback <callable>])-><process handle>|<exit code>|<stdout>|<null>`
 ##
 ## *options*
-## * `--process-handle` 
-## * `--exit-code` 
-## * `--async` 
-## * `--silent-fail` 
-## * `--success-callback <callable>[exit_code](<process handle>)` 
-## * `--error-callback <callable>[exit_code](<process handle>)` 
-## * `--state-changed-callback <callable>[old_state;new_state](<process handle>)` 
+## * `--process-handle`
+## * `--exit-code`
+## * `--async`
+## * `--silent-fail`
+## * `--success-callback <callable>[exit_code](<process handle>)`
+## * `--error-callback <callable>[exit_code](<process handle>)`
+## * `--state-changed-callback <callable>[old_state;new_state](<process handle>)`
 ## * `--lean`
 ## *example*
 ## ```
@@ -88,7 +88,7 @@ function(execute)
     endif()
 
 
-    
+
     map_tryget(${process_handle} exit_code)
     ans(exit_code)
 

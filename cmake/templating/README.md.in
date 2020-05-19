@@ -1,17 +1,17 @@
-# Templating 
+# Templating
 
 <%
 assign(function_files = glob("**.cmake" --relative))
 assign(function_files[] = glob("template/**cmake" --relative))
 %>
 
-While working on the documentation of `cmakepp` I grew wary of always doubling the documentation - one in the source code and a mirror in the `README.md`.  Also I was frustrated when I refactored and renamed functions or changed signatures which is not uncommon - especially when working on a new feature. So I needed a tool which could generate the documentation by copying the comment header and the function signature from my `CMake` files.  
+While working on the documentation of `cmakepp` I grew wary of always doubling the documentation - one in the source code and a mirror in the `README.md`.  Also I was frustrated when I refactored and renamed functions or changed signatures which is not uncommon - especially when working on a new feature. So I needed a tool which could generate the documentation by copying the comment header and the function signature from my `CMake` files.
 
 While the comment/signature/cmake script parsing is done by `cmake_script_parse(...)` and is another subject, I still stood before the problem of combining all the information into useful documentation.  I especially did not want a too special solution which does not allow for special cases / different formatting.  So I took inspiration from some of existing template engines like `razor` or `asp` and managed to implement the core logic in less than 60 lines of `CMake` code.
 
-While my original thought was only 'how is the best way to generate markdown' I soon realized that This kind of templating would allow for quite some more domains to be served.  For Example generating `C++` source code (i.e. data structures) - any kind of text based format could easily be generated.  
+While my original thought was only 'how is the best way to generate markdown' I soon realized that This kind of templating would allow for quite some more domains to be served.  For Example generating `C++` source code (i.e. data structures) - any kind of text based format could easily be generated.
 
-`CMake` itself allows you to do something not quite similar.  You can use the `string(CONFIGURE)` and `file(CONFIGURE)` functions to replace `@@vars@@` within text with values that you have specified.  This howeverwill never allow you to generate complex structures as simple as an inline `foreach()` loop.  
+`CMake` itself allows you to do something not quite similar.  You can use the `string(CONFIGURE)` and `file(CONFIGURE)` functions to replace `@@vars@@` within text with values that you have specified.  This howeverwill never allow you to generate complex structures as simple as an inline `foreach()` loop.
 
 When I was finished with implementing my solution I noticed I had a far more mighty tool at hand than I anticipated:  I could let the functions which I was documenting run and add the result to my documentation.  For Example see the comments for [ls](#) and the resulting [README.md](#)
 
@@ -19,9 +19,9 @@ When I was finished with implementing my solution I noticed I had a far more mig
 ## Template Process
 
 The template process is as follows:
-```                            
+```
                                                        |cmake scope|
-                                                            vvv             
+                                                            vvv
 (|file| =read=>) |string| =template_compile=> |cmake code| =eval=> |string| (=write=> |file|)
 ```
 
@@ -30,8 +30,8 @@ The template process is as follows:
 The template syntax is quite easy:
 * `<%%` `%%>` encloses cmake code
 * `<%%%` and `%%%>` escape `<%%` and `%%>` resp.
-* `<%%=` runs the function specified if possible (only single line function calls allowed) or formats the following string using the `format()` function (allows things like `<%%="${var} {format.expression[3].navigation.key}%%>`) 
-    * single line function calls are `func(.....)` but not `func(... \n ....)` 
+* `<%%=` runs the function specified if possible (only single line function calls allowed) or formats the following string using the `format()` function (allows things like `<%%="${var} {format.expression[3].navigation.key}%%>`)
+    * single line function calls are `func(.....)` but not `func(... \n ....)`
 * shorthands
     * `@@<cmake function call>` is replaced with `<%%= <cmake function call> %%>`
     * `@@<navigation expression>` is replaced with `<%%= {<navigation expression>}%%>`
@@ -138,15 +138,15 @@ Some more transformations are performed but the gist ist captured in this descri
 
 template string
 ```
-Hello <%%={user.name}%%>, 
+Hello <%%={user.name}%%>,
 <%%foreach(i RANGE 1 3)%%>* <%%=${i}%%>
 <%%endforeach()%%>
 ```
 
-result of `template_compile` **Note**  *the strings seem may seem strange. That is because they are `cmake_escape`d.*  
+result of `template_compile` **Note**  *the strings seem may seem strange. That is because they are `cmake_escape`d.*
 ```cmake
 <%
-template_compile("Hello <%%={user.name}%%>, 
+template_compile("Hello <%%={user.name}%%>,
 <%%foreach(i RANGE 1 3)%%>* <%%=\${i}%%>
 <%%endforeach()%%>")
 template_out("${__ans}")
@@ -165,4 +165,3 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 ### Function Descriptions
 
 <%= markdown_template_function_descriptions('${function_files}') %>
-

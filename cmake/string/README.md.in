@@ -15,4 +15,3 @@ So I have created somewhat alot of functions which does things that you might ne
 ### Function Descriptions
 
 <%= markdown_template_function_descriptions('${function_files}') %>
-

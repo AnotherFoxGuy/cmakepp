@@ -7,14 +7,14 @@
 
 To quickly define a map in cmake I introduce the quick map syntax which revolves around these 5 functions and is quite intuitive to understand:
 ```
-map([key]) # creates, returns a new map (and parent map at <key> to the new map) 
+map([key]) # creates, returns a new map (and parent map at <key> to the new map)
 key(<key>)  # sets the current key
 val([arg ...])  # sets the value at current map[current key] to <args>
-kv(<key> [arg ...]) # same as writing key(<key>) LF val([arg ...]) 
+kv(<key> [arg ...]) # same as writing key(<key>) LF val([arg ...])
 end() # finishes the current map and returns it
 ```
 
-*Example* 
+*Example*
 Here is an example how to use this syntax
 ```
 # define the map
@@ -48,7 +48,7 @@ ans(themap)
 address_print(${themap})
 ```
 
-*Output* 
+*Output*
 ```
 {
   "firstname":"Tobias",
@@ -79,4 +79,3 @@ address_print(${themap})
 ### Function Descriptions
 
 <%= markdown_template_function_descriptions('${function_files}') %>
-

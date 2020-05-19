@@ -7,7 +7,7 @@ at runtime). This has problem and some further funcitonality issues are
 addressed in this section.
 
 Functions in cmake are not variables - they have a separate global only scope in
-which they are defined.  
+which they are defined.
 _A Note on Macros_ Macros are also functions. They do not have their own scope
 and evaluate arguments differently. They will more likely than not have
 unintended side effects because of the way the are evaluated. There are valid

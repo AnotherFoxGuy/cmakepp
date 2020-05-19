@@ -337,7 +337,7 @@ async(<callable>(<args...)) -> <process handle>
 
 executes a callable asynchroniously
 
-todo: capture necessary scope vars include further files for custom functions  
+todo: capture necessary scope vars include further files for custom functions
  environment vars
 
 ## <a name="await"></a> `await`
@@ -386,7 +386,7 @@ _options_
 
 `(<cmake code> [--pure] <args...>)-><execute result>`
 
-equivalent to `execute(...)->...` runs the specified code using `cmake -P`.  
+equivalent to `execute(...)->...` runs the specified code using `cmake -P`.
  prepends the current `cmakepp.cmake` to the script (this default behaviour can be
 stopped by adding `--pure`)
 
@@ -557,7 +557,7 @@ which they completed
 `--timeout <n>` if value is specified the function will return all finished
 processes after n seconds
 
-`--idle-callback <callable>`  
+`--idle-callback <callable>`
  if value is specified it will be called at least once and between every query if
 a task is still running
 
