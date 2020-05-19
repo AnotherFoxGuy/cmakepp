@@ -17,9 +17,9 @@ function(test)
     ans(generated_content)
     assert("${generated_content}" STREQUAL "My echo test returns: Hello World")
 
-    template_run("My echo test returns: <%= my_echo_func_2_args('World' 'Hello') %>")
+    template_run("My echo test returns: <%= my_echo_func_2_args('World', 'Hello') %>")
     ans(generated_content)
-    assert("${generated_content}" STREQUAL "My echo test returns: Hello World")
+    assert("${generated_content}" STREQUAL "My echo test returns: #Hello World")
 
 
     fwrite_temp("My echo test returns from file: <%= my_echo_func('Hello World') %>" ".in")
