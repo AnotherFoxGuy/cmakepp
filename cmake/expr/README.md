@@ -2,13 +2,25 @@
 
 ## <a name="expr_motivation"></a> Motivation
 
-"CMake's syntax is not sexy." Is a statement that probably everyone can understand. It does not allow the developer rudimentary constructs which almost all other languages have.  But because CMake's language is astonishingly flexible I was able to create a lexer and parser and interpreter for a custom 100 % compatible syntax which (once "JIT compiled") is also fast. Which I call `cmakepp expressions` or `expr` for short. I want to emphasise that this all is written in 100% compatible cmake and you can use it *without* the need to preprocess cmake files.
+"CMake's syntax is not sexy." Is a statement that probably everyone can
+understand. It does not allow the developer rudimentary constructs which almost
+all other languages have. But because CMake's language is astonishingly flexible
+I was able to create a lexer and parser and interpreter for a custom 100 %
+compatible syntax which (once "JIT compiled") is also fast. Which I call
+`cmakepp expressions` or `expr` for short. I want to emphasise that this all is
+written in 100% compatible cmake and you can use it _without_ the need to
+preprocess cmake files.
 
 ## <a name="expr_example"></a> Example
 
-The easiest way to introduce the new `expr` syntax and its usefulness is by example. So here it is (Note that these example are actually executed during the generation of this document using my cmake template engine ([link](#)) so the result displayed is actually computed).
+The easiest way to introduce the new `expr` syntax and its usefulness is by
+example. So here it is (Note that these example are actually executed during the
+generation of this document using my cmake template engine ([link](#)) so the
+result displayed is actually computed).
 
-You can run these examples yourself - just look at the [installing cmakepp](#) section in `cmakepp`'s documentation.  (Which boils down to downloading a single file and including it)
+You can run these examples yourself - just look at the [installing cmakepp](#)
+section in `cmakepp`'s documentation. (Which boils down to downloading a single
+file and including it)
 
 ```cmake
 
@@ -161,7 +173,7 @@ my_other_test_function(
     var_2: "hello world" ,
     f,[g,h],
     var_4: "another value"
-)  # => `result of arguments_expression macro: 
+)  # => `result of arguments_expression macro:
 unused_arg[1]: 'e'
 unused_arg[2]: 'f'
 unused_arg[3]: 'g;h'
@@ -177,82 +189,73 @@ var_5:
 
 I provide the following functions for you to interact with `expr`.
 
-
-
-* [expr](#expr)
-* [arguments_expression](#arguments_expression)
-* [cmakepp_enable_expressions](#cmakepp_enable_expressions)
+- [expr](#expr)
+- [arguments_expression](#arguments_expression)
+- [cmakepp_enable_expressions](#cmakepp_enable_expressions)
 
 ## <a name="expr"></a> `expr`
 
- `(<expression>)-><any>`
+`(<expression>)-><any>`
 
- parses, compiles and evaluates the specified expression. The compilation result
- is cached (per cmake run)
-
-
-
-
+parses, compiles and evaluates the specified expression. The compilation result
+is cached (per cmake run)
 
 ## <a name="arguments_expression"></a> `arguments_expression`
 
- `(<begin index> <end index> <parameter definition>...)-><any>...`
+`(<begin index> <end index> <parameter definition>...)-><any>...`
 
+parses the arguments of the calling function cmakepp expressions expects
+`begin index` to be the index of first function parameters (commonly 0) and
+`end index` to be the index of the last function parameter to parse (commonly
+\${ARGC}) var args are named arguments which will be set to be available in the
+function scope
 
- parses the arguments of the calling function cmakepp expressions
- expects `begin index` to be the index of first function parameters (commonly 0)
- and `end index` to be the index of the last function parameter to parse (commonly ${ARGC})
- var args are named arguments which will be set to be available in the function scope
+named arguments passed to function have a higher precedence than positional
+arguments
 
- named arguments passed to function have a higher precedence than positional arguments 
+**sideffects**:
 
- __sideffects__:
- * `arguments_expression_result` is a address of an object containing all parsed data
- * scope operations may modify the parent scope of the function
- 
-
-
-
-
+- `arguments_expression_result` is a address of an object containing all parsed
+  data
+- scope operations may modify the parent scope of the function
 
 ## <a name="cmakepp_enable_expressions"></a> `cmakepp_enable_expressions`
 
- `(${CMAKE_CURRENT_LIST_LINE})-><any>`
+`(${CMAKE_CURRENT_LIST_LINE})-><any>`
 
- you need to pass `${CMAKE_CURRENT_LIST_LINE}` for this to work
+you need to pass `${CMAKE_CURRENT_LIST_LINE}` for this to work
 
- this macro enables all expressions in the current scope
- it will only work in a CMake file scioe or inside a cmake function scope.
- You CANNOT use it in a loop, if statement, macro etc (everything that has a begin/end)
- Every expression inside that scope (and its subscopes) will be evaluated.  
+this macro enables all expressions in the current scope it will only work in a
+CMake file scioe or inside a cmake function scope. You CANNOT use it in a loop,
+if statement, macro etc (everything that has a begin/end) Every expression
+inside that scope (and its subscopes) will be evaluated.
 
- **Implementation Note**:
- This is achieved by parsing the while cmake file (and thus potentially takes very long)
- Afterwards the line which you pass as an argument is used to find the location of this macro
- every argument for every following expression in the current code scope is scanned for
- `$[...]` brackets which are in turn lexed,parsed and compiled (see `expr()`) and injected
- into the code which is in turn included
-
-
-
-
-
+**Implementation Note**: This is achieved by parsing the while cmake file (and
+thus potentially takes very long) Afterwards the line which you pass as an
+argument is used to find the location of this macro every argument for every
+following expression in the current code scope is scanned for `$[...]` brackets
+which are in turn lexed,parsed and compiled (see `expr()`) and injected into the
+code which is in turn included
 
 ## <a name="expr_definition"></a> TheExpressionLanguageDefinition
 
-I mixed several constructs and concepts from different languages which I like - the syntax should be familiar for someone who knows JavaScript and C++.  I am not a professional language designer so some decisions might seem strange however I have tested everything thouroughly and am happy to fix any bugs.
+I mixed several constructs and concepts from different languages which I like -
+the syntax should be familiar for someone who knows JavaScript and C++. I am not
+a professional language designer so some decisions might seem strange however I
+have tested everything thouroughly and am happy to fix any bugs.
 
-For better or worse here is the language definition which is still a work in progress.
+For better or worse here is the language definition which is still a work in
+progress.
 
 ```cmake
-## the forbidden chars are used by the tokenizer and using them will cause the world to explode. They are all valid ASCII codes < 32 and > 0 
-<forbidden char> ::=  SOH | NAK | US | STX | ETX | GS | FS | SO  
-<escapeable char> :: = "\" """ "'"  
-<free char> ::= <ascii char>  /  <forbidden char> / <escapablechar> 
-<escaped char> 
-<quoted string content> ::= <<char>|"\" <escaped char>>* 
+## the forbidden chars are used by the tokenizer and using them will cause the world to explode. They are all valid ASCII codes < 32 and > 0
+<forbidden char> ::=  SOH | NAK | US | STX | ETX | GS | FS | SO
+<escapeable char> :: = "\" """ "'"
+<free char> ::= <ascii char>  /  <forbidden char> / <escapablechar>
+<escaped char>
+<quoted string content> ::= <<char>|"\" <escaped char>>*
 
-## strings 
+## strings
 <double quoted string> ::= """ <quoted string content> """
     expr("\"\"") # => ``
     expr("\"hello\"") # => `hello`
@@ -270,17 +273,17 @@ For better or worse here is the language definition which is still a work in pro
     expr("'\\\" double quote'") # => `" double quote`
     expr("'\\\\ backslash'") # => `\\ backslash`
 
-<unquoted string> ::= 
+<unquoted string> ::=
     expr(hello) # => `hello`
 
-<separated string> ::= 
+<separated string> ::=
     expr("") # => ``
     expr("hello world") # => `hello world`
-    
+
 
 <string> ::= <double quoted string> | <single quoted string> | <unquoted string> | <separated string>
 
-## every literal is a const string 
+## every literal is a const string
 ## some unquoted strings have a special meaning
 ## quoted strings are always strings even if their content matches one
 ## of the specialized definitions
@@ -326,19 +329,19 @@ For better or worse here is the language definition which is still a work in pro
 <key value> ::= <value>:<value>
 <object property> ::= <key value> | <value>
 <object> ::= "{" <empty> | (<object property> ",")* <object property> "}"
-    expr({}) # => {} 
-    expr({a:b}) # => {"a":"b"} 
-    expr({a: ("hello world"::string_to_title())}) # => {"a":"Hello World"} 
+    expr({}) # => {}
+    expr({a:b}) # => {"a":"b"}
+    expr({a: ("hello world"::string_to_title())}) # => {"a":"Hello World"}
 
 <paren> ::= "(" <value> ")"
 ## ellipsis are treated differently in many situation
 ## if used in a function parameter the arguments will be spread out
 ## if used in a navigation or indexation expression the navigation or
 ## indexation applied to every element in value
-<ellipsis> ::= <value> "..." 
+<ellipsis> ::= <value> "..."
 
 ## if lvalue is <null> it is set to the default value (a new map)
-<default value> ::= <lvalue> "!" 
+<default value> ::= <lvalue> "!"
 
 <value> ::= <paren> |
             | <value dereference>
@@ -358,27 +361,27 @@ For better or worse here is the language definition which is still a work in pro
 
 ## a parameter can be a value or the returnvalue operator "$"
 ## if the return value operator is specified the output of that parameter
-## is treated as the result of the function call 
+## is treated as the result of the function call
 ## this is usefull for using function which do not adhere to the
 ## return value convention. If used multiple times inside a call
-## the results are accumulated.   
-<parameter> ::= <value> | "$" 
+## the results are accumulated.
+<parameter> ::= <value> | "$"
 
 <parameters> ::= "(" <empty> | (<parameter> "," )* <parameter>  ")"
 
 <normal call> ::= <value> <parameters>
-    expr(string_to_title("hello world")) # => `Hello World` 
+    expr(string_to_title("hello world")) # => `Hello World`
     expr("eval_math('3 + 4')") # => `7`
 
 ## bind call binds the left hand value as the first parameter of the function
-<bind call> ::=  <value> "::" <value> <parameter>  
-    expr("hello world"::string_to_title()) # => `Hello World` 
+<bind call> ::=  <value> "::" <value> <parameter>
+    expr("hello world"::string_to_title()) # => `Hello World`
 
 <call> ::= <normal call> | <bind call>
 
-<scope variable> ::= "$" <literal> 
-    set(my_var hello!) 
-    expr($my_var) # => `hello!` 
+<scope variable> ::= "$" <literal>
+    set(my_var hello!)
+    expr($my_var) # => `hello!`
 
 
 <index> ::= "-"? <number> | "$" | "n"
@@ -388,33 +391,41 @@ For better or worse here is the language definition which is still a work in pro
 <indexation parameter> ::= <range> | <value>
 <indexation parameters> ::= (<indexation parameter> ",")* <indexation parameter>
 <indexation> ::= <value>"[" <indexation parameters> "]"
-    expr("{a:1,b:2}['a','b']") # => `1;2` 
+    expr("{a:1,b:2}['a','b']") # => `1;2`
     expr("[{a:1,b:2},{a:3,b:4}]...['a','b']") # => `1;3;2;4`
 
-<lvalue> ::= <scope variable> | <navigation> | <indexation> 
+<lvalue> ::= <scope variable> | <navigation> | <indexation>
 
 
 <assign> ::= <lvalue> "=" <value>
     ## sets the scope variable my_value to 1
     expr($my_value = 1)
-    expr($my_value) # => `1` 
+    expr($my_value) # => `1`
     ## coerces the scope value my_other_value to be an object
     #expr($my_other_value!.a!.b = 123)
-    #expr($my_other_value) # => `` 
+    #expr($my_other_value) # => ``
 
 
-<expression> ::= <assign> | <value> 
+<expression> ::= <assign> | <value>
 
 ```
 
-## Caveats 
+## Caveats
 
 ### Syntax
-The syntax is not implemented completely yet (missing return value token `$`).  There are some conflicts in operation precedence (which can currently be solved with parenthesis).  All Examples described here work however.
 
+The syntax is not implemented completely yet (missing return value token `$`).
+There are some conflicts in operation precedence (which can currently be solved
+with parenthesis). All Examples described here work however.
 
 ### Speed
-Compiling these expressions is slow: a simple expression compiles in hundreds of milliseconds. Complex expressions can take several seconds.  However this is only when they are first encountered. afterwards the speed is fast even if the expressions are complex. Currently I cache the expressions everytime cmake starts. An example is when using `arguments_expression(...)` It takes up to 1000ms to compile 
+
+Compiling these expressions is slow: a simple expression compiles in hundreds of
+milliseconds. Complex expressions can take several seconds. However this is only
+when they are first encountered. afterwards the speed is fast even if the
+expressions are complex. Currently I cache the expressions everytime cmake
+starts. An example is when using `arguments_expression(...)` It takes up to
+1000ms to compile
 
 ```cmake
 my_other_test_function(
@@ -425,31 +436,38 @@ my_other_test_function(
     var_4: "another value"
 )
 ```
-however execution time is less than 10 ms 
 
+however execution time is less than 10 ms
 
 ## Future Work
 
 ### Syntax
 
-I still need to implement correct math in the expressions which is a big minus in cmake (anyone who every had to work with negative values knows what I mean).  Expressions like `(-$a + 33) / -12 ` should be simple enough to get to work.  
+I still need to implement correct math in the expressions which is a big minus
+in cmake (anyone who every had to work with negative values knows what I mean).
+Expressions like `(-$a + 33) / -12` should be simple enough to get to work.
 
-The return token  `$` needs to work. currently I do not support it.
+The return token `$` needs to work. currently I do not support it.
 
-Range based get and set needs to be implemented.   
+Range based get and set needs to be implemented.
+
 ```
 # let a = [{b:'a'},{b:'b'},{b:'c'},{b:'d'}]
-# then 
-$a[1:2].b = [1,2]... 
-## should result in 
+# then
+$a[1:2].b = [1,2]...
+## should result in
 # let a = [{b:'a'},{b:'1'},{b:'2'},{b:'d'}]
 ```
 
-
 ### Speed
 
-I still need to cache expressions between cmake runs which will decrease the time needed by alot (as expressions only need to be reevaluated whenever it changes)
+I still need to cache expressions between cmake runs which will decrease the
+time needed by alot (as expressions only need to be reevaluated whenever it
+changes)
 
 ### Afterwards
 
-When the syntax is complete and this feature works well the next step is to incorporate it into CMake using C code which will significantly increase the speed.  This will make everything much, much faster and might even get rid of those hideous generator expressions. 
+When the syntax is complete and this feature works well the next step is to
+incorporate it into CMake using C code which will significantly increase the
+speed. This will make everything much, much faster and might even get rid of
+those hideous generator expressions.

@@ -1,19 +1,18 @@
 ## Quick Map Syntax
 
+To quickly define a map in cmake I introduce the quick map syntax which revolves
+around these 5 functions and is quite intuitive to understand:
 
-
-
-To quickly define a map in cmake I introduce the quick map syntax which revolves around these 5 functions and is quite intuitive to understand:
 ```
-map([key]) # creates, returns a new map (and parent map at <key> to the new map) 
+map([key]) # creates, returns a new map (and parent map at <key> to the new map)
 key(<key>)  # sets the current key
 val([arg ...])  # sets the value at current map[current key] to <args>
-kv(<key> [arg ...]) # same as writing key(<key>) LF val([arg ...]) 
+kv(<key> [arg ...]) # same as writing key(<key>) LF val([arg ...])
 end() # finishes the current map and returns it
 ```
 
-*Example* 
-Here is an example how to use this syntax
+_Example_ Here is an example how to use this syntax
+
 ```
 # define the map
 map()
@@ -46,7 +45,8 @@ ans(themap)
 address_print(${themap})
 ```
 
-*Output* 
+_Output_
+
 ```
 {
   "firstname":"Tobias",
@@ -69,66 +69,35 @@ address_print(${themap})
 
 ```
 
-
 ### Function List
 
-
-* [end](#end)
-* [key](#key)
-* [kv](#kv)
-* [map](#map)
-* [ref](#ref)
-* [val](#val)
-* [var](#var)
+- [end](#end)
+- [key](#key)
+- [kv](#kv)
+- [map](#map)
+- [ref](#ref)
+- [val](#val)
+- [var](#var)
 
 ### Function Descriptions
 
 ## <a name="end"></a> `end`
 
-
-
-
-
 ## <a name="key"></a> `key`
-
-
-
-
 
 ## <a name="kv"></a> `kv`
 
-
-
-
-
 ## <a name="map"></a> `map`
-
-
-
-
 
 ## <a name="ref"></a> `ref`
 
- ref() -> <address> 
- 
- begins a new reference value and returns its address
- ref needs to be ended via end() call
+ref() -> <address>
 
-
-
+begins a new reference value and returns its address ref needs to be ended via
+end() call
 
 ## <a name="val"></a> `val`
 
-
-
-
-
 ## <a name="var"></a> `var`
 
- captures a list of variable as a key value pair
-
-
-
-
-
-
+captures a list of variable as a key value pair

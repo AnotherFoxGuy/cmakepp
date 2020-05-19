@@ -1,53 +1,52 @@
 # Feature Overview
 
-`cmakepp` has a lot of different functions. I tried to subdivide them into some meaningful sections. 
+`cmakepp` has a lot of different functions. I tried to subdivide them into some
+meaningful sections.
 
+- [Buildserver](buildserver/README.md)
 
+- [Creating Checksums](checksum/README.md)
 
-* [Buildserver](buildserver/README.md)
+- [CMake handling functions](cmake/README.md)
 
-* [Creating Checksums](checksum/README.md)
+- [Collections](collections/README.md)
 
-* [CMake handling functions](cmake/README.md)
+- [Date/Time](datetime/README.md)
 
-* [Collections](collections/README.md)
+- [Events](events/README.md)
 
-* [Date/Time](datetime/README.md)
+- [`cmakepp` Expression Syntax](expr/README.md)
 
-* [Events](events/README.md)
+- [Filesystem](filesystem/README.md)
 
-* [`cmakepp` Expression Syntax](expr/README.md)
+- [Functions](function/README.md)
 
-* [Filesystem](filesystem/README.md)
+- [Logging Functions](log/README.md)
 
-* [Functions](function/README.md)
+- [Maps - Structured Data in CMake](map/README.md)
 
-* [Logging Functions](log/README.md)
+- [Navigation Functions](navigation/README.md)
 
-* [Maps - Structured Data in CMake](map/README.md)
+- [Objects ](object/README.md)
 
-* [Navigation Functions](navigation/README.md)
+- [User Data](persistence/README.md)
 
-* [Objects ](object/README.md)
+- [Process Management](process/README.md)
 
-* [User Data](persistence/README.md)
+- [Quick Map Syntax](quickmap/README.md)
 
-* [Process Management](process/README.md)
+- [Reference Values](ref/README.md)
 
-* [Quick Map Syntax](quickmap/README.md)
+- [Windows Registry](reg/README.md)
 
-* [Reference Values](ref/README.md)
+- [Parsing and handling semantic versions](semver/README.md)
 
-* [Windows Registry](reg/README.md)
+- [String Functions](string/README.md)
 
-* [Parsing and handling semantic versions](semver/README.md)
+- [Tasks and Promises](task/README.md)
 
-* [String Functions](string/README.md)
+- [Templating ](templating/README.md)
 
-* [Tasks and Promises](task/README.md)
+- [Uniform Resource Identifiers (URIs)](uri/README.md)
 
-* [Templating ](templating/README.md)
-
-* [Uniform Resource Identifiers (URIs)](uri/README.md)
-
-* [HTTP Client](web/README.md)
+- [HTTP Client](web/README.md)
