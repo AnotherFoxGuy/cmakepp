@@ -10,8 +10,7 @@
 # Usage
 Look through the files in the package.  Most functions will be commented and the other's usage can be inferred.  All functions are avaiable as soon as you include the `cmakepp.cmake` file.  To find functionality browse the `README.md` files throughout this project.
 
-
-<%=template_run_file('cmake/README.md.in')%>
+<%=template_run_file('source/README.md.in')%>
 
 <%=template_run_file('samples/README.md.in')%>
 
@@ -74,10 +73,10 @@ After You run this and relogin/repoen your console/resource your .bashrc you wil
 
 
 # Testing
-To test the code (alot is tested but not all) run the following in the root dir of cmakepp *this takes long :)*
+To test the code (alot is tested but not all) run the following in the root dir of cmakepp
 
 ``` 
-cmake -P build/script.cmake 
+cmake -P build/run-all-test.cmake
 ```
 
 # Developing

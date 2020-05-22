@@ -10,60 +10,59 @@
 # Usage
 Look through the files in the package.  Most functions will be commented and the other's usage can be inferred.  All functions are avaiable as soon as you include the `cmakepp.cmake` file.  To find functionality browse the `README.md` files throughout this project.
 
-
 # Feature Overview
 
 `cmakepp` has a lot of different functions. I tried to subdivide them into some meaningful sections. 
 
 
 
-* [Buildserver](cmake/buildserver/README.md)
+* [Buildserver](source/buildserver/README.md)
 
-* [Creating Checksums](cmake/checksum/README.md)
+* [Creating Checksums](source/checksum/README.md)
 
-* [CMake handling functions](cmake/cmake/README.md)
+* [CMake handling functions](source/cmake/README.md)
 
-* [Collections](cmake/collections/README.md)
+* [Collections](source/collections/README.md)
 
-* [Date/Time](cmake/datetime/README.md)
+* [Date/Time](source/datetime/README.md)
 
-* [Events](cmake/events/README.md)
+* [Events](source/events/README.md)
 
-* [`cmakepp` Expression Syntax](cmake/expr/README.md)
+* [`cmakepp` Expression Syntax](source/expr/README.md)
 
-* [Filesystem](cmake/filesystem/README.md)
+* [Filesystem](source/filesystem/README.md)
 
-* [Functions](cmake/function/README.md)
+* [Functions](source/function/README.md)
 
-* [Logging Functions](cmake/log/README.md)
+* [Logging Functions](source/log/README.md)
 
-* [Maps - Structured Data in CMake](cmake/map/README.md)
+* [Maps - Structured Data in CMake](source/map/README.md)
 
-* [Navigation Functions](cmake/navigation/README.md)
+* [Navigation Functions](source/navigation/README.md)
 
-* [Objects ](cmake/object/README.md)
+* [Objects ](source/object/README.md)
 
-* [User Data](cmake/persistence/README.md)
+* [User Data](source/persistence/README.md)
 
-* [Process Management](cmake/process/README.md)
+* [Process Management](source/process/README.md)
 
-* [Quick Map Syntax](cmake/quickmap/README.md)
+* [Quick Map Syntax](source/quickmap/README.md)
 
-* [Reference Values](cmake/ref/README.md)
+* [Reference Values](source/ref/README.md)
 
-* [Windows Registry](cmake/reg/README.md)
+* [Windows Registry](source/reg/README.md)
 
-* [Parsing and handling semantic versions](cmake/semver/README.md)
+* [Parsing and handling semantic versions](source/semver/README.md)
 
-* [String Functions](cmake/string/README.md)
+* [String Functions](source/string/README.md)
 
-* [Tasks and Promises](cmake/task/README.md)
+* [Tasks and Promises](source/task/README.md)
 
-* [Templating ](cmake/templating/README.md)
+* [Templating ](source/templating/README.md)
 
-* [Uniform Resource Identifiers (URIs)](cmake/uri/README.md)
+* [Uniform Resource Identifiers (URIs)](source/uri/README.md)
 
-* [HTTP Client](cmake/web/README.md)
+* [HTTP Client](source/web/README.md)
 
 
 # Samples
@@ -148,10 +147,10 @@ After You run this and relogin/repoen your console/resource your .bashrc you wil
 
 
 # Testing
-To test the code (alot is tested but not all) run the following in the root dir of cmakepp *this takes long :)*
+To test the code (alot is tested but not all) run the following in the root dir of cmakepp
 
 ``` 
-cmake -P build/script.cmake 
+cmake -P build/run-all-test.cmake
 ```
 
 # Developing
