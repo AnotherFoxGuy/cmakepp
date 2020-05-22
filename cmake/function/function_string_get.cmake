@@ -1,13 +1,12 @@
-# returns the implementation of the function (a string containing the source code)
-# this only works for functions files and function strings. CMake does not offer
-# a possibility to get the implementation of a defined function or macro.
+## returns the implementation of the function (a string containing the source code)
+## this only works for functions files and function strings. CMake does not offer
+## a possibility to get the implementation of a defined function or macro.
 function(function_string_get func)
     is_function_string(is_string "${func}")
     if (is_string)
         return_ref(func)
         return()
     endif ()
-
 
     is_function_ref(is_ref "${func}")
     if (is_ref)
@@ -59,7 +58,5 @@ function(function_string_get func)
     if (parsed_lambda)
         return_ref(parsed_lambda)
         return()
-        #endif()
-
-
+    endif ()
 endfunction()
