@@ -55,15 +55,15 @@ endfunction()
 #   return()
 # endfunction()
 
-include("${cmakepp_base_dir}/cmake/type/parameter_definition.cmake")
-include("${cmakepp_base_dir}/cmake/task/task_enqueue.cmake")
+include("${cmakepp_base_dir}/source/type/parameter_definition.cmake")
+include("${cmakepp_base_dir}/source/task/task_enqueue.cmake")
 
 ## includes all cmake files of cmakepp 
-include("${cmakepp_base_dir}/cmake/core/require.cmake")
-require("${cmakepp_base_dir}/cmake/*.cmake")
+include("${cmakepp_base_dir}/source/core/require.cmake")
+require("${cmakepp_base_dir}/source/*.cmake")
 
 ## include task_enqueue last
-include("${cmakepp_base_dir}/cmake/task/task_enqueue.cmake")
+include("${cmakepp_base_dir}/source/task/task_enqueue.cmake")
 
 ## setup global variables to contain command_line_args
 parse_command_line(command_line_args "${command_line_args}") # parses quoted command line args
@@ -113,7 +113,6 @@ cd("${CMAKE_SOURCE_DIR}")
 # setup config_function for cmakepp
 config_setup("cmakepp_config" ${cmakepp_config_definition})
 
-
 ## run all currently enqueued tasks
 set(cmakepp_is_loaded true)
 task_enqueue("[]()") ## dummy
@@ -122,7 +121,6 @@ tqr()
 ## register all function defs
 parameter_definition("")
 
-
 ## check if in script mode and script file is equal to this file
 ## then invoke either cli mode
 cmake_entry_point()
@@ -130,7 +128,6 @@ ans(entry_point)
 if ("${CMAKE_CURRENT_LIST_FILE}" STREQUAL "${entry_point}")
     cmakepp_cli()
 endif ()
-
 
 ## variables expected by cmake's find_package method
 set(CMAKEPP_FOUND true)
