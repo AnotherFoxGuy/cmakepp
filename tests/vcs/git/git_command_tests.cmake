@@ -34,6 +34,6 @@ function(test)
     git(clone "https://github.com/AnotherFoxGuy/cmakepp" . --exit-code)
     ans(ret)
     assert("${ret}" EQUAL 0)
-    assert(EXISTS "${test_dir}/dir3/cmake/vcs/git/git.cmake")
+    assert(EXISTS "${test_dir}/dir3/source/vcs/git/git.cmake")
 
 endfunction()
