@@ -1,12 +1,12 @@
-## `(<glob expression...> [--relative] [--recurse]) -> <qualified path...>|<relative path...>`
-##
-## **flags**:
-## * `--relative` causes the output to be paths realtive to current `pwd()`
-## * `--recurse` causes the glob expression to be applied recursively
-## **scope**
-## * `pwd()` influences the relative paths
-## **returns**
-## * list of files matching the specified glob expressions 
+# `(<glob expression...> [--relative] [--recurse]) -> <qualified path...>|<relative path...>`
+#
+# **flags**:
+# * `--relative` causes the output to be paths realtive to current `pwd()`
+# * `--recurse` causes the glob expression to be applied recursively
+# **scope**
+# * `pwd()` influences the relative paths
+# **returns**
+# * list of files matching the specified glob expressions
 function(glob)
     set(args ${ARGN})
     list_extract_flag(args --relative)
@@ -18,26 +18,26 @@ function(glob)
     glob_paths(${args})
     ans(globs)
 
-    if (recurse)
+    if(recurse)
         set(glob_command GLOB_RECURSE)
-    else ()
+    else()
         set(glob_command GLOB)
-    endif ()
+    endif()
 
-    if (relative)
+    if(relative)
         pwd()
         ans(pwd)
         set(relative RELATIVE "${pwd}")
-    else ()
+    else()
         set(relative)
-    endif ()
+    endif()
 
     set(paths)
 
-    if (globs)
+    if(globs)
         file(${glob_command} paths ${relative} ${globs})
         list_remove_duplicates(paths)
-    endif ()
+    endif()
 
     return_ref(paths)
 endfunction()

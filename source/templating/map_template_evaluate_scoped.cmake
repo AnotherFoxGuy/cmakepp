@@ -1,8 +1,6 @@
 
-
- function(map_template_evaluate_scoped scope)
- #todo -> needs to be implemented to correctly do recursion
- ## needs to have max iterations
+function(map_template_evaluate_scoped scope)
+    # todo -> needs to be implemented to correctly do recursion needs to have max iterations
     if(NOT __recurse)
         set(__recurse true)
         map_new()
@@ -15,12 +13,11 @@
         return()
     endif()
 
-
     if("${count}" GREATER "1")
         set(result)
         foreach(arg ${ARGN})
             map_template_evaluate_scoped("${arg}")
-            ans_append(result)            
+            ans_append(result)
         endforeach()
         return_ref(result)
     endif()
@@ -39,7 +36,6 @@
     if(result)
         return_ref(result)
     endif()
-    
 
     map_new()
     ans(result)
@@ -48,7 +44,7 @@
 
     map_keys("${value}")
     ans(keys)
-        
+
     foreach(key ${keys})
         map_tryget("${value}" "${key}")
         ans(propTemplate)
@@ -59,46 +55,20 @@
 
     return_ref(result)
 
-        # map_clone_deep(${})
-        # ans(clone)
+    # map_clone_deep(${}) ans(clone)
 
+    # if("${value}" STREQUAL "${scope}") set(scope "${clone}") endif()
 
-        # if("${value}" STREQUAL "${scope}")
-        #     set(scope "${clone}")
-        # endif()
-            
-        # set(changed true)
-        # while(changed)
+    # set(changed true) while(changed)
 
+    # set(changed false) foreach(key ${keys}) map_tryget(${value} "${key}") ans(template) map_tryget(${clone} "${key}") ans(previousValue)
 
+    # template_run_scoped(${scope} "${template}" ) ans(value) print_vars(key template value)
 
+    # if(NOT "${value}_" STREQUAL "${previousValue}_") map_set(${clone} "${key}" "${value}") set(changed true) endif() endforeach() endwhile()
 
-        #     set(changed false)
-        #     foreach(key ${keys})
-        #         map_tryget(${value} "${key}")
-        #         ans(template)
-        #         map_tryget(${clone} "${key}")
-        #         ans(previousValue)
-
-        #         template_run_scoped(${scope} "${template}" )
-        #         ans(value)
-        #         print_vars(key template value)
-
-        #         if(NOT "${value}_" STREQUAL "${previousValue}_")
-        #             map_set(${clone} "${key}" "${value}")
-        #             set(changed true)
-        #         endif()
-        #     endforeach()
-        # endwhile()
-
-
-
-# if(changed)
-#         return()
-#     else()
-#         return(${clone})
-#     endif()
+    # if(changed) return() else() return(${clone}) endif()
 
     return_ref(result)
-    
- endfunction()
+
+endfunction()

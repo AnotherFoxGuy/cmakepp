@@ -1,6 +1,5 @@
 
-
-  function(memory_cache_get cache_key)
+function(memory_cache_get cache_key)
     set(args ${ARGN})
     list_extract_flag(args --const)
     ans(isConst)
@@ -10,12 +9,9 @@
     map_tryget(memory_cache_entries "${key}")
     ans(value)
     if(NOT isConst)
-      map_clone_deep("${value}")
-      ans(value)
+        map_clone_deep("${value}")
+        ans(value)
     endif()
-#    
+    #
     return_ref(value)
-  endfunction()
-
-
-  
+endfunction()

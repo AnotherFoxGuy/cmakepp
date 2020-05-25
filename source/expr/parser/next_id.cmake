@@ -1,8 +1,9 @@
 function(next_id)
-  address_new()
-  ans(global_ref)
-  address_set("${global_ref}" 0)
-  eval("
+    address_new()
+    ans(global_ref)
+    address_set("${global_ref}" 0)
+    eval(
+        "
   function(next_id)
     address_get(${global_ref})
     math(EXPR __ans \"\${__ans} + 1\")
@@ -10,6 +11,6 @@ function(next_id)
     set(__ans \"_\${__ans}\" PARENT_SCOPE)
   endfunction()
   ")
-  next_id()
-  return_ans()
+    next_id()
+    return_ans()
 endfunction()

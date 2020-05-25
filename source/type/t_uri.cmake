@@ -1,11 +1,10 @@
-
-  function(t_uri)
+function(t_uri)
     uri(${ARGN})
     ans(uri)
     if(uri)
-      return(true ${uri})
+        return(true ${uri})
 
     else()
-      return(false)
+        return(false)
     endif()
-  endfunction()
+endfunction()

@@ -1,17 +1,17 @@
 function(performance_init)
-  map_new()
-  ans(perfmap)
-  map_set(global __performance ${perfmap})
+    map_new()
+    ans(perfmap)
+    map_set(global __performance ${perfmap})
 
-  function(performance_init)
-      
-  endfunction()
+    function(performance_init)
+
+    endfunction()
 
 endfunction()
 
 function(performance_sample file line)
-  
-  map_get(global __performance)
+
+    map_get(global __performance)
 
 endfunction()
 

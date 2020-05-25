@@ -1,7 +1,6 @@
 
-
-  ## queries a property
-  function(query_property input_callback property)
+# queries a property
+function(query_property input_callback property)
     property_def("${property}")
     ans(property)
     map_tryget(${property} "display_name")
@@ -16,7 +15,4 @@
     query_type("${input_callback}" "${property_type}")
     ans(res)
     return_ref(res)
-  endfunction()
-
-  
-
+endfunction()

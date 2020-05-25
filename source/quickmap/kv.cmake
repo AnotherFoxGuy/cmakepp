@@ -1,5 +1,4 @@
 function(kv key)
-  key("${key}")
-  val(${ARGN})
+    key("${key}")
+    val(${ARGN})
 endfunction()
-

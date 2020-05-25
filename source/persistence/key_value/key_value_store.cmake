@@ -1,5 +1,4 @@
-
-  function(key_value_store key_function)
+function(key_value_store key_function)
     set(args ${ARGN})
     list_pop_front(args)
     ans(store_dir)
@@ -17,4 +16,4 @@
     assign(this.delete = 'key_value_store_delete')
     assign(this.key = key_function)
     return(${this})
-  endfunction()
+endfunction()

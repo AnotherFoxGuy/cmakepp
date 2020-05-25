@@ -9,13 +9,13 @@ function(uri_parse_path uri)
     ans(slash)
     set(leading_slash ${slash})
 
-    while (true)
+    while(true)
         string_take_regex(path "${segment_char}+")
         ans(segment)
 
-        if ("${segment}_" STREQUAL "_")
+        if("${segment}_" STREQUAL "_")
             break()
-        endif ()
+        endif()
 
         string_take_regex(path "${segment_separator_char}")
         ans(slash)
@@ -26,39 +26,46 @@ function(uri_parse_path uri)
         ans(segment)
         list(APPEND segments "${segment}")
         set(last_segment "${segment}")
-    endwhile ()
+    endwhile()
 
     set(trailing_slash "${slash}")
     set(normalized_segments)
     set(current_segments ${segments})
 
-    while (true)
+    while(true)
         list_pop_front(current_segments)
         ans(segment)
 
-        if ("${segment}_" STREQUAL "_")
+        if("${segment}_" STREQUAL "_")
             break()
-        elseif ("${segment}" STREQUAL ".")
+        elseif("${segment}" STREQUAL ".")
 
-        elseif ("${segment}" STREQUAL "..")
+        elseif("${segment}" STREQUAL "..")
             list(LENGTH normalized_segments len)
 
             list_pop_back(normalized_segments)
             ans(last)
-            if ("${last}" STREQUAL "..")
+            if("${last}" STREQUAL "..")
                 list(APPEND normalized_segments .. ..)
-            elseif ("${last}_" STREQUAL "_")
+            elseif("${last}_" STREQUAL "_")
                 list(APPEND normalized_segments ..)
-            endif ()
-        else ()
+            endif()
+        else()
             list(APPEND normalized_segments "${segment}")
-        endif ()
-    endwhile ()
+        endif()
+    endwhile()
 
-    if (("${segments}_" STREQUAL "_") AND leading_slash)
+    if(("${segments}_" STREQUAL "_") AND leading_slash)
         set(trailing_slash "")
-    endif ()
+    endif()
 
-    map_capture(${uri} segments encoded_segments last_segment trailing_slash leading_slash normalized_segments)
+    map_capture(
+        ${uri}
+        segments
+        encoded_segments
+        last_segment
+        trailing_slash
+        leading_slash
+        normalized_segments)
     return()
 endfunction()

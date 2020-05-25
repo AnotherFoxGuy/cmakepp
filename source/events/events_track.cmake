@@ -1,15 +1,16 @@
-## `(<event-id...>)-><event tracker>`
-##
-## sets up a function which listens only to the specified events
-## 
+# `(<event-id...>)-><event tracker>`
+#
+# sets up a function which listens only to the specified events
+#
 function(events_track)
-  function_new()
-  ans(function_name)
+    function_new()
+    ans(function_name)
 
-  map_new()
-  ans(map)
+    map_new()
+    ans(map)
 
-  eval("
+    eval(
+        "
     function(${function_name})
       map_new()
       ans(event_args)
@@ -24,9 +25,9 @@ function(events_track)
     endfunction()
   ")
 
-  foreach(event ${ARGN})
-    event_addhandler(${event} ${function_name})
-  endforeach()
+    foreach(event ${ARGN})
+        event_addhandler(${event} ${function_name})
+    endforeach()
 
-  return(${map})
+    return(${map})
 endfunction()

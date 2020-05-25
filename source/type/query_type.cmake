@@ -1,8 +1,6 @@
 
-
-
-  ## queries a type
-  function(query_type input_callback type)
+# queries a type
+function(query_type input_callback type)
     type_def("${type}")
     ans(type)
 
@@ -12,11 +10,11 @@
     list(LENGTH properties is_complex)
 
     if(NOT is_complex)
-      query_fundamental("${input_callback}" "${type}")
-      ans(res)
+        query_fundamental("${input_callback}" "${type}")
+        ans(res)
     else()
-      query_properties("${input_callback}" "${type}")
-      ans(res)      
+        query_properties("${input_callback}" "${type}")
+        ans(res)
     endif()
     return_ref(res)
-  endfunction()  
+endfunction()

@@ -1,4 +1,4 @@
-  function(cmakelists_new source)
+function(cmakelists_new source)
     set(cmakelists_path "${ARGN}")
     if(NOT cmakelists_path)
         set(cmakelists_path .)
@@ -13,11 +13,11 @@
 
     cmake_token_range("${source}")
 
-    ans_extract(begin end)    
+    ans_extract(begin end)
     map_set(${cmakelists} begin ${begin})
-    map_set(${cmakelists} end ${end} )
+    map_set(${cmakelists} end ${end})
     map_set(${cmakelists} range ${begin} ${end})
     map_set(${cmakelists} path "${cmakelists_path}")
 
     return_ref(cmakelists)
-  endfunction()
+endfunction()

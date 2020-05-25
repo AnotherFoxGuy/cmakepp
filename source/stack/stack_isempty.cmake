@@ -1,10 +1,9 @@
 
-
-  function(stack_isempty stack)
+function(stack_isempty stack)
     map_tryget("${stack}" back)
     ans(count)
     if(count)
-      return(false)
+        return(false)
     endif()
     return(true)
-  endfunction()
+endfunction()

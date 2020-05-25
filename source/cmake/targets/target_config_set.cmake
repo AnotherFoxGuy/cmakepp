@@ -1,11 +1,10 @@
-## sets a target config property
-## ie.  target_config_set(mytarget RELEASE IMPORTED_LOCATION value)
-## translates to set_property(TARGET mytarget PROPERTY IMPORTED_LOCATION_RELEASE value )
+# sets a target config property
+# ie.  target_config_set(mytarget RELEASE IMPORTED_LOCATION value)
+# translates to set_property(TARGET mytarget PROPERTY IMPORTED_LOCATION_RELEASE value )
 function(target_config_set targetName targetConfig propertyName)
     if(NOT "${targetConfig}_" STREQUAL "_")
         string_toupper("${targetConfig}")
         ans(targetConfig)
-
 
         list_contains(CMAKE_CONFIGURATION_TYPES ${targetConfig})
         ans(isvalid)

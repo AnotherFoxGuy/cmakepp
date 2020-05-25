@@ -27,7 +27,7 @@ This is why I started to write log functions which do not output anything.  You 
  `error(...)-><log entry>`
 
  Shorthand function for `log(<message> <refs...> --error)
- 
+
  see [log](#log)
 
 
@@ -36,7 +36,7 @@ This is why I started to write log functions which do not output anything.  You 
 
 ## <a name="fatal"></a> `fatal`
 
- reports an error and stops program exection 
+ reports an error and stops program exection
 
 
 
@@ -61,8 +61,8 @@ This is why I started to write log functions which do not output anything.  You 
    * `--info`     flag indicates a info output
    * `--debug`    flag indicates a debug output
  * values
-   * `--error-code <code>` 
-   * `--level <n>` 
+   * `--error-code <code>`
+   * `--level <n>`
    * `--push <section>` depth+1
    * `--pop <section>`  depth-1
  * events
@@ -79,7 +79,7 @@ This is why I started to write log functions which do not output anything.  You 
 ## <a name="log_record_clear"></a> `log_record_clear`
 
  `log_record_clear()-><void>`
- 
+
  removes all messages from the log record
 
 
@@ -98,7 +98,7 @@ This is why I started to write log functions which do not output anything.  You 
  `log_last_error_entry()-><log entry>`
 
  returns the last log entry which is an error
- 
+
 
 
 
@@ -117,7 +117,7 @@ This is why I started to write log functions which do not output anything.  You 
 
  `log_last_error_print()-><void>`
 
- prints the last error message to the console  
+ prints the last error message to the console
 
 
 

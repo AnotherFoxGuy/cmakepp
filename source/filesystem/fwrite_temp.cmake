@@ -1,13 +1,13 @@
-##
-## 
-## creates a temporary file containing the specified content
-## returns the path for that file 
+#
+#
+# creates a temporary file containing the specified content
+# returns the path for that file
 function(fwrite_temp content)
     set(ext ${ARGN})
 
-    if (NOT ext)
+    if(NOT ext)
         set(ext ".txt")
-    endif ()
+    endif()
 
     cmakepp_config(temp_dir)
     ans(temp_dir)

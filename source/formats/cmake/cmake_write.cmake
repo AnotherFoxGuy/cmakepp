@@ -1,5 +1,4 @@
-
-function(cmake_write path )
+function(cmake_write path)
     cmake_serialize(${ARGN})
     ans(serialized)
     fwrite("${path}" "${serialized}")

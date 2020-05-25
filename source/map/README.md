@@ -122,6 +122,7 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_append"></a> `map_append`
 
+ appends a value to the end of a map entry
 
 
 
@@ -134,10 +135,10 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_append_unique"></a> `map_append_unique`
 
- map_append_unique 
- 
- appends values to the <map>.<prop> and ensures 
- that <map>.<prop> stays unique 
+ map_append_unique
+
+ appends values to the <map>.<prop> and ensures
+ that <map>.<prop> stays unique
 
 
 
@@ -174,6 +175,7 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_keys"></a> `map_keys`
 
+ returns all keys for the specified map
 
 
 
@@ -203,6 +205,7 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_set"></a> `map_set`
 
+ set a value in the map
 
 
 
@@ -221,18 +224,79 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_tryget"></a> `map_tryget`
 
+ tries to get the value map[key] and returns NOTFOUND if
+ it is not found
 
 
 
 
 ## <a name="dfs"></a> `dfs`
 
+ iterates a the graph with root nodes in ${ARGN}
+ in depth first order
+ expand must consider cycles
 
 
 
 
 ## <a name="dfs_callback"></a> `dfs_callback`
 
+ emits events parsing a list of map type elements
+ expects a callback function that takes the event type string as a first argument
+ follwowing events are called (available context variables are listed as subelements:
+ value
+   - list_length (may be 0 or 1 which is good for a null check)
+   - content_length (contains the length of the content)
+   - node (contains the value)
+ list_begin
+   - list_length (number of elements the list contains)
+   - content_length (accumulated length of list elements + semicolon separators)
+   - node (contains all values of the lsit)
+ list_end
+   - list_length(number of elements in list)
+   - node (whole list)
+   - list_char_length (length of list content)
+   - content_length (accumulated length of list elements + semicolon separators)
+ list_element_begin
+   - list_length(number of elements in list)
+   - node (whole list)
+   - list_char_length (length of list content)
+   - content_length (accumulated length of list elements + semicolon separators)
+   - list_element (contains current list element)
+   - list_element_index (contains current index )
+ list_element_end
+   - list_length(number of elements in list)
+   - node (whole list)
+   - list_char_length (length of list content)
+   - content_length (accumulated length of list elements + semicolon separators)
+   - list_element (contains current list element)
+   - list_element_index (contains current index )
+ visited_reference
+   - node (contains ref to revisited map)
+ unvisited_reference
+   - node (contains ref to unvisited map)
+ map_begin
+   - node( contains ref to map)
+   - map_keys (contains all keys of map)
+   - map_length (contains number of keys of map)
+ map_end
+   - node( contains ref to map)
+   - map_keys (contains all keys of map)
+   - map_length (contains number of keys of map)
+ map_element_begin
+   - node( contains ref to map)
+   - map_keys (contains all keys of map)
+   - map_length (contains number of keys of map)
+   - map_element_key (current key)
+   - map_element_value (current value)
+   - map_element_index (current index)
+ map_element_end
+   - node( contains ref to map)
+   - map_keys (contains all keys of map)
+   - map_length (contains number of keys of map)
+   - map_element_key (current key)
+   - map_element_value (current value)
+   - map_element_index (current index)
 
 
 
@@ -275,12 +339,16 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="list_match"></a> `list_match`
 
+ matches the object list
 
 
 
 
 ## <a name="map_all_paths"></a> `map_all_paths`
 
+ returns all possible paths for the map
+ (currently crashing on cycles cycles)
+ todo: implement
 
 
 
@@ -309,11 +377,11 @@ Due to the "variable variable" system (ie names of variables are string which ca
  map_capture_new(a b c)
  ans(res)
  json_print(${res})
- --> 
+ -->
  {
    "a":1,
    "b":2,
-   "c":3 
+   "c":3
  }
 
 
@@ -321,6 +389,7 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_clear"></a> `map_clear`
 
+ removes all properties from map
 
 
 
@@ -335,6 +404,8 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_copy_shallow"></a> `map_copy_shallow`
 
+ copies the values of the source map into the target map by assignment
+ (shallow copy)
 
 
 
@@ -350,12 +421,15 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_defaults"></a> `map_defaults`
 
+ sets all undefined properties of map to the default value
 
 
 
 
 ## <a name="map_ensure"></a> `map_ensure`
 
+ ensures that the specified vars are a map
+ parsing structured data if necessary
 
 
 
@@ -381,6 +455,7 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_from_keyvaluelist"></a> `map_from_keyvaluelist`
 
+ adds the keyvalues list to the map (if not map specified created one)
 
 
 
@@ -389,8 +464,8 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
  `(<map> <key> <any...>)-><any...>`
 
- returns the value stored in map.key or 
- sets the value at map.key to ARGN and returns 
+ returns the value stored in map.key or
+ sets the value at map.key to ARGN and returns
  the value
 
 
@@ -409,18 +484,24 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_has_all"></a> `map_has_all`
 
+ returns true if map has all keys specified
+as varargs
 
 
 
 
 ## <a name="map_has_any"></a> `map_has_any`
 
+ returns true if map has any of the keys
+ specified as varargs
 
 
 
 
 ## <a name="map_invert"></a> `map_invert`
 
+ returns a copy of map with key values inverted
+ only works correctly for bijective maps
 
 
 
@@ -478,24 +559,28 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_match_properties"></a> `map_match_properties`
 
+ returns true if map's properties match all properties of attrs
 
 
 
 
 ## <a name="map_matches"></a> `map_matches`
 
+ returns a function which returns true of all
 
 
 
 
 ## <a name="map_omit"></a> `map_omit`
 
+ returns a copy of map without the specified keys (argn)
 
 
 
 
 ## <a name="map_omit_regex"></a> `map_omit_regex`
 
+ returns a map with all properties except those matched by any of the specified regexes
 
 
 
@@ -509,6 +594,8 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_pairs"></a> `map_pairs`
 
+ returns a list key;value;key;value;...
+ only works if key and value are not lists (ie do not contain ;)
 
 
 
@@ -521,12 +608,18 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_path_get"></a> `map_path_get`
 
+ returns the value at the specified path (path is specified as path fragment list)
+ e.g. map = {a:{b:{c:{d:{e:3}}}}}
+ map_path_get(${map} a b c d e)
+ returns 3
+ this function is somewhat faster than map_navigate()
 
 
 
 
 ## <a name="map_path_set"></a> `map_path_set`
 
+ todo implement
 
 
 
@@ -545,12 +638,14 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_pick"></a> `map_pick`
 
+ returns a copy of map returning only the whitelisted keys
 
 
 
 
 ## <a name="map_pick_regex"></a> `map_pick_regex`
 
+ returns a map containing all properties whose keys were matched by any of the specified regexes
 
 
 
@@ -603,15 +698,14 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
  `()-><bool>`
 
- sets the value of the specified prop if it does not exist
- ie if map_has returns false for the specified property
- returns true iff value was set
+ sets the value of the specified prop if it does not exist ie if map_has returns false for the specified property returns true iff value was set
 
 
 
 
 ## <a name="map_to_keyvaluelist"></a> `map_to_keyvaluelist`
 
+ converts a map to a key value list
 
 
 
@@ -637,14 +731,15 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_values"></a> `map_values`
 
+ returns all values of the map which are passed as ARNG
 
 
 
 
 ## <a name="mm"></a> `mm`
 
- function which generates a map 
- out of the passed args 
+ function which generates a map
+ out of the passed args
  or just returns the arg if it is already valid
 
 
@@ -659,6 +754,12 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_iterator_break"></a> `map_iterator_break`
 
+ use this macro inside of a while(true) loop it breaks when the iterator is over
+ e.g. this prints all key values in the map
+ while(true)
+   map_iterator_break(myiterator)
+   message("${myiterator.key} = ${myiterator.value}")
+ endwhile()
 
 
 
@@ -668,7 +769,7 @@ Due to the "variable variable" system (ie names of variables are string which ca
  this function moves the map iterator to the next position
  and returns true if it was possible
  e.g.
- map_iterator_next(myiterator) 
+ map_iterator_next(myiterator)
  ans(ok) ## is true if iterator had a next element
  variables ${myiterator.key} and ${myiterator.value} are available
 
@@ -693,7 +794,7 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_import_properties_all"></a> `map_import_properties_all`
 
- 
+
  imports all properties of map into local scope
 
 
@@ -727,6 +828,10 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_equal"></a> `map_equal`
 
+ compares two maps and returns true if they are equal
+ order of list values is important
+ order of map keys is not important
+ cycles are respected.
 
 
 
@@ -734,13 +839,20 @@ Due to the "variable variable" system (ie names of variables are string which ca
 ## <a name="map_equal_obj"></a> `map_equal_obj`
 
  compares two maps for value equality
- lhs and rhs may be objectish 
+ lhs and rhs may be objectish
 
 
 
 
 ## <a name="map_foreach"></a> `map_foreach`
 
+ executes action (key, value)->void
+ on every key value pair in map
+ exmpl: map = {id:'1',val:'3'}
+ map_foreach("${map}" "(k,v)-> message($k $v)")
+ prints
+  id;1
+  val;3
 
 
 
@@ -753,14 +865,17 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_merge"></a> `map_merge`
 
+ creates a union from all all maps passed as ARGN and combines them in result
+ you can merge two maps by typing map_union(${map1} ${map1} ${map2})
+ maps are merged in order ( the last one takes precedence)
 
 
 
 
 ## <a name="map_permutate"></a> `map_permutate`
 
- 
- permutates the specified input map 
+
+ permutates the specified input map
  takes every key of the input map and treats the value as a list
  the result is n maps which contain one value per key
 
@@ -769,6 +884,9 @@ Due to the "variable variable" system (ie names of variables are string which ca
 
 ## <a name="map_union"></a> `map_union`
 
+ creates a union from all all maps passed as ARGN and combines them in the first
+ you can merge two maps by typing map_union(${map1} ${map1} ${map2})
+ maps are merged in order ( the last one takes precedence)
 
 
 

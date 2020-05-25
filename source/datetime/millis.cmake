@@ -1,7 +1,9 @@
-## returns the number of milliseconds since epoch
+# returns the number of milliseconds since epoch
 function(millis)
 
-  compile_tool(millis "
+    compile_tool(
+        millis
+        "
     #include <iostream>
     #include <chrono>
     int main(int argc, const char ** argv){
@@ -12,9 +14,7 @@ function(millis)
      auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
      std::cout<< \"set_ans(\" << millis << \")\";
      return 0;
-    }"
-    )
-  millis(${ARGN})
-  return_ans()
+    }")
+    millis(${ARGN})
+    return_ans()
 endfunction()
-

@@ -1,11 +1,11 @@
 # reads a json file from the specified location
 # the location may be relative (see explanantion of path() function)
-# returns a map or nothing if reading fails 
+# returns a map or nothing if reading fails
 function(json_read file)
     path("${file}")
     ans(file)
     if(NOT EXISTS "${file}")
-      return()
+        return()
     endif()
     checksum_file("${file}")
     ans(cache_key)

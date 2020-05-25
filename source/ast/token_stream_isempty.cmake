@@ -1,10 +1,9 @@
-
-  function(token_stream_isempty stream)
-    map_tryget(${stream}  current)
+function(token_stream_isempty stream)
+    map_tryget(${stream} current)
     ans(current)
     if(current)
-      return(false)
+        return(false)
     endif()
     return(true)
 
-  endfunction()
+endfunction()

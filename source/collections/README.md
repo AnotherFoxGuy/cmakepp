@@ -228,7 +228,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="linked_list_insert_after"></a> `linked_list_insert_after`
 
  `(<linked list> <where: <linked list node> = <linked list>.tail >  <any>... )-><linked list node>`
- 
+
  inserts a new linked list node after `where`. if where is null then the tail of the list is used.
  the arguments passed after where are used as the value of the new node
 
@@ -247,9 +247,9 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="linked_list_new"></a> `linked_list_new`
 
  `()-><linked list>`
- 
- creates a new linked list 
- 
+
+ creates a new linked list
+
  ```
  <linked list node> ::= <null> | {
    head: <linked list node>|<null>
@@ -263,9 +263,9 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="linked_list_node_new"></a> `linked_list_node_new`
 
  `(<any>...)-><linked list node>`
- 
+
  creates a new linked list node which contains the value specified
- 
+
 
 
 
@@ -315,7 +315,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="linked_list_replace"></a> `linked_list_replace`
 
  `(<linked list> <where:<linked list node>> <any>...)-><linked list node>`
-  
+
  replaces the specified linked list node and returns new node
 
 
@@ -332,10 +332,10 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_all"></a> `list_all`
 
- `(<list&> <predicate:<[](<any>)->bool>>)-><bool>` 
+ `(<list&> <predicate:<[](<any>)->bool>>)-><bool>`
 
- returns true iff predicate holds for all elements of `<list>` 
- 
+ returns true iff predicate holds for all elements of `<list>`
+
 
 
 
@@ -358,10 +358,10 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_at"></a> `list_at`
 
- 
+
 
  returns all elements whose index are specfied
- 
+
 
 
 
@@ -378,15 +378,15 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="list_check_items"></a> `list_check_items`
 
  `(<list&> <query...>)-><bool>`
-  
+
  `<query> := <value>|'!'<value>|<value>'?'`
- 
- * checks to see that every value specified is contained in the list 
+
+ * checks to see that every value specified is contained in the list
  * if the value is preceded by a `!` checks that the value is not in the list
  * if the value is succeeded by a `?` the value may or may not be contained
 
  returns true if all queries match
- 
+
 
 
 
@@ -412,7 +412,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 
  `(<list&> <element:<any...>>)-><bool>`
 
- returns true if list contains every element specified 
+ returns true if list contains every element specified
 
 
 
@@ -428,18 +428,29 @@ However using the `list` function that `CMake` provides it is possible to add al
 
  `(<list&> <predicate:<[](<any>)-><bool>>> )-><uint>`
 
- counts all element for which the predicate holds 
+ counts all element for which the predicate holds
 
 
 
 
 ## <a name="list_equal"></a> `list_equal`
 
+ comapres two lists with each other
+ usage
+ list_equal( 1 2 3 4 1 2 3 4)
+ list_equal( listA listB)
+ list_equal( ${listA} ${listB})
+ ...
+ COMPARATOR defaults to STREQUAL
+ COMPARATOR can also be a lambda expression
+ COMPARATOR can also be EQUAL
 
 
 
 
 ## <a name="list_erase"></a> `list_erase`
+
+ removes the specified range from lst the start_index is inclusive and end_index is exclusive
 
 
 
@@ -447,46 +458,61 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_erase_slice"></a> `list_erase_slice`
 
+ removes the specified range from lst and returns the removed elements
 
 
 
 
 ## <a name="list_except"></a> `list_except`
 
+ return those elemnents of minuend that are not in subtrahend
 
 
 
 
 ## <a name="list_extract"></a> `list_extract`
 
+ extracts elements from the list
+ example
+ set(lst 1 2  )
+ list_extract(lst a b c)
+ a contains 1
+ b contains 2
+ c contains nothing
+ returns the rest of list
 
 
 
 
 ## <a name="list_extract_any_flag"></a> `list_extract_any_flag`
 
+ extracts all of the specified flags and returns true if any of them were found
 
 
 
 
 ## <a name="list_extract_any_labelled_value"></a> `list_extract_any_labelled_value`
 
- extracts any of the specified labelled values and returns as soon 
+ extracts any of the specified labelled values and returns as soon
  the first labelled value is found
- lst contains its original elements without the labelled value 
+ lst contains its original elements without the labelled value
 
 
 
 
 ## <a name="list_extract_flag"></a> `list_extract_flag`
 
+extracts a single flag from a list returning true if it was found
+ false otherwise.
+ if flag exists multiple time online the first instance of the flag is removed
+ from the list
 
 
 
 
 ## <a name="list_extract_flag_name"></a> `list_extract_flag_name`
 
- extracts a flag from the list if it is found 
+ extracts a flag from the list if it is found
  returns the flag itself (usefull for forwarding flags)
 
 
@@ -494,6 +520,8 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_extract_flags"></a> `list_extract_flags`
 
+ extracts all flags specified and returns a map with the key being the flag name if it was found and the value being set to tru
+ e.g. list_extract_flags([a,b,c,d] a c e) -> {a:true,c:true}, [b,d]
 
 
 
@@ -507,6 +535,15 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_extract_labelled_value"></a> `list_extract_labelled_value`
 
+ searchs for label in lst. if label is found
+ the label and its following value is removed
+ and returned
+ if label is found but no value follows ${ARGN} is returned
+ if following value is enclosed in [] the brackets are removed
+ this allows mulitple values to be returned ie
+ list_extract_labelled_value(lstA --test1)
+ if lstA is a;b;c;--test1;[1;3;4];d
+ the function returns 1;3;4
 
 
 
@@ -523,6 +560,8 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_find"></a> `list_find`
 
+ searchs lst for value and returns the first idx found
+ returns -1 if value is not found
 
 
 
@@ -530,9 +569,9 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="list_find_any"></a> `list_find_any`
 
  returns the index of the one of the specified items
- if no element is found then -1 is returned 
+ if no element is found then -1 is returned
  no guarantee is made on which item's index
- is returned 
+ is returned
 
 
 
@@ -540,13 +579,14 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="list_find_flags"></a> `list_find_flags`
 
  returns a map of all found flags specified as ARGN
-  
+
 
 
 
 
 ## <a name="list_fold"></a> `list_fold`
 
+ folds the specified list into a single result by recursively applying the aggregator
 
 
 
@@ -577,24 +617,32 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_intersect"></a> `list_intersect`
 
+ returns a list containing all elements contained
+ in all passed list references
 
 
 
 
 ## <a name="list_intersect_args"></a> `list_intersect_args`
 
+ returns only those flags which are contained in list and in the varargs
+ ie list = [--a --b --c --d]
+ list_intersect_args(list --c --d --e) ->  [--c --d]
 
 
 
 
 ## <a name="list_isempty"></a> `list_isempty`
 
+ checks if the given list reference is an empty list
 
 
 
 
 ## <a name="list_isinorder"></a> `list_isinorder`
 
+ returns true if value ${a} comes before value ${b} in list __list_isinorder_lst
+ sets ${result} to true or false
 
 
 
@@ -608,7 +656,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_iterator_break"></a> `list_iterator_break`
 
- advances the iterator using list_iterator_next 
+ advances the iterator using list_iterator_next
  and breaks the current loop when the iterator is done
 
 
@@ -616,9 +664,9 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_iterator_next"></a> `list_iterator_next`
 
- advances the iterator specified 
+ advances the iterator specified
  and returns true if it is on a valid element (else false)
- sets the fields 
+ sets the fields
  ${it_ref}.index
  ${it_ref}.length
  ${it_ref}.list_ref
@@ -636,7 +684,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_max"></a> `list_max`
 
- returns the maximum value in the list 
+ returns the maximum value in the list
  using the specified comparerer function
 
 
@@ -650,6 +698,9 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_normalize_index"></a> `list_normalize_index`
 
+ returns the normalized index.  negative indices are transformed to i => length - i
+ if the index is out of range after transformation -1 is returned and a warnign is issued
+ note: index evaluating to length are valid (one behind last)
 
 
 
@@ -669,6 +720,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_parse_descriptor"></a> `list_parse_descriptor`
 
+ returns true if value could be parsed
 
 
 
@@ -682,30 +734,35 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_peek_front"></a> `list_peek_front`
 
+ gets the first element of the list without modififying it
 
 
 
 
 ## <a name="list_pop_back"></a> `list_pop_back`
 
+ removes the last element from list and returns it
 
 
 
 
 ## <a name="list_pop_front"></a> `list_pop_front`
 
+ removes the first value of the list and returns it
 
 
 
 
 ## <a name="list_push_back"></a> `list_push_back`
 
+ adds a value to the end of the list
 
 
 
 
 ## <a name="list_push_front"></a> `list_push_front`
 
+ adds a value at the beginning of the list
 
 
 
@@ -728,12 +785,15 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_remove"></a> `list_remove`
 
+ removes all items specified in varargs from list
+ returns the number of items removed
 
 
 
 
 ## <a name="list_remove_at"></a> `list_remove_at`
 
+ removes all items at all specified indices from list
 
 
 
@@ -747,6 +807,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_replace_at"></a> `list_replace_at`
 
+ replaces lists  value at i with new_value
 
 
 
@@ -770,6 +831,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_select"></a> `list_select`
 
+ uses the selector on each element of the list
 
 
 
@@ -782,11 +844,16 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_set_at"></a> `list_set_at`
 
+ sets the lists value at index to the specified value
+ the index is normalized -> negativ indices count down from back of list
 
 
 
 
 ## <a name="list_slice"></a> `list_slice`
+
+ retruns a portion of the list specified.
+ negative indices count from back of list
 
 
 
@@ -794,6 +861,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_sort"></a> `list_sort`
 
+ orders a list by a comparator function
 
 
 
@@ -801,6 +869,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="list_split"></a> `list_split`
 
  assert allows assertion
+ splits a list into two parts after the specified index example: set(lst 1 2 3 4 5 6 7) list_split(p1 p2 lst 3) p1 will countain 1 2 3 p2 will contain 4 5 6 7
 
 
 
@@ -816,6 +885,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_swap"></a> `list_swap`
 
+ swaps the element of lst at i with element at index j
 
 
 
@@ -828,30 +898,39 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="list_to_string"></a> `list_to_string`
 
+ Converts a CMake list to a string containing elements separated by spaces
 
 
 
 
 ## <a name="list_union"></a> `list_union`
 
+ returns a list containing the unqiue set of all elements
+ contained in passed list referencese
 
 
 
 
 ## <a name="list_unique"></a> `list_unique`
 
+ takes the passed list and returns only its unique elements
+ see cmake's list(REMOVE_DUPLICATES)
 
 
 
 
 ## <a name="list_where"></a> `list_where`
 
+ executes a predicate on every item of the list (passed by reference)
+ and returns those items for which the predicate holds
 
 
 
 
 ## <a name="list_without_range"></a> `list_without_range`
 
+ removes the specifed range from the list
+ and returns remaining elements
 
 
 
@@ -876,8 +955,8 @@ However using the `list` function that `CMake` provides it is possible to add al
 
  list_range_indices(<list&> <range ...>)
  returns the indices for the range for the specified list
- e.g. 
- 
+ e.g.
+
 
 
 
@@ -887,7 +966,7 @@ However using the `list` function that `CMake` provides it is possible to add al
  writes the specified varargs to the list
  at the beginning of the specified partial range
  fails if the range is a  multi range
- e.g. 
+ e.g.
  set(lstB a b c)
  list_range_partial_write(lstB "[]" 1 2 3)
  -> lst== [a b c 1 2 3]
@@ -910,8 +989,8 @@ However using the `list` function that `CMake` provides it is possible to add al
 
  replaces the specified range with the specified arguments
  the varags are taken and fill up the range to replace_count
- e.g. set(list a b c d e) 
- list_range_replace(list "4 0 3:1:-2" 1 2 3 4 5) --> list is equal to  2 4 c 3 1 
+ e.g. set(list a b c d e)
+ list_range_replace(list "4 0 3:1:-2" 1 2 3 4 5) --> list is equal to  2 4 c 3 1
 
 
 
@@ -920,7 +999,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="list_range_set"></a> `list_range_set`
 
  sets every element included in range to specified value
- 
+
 
 
 
@@ -937,7 +1016,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="range_from_indices"></a> `range_from_indices`
 
  `(<index:<uint>...>)-><instanciated range...>`
- 
+
  returns the best ranges from the specified indices
  e.g range_from_indices(1 2 3) -> [1:3]
      range_from_indices(1 2) -> 1 2
@@ -948,11 +1027,11 @@ However using the `list` function that `CMake` provides it is possible to add al
 
 ## <a name="range_indices"></a> `range_indices`
 
- `(<length:<int>> <~range...>)-><index:<uint>...>` 
+ `(<length:<int>> <~range...>)-><index:<uint>...>`
 
  returns the list of indices for the specified range
- length may be negative which causes a failure if any anchors are used (`$` or `n`) 
- 
+ length may be negative which causes a failure if any anchors are used (`$` or `n`)
+
  if the length is valid  (`>-1`) only valid indices are returned or failure occurs
 
  a length of 0 always returns no indices
@@ -974,7 +1053,7 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="range_instanciate"></a> `range_instanciate`
 
  `(<length:<int>> <~range...>)-><instanciated range...>`
- 
+
  instanciates a range.  A uninstanciated range contains anchors
  these are removed when a length is specified (`n`)
  returns a valid range  with no anchors
@@ -989,13 +1068,13 @@ However using the `list` function that `CMake` provides it is possible to add al
  parses a range string and normalizes it to have the following form:
  `<range> ::= <begin>":"<end>":"<increment>":"<begin inclusivity:<bool>>":"<end inclusivity:<bool>>":"<length>":"<reverse:<bool>>
  these `<range>`s can be used to generate a index list which can in turn be used to address lists.
-  
-   * a list of `<range>`s is a  `<range>`  
-   * `$` the last element 
+
+   * a list of `<range>`s is a  `<range>`
+   * `$` the last element
    * `n` the element after the last element ($+1)
    * `-<n>` a begin or end starting with `-` is transformed into `$-<n>`
-   * `"["` `"("` `")"` and `"]"`  signify the inclusivity.  
- 
+   * `"["` `"("` `")"` and `"]"`  signify the inclusivity.
+
 
 
 
@@ -1020,26 +1099,36 @@ However using the `list` function that `CMake` provides it is possible to add al
 ## <a name="set_difference"></a> `set_difference`
 
  `(<listA&:<any...> <listB&:<any...>>)-><any..>`
- 
- 
+
+
 
 
 
 
 ## <a name="set_isequal"></a> `set_isequal`
 
+ retruns true iff lhs and rhs are the same set (ignoring duplicates)
+ the null set is only equal to the null set
+ the order of the set (as implied in being a set) does not matter
 
 
 
 
 ## <a name="set_issubset"></a> `set_issubset`
 
+ returns true iff lhs is subset of rhs
+ duplicate elements in lhs and rhs are ignored
+ the null set is subset of every set including itself
+ no other set is subset of the null set
+ if rhs contains all elements of lhs then lhs is the subset of rhs
 
 
 
 
 ## <a name="structured_list_parse"></a> `structured_list_parse`
 
+ parses a structured list given the structure map
+ returning a map which contains all the parsed values
 
 
 

@@ -45,11 +45,11 @@ Here are some **Examples**:
 
  `([!]<expr> <value>|("="|"+=" <expr><call>)) -> <any>`
 
- the assign function allows the user to perform some nonetrivial 
- operations that other programming languages allow 
+ the assign function allows the user to perform some nonetrivial
+ operations that other programming languages allow
 
  Examples
- 
+
 
 
 
@@ -65,6 +65,9 @@ Here are some **Examples**:
 
 ## <a name="map_navigate"></a> `map_navigate`
 
+navigates a map structure
+ use '.' and '[]' operators to select next element in map
+ e.g.  map_navigate(<map_ref> res "propa.propb[3].probc[3][4].propd")
 
 
 
@@ -83,6 +86,14 @@ Here are some **Examples**:
 
 ## <a name="nav"></a> `nav`
 
+ a convenience function for navigating maps
+ nav(a.b.c) -> returns memver c of member b of map a
+ nav(a.b.c 3) ->sets member c of member b of map a to 3 (creating any missing maps along the way)
+ nav(a.b.c = d.e.f) -> assignes the value of d.e.f to a.b.c
+ nav(a.b.c += d.e) adds the value of d.e to the value of a.b.c
+ nav(a.b.c -= d.e) removes the value of d.e from a.b.c
+ nav(a.b.c FORMAT "{d.e}@{d.f}") formats the string and assigns a.b.c to it
+ nav(a.b.c CLONE_DEEP d.e.f) clones the value of d.e.f depely and assigns it to a.b.c
 
 
 
@@ -108,22 +119,23 @@ Here are some **Examples**:
 ## <a name="ref_nav_get"></a> `ref_nav_get`
 
  `(<current value:<any>> ["&"]<navigation expression>)-><any>`
- navigates the specified value and returns the value the navigation expression 
+ navigates the specified value and returns the value the navigation expression
  points to.  If the value does not exist nothing is returned
- 
+
  if the expression is prepended by an ampersand `&` the current lvalue is returned.
- 
+
  **Examples**
  let `${data}` be `{"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}`
- then 
+ then
  * `ref_nav_get(${data} a) => {"b":{"c":3},"d":[{"e":4},{"e":5}]}`
  * `ref_nav_get(${data} ) => {"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}`
  * `ref_nav_get(${data} ) => {"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}`
- * `ref_nav_get(${data} ) => {"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}` 
  * `ref_nav_get(${data} ) => {"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}`
  * `ref_nav_get(${data} ) => {"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}`
  * `ref_nav_get(${data} ) => {"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}`
  * `ref_nav_get(${data} ) => {"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}`
+ * `ref_nav_get(${data} ) => {"a":{"b":{"c":3},"d":[{"e":4},{"e":5}]}}`
+cmake_policy(SET CMP0054 NEW)
 
 
 

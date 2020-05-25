@@ -2,12 +2,11 @@
 # it is not found
 
 function(map_tryget map key)
-  get_property(res GLOBAL PROPERTY "${map}.${key}")
-  return_ref(res)
+    get_property(res GLOBAL PROPERTY "${map}.${key}")
+    return_ref(res)
 endfunction()
 
-# faster way of accessing map.  however fails if key contains escape sequences, escaped vars or @..@ substitutions
-# if thats the case comment out this macro
+# faster way of accessing map.  however fails if key contains escape sequences, escaped vars or @..@ substitutions if thats the case comment out this macro
 macro(map_tryget map key)
-  get_property(__ans GLOBAL PROPERTY "${map}.${key}")
+    get_property(__ans GLOBAL PROPERTY "${map}.${key}")
 endmacro()

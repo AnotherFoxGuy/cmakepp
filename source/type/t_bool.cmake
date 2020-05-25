@@ -1,8 +1,7 @@
-
-  function(t_bool)
+function(t_bool)
     if(ARGN)
-      return(true true)
+        return(true true)
     else()
-      return(true false)
-    endif()    
-  endfunction()
+        return(true false)
+    endif()
+endfunction()

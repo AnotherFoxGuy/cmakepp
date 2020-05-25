@@ -1,5 +1,3 @@
-
-  macro(this_capture)
+macro(this_capture)
     obj_capture(${this} ${ARGN})
-  endmacro()
-
+endmacro()

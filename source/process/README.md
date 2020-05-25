@@ -269,11 +269,11 @@ To communicate with you processes you can use any of the following well known me
 
  async(<callable>(<args...)) -> <process handle>
 
- executes a callable asynchroniously 
+ executes a callable asynchroniously
 
- todo: 
+ todo:
    capture necessary scope vars
-   include further files for custom functions     
+   include further files for custom functions
    environment vars
 
 
@@ -300,15 +300,15 @@ To communicate with you processes you can use any of the following well known me
 
 ## <a name="command_line_args_escape"></a> `command_line_args_escape`
 
- escapes a command line quoting arguments as needed 
+ escapes a command line quoting arguments as needed
 
 
 
 
 ## <a name="command_line_parse"></a> `command_line_parse`
 
- command_line_parse 
- parses the sepcified cmake style  command list which starts with COMMAND 
+ command_line_parse
+ parses the sepcified cmake style  command list which starts with COMMAND
  or parses a single command line call
  returns a command line object:
  {
@@ -336,13 +336,13 @@ To communicate with you processes you can use any of the following well known me
  `(<process start info> [--process-handle] [--exit-code] [--async] [--silent-fail] [--success-callback <callable>]  [--error-callback <callable>] [--state-changed-callback <callable>])-><process handle>|<exit code>|<stdout>|<null>`
 
  *options*
- * `--process-handle` 
- * `--exit-code` 
- * `--async` 
- * `--silent-fail` 
- * `--success-callback <callable>[exit_code](<process handle>)` 
- * `--error-callback <callable>[exit_code](<process handle>)` 
- * `--state-changed-callback <callable>[old_state;new_state](<process handle>)` 
+ * `--process-handle`
+ * `--exit-code`
+ * `--async`
+ * `--silent-fail`
+ * `--success-callback <callable>[exit_code](<process handle>)`
+ * `--error-callback <callable>[exit_code](<process handle>)`
+ * `--state-changed-callback <callable>[old_state;new_state](<process handle>)`
  * `--lean`
  *example*
  ```
@@ -356,7 +356,7 @@ To communicate with you processes you can use any of the following well known me
 
  `(<cmake code> [--pure] <args...>)-><execute result>`
 
- equivalent to `execute(...)->...` runs the specified code using `cmake -P`.  
+ equivalent to `execute(...)->...` runs the specified code using `cmake -P`.
  prepends the current `cmakepp.cmake` to the script  (this default behaviour can be stopped by adding `--pure`)
 
  all not specified `args` are forwarded to `execute`
@@ -369,21 +369,21 @@ To communicate with you processes you can use any of the following well known me
 
  `(<process handle>)-><process handle>`
 
- executes the specified command with the specified arguments in the 
+ executes the specified command with the specified arguments in the
  current working directory
- creates and registers a process handle which is then returned 
+ creates and registers a process handle which is then returned
  this function accepts arguments as encoded lists. this allows you to include
- arguments which contain semicolon and other special string chars. 
+ arguments which contain semicolon and other special string chars.
  the process id of processes start with `process_execute` is always -1
  because `CMake`'s `execute_process` does not return it. This is not too much of a problem
  because the process will always be terminated as soon as the function returns
- 
+
  **parameters**
-   * `<command>` the executable (may contain spaces) 
-   * `<arg...>` the arguments - may be an encoded list 
+   * `<command>` the executable (may contain spaces)
+   * `<arg...>` the arguments - may be an encoded list
  **scope**
    * `pwd()` used as the working-directory
- **events** 
+ **events**
    * `on_process_handle_created` global event is emitted when the process_handle is ready
    * `process_handle.on_state_changed`
 
@@ -391,9 +391,9 @@ To communicate with you processes you can use any of the following well known me
  ```
  <process handle> ::= {
    pid: "-1"|"0"
-     
+
  }
- ``` 
+ ```
 
 
 
@@ -427,7 +427,7 @@ To communicate with you processes you can use any of the following well known me
  returns a new process handle which has the following layout:
  ```
  <process handle> ::= {
-   pid: <pid>  
+   pid: <pid>
    start_info: <process start info>
    state: "unknown"|"running"|"terminated"
    stdout: <text>
@@ -435,9 +435,9 @@ To communicate with you processes you can use any of the following well known me
    exit_code: <integer>|<error string>
    command: <executable>
    command_args: <encoded list>
-   on_state_change: <event>[old_state, new_state](${process_handle}) 
+   on_state_change: <event>[old_state, new_state](${process_handle})
  }
- ``` 
+ ```
 
 
 
@@ -450,7 +450,7 @@ To communicate with you processes you can use any of the following well known me
 
 ## <a name="process_handles"></a> `process_handles`
 
- transforms a list of <process handle?!> into a list of <process handle>  
+ transforms a list of <process handle?!> into a list of <process handle>
 
 
 
@@ -472,6 +472,9 @@ To communicate with you processes you can use any of the following well known me
 
 ## <a name="process_kill"></a> `process_kill`
 
+ process_kill(<process handle?!>)
+ stops the process specified by <process handle?!>
+ returns true if the process was killed successfully
 
 
 
@@ -503,21 +506,27 @@ To communicate with you processes you can use any of the following well known me
 
 ## <a name="process_start"></a> `process_start`
 
- starts a process and returns a handle which can be used to controll it.  
+ starts a process and returns a handle which can be used to controll it.
 
+ {
+   <pid:<unique identifier>> // some sort of unique identifier which can be used to identify the processs
+   <process_start_info:<process start info>> /// the start info for the process
+   <output:<function():<string>>>
+   <status:"running"|"complete"> // indicates weather the process is complete - this is a cached result because query the process state is expensive
+ }
 
 
 
 
 ## <a name="process_start_info_new"></a> `process_start_info_new`
 
- `(<command string>|<object> [TIMEOUT <n:int>] [WORKING_DIRECTORY ~<path>] [--passthru])-><process start info>` 
- `<command string> ::= "COMMAND"? <command> <arg...>` 
+ `(<command string>|<object> [TIMEOUT <n:int>] [WORKING_DIRECTORY ~<path>] [--passthru])-><process start info>`
+ `<command string> ::= "COMMAND"? <command> <arg...>`
 
  creates a new process_start_info with the following fields
  ```
  <process start info> ::= {
-   command: <executable> 
+   command: <executable>
    command_arguments: <encoded list>
    working_directory: <directory>
    timeout: <n>
@@ -527,7 +536,7 @@ To communicate with you processes you can use any of the following well known me
  the syntax of the process_start_info_new is equivalent to cmake's built in `execute_process` command.
 
 
- the command needs to point to an executable,  preferrably a fully qualified path 
+ the command needs to point to an executable,  preferrably a fully qualified path
  the command_arguments contain an encoded list.  you can specify any argument in the execute function - they will be passed along as you write them  (this deserves extra appreciation because doing so in cmake is hard)
  If the flags you want to pass along to the process conflict with the flags of the process function you can always encode them yourself and pass them along as an encoded list
 
@@ -540,10 +549,10 @@ To communicate with you processes you can use any of the following well known me
   "echo",
   "asd;bsd"
  ],
- "working_directory":"/home/anotherfoxguy/Documents/Github/cmakepp/cmake/process",
+ "working_directory":"/home/anotherfoxguy/Documents/Github/cmakepp/source/process",
  "timeout":"-1",
  "passthru":false
-}` 
+}`
 
 
 
@@ -574,6 +583,7 @@ To communicate with you processes you can use any of the following well known me
 ## <a name="process_timeout"></a> `process_timeout`
 
  returns a <process handle> to a process that runs for n seconds
+todo create shims
 
 
 
@@ -596,16 +606,16 @@ To communicate with you processes you can use any of the following well known me
  waits for all specified <process handles> to finish returns them in the order
  in which they completed
 
- `--timeout <n>`    if value is specified the function will return all 
+ `--timeout <n>`    if value is specified the function will return all
                     finished processes after n seconds
 
- `--idle-callback <callable>`   
+ `--idle-callback <callable>`
                     if value is specified it will be called at least once
-                    and between every query if a task is still running 
+                    and between every query if a task is still running
 
 
  `--task-complete-callback <callable>`
-                    if value is specified it will be called whenever a 
+                    if value is specified it will be called whenever a
                     task completes.
 
  *Example*
@@ -629,19 +639,19 @@ To communicate with you processes you can use any of the following well known me
 
  `(<n:<int>|"*"> <process handle>... [--idle-callback:<callable>])-><process handle>...`
 
- waits for at least <n> processes to complete 
+ waits for at least <n> processes to complete
 
- returns: 
+ returns:
   * at least `n` terminated processes
- 
- arguments: 
- * `n` an integer the number of processes to return (lower bound) if `n` is clamped to the number of processes. if `n` is * it is replaced with the number of processes 
+
+ arguments:
+ * `n` an integer the number of processes to return (lower bound) if `n` is clamped to the number of processes. if `n` is * it is replaced with the number of processes
  * `--idle-callback` is called after every time a processes state was polled. It is guaranteed to be called once per process handle. it has access to the following scope variables
     * `terminated_count` number of terminated processes
     * `running_count` number of running processes
     * `wait_time` time that was waited
     * `wait_counter` number of times the waiting loop iterated
-    * `running_processes` list of running processes 
+    * `running_processes` list of running processes
     * `current_process` the current process being polled
     * `is_running` the running state of the current process
     * `terminated_processes` the list of terminated processes
@@ -658,6 +668,32 @@ To communicate with you processes you can use any of the following well known me
 
 ## <a name="wrap_executable"></a> `wrap_executable`
 
+ wrap_executable(<alias> <executable> <args...>)-><null>
+
+ creates a function called ${alias} which wraps the executable specified in ${executable}
+ <args...> will be set as command line arguments for every call
+ the alias function's varargs will be passed on as command line arguments.
+
+ Warning: --async is a bit experimental
+
+ defines function
+ <alias>([--async]|[--process-handle]|[--exit-code])-> <stdout>|<process result>|<exit code>|<process handle>
+
+ <no flag>       if no flag is specified then the function will fail if the return code is not 0
+                 if it succeeds the return value is the stdout
+
+ --process-handle        flag the function will return a the execution
+                 result object (see execute())
+ --exit-code     flag the function will return the exit code
+ --async         will execute the executable asynchroniously and
+                 return a <process handle>
+ --async-wait    will execute the executable asynchroniously
+                 but will not return until the task is finished
+                 printing a status indicator
+ --lean          lean call to executable (little overhead - no events etc)
+
+ else only the application output will be returned
+ and if the application terminates with an exit code != 0 a fatal error will be raised
 
 
 

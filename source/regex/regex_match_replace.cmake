@@ -1,7 +1,6 @@
-
-  ## match replace with easier syntax 
-  ## $0-$9 is replaces with the corresponding regex match group
-  function(regex_match_replace match replace)
+# match replace with easier syntax
+# $0-$9 is replaces with the corresponding regex match group
+function(regex_match_replace match replace)
     set(CMAKE_MATCH_0)
     set(CMAKE_MATCH_1)
     set(CMAKE_MATCH_2)
@@ -13,13 +12,13 @@
     set(CMAKE_MATCH_8)
     set(CMAKE_MATCH_9)
     if("${ARGN}" MATCHES "${match}")
-      if(replace)
-        set(result "${replace}")
-        foreach(i RANGE 0 9)
-          string(REPLACE "$${i}" "${CMAKE_MATCH_${i}}" result "${result}")
-        endforeach()
-        return_ref(result)
-      endif()
-    endif() 
+        if(replace)
+            set(result "${replace}")
+            foreach(i RANGE 0 9)
+                string(REPLACE "$${i}" "${CMAKE_MATCH_${i}}" result "${result}")
+            endforeach()
+            return_ref(result)
+        endif()
+    endif()
     return()
-  endfunction()
+endfunction()

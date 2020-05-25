@@ -1,10 +1,10 @@
 
+function(cmake_deserialize serialized)
+    fwrite_temp("" ".cmake")
+    ans(tmp)
 
-  function(cmake_deserialize serialized)
-     fwrite_temp("" ".cmake")
-  ans(tmp)
-
-    eval("
+    eval(
+        "
         function(cmake_deserialize serialized)
             file(WRITE \"${tmp}\" \"\${serialized}\")
             cmake_deserialize_file(\"${tmp}\")
@@ -13,4 +13,4 @@
     ")
     cmake_deserialize("${serialized}")
     return_ans()
-  endfunction()
+endfunction()

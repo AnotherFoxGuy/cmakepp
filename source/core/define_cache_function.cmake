@@ -1,55 +1,54 @@
-## `()->`
-## 
-## defines a function called alias which caches its results
-##
+# `()->`
+#
+# defines a function called alias which caches its results
+#
 function(define_cache_function generate_value)
-  set(args ${ARGN})
+    set(args ${ARGN})
 
-  list_extract_labelled_value(args =>)
-  ans(alias)
-  if(NOT alias)
-    function_new()
+    list_extract_labelled_value(args =>)
     ans(alias)
-  endif()
+    if(NOT alias)
+        function_new()
+        ans(alias)
+    endif()
 
-  list_extract_labelled_value(args --generate-key)
-  ans(generate_key)
-  if(NOT generate_key)
-      set(generate_key "[]()checksum_string('{{ARGN}}')")
-  endif()
+    list_extract_labelled_value(args --generate-key)
+    ans(generate_key)
+    if(NOT generate_key)
+        set(generate_key "[]()checksum_string('{{ARGN}}')")
+    endif()
 
-  list_extract_labelled_value(args --select-value)
-  ans(select_value)
-  if(NOT select_value)
-      set(select_value "[]()set_ans('{{ARGN}}')")
-  endif()
-  
+    list_extract_labelled_value(args --select-value)
+    ans(select_value)
+    if(NOT select_value)
+        set(select_value "[]()set_ans('{{ARGN}}')")
+    endif()
 
-  list_extract_labelled_value(args --cache-dir)
-  ans(cache_dir)
-  if(NOT cache_dir)
-    cmakepp_config(cache_dir)
+    list_extract_labelled_value(args --cache-dir)
     ans(cache_dir)
-    set(cache_dir "${cache_dir}/cache_functions/${alias}")
-  endif()
+    if(NOT cache_dir)
+        cmakepp_config(cache_dir)
+        ans(cache_dir)
+        set(cache_dir "${cache_dir}/cache_functions/${alias}")
+    endif()
 
+    list_extract_flag(args --refresh)
+    ans(refresh)
 
-  list_extract_flag(args --refresh)
-  ans(refresh)
+    # print_vars(generate_key generate_value select_value refresh  cache_dir)
+    if(refresh)
+        rm(-r "${cache_dir}")
+    endif()
 
-#    print_vars(generate_key generate_value select_value refresh  cache_dir)
-  if(refresh)
-    rm(-r "${cache_dir}")
-  endif()
-    
-  callable_function("${generate_key}")
-  ans(generate_key)
-  callable_function("${generate_value}")
-  ans(generate_value)
-  callable_function("${select_value}")
-  ans(select_value)
+    callable_function("${generate_key}")
+    ans(generate_key)
+    callable_function("${generate_value}")
+    ans(generate_value)
+    callable_function("${select_value}")
+    ans(select_value)
 
-  eval("
+    eval(
+        "
     function(${alias})
       set(args \${ARGN})
       list_extract_flag(args --update-cache)
@@ -58,7 +57,7 @@ function(define_cache_function generate_value)
       ${generate_key}(\${args})
       ans(cache_key)
       set(cache_path \"${cache_dir}/\${cache_key}\")
-      
+
       map_has(memory_cache \"\${cache_path}\")
       ans(has_entry)
 
@@ -86,7 +85,5 @@ function(define_cache_function generate_value)
       return_ans()
     endfunction()
     ")
-  return_ref(alias)
+    return_ref(alias)
 endfunction()
-
-

@@ -1,15 +1,14 @@
-
-  function(content_dir_check dir )
+function(content_dir_check dir)
     set(file_name ${ARGN})
     if(NOT file_name)
-      set(file_name "cache-key.cmakepp")
+        set(file_name "cache-key.cmakepp")
     endif()
 
     path("${dir}/${file_name}")
     ans(cache_key_path)
 
     if(NOT EXISTS "${cache_key_path}")
-      return(false)
+        return(false)
     endif()
 
     fread("${cache_key_path}")
@@ -20,10 +19,8 @@
     popd()
 
     if(NOT "${expected_checksum}_" STREQUAL "${actual_checksum}_")
-      return(false)
+        return(false)
     endif()
 
-
     return(true)
-  endfunction()
-    
+endfunction()

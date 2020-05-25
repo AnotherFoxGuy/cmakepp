@@ -1,5 +1,4 @@
-
-  function(define_http_resource function uri_string)
+function(define_http_resource function uri_string)
     uri("${uri_string}")
     ans(uri)
 
@@ -15,12 +14,13 @@
     set(function_args "")
 
     foreach(replace ${replaces})
-      string(REGEX REPLACE ":([a-zA-Z][a-zA-Z0-9_]*)" "\\1" name "${replace}")
-      string(REPLACE "${replace}" "\${${name}}" uri_string "${uri_string}")
-      set(function_args "${function_args} ${name}")
-    endforeach()    
+        string(REGEX REPLACE ":([a-zA-Z][a-zA-Z0-9_]*)" "\\1" name "${replace}")
+        string(REPLACE "${replace}" "\${${name}}" uri_string "${uri_string}")
+        set(function_args "${function_args} ${name}")
+    endforeach()
 
-    set(code "
+    set(code
+        "
       function(${function}${function_args})
         set(args \${ARGN})
         list_extract_flag(args --put)
@@ -38,4 +38,4 @@
     eval("${code}")
     return()
 
-  endfunction()
+endfunction()

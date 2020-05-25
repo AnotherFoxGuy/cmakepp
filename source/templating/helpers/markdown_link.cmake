@@ -1,5 +1,4 @@
-
 function(markdown_link id name)
-    ## get link
+    # get link
     return("[${name}](#${id})")
 endfunction()

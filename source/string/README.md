@@ -82,7 +82,7 @@ So I have created somewhat alot of functions which does things that you might ne
 
 ## <a name="ascii_generate_table"></a> `ascii_generate_table`
 
- generates the ascii table and stores it in the global ascii_table variable  
+ generates the ascii table and stores it in the global ascii_table variable
 
 
 
@@ -97,9 +97,9 @@ So I have created somewhat alot of functions which does things that you might ne
 
  **`delimiters()->[delimiter_begin, delimiter_end]`**
 
- parses delimiters and retruns a list of length 2 containing the specified delimiters. 
+ parses delimiters and retruns a list of length 2 containing the specified delimiters.
  The usefullness of this function becomes apparent when you use [string_take_delimited](#string_take_delimited)
- 
+
 
 
 
@@ -116,7 +116,7 @@ So I have created somewhat alot of functions which does things that you might ne
  [**`format(<template string>)-><string>`**](format.cmake)
 
  this function utilizes [`assign(...)`](#assign) to evaluate expressions which are enclosed in handlebars: `{` `}`
- 
+
 
  *Examples*
  ```cmake
@@ -129,7 +129,7 @@ So I have created somewhat alot of functions which does things that you might ne
  ...
  ```
  *Note:* You may not use ASCII-29 since it is used interally in this function. If you don't know what this means - don't worry
- 
+
 
 
 
@@ -137,6 +137,7 @@ So I have created somewhat alot of functions which does things that you might ne
 
 ## <a name="regex_search"></a> `regex_search`
 
+ matches the first occurens of regex and returns it
 
 
 
@@ -151,7 +152,7 @@ So I have created somewhat alot of functions which does things that you might ne
 
  `(<input:<string>> <index:<int>>)-><string>`
 
- Returns the character at the specified position (index). 
+ Returns the character at the specified position (index).
  Indexing of strings starts at 0. Indices less than -1 are translated into "length - |index|"
 
  *Examples*
@@ -168,15 +169,15 @@ So I have created somewhat alot of functions which does things that you might ne
 
  `(<input:<string>> <index:<int>> <char:<string>>)-><string>`
 
- Sets the character at the specified position (index) to the input 'char'. 
+ Sets the character at the specified position (index) to the input 'char'.
  Indexing of strings starts at 0. Indices less than -1 are translated into "length - |index|"
- 
+
  **Examples**
   set(input "example")
   string_char_at_set("${input}" 0 "E")  # => "Example"
   string_char_at_set("${input}" 2 "A")  # => "exAmple"
   string_char_at_set("${input}" -2 "E") # => "examplE"
- 
+
 
 
 
@@ -184,6 +185,7 @@ So I have created somewhat alot of functions which does things that you might ne
 
 ## <a name="string_codes"></a> `string_codes`
 
+ special chars [||||;|@|]|↔|†|‡
 
 
 
@@ -205,7 +207,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_contains"></a> `string_contains`
 
  `(<str:<string>> <search:<string>>)-><bool>`
-  
+
  Returns true if the input string "str" contains "search"
 
  **Examples**
@@ -231,7 +233,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_ends_with"></a> `string_ends_with`
 
  `(<str:<string>> <search:<string>>)-><bool>`
-  
+
  Returns true if the input string "str" ends with "search"
 
  **Examples**
@@ -249,6 +251,7 @@ So I have created somewhat alot of functions which does things that you might ne
  evaluates the string <str> in the current scope
  this is done by macro variable expansion
  evaluates both ${} and @ style variables
+ TODO bug: @ Does no longer evaluate
 
 
 
@@ -256,9 +259,9 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_find"></a> `string_find`
 
  `(<str:<string>> <substr:<string>>)-><int>`
-  
- Returns the position where the "substr" was found 
- in the input "str", otherwise -1. 
+
+ Returns the position where the "substr" was found
+ in the input "str", otherwise -1.
  NOTE: The flag REVERSE causes the last position of "substr"
        to be returned
 
@@ -281,9 +284,9 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_isempty"></a> `string_isempty`
 
  `(<str:<string>>)-><bool>`
-  
- Returns true if the input string "str" is empty 
- Note: cmake evals "false", "no" which 
+
+ Returns true if the input string "str" is empty
+ Note: cmake evals "false", "no" which
        destroys tests for real emtpiness
 
  **Examples**
@@ -300,8 +303,8 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_isnumeric"></a> `string_isnumeric`
 
  `(<str:<string>>)-><bool>`
-  
- Returns true if the input string "str" is a positive integer 
+
+ Returns true if the input string "str" is a positive integer
  including "0"
 
  **Examples**
@@ -318,7 +321,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_length"></a> `string_length`
 
  `(<str:<string>>)-><int>`
-  
+
  Returns the length of the input string "str"
 
  **Examples**
@@ -335,10 +338,10 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_lines"></a> `string_lines`
 
  `(<input:<string>>)-><string...>`
-  
+
  Splits the specified string "input" into lines
  Caveat: The string would have to be semicolon encoded
-         to correctly display lines with semicolons 
+         to correctly display lines with semicolons
 
  **Examples**
   set(input "a\nb")
@@ -354,7 +357,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_match"></a> `string_match`
 
  `(<input:<string>>)-><bool>`
-  
+
  Evaluates string "str" against regex "regex".
  Returns true if it matches.
 
@@ -372,8 +375,8 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_normalize"></a> `string_normalize`
 
  `(<input:<string>>)-><string>`
-  
- Replaces all non-alphanumerical characters in the string "input" with an underscore 
+
+ Replaces all non-alphanumerical characters in the string "input" with an underscore
 
  **Examples**
   set(input "a?")
@@ -389,7 +392,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_normalize_index"></a> `string_normalize_index`
 
  `(<str:<string>> <index:<int>>)-><int>`
-  
+
  Normalizes the index "index" of a corresponding input string "str".
  Negative indices are transformed into positive values: length - |index|
  Returns -1 if index is out of bounds (index > length of string or length - |index| + 1 < 0)
@@ -407,7 +410,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_overlap"></a> `string_overlap`
 
  `(<lhs:<string>> <rhs:<string>>)-><string>`
-  
+
  Returns the overlapping part of input strings "lhs" and "rhs".
  Starts at first char and continues until chars don't match.
 
@@ -426,7 +429,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_pad"></a> `string_pad`
 
  `(<str:<string>> <len:<int>> <argn:<string>>)-><string>`
-  
+
  Pads the specified string to be as long as specified length "len".
   - If the string is longer then nothing is padded
   - If no delimiter is specified than " " (space) is used
@@ -445,7 +448,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_random"></a> `string_random`
 
  `()-><string>`
-  
+
  Returns a randomly generated string.
  TODO: implement
 
@@ -460,7 +463,7 @@ So I have created somewhat alot of functions which does things that you might ne
 ## <a name="string_regex_escape"></a> `string_regex_escape`
 
  `(<str:<string>>)-><string>`
-  
+
  Escapes chars used by regex strings in the input string "str".
  Escaped characters: "\ / ] [ * . - ^ $ ? ) ( |"
 
@@ -520,7 +523,7 @@ So I have created somewhat alot of functions which does things that you might ne
   string_repeat("${input}" 2) # => "aa"
   string_repeat("${input}" 2 "@") # => "a@a"
 
-  
+
 
 
 
@@ -619,12 +622,12 @@ So I have created somewhat alot of functions which does things that you might ne
 
  `(<parta:<string&>> <partb:<string&>> <input:<string>> <separator:<string>>)-><parta:<string&>> <partb:<string&>>`
 
- Splits the string "input" at the first occurence of "separator" and returns 
+ Splits the string "input" at the first occurence of "separator" and returns
  both parts in the string references "parta" and "partb".
  See **Examples** for passing references.
 
  **Examples**
- 
+
   set(input "a@b@c")
   string_split_at_first(partA partB "${input}" "@") # => partA equals "a", partB equals "b@c"
 
@@ -637,7 +640,7 @@ So I have created somewhat alot of functions which does things that you might ne
 
  `(<parta:<string&>> <partb:<string&>> <input:<string>> <separator:<string>>)-><parta:<string&>> <partb:<string&>>`
 
- Splits the string "input" at the last occurence of "separator" and returns 
+ Splits the string "input" at the last occurence of "separator" and returns
  both parts in the string references "parta" and "partb".
  See **Examples** for passing references.
 
@@ -654,7 +657,7 @@ So I have created somewhat alot of functions which does things that you might ne
 
  `(<str:<string>> <length:<int>>)-><first_node:<linked list>>`
 
- Splits the string "str" into multiple parts of length "length". 
+ Splits the string "str" into multiple parts of length "length".
  Returns a linked list of the parts
 
  **Examples**
@@ -673,7 +676,7 @@ So I have created somewhat alot of functions which does things that you might ne
  `(<str:<string>> <search:<string>>)-><bool>`
 
  Returns true if "str" starts with the string "search"
- 
+
  **Examples**
   string_starts_with("substring" "sub") # => true
   string_starts_with("substring" "ub") # => false
@@ -690,7 +693,7 @@ So I have created somewhat alot of functions which does things that you might ne
  Wrapper function for substring.
  Returns a substring of input "str" with the index parameter "start" and optionally "len".
  Note on indexing: len is the amount of chars to be extracted starting from index "start"
- 
+
  **Examples**
   string_substring("substring" 1)     # => "ubstring"
   string_substring("substring" 1 2)   # => "ub"
@@ -707,7 +710,7 @@ So I have created somewhat alot of functions which does things that you might ne
 
  Removes "match" from a string reference "str_name" and returns the "match" string.
  Only matches from the beginning of the string reference.
- 
+
  **Examples**
   set(input "word")
   string_take(input "w") # => input equals "ord", match equals "w"
@@ -845,7 +848,7 @@ So I have created somewhat alot of functions which does things that you might ne
  `(<input:<string>>)-><string>`
 
  Transforms the specified string to lower case.
- 
+
  **Examples**
   string_tolower("UPPER") # => "upper"
 
@@ -859,7 +862,7 @@ So I have created somewhat alot of functions which does things that you might ne
  `(<input:<string>>)-><string>`
 
  Transforms the specified string to upper case.
- 
+
  **Examples**
   string_tolower("lower") # => "LOWER"
 
@@ -873,7 +876,7 @@ So I have created somewhat alot of functions which does things that you might ne
  `(<input:<string>>)-><string>`
 
  Trims the string, by removing whitespaces at the beginning and end.
- 
+
  **Examples**
   string_tolower("  whitespaces  ") # => "whitespaces"
 
@@ -887,16 +890,16 @@ So I have created somewhat alot of functions which does things that you might ne
  `(<lhs:<string&>> <rhs:<string&>>)-><lhs:<string&>> <rhs:<string&>>`
 
  Removes the beginning of the string that matches
- from reference string "lhs" and "rhs". 
+ from reference string "lhs" and "rhs".
  See **Examples** for passing references.
 
  **Examples**
   set(in_lhs "simple test")
   set(in_rhs "simple a")
-  string_trim_to_difference(in_lhs in_rhs) # => in_lhs equals "test", in_rhs equals "a" 
+  string_trim_to_difference(in_lhs in_rhs) # => in_lhs equals "test", in_rhs equals "a"
   set(in_lhs "a test")
   set(in_rhs "b test")
-  string_trim_to_difference(in_lhs in_rhs) # => in_lhs equals "a test", in_rhs equals "b test" 
+  string_trim_to_difference(in_lhs in_rhs) # => in_lhs equals "a test", in_rhs equals "b test"
 
 
 

@@ -1,5 +1,4 @@
-
-  function(indexed_store store_dir)
+function(indexed_store store_dir)
     path_qualify(store_dir)
     ans(store_dir)
 
@@ -16,17 +15,15 @@
     assign(this.keys = 'indexed_store_keys')
     assign(this.key = '')
     return(${this})
-  endfunction()
+endfunction()
 
-
-  function(indexed_store_list)
+function(indexed_store_list)
     indexed_store_keys()
     ans(keys)
     set(itms)
     foreach(key ${keys})
-      indexed_store_load(${key})
-      ans_append(itms)
+        indexed_store_load(${key})
+        ans_append(itms)
     endforeach()
     return_ref(itms)
-  endfunction()
-
+endfunction()

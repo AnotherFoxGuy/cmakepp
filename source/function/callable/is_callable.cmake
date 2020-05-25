@@ -1,9 +1,8 @@
-
-  function(is_callable callable)
+function(is_callable callable)
     map_get_special("${callable}" callable_function)
     ans(func)
     if(COMMAND "${func}")
-      return(true)
+        return(true)
     endif()
     return(false)
-  endfunction()
+endfunction()

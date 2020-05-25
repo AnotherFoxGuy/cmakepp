@@ -1,16 +1,15 @@
 # decodes semicolons in a string
-  function(string_decode_semicolon str)
-    string(ASCII  31 semicolon_code)
+function(string_decode_semicolon str)
+    string(ASCII 31 semicolon_code)
     string(REPLACE "${semicolon_code}" ";" str "${str}")
     return_ref(str)
-  endfunction()
+endfunction()
 
-
-
-## faster
-  function(string_decode_semicolon str)
+# faster
+function(string_decode_semicolon str)
     string_codes()
-    eval("
+    eval(
+        "
       function(string_decode_semicolon str)
         string(REPLACE  \"${semicolon_code}\" \";\" str \"\${str}\" )
         set(__ans \"\${str}\" PARENT_SCOPE)
@@ -18,4 +17,4 @@
     ")
     string_decode_semicolon("${str}")
     return_ans()
-  endfunction()
+endfunction()

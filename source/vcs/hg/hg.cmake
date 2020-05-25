@@ -7,9 +7,9 @@
 # else only console output is returned
 function(hg)
     find_package(Hg)
-    if (NOT HG_FOUND)
+    if(NOT HG_FOUND)
         message(FATAL_ERROR "mercurial is not installed")
-    endif ()
+    endif()
 
     wrap_executable(hg "${HG_EXECUTABLE}")
     hg(${ARGN})

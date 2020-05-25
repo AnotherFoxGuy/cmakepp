@@ -5,16 +5,16 @@
 #   //parent:xml_node
 #   attrs: {  }
 #   value: 'string'
-#   
+#
 # }
 function(xml_node tag value attrs)
-  obj("${attrs}")
-  ans(attrs)
-  map()
+    obj("${attrs}")
+    ans(attrs)
+    map()
     kv(tag "${tag}")
     kv(value "${value}")
     kv(attrs "${attrs}")
-  end()
-  ans(res)
-  return_ref(res)
+    end()
+    ans(res)
+    return_ref(res)
 endfunction()

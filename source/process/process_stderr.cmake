@@ -1,5 +1,5 @@
-## returns the current error output
-## This can change until the process is finished
+# returns the current error output
+# This can change until the process is finished
 function(process_stderr handle)
     process_handle("${handle}")
     ans(handle)
@@ -9,4 +9,3 @@ function(process_stderr handle)
     ans(stderr)
     return_ref(stderr)
 endfunction()
-

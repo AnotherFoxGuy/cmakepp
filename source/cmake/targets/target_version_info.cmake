@@ -1,8 +1,10 @@
-## adds version info to the specified target
-## heavily inspired by https://github.com/halex2005/CMakeHelpers
+# adds version info to the specified target
+# heavily inspired by https://github.com/halex2005/CMakeHelpers
 function(target_version_info)
-  arguments_extract_typed_values(0 ${ARGC} 
-        <target:<string>>       
+    arguments_extract_typed_values(
+        0
+        ${ARGC}
+        <target:<string>>
         [--icon:<path>=project.ico]
         [--version:<semver>=1.0.0]
         [--revision:<int>=0]
@@ -11,29 +13,26 @@ function(target_version_info)
         [--internal_name:<string>]
         [--original_file_name:<string>]
         [--bundle:<string>]
-        [--copyright:<int>]   #year
-        [--verbose]            #verbose output
-      )
+        [--copyright:<int>] # year
+        [--verbose] # verbose output
+    )
 
-if(NOT WIN32)
-  message(WARNING "currently only supported under windows")
-  return()
-endif()
+    if(NOT WIN32)
+        message(WARNING "currently only supported under windows")
+        return()
+    endif()
 
-if(NOT EXISTS "${icon}")
-  set(icon "")
-endif()
+    if(NOT EXISTS "${icon}")
+        set(icon "")
+    endif()
 
+    if(NOT comment)
+        semver_format(${version})
+        ans(formatted)
+        set(comment "${target} in version ${formatted}")
+    endif()
 
-
-  if(NOT comment)
-    semver_format(${version})
-    ans(formatted)
-    set(comment "${target} in version ${formatted}")
-  endif()
-
-
-map()
+    map()
     kv(version "${version}")
     kv(product_name "${target}")
     kv(icon_path "${icon}")
@@ -45,15 +44,12 @@ map()
     kv(original_file_name "${original_file_name}")
     kv(bundle "${bundle}")
     kv(copyright "(c) ${copyright}")
-  end()
-  ans(productInfo)
+    end()
+    ans(productInfo)
 
-
-
-
-
-# format the include file
-  format("#pragma once
+    # format the include file
+    format(
+        "#pragma once
 
 #ifndef PRODUCT_VERSION_MAJOR
 #define PRODUCT_VERSION_MAJOR {productInfo.version.major}
@@ -136,15 +132,16 @@ map()
 #define PRODUCT_BUNDLE             \"{productInfo.bundle}\\0\"
 #endif
 ")
-ans(versionInfoTemplate)
+    ans(versionInfoTemplate)
 
-set(iconComment "//")
-if(icon)
-  set(iconComment "")
-endif()
+    set(iconComment "//")
+    if(icon)
+        set(iconComment "")
+    endif()
 
-# format the resource file
-format("
+    # format the resource file
+    format(
+        "
 #include \"VersionInfo.h\"
 #include \"winres.h\"
 
@@ -186,25 +183,24 @@ BEGIN
     END
 END
 ")
-ans(resourceTemplate)
+    ans(resourceTemplate)
 
-  path("${CMAKE_CURRENT_BINARY_DIR}/VersionInfo.h")
-  ans(versionInfoHeaderFile)
+    path("${CMAKE_CURRENT_BINARY_DIR}/VersionInfo.h")
+    ans(versionInfoHeaderFile)
 
-  path("${CMAKE_CURRENT_BINARY_DIR}/version.rc")
-  ans(versionResourceFile)
+    path("${CMAKE_CURRENT_BINARY_DIR}/version.rc")
+    ans(versionResourceFile)
 
-  fwrite("${versionInfoHeaderFile}" "${versionInfoTemplate}")
-  fwrite("${versionResourceFile}" "${resourceTemplate}")
+    fwrite("${versionInfoHeaderFile}" "${versionInfoTemplate}")
+    fwrite("${versionResourceFile}" "${resourceTemplate}")
 
-  target_sources(${target} PRIVATE "${versionInfoHeaderFile}" "${versionResourceFile}")
+    target_sources(${target} PRIVATE "${versionInfoHeaderFile}" "${versionResourceFile}")
 
-
-if(verbose)
-  message(INFO "added version information to target")
-  message(INFO "  version header file @ ${versionInfoHeaderFile}")
-  message(INFO "  resource file       @ ${versionResourceFile}")
-  json_print("${productInfo}")
-endif()
+    if(verbose)
+        message(INFO "added version information to target")
+        message(INFO "  version header file @ ${versionInfoHeaderFile}")
+        message(INFO "  resource file       @ ${versionResourceFile}")
+        json_print("${productInfo}")
+    endif()
 
 endfunction()

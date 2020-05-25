@@ -1,6 +1,6 @@
-## checks of the handler can handle the specified request
-## this is done by look at the first input argument and checking if
-## it is contained in labels
+# checks of the handler can handle the specified request
+# this is done by look at the first input argument and checking if
+# it is contained in labels
 function(handler_match handler request)
     map_tryget(${handler} labels)
     ans(labels)

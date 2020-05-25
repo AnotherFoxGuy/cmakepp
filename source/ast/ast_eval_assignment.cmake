@@ -1,12 +1,11 @@
-
-  function(ast_eval_assignment ast scope)
+function(ast_eval_assignment ast scope)
     message("eval assignment")
     map_get(${ast} children)
-    #ans(children)
+    # ans(children)
 
-    #address_get(${children})
+    # address_get(${children})
     ans(rvalue)
-    list_pop_front( rvalue)
+    list_pop_front(rvalue)
     ans(lvalue)
     address_print("${lvalue}")
     address_print("${rvalue}")
@@ -22,4 +21,4 @@
     ans(identifier)
     map_set(${scope} "${identifier}" ${val})
 
-  endfunction()
+endfunction()

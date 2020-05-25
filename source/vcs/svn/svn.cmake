@@ -8,16 +8,16 @@
 # add --exit-code flag to get the return code of the commmand
 # by default fails if return code is not 0 else returns  stdout/stderr
 function(svn)
-  find_package(Subversion)
-  if(NOT SUBVERSION_FOUND)
-    message(FATAL_ERROR "subversion is not installed")
-  endif()
-  # to prohibit non utf 8 decode errors
-  set(ENV{LANG} C)
-  set(ENV{LC_MESSAGES} C)
-  
-  wrap_executable(svn "${Subversion_SVN_EXECUTABLE}")
-  
-  svn(${ARGN})
-  return_ans()
+    find_package(Subversion)
+    if(NOT SUBVERSION_FOUND)
+        message(FATAL_ERROR "subversion is not installed")
+    endif()
+    # to prohibit non utf 8 decode errors
+    set(ENV{LANG} C)
+    set(ENV{LC_MESSAGES} C)
+
+    wrap_executable(svn "${Subversion_SVN_EXECUTABLE}")
+
+    svn(${ARGN})
+    return_ans()
 endfunction()

@@ -1,9 +1,8 @@
-
-  function(t_callable)
+function(t_callable)
     if(NOT ARGN)
-      return(false)
+        return(false)
     endif()
     callable("${ARGN}")
     ans(callable)
     return(true ${callable})
-  endfunction()
+endfunction()

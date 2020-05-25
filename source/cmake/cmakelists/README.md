@@ -30,7 +30,7 @@ Based on the cmake reflection functions I developed I added clases which help yo
  `([<path>])-><cmakelists>|<null>`
 
  opens a the closests cmakelists file (anchor file) found in current or parent directory
- returns nothing if no cmakelists file is found. 
+ returns nothing if no cmakelists file is found.
 
 
 
@@ -52,7 +52,7 @@ Based on the cmake reflection functions I developed I added clases which help yo
  the comand line interface to cmakelists.  tries to find the CMakelists.txt in current or parent directories
  if init is specified a new cmakelists file is created in the current directory
  *flags*:
-  * 
+  *
  *commands*:
   * `init` saves an initial cmake file at the current location
   * `target <target name> <target command> | "add" <target name>` target commands:
@@ -61,9 +61,9 @@ Based on the cmake reflection functions I developed I added clases which help yo
     * `includes "append"|"set"|"remove" <path>....` adds the specified directories to the target_include_directories of the specified target
     * `links "append"|"set"|"remove" <target name>...` adds the specified target names to the target_link_libraries of the specified target
     * `type <target type>` sets the type of the specified target to the specified target type
-    * `rename <target name>` renames the specified target 
- 
- `<target type> ::= "library"|"executable"|"custom_target"|"test"`  
+    * `rename <target name>` renames the specified target
+
+ `<target type> ::= "library"|"executable"|"custom_target"|"test"`
 
 
 
@@ -89,7 +89,7 @@ Based on the cmake reflection functions I developed I added clases which help yo
  `([<path>])-><cmakelists>|<null>`
 
  opens a the closests cmakelists file (anchor file) found in current or parent directory
- returns nothing if no cmakelists file is found. 
+ returns nothing if no cmakelists file is found.
 
 
 
@@ -98,7 +98,7 @@ Based on the cmake reflection functions I developed I added clases which help yo
 
  `(<cmakelists> <file>... [--glob] )-> <relative path>...`
 
- qualifies the paths relative to the cmakelists directory 
+ qualifies the paths relative to the cmakelists directory
  if `--glob` is specified then the `<file>...` will be treated
  as glob expressions
 
@@ -118,8 +118,8 @@ Based on the cmake reflection functions I developed I added clases which help yo
 
  `(<cmakelists> <target:<target name regex>|<cmake target>)-><cmake target> v {target_invocations: <target invocations>}`
 
- tries to find the single target identified by the regex and returns it. 
- 
+ tries to find the single target identified by the regex and returns it.
+
  ```
  <target> ::= {
     target_name: <string>
@@ -138,10 +138,10 @@ Based on the cmake reflection functions I developed I added clases which help yo
 ## <a name="cmakelists_target_update"></a> `cmakelists_target_update`
 
  `(<cmakelists> <cmake target>)-><bool>`
- 
+
  updates the cmakelists tokens to reflect changes in the target
   extrac functions
- 
+
 
 
 
@@ -158,7 +158,7 @@ Based on the cmake reflection functions I developed I added clases which help yo
 ## <a name="cmakelists_variable"></a> `cmakelists_variable`
 
  `(<cmakelists> <variable path>)-><any>...`
- 
+
  see list_modify
  modifies a variable returns the value of the variable
 
@@ -168,7 +168,7 @@ Based on the cmake reflection functions I developed I added clases which help yo
 ## <a name="cml"></a> `cml`
 
  `(...)->...`
- 
+
  wrapper for cmakelists_cli
 
 

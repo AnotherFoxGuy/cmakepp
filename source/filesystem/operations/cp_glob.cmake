@@ -1,10 +1,9 @@
-
-  ## cp_glob(<target dir> <glob. ..> )-> <path...>
-  ##
-  ## 
-  function(cp_glob target_dir)
+# cp_glob(<target dir> <glob. ..> )-> <path...>
+#
+#
+function(cp_glob target_dir)
     set(args ${ARGN})
-    
+
     list_extract_flag_name(args --recurse)
     ans(recurse)
 
@@ -17,10 +16,10 @@
     ans(pwd)
 
     foreach(path ${paths})
-      path_component(${path} --parent-dir)
-      ans(relative_dir)
-      file(COPY "${pwd}/${path}" DESTINATION "${target_dir}/${relative_dir}")
-     
+        path_component(${path} --parent-dir)
+        ans(relative_dir)
+        file(COPY "${pwd}/${path}" DESTINATION "${target_dir}/${relative_dir}")
+
     endforeach()
     return_ref(paths)
-  endfunction()
+endfunction()

@@ -1,10 +1,9 @@
-
-  function(token_stream_new language str)
-    map_get(${language}  token_definitions)
+function(token_stream_new language str)
+    map_get(${language} token_definitions)
     ans(token_definitions)
-   # messagE("new token strean ${token_definitions}")
+    # messagE("new token strean ${token_definitions}")
 
-    #address_print(${language})
+    # address_print(${language})
 
     tokens_parse("${token_definitions}" "${str}")
     ans(tokens)
@@ -16,4 +15,4 @@
     map_set(${stream} stack ${stack})
     map_set(${stream} first ${tokens})
     return_ref(stream)
-  endfunction()
+endfunction()

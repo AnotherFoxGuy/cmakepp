@@ -60,7 +60,7 @@ My parser takes any cmake code (the version of code supported is still to be det
 
  `(<cmake token range>|<cmake token>...|<cmake code>)-><cmake token range>`
 
- coerces the input to become a token range 
+ coerces the input to become a token range
  if the input already is a token range it is returned
  if the input is a list of tokens the token range will be extracted
  if the input is a string it is assumed to be cmake code and parsed to return a token range
@@ -81,12 +81,12 @@ My parser takes any cmake code (the version of code supported is still to be det
 
  `(<cmake code> [--extended])-><cmake token>...`
 
- this function parses cmake code and returns a list linked list of tokens 
+ this function parses cmake code and returns a list linked list of tokens
 
  ```
- <token> ::= { 
+ <token> ::= {
   type: "command_invocation"|"bracket_comment"|"line_comment"|"quoted_argument"|"unquoted_argument"|"nesting"|"nesting_end"|"file"
-  value: <string> the actual string as is in the source code 
+  value: <string> the actual string as is in the source code
   [literal_value : <string>] # the value which actually is meant (e.g. "asd" -> asd  | # I am A comment -> ' I am A comment')
   next: <token>
   previous: <token>
@@ -97,7 +97,7 @@ My parser takes any cmake code (the version of code supported is still to be det
  <extended token> ::= (<token>|<nesting token>) v {
   line:<uint> # the line in which the token is found
   column: <uint> # the column in which the token starts
-  length: <uint> # the length of the token 
+  length: <uint> # the length of the token
  }
  ```
 
@@ -107,7 +107,7 @@ My parser takes any cmake code (the version of code supported is still to be det
 ## <a name="cmake_token_range_serialize"></a> `cmake_token_range_serialize`
 
  `(<start:<cmake token>> <end:<cmake token>>?)-><cmake code>`
- 
+
  generates the cmake code corresponding to the cmake token range
 
 
@@ -134,7 +134,7 @@ My parser takes any cmake code (the version of code supported is still to be det
 ## <a name="cmake_token_go_back"></a> `cmake_token_go_back`
 
  `(<&cmake token>)-><cmake token>`
- 
+
  the token ref contains the previous token after invocation
 
 
@@ -145,16 +145,16 @@ My parser takes any cmake code (the version of code supported is still to be det
  `(<cmake token range> <predicate> [--reverse] [--skip <uint>] [--take <uint>])-><cmake token>...`
 
  filters the specified token range for tokens matching the predicate (access to value and type)
- e.g. `cmake_token_range_filter("set(a b c d)" type MATCHES "^argument$" AND value MATCHES "[abd]" --reverse --skip 1 --take 1 )` 
+ e.g. `cmake_token_range_filter("set(a b c d)" type MATCHES "^argument$" AND value MATCHES "[abd]" --reverse --skip 1 --take 1 )`
  
- 
+
 
 
 
 
 ## <a name="cmake_token_range_filter_values"></a> `cmake_token_range_filter_values`
 
- `(...)->...` 
+ `(...)->...`
 
  convenience function
  same as cmake_token_range_filter however returns the token values
@@ -183,7 +183,7 @@ My parser takes any cmake code (the version of code supported is still to be det
 ## <a name="cmake_token_range_replace"></a> `cmake_token_range_replace`
 
  `(<range:<cmake token range>> <replace_range:<cmake token range>>)-><cmake token range>`
- 
+
  replaces the specified range with the specified replace range
  returns the replace range
 
@@ -219,7 +219,7 @@ My parser takes any cmake code (the version of code supported is still to be det
 ## <a name="cmake_invocation_get_arguments_range"></a> `cmake_invocation_get_arguments_range`
 
  `(<invocation:<command invocation>>)->[<start:<token>> <end:<token>>]`
- 
+
  returns the token range of the invocations arguments given an invocation token
 
 

@@ -1,21 +1,19 @@
 
-
-  ## deprecated
-  function(define_test_function name parse_function_name)
+# deprecated
+function(define_test_function name parse_function_name)
     set(args ${ARGN})
     list(LENGTH args arg_len)
-    matH(EXPR arg_len "${arg_len} + 1")
-
+    math(EXPR arg_len "${arg_len} + 1")
 
     string_combine(" " ${args})
     ans(argstring)
     set(evaluated_arg_string)
     foreach(arg ${ARGN})
-      set(evaluated_arg_string "${evaluated_arg_string} \"\${${arg}}\"")
+        set(evaluated_arg_string "${evaluated_arg_string} \"\${${arg}}\"")
     endforeach()
-   # messagE("argstring ${argstring}")
-   # message("evaluated_arg_string ${evaluated_arg_string}")
-    eval("
+    # messagE("argstring ${argstring}") message("evaluated_arg_string ${evaluated_arg_string}")
+    eval(
+        "
       function(${name} expected ${argstring})
         arguments_encoded_list(${arg_len} \${ARGC})
         ans(encoded_arguments)
@@ -40,7 +38,7 @@
         endif()
 
 
-        
+
         map_match(\"\${uut}\" \"\${expected}\")
         ans(res)
         if(NOT res)
@@ -54,4 +52,4 @@
 
     ")
     return()
-  endfunction()
+endfunction()

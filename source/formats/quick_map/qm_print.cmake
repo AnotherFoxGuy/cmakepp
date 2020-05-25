@@ -1,7 +1,7 @@
 function(qm_print)
-  qm_serialize(${ARGN})
-  ans(res)
+    qm_serialize(${ARGN})
+    ans(res)
 
-  message("${res}")
-  return()
+    message("${res}")
+    return()
 endfunction()

@@ -1,7 +1,6 @@
 
-
-  ## platform specific implementaiton for process_kill
-  function(process_kill_Linux handle)
+# platform specific implementaiton for process_kill
+function(process_kill_Linux handle)
     process_handle("${handle}")
     ans(handle)
 
@@ -12,4 +11,4 @@
     ans(error)
 
     return_truth("${error}" EQUAL 0)
-  endfunction() 
+endfunction()

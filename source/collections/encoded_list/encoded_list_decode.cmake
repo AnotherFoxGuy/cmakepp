@@ -1,9 +1,9 @@
 
-
-## faster
+# faster
 function(encoded_list_decode str)
-  string_codes()
-  eval("
+    string_codes()
+    eval(
+        "
   function(encoded_list_decode str)
     if(\"\${str}_\" STREQUAL \"${empty_code}_\")
       return()
@@ -14,6 +14,6 @@ function(encoded_list_decode str)
     set(__ans \"\${str}\" PARENT_SCOPE)
   endfunction()
   ")
-  encoded_list_decode("${str}")
-  return_ans()
+    encoded_list_decode("${str}")
+    return_ans()
 endfunction()

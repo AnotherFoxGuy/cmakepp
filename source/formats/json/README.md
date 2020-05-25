@@ -100,13 +100,14 @@ This is done by creating a hash from the input string and using it as a cache ke
    if you want semicolons to appear in cmake then use a json array. You can always use `string_decode_semicolon()`
    to obtain the string as it was in json
    eg. `[1,2,3] => 1;2;3`  `"1;2;3" => 1${semicolon_code}2${semicolon_code}3`
- 
+
 
 
 
 
 ## <a name="json_escape"></a> `json_escape`
 
+ function to escape json
 
 
 
@@ -139,6 +140,9 @@ This is done by creating a hash from the input string and using it as a cache ke
 
 ## <a name="json_read"></a> `json_read`
 
+ reads a json file from the specified location
+ the location may be relative (see explanantion of path() function)
+ returns a map or nothing if reading fails
 
 
 
@@ -157,6 +161,8 @@ This is done by creating a hash from the input string and using it as a cache ke
 
 ## <a name="json_write"></a> `json_write`
 
+ write the specified object reference to the specified file
+ todo rename to fwrite_json(path data)
 
 
 

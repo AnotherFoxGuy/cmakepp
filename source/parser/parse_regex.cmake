@@ -1,53 +1,51 @@
-
-  function(parse_regex rstring)
+function(parse_regex rstring)
     # deref rstring
     address_get(${rstring})
     ans(str)
-   # message("string ${str}")
+    # message("string ${str}")
     # get regex from defintion
     map_get(${definition} regex)
     ans(regex)
-   # message("${regex}")
+    # message("${regex}")
 
- #   message("parsing '${parser_id}' parser (regex: '${regex}') for '${str}'")
+    # message("parsing '${parser_id}' parser (regex: '${regex}') for '${str}'")
     # try to take regex from string
-    
+
     map_tryget(${definition} ignore_regex)
     ans(ignore_regex)
-   # message("ignore: ${ignore_regex}")
+    # message("ignore: ${ignore_regex}")
     list(LENGTH ignore_regex len)
     if(len)
-   # message("ignoring ${ignore_regex}")
+        # message("ignoring ${ignore_regex}")
         string_take_regex(str "${ignore_regex}")
     endif()
-#   message("str is '${str}'")
+    # message("str is '${str}'")
     string_take_regex(str "${regex}")
     ans(match)
 
-    #message("match ${match}")
-    # if not success return
+    # message("match ${match}") if not success return
     list(LENGTH match len)
     if(NOT len)
-      return()
+        return()
     endif()
- #   message("matched '${match}'")
+    # message("matched '${match}'")
 
     map_tryget(${definition} replace)
     ans(replace)
-    if(replace)        
+    if(replace)
         string_eval("${replace}")
         ans(replace)
-        #message("replace ${replace}")
+        # message("replace ${replace}")
         string(REGEX REPLACE "${regex}" "${replace}" match "${match}")
-        #message("replaced :'${match}'")
+        # message("replaced :'${match}'")
 
     endif()
 
     map_tryget(${definition} transform)
     ans(transform)
     if(transform)
-        #message("transforming ")
-        call("${transform}"("match"))
+        # message("transforming ")
+        call("${transform}" ("match"))
         ans(match)
     endif()
 
@@ -59,4 +57,4 @@
 
     # return matched element
     return_ref(match)
-  endfunction()
+endfunction()

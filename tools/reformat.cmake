@@ -8,7 +8,7 @@ assign(cmake_files = glob("${CMAKE_CURRENT_LIST_DIR}/../source/**.cmake" --relat
 
 foreach(cfile ${cmake_files})
     message(STATUS "formating ${cfile}")
-    cmake_format("-i" "${cfile}")
+    cmake_format("--config-file" "${CMAKE_CURRENT_LIST_DIR}/../cmake-format.py" "-i" "${cfile}")
   endforeach()
 
 message("done")

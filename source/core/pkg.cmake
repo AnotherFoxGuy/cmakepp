@@ -1,7 +1,4 @@
 function(pkg)
-  cmakepp_project_cli(${ARGN})
-  return_ans()
+    cmakepp_project_cli(${ARGN})
+    return_ans()
 endfunction()
-
-
-  

@@ -1,9 +1,9 @@
-##
-##
-## returns an encoded list for the specified arguments passed to
-## current function invocation.
-##
-## you can only use this inside of a cmake function and not inside a macro
+#
+#
+# returns an encoded list for the specified arguments passed to
+# current function invocation.
+#
+# you can only use this inside of a cmake function and not inside a macro
 macro(arguments_encoded_list __arg_begin __arg_end)
     set(__ans)
     if(${__arg_end} GREATER ${__arg_begin})

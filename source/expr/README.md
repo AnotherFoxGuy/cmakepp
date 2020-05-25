@@ -204,12 +204,12 @@ I provide the following functions for you to interact with `expr`.
  and `end index` to be the index of the last function parameter to parse (commonly ${ARGC})
  var args are named arguments which will be set to be available in the function scope
 
- named arguments passed to function have a higher precedence than positional arguments 
+ named arguments passed to function have a higher precedence than positional arguments
 
  __sideffects__:
  * `arguments_expression_result` is a address of an object containing all parsed data
  * scope operations may modify the parent scope of the function
- 
+
 
 
 
@@ -224,7 +224,7 @@ I provide the following functions for you to interact with `expr`.
  this macro enables all expressions in the current scope
  it will only work in a CMake file scioe or inside a cmake function scope.
  You CANNOT use it in a loop, if statement, macro etc (everything that has a begin/end)
- Every expression inside that scope (and its subscopes) will be evaluated.  
+ Every expression inside that scope (and its subscopes) will be evaluated.
 
  **Implementation Note**:
  This is achieved by parsing the while cmake file (and thus potentially takes very long)

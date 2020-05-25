@@ -5,4 +5,3 @@ function(rlist_new)
     map_set_hidden(${queue} back 0)
     return(${queue})
 endfunction()
-

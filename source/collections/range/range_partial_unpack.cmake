@@ -1,7 +1,7 @@
-##
+#
 function(range_partial_unpack ref)
     if(NOT ${ref})
-      set(${ref} ${ARGN})
+        set(${ref} ${ARGN})
     endif()
     set(partial ${${ref}})
 
@@ -13,11 +13,22 @@ function(range_partial_unpack ref)
     list(GET parts 4 inclusive_end)
     list(GET parts 5 length)
 
-    set(${ref}.inclusive_begin ${inclusive_begin} PARENT_SCOPE)
-    set(${ref}.inclusive_end ${inclusive_end} PARENT_SCOPE)    
-    set(${ref}.begin ${begin} PARENT_SCOPE)
-    set(${ref}.end ${end} PARENT_SCOPE)
-    set(${ref}.increment ${increment} PARENT_SCOPE)
-    set(${ref}.length  ${length} PARENT_SCOPE)
+    set(${ref}.inclusive_begin
+        ${inclusive_begin}
+        PARENT_SCOPE)
+    set(${ref}.inclusive_end
+        ${inclusive_end}
+        PARENT_SCOPE)
+    set(${ref}.begin
+        ${begin}
+        PARENT_SCOPE)
+    set(${ref}.end
+        ${end}
+        PARENT_SCOPE)
+    set(${ref}.increment
+        ${increment}
+        PARENT_SCOPE)
+    set(${ref}.length
+        ${length}
+        PARENT_SCOPE)
 endfunction()
-

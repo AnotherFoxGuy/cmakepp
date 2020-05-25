@@ -96,7 +96,7 @@ I am writing you from within a template file!  Here are some things I like:
 
 
 Thanks for Reading! Write me at toeb@thetoeb.de
-(path of this file: README.md.in)
+(path of this file: /home/anotherfoxguy/Documents/Github/cmakepp/source/templating/README.md.in)
 ```
 
 ## Implementation
@@ -175,6 +175,36 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 
 ## <a name="template_compile"></a> `template_compile`
 
+ `(<input:<string>>)-><cmake code>`
+
+
+ creates and returns cmake code from specified template string
+ the syntax is as follows
+ * `<%` `%>` encloses cmake code
+ * `<%%` and `%%>` escape `<%` and `%>` resp.
+ * shorthands
+     * `<%=` runs the function specified if possible (only single line function calls allowed) or formats the following nonspace string using the `format()` function (allows things like `<%="${var} {format.expression[3].navigation.key}%>`)
+     * single line function calls are `func(.....)` but not `func(... \n ....)`
+     * `@<cmake function call>` is replaced with `<%= <cmake function call> %>`
+     * `@<navigation expression>` is replaced with `<%= {<navigation expression>}%>`
+
+ **Examples:**
+ * assume `add(lhs rhs) => {lhs+rhs}`
+ * assume `data = {a:1,b:[2,3,4],c:{d:5,b:[6,7,8]}}`
+ * assume `data2 = "hello!"`
+ * `@@` => `@`
+ * `<%%` => `<%`
+ * `%%>` => `%>`
+ * `@data2` => `hello!`
+ * `@add(1 4)` => `5`
+ * `@foreach(i RANGE 1 3)@i@endforeach()` => `123`
+ * `<%= ${data2} %>` => `hello!`
+ * `<%= ${data2} ${data2} bye! %>` => `hello!;hello!;bye!`
+ * `<%= "${data2} ${data2} bye!" %>` => `hello! hello! bye!`
+ * `<%= add(1 4) %> => `5`
+ * `<% template_out(hi) %>` => `hi`
+
+ **NOTE** *never use ascii 16 17 18 28 29 31* as these special chars are used internally
 
 
 
@@ -183,7 +213,7 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 
 
  `(<file path>)-> <cmake code>`
- 
+
  reads the contents of the specified path and generates a template from it
  * return
    * the generated template code
@@ -197,10 +227,10 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
  `(<template file:<file path>> <?output file:<file path>>)-><file path>`
 
  compiles the specified template file to the speciefied output file
- if no output file is given the template file is expected to end with `.in`) and the 
+ if no output file is given the template file is expected to end with `.in`) and the
  output file will be set to the same path without the `.in` ending
 
- Uses  see [`template_run_file`](#template_run_file) internally. 
+ Uses  see [`template_run_file`](#template_run_file) internally.
 
  returns the path to which it was compiled
 
@@ -223,10 +253,10 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 
 
  `(<template_path:<file path>>)-><generated content:string>`
-  
+
  opens the specified template and runs it in its directory
  keeps track of recursive template calling
- * returns 
+ * returns
     * the output of the template
  * scope
     * `pwd()` is set to the templates path
@@ -234,10 +264,10 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
     * `${template_dir}` is set to the directory of the current template
     * `${root_template_dir}` is set to the directory of the first template run
     * `${root_template_path}` is set to the path of the first template run
-    * `${parent_template_dir}` is set to the calling templates dir 
+    * `${parent_template_dir}` is set to the calling templates dir
     * `${parent_template_path}`  is set to the calling templates path
- 
- 
+
+
 
 
 
@@ -271,7 +301,7 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 
  `()-><template output:<address>>`
 
- fails if not executed inside of a template else returns the 
+ fails if not executed inside of a template else returns the
  template output ref
 
 
@@ -281,7 +311,7 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 ## <a name="template_out"></a> `template_out`
 
  `(<string...>) -> <void>`
- 
+
  writes the specified string(s) to the templates output stream
  fails if not called inside a template
 
@@ -302,7 +332,7 @@ There is  one major caveat at the moment.  Files larger than `500 kB` lead to me
 ## <a name="template_out_json"></a> `template_out_json`
 
  `(<structured data...>) -> <void>`
- 
+
  writes the serialized data to the templates output
  fails if not called inside a template
 

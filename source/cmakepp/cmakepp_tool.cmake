@@ -1,14 +1,11 @@
 function(cmakepp_tool)
-  set(args ${ARGN})
-  list_pop_front(args)
-  ans(path)
+    set(args ${ARGN})
+    list_pop_front(args)
+    ans(path)
 
-  pushd("${path}")
+    pushd("${path}")
     cd("build" --create)
-    cmake(
-      -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=bin 
-      -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG=bin 
-      .. --process-handle)
+    cmake(-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=bin -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG=bin .. --process-handle)
     ans(handle)
 
     cmake(--build . --process-handle)
@@ -16,7 +13,7 @@ function(cmakepp_tool)
 
     json_print(${handle})
 
-  popd()
-  execute_process(COMMAND "${path}/build/bin/tool")
-  return_ans()
+    popd()
+    execute_process(COMMAND "${path}/build/bin/tool")
+    return_ans()
 endfunction()

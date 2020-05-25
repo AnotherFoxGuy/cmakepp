@@ -109,8 +109,8 @@ address_print(${themap})
 
 ## <a name="ref"></a> `ref`
 
- ref() -> <address> 
- 
+ ref() -> <address>
+
  begins a new reference value and returns its address
  ref needs to be ended via end() call
 

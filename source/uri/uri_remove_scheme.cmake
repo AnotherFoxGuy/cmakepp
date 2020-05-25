@@ -1,4 +1,4 @@
-  function(uri_remove_schemes uri)
+function(uri_remove_schemes uri)
     uri("${uri}")
     ans(uri)
     map_tryget(${uri} schemes)
@@ -9,13 +9,11 @@
     ans(scheme)
     map_tryget(${uri} scheme)
     return_ref(uri)
-  endfunction()
+endfunction()
 
-  function(uri_set_schemes uri)
+function(uri_set_schemes uri)
     uri("${uri}")
     ans(uri)
-    
-
 
     map_set(${uri} schemes ${ARGN})
 
@@ -27,21 +25,20 @@
 
     map_set("${uri}" scheme "${scheme}")
 
-
     map_tryget(${uri} uri)
     ans(uri_string)
 
     if(NOT old_scheme)
-        set(uri_string "${scheme}:${uri_string}" )
+        set(uri_string "${scheme}:${uri_string}")
     else()
         string(REPLACE "${old_scheme}:" "${scheme}:" uri_string "${uri_string}")
     endif()
 
     map_set(${uri} uri "${uri_string}")
     return_ref(uri)
-  endfunction()
+endfunction()
 
-  function(uri_add_schemes uri)
+function(uri_add_schemes uri)
 
     uri("${uri}")
     ans(uri)
@@ -55,4 +52,4 @@
     uri_set_schemes(${uri} ${schemes})
     return_ans()
 
-  endfunction()
+endfunction()

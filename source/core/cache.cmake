@@ -6,25 +6,21 @@ function(cached arg)
     list(LENGTH args arg_len)
     if(arg_len)
 
-      map_set(global_cache_entries "${cache_key}" "${args}")
-      return_ref(args)
+        map_set(global_cache_entries "${cache_key}" "${args}")
+        return_ref(args)
     endif()
 
-
-    map_tryget(global_cache_entries "${cache_key}")    
+    map_tryget(global_cache_entries "${cache_key}")
     ans(res)
     return_ref(res)
 
-
 endfunction()
 
-  macro(return_hit arg_name)
+macro(return_hit arg_name)
     cached("${${arg_name}}")
     if(__ans)
-      message("hit")
-      return_ans()
+        message("hit")
+        return_ans()
     endif()
-      message("not hit")
-  endmacro()
-
-
+    message("not hit")
+endmacro()

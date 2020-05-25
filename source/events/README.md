@@ -107,10 +107,10 @@ assert(EQUALS ${result} answer1 "i am an argument")
  `(<~event> <args:<any...>>)-><any...>`
 
  emits the specified event. goes throug all event handlers registered to
- this event and 
+ this event and
  if event handlers are added during an event they will be called as well
 
- if a event calls event_cancel() 
+ if a event calls event_cancel()
  all further event handlers are disregarded
 
  returns the accumulated result of the single event handlers
@@ -121,8 +121,8 @@ assert(EQUALS ${result} answer1 "i am an argument")
 ## <a name="event_get"></a> `event_get`
 
  `(<~event>)-><event>`
-  
- returns the `<event>` identified by `<event-id>` 
+
+ returns the `<event>` identified by `<event-id>`
  if the event does not exist `<null>` is returned.
 
 
@@ -130,7 +130,7 @@ assert(EQUALS ${result} answer1 "i am an argument")
 
 ## <a name="event_handler"></a> `event_handler`
 
- `(<~callable>)-><event handler>` 
+ `(<~callable>)-><event handler>`
 
  creates an <event handler> from the specified callable
  and returns it. a `event_handler` is also a callable
@@ -163,11 +163,11 @@ assert(EQUALS ${result} answer1 "i am an argument")
  creates an registers a new event which is identified by
  `<event-id>` if the id is not specified a unique id is generated
  and used.
- 
- returns a new <event> object: 
+
+ returns a new <event> object:
  {
    event_id:<event-id>
-   handlers: <callable...> 
+   handlers: <callable...>
    ... (psibbly cancellable, aggregations)
  }
  also defines a global function called `<event-id>` which can be used to emit the event
@@ -200,7 +200,7 @@ assert(EQUALS ${result} answer1 "i am an argument")
  `(<event-id...>)-><event tracker>`
 
  sets up a function which listens only to the specified events
- 
+
 
 
 

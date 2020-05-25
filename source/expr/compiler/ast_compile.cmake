@@ -1,5 +1,4 @@
 
-
 # {
 #  pre_code
 #  code
@@ -19,7 +18,7 @@ function(ast_reduce_code ast)
     ans(next)
     set(code "${code}${next}")
 
-  #_message("###\n${code}\n")
+    # _message("###\n${code}\n")
     return_ref(code)
 endfunction()
 
@@ -27,19 +26,19 @@ function(ast_reduce_code_inner ast)
     map_tryget("${ast}" pure_value)
     ans(is_pure_value)
 
-    ## pure values do not produce any code
-    if (is_pure_value)
+    # pure values do not produce any code
+    if(is_pure_value)
         return()
-    endif ()
+    endif()
 
     set(pre_code)
     set(code)
     set(post_code)
 
-    ## get code for all children
+    # get code for all children
     map_tryget("${ast}" children)
     ans(children)
-    foreach (child ${children})
+    foreach(child ${children})
         ast_reduce_code_inner("${child}")
         ans(current_result)
 
@@ -52,15 +51,14 @@ function(ast_reduce_code_inner ast)
         map_tryget("${current_result}" post_code)
         ans(current_post_code)
         set(post_code "${post_code}${current_post_code}")
-    endforeach ()
+    endforeach()
 
-    #print_vars(--plain  pre_code code post_code )
+    # print_vars(--plain  pre_code code post_code )
 
     map_tryget("${ast}" code)
     ans(current_code)
 
     set(code "${pre_code}${code}${current_code}${post_code}")
-
 
     map_tryget("${ast}" pre_code)
     ans(pre_code)
@@ -75,4 +73,3 @@ function(ast_reduce_code_inner ast)
 
     return_ref(result)
 endfunction()
-

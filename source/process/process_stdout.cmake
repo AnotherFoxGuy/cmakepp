@@ -1,5 +1,5 @@
-## returns the current stdout of a <process handle>
-## this changes until the process is ove
+# returns the current stdout of a <process handle>
+# this changes until the process is ove
 function(process_stdout handle)
     process_handle("${handle}")
     ans(handle)
@@ -7,5 +7,5 @@ function(process_stdout handle)
     ans(stdout_file)
     fread("${stdout_file}")
     ans(stdout)
-return_ref(stdout)
+    return_ref(stdout)
 endfunction()

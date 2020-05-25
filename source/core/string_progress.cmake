@@ -1,5 +1,5 @@
-## this function creates a string containing status information
-  function(progress_string value maximum ticks)
+# this function creates a string containing status information
+function(progress_string value maximum ticks)
     math(EXPR multiplier "20/${maximum}")
     math(EXPR value "${value} * ${multiplier}")
     math(EXPR maximum "${maximum} * ${multiplier}")
@@ -12,4 +12,4 @@
     string_repeat("." ${status_ticker})
     ans(status_ticker)
     return("[${status}${rest}]${status_ticker}          ")
-  endfunction()
+endfunction()

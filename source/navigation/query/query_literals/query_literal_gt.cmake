@@ -1,8 +1,7 @@
 
-
-  function(query_literal_gt input)
+function(query_literal_gt input)
     if("${ARGN}" GREATER "${input}")
-      return(true)
+        return(true)
     endif()
     return(false)
-  endfunction()
+endfunction()

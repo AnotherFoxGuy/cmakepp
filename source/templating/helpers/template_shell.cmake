@@ -1,4 +1,3 @@
-
 function(template_shell command)
     if("${command}" STREQUAL "set_base_dir")
         address_set(template_shell_base_dir "${ARGN}")
@@ -10,7 +9,7 @@ function(template_shell command)
         ans(shell_base_dir)
         address_set(template_shell_base_dir "${shell_base_dir}")
     endif()
-    
+
     set(args ${ARGN})
     list_extract_flag(args --echo)
     ans(echo)

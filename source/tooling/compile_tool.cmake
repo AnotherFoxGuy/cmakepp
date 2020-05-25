@@ -1,24 +1,25 @@
 # compiles a tool (single cpp file with main method)
 # and create a cmake function (if the tool is not yet compiled)
-# expects tool to print cmake code to stdout. this code will 
+# expects tool to print cmake code to stdout. this code will
 # be evaluated and the result is returned  by the tool function
 # the tool function's name is name
 # currently only allows default headers
 function(compile_tool name src)
-  checksum_string("${src}")
-  ans(chksum)
+    checksum_string("${src}")
+    ans(chksum)
 
-  cmakepp_config(temp_dir)
-  ans(temp_dir)
+    cmakepp_config(temp_dir)
+    ans(temp_dir)
 
+    set(dir "${temp_dir}/tools/${chksum}")
 
-  set(dir "${temp_dir}/tools/${chksum}")
+    if(NOT EXISTS "${dir}")
 
-  if(NOT EXISTS "${dir}")
-
-    pushd("${dir}" --create)
-    fwrite("main.cpp" "${src}")
-    fwrite("CMakeLists.txt" "
+        pushd("${dir}" --create)
+        fwrite("main.cpp" "${src}")
+        fwrite(
+            "CMakeLists.txt"
+            "
       project(${name})
       if(\"\${CMAKE_CXX_COMPILER_ID}\" STREQUAL \"GNU\")
         include(CheckCXXCompilerFlag)
@@ -44,32 +45,30 @@ function(compile_tool name src)
       set(CMAKE_RUNTIME_OUTPUT_DIRECTORY \${CMAKE_BINARY_DIR}/bin)
       add_executable(${name} main.cpp)
       ")
-    mkdir(build)
-    cd(build)
-    cmake(../ --process-handle)
-    ans(configure_result)
-    cmake(--build . --process-handle)
-    ans(build_result)
+        mkdir(build)
+        cd(build)
+        cmake(../ --process-handle)
+        ans(configure_result)
+        cmake(--build . --process-handle)
+        ans(build_result)
 
+        map_tryget(${build_result} exit_code)
+        ans(error)
+        map_tryget(${build_result} stdout)
+        ans(log)
+        popd()
 
-    map_tryget(${build_result} exit_code)
-    ans(error)
-    map_tryget(${build_result} stdout)
-    ans(log)
-    popd()
+        if(NOT "${error}" STREQUAL "0")
+            message(FATAL_ERROR "failed to compile tool :\n ${log}")
+            rm("${dir}")
+        endif()
 
-    if(NOT "${error}" STREQUAL "0")        
-      message(FATAL_ERROR "failed to compile tool :\n ${log}")
-      rm("${dir}")
     endif()
 
+    wrap_executable_bare("__${name}" "${dir}/build/bin/${name}")
 
-  endif()
-  
-        
-  wrap_executable_bare("__${name}" "${dir}/build/bin/${name}")
-
-  eval("
+    eval(
+        "
     function(${name})
 
       __${name}(\${ARGN})
@@ -83,7 +82,5 @@ function(compile_tool name src)
       return_ans()
     endfunction()
     ")
-
-
 
 endfunction()

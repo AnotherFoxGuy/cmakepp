@@ -1,11 +1,11 @@
-## `()-><qualified path>`
-##
-## returns the current users home directory on all OSs
-## 
+# `()-><qualified path>`
+#
+# returns the current users home directory on all OSs
+#
 function(home_dir)
     shell_get()
     ans(shell)
-    if ("${shell}" STREQUAL "cmd")
+    if("${shell}" STREQUAL "cmd")
         shell_env_get("HOMEDRIVE")
         ans(dr)
         shell_env_get("HOMEPATH")
@@ -14,13 +14,14 @@ function(home_dir)
         file(TO_CMAKE_PATH "${res}" res)
         path("${res}")
         ans(res)
-    elseif ("${shell}" STREQUAL "bash")
+    elseif("${shell}" STREQUAL "bash")
         shell_env_get(HOME)
         ans(res)
-    else ()
+    else()
         message(FATAL_ERROR "supported shells: cmd & bash")
-    endif ()
-    eval("
+    endif()
+    eval(
+        "
     function(home_dir)
       set(__ans \"${res}\" PARENT_SCOPE)
     endfunction()

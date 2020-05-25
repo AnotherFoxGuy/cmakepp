@@ -1,10 +1,9 @@
-
-  function(argument_escape arg)
+function(argument_escape arg)
     cmake_string_escape("${arg}")
     ans(arg)
     return_ref(arg)
     if("${arg}_" MATCHES "(^_$)|(;)|(\")")
-      set(arg "\"${arg}\"") 
+        set(arg "\"${arg}\"")
     endif()
     return_ref(arg)
-  endfunction()
+endfunction()

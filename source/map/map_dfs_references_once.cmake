@@ -5,12 +5,10 @@ function(map_dfs_references_once)
         ans(visited)
     endif()
 
-
     list(LENGTH ARGN count)
     if("${count}" EQUAL 0)
         return(${visited})
     endif()
-
 
     if("${count}" GREATER "1")
         foreach(arg ${ARGN})
@@ -32,9 +30,7 @@ function(map_dfs_references_once)
         return(${visited})
     endif()
 
-
     map_set(${visited} "${ARGN}" "true")
-
 
     map_keys("${ARGN}")
     ans(keys)

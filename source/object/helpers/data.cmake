@@ -1,16 +1,16 @@
-## tries to parse structured data
-## if structured data is not parsable returns the value passed
+# tries to parse structured data
+# if structured data is not parsable returns the value passed
 function(data)
     set(result)
     set(args ${ARGN})
-    foreach (arg ${args})
-        if ("_${arg}" MATCHES "^_(\\[|{).*(\\]|})$")
+    foreach(arg ${args})
+        if("_${arg}" MATCHES "^_(\\[|{).*(\\]|})$")
             script("${arg}")
             ans(val)
-        else ()
+        else()
             set(val "${arg}")
-        endif ()
+        endif()
         list(APPEND result "${val}")
-    endforeach ()
+    endforeach()
     return_ref(result)
 endfunction()

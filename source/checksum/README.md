@@ -21,9 +21,9 @@
 
  `(<direcotry> [--algorthm <checksum algorithm> = "MD5"])-><checksum>`
 
- calculates the checksum for the specified directory 
+ calculates the checksum for the specified directory
  just like checksum_layout however also factors in the file's contents
- 
+
 
 
 
@@ -34,7 +34,7 @@
 
  calculates the checksum for the specified file delegates the
  call to `CMake`'s file(<algorithm>) function
- 
+
 
 
 
@@ -44,9 +44,9 @@
  `(<base dir> <file...>)-><checksum>`
 
  create a checksum from specified files relative to <dir>
- the checksum is influenced by the files relative paths 
- and the file content 
- 
+ the checksum is influenced by the files relative paths
+ and the file content
+
 
 
 
@@ -54,11 +54,11 @@
 ## <a name="checksum_glob_ignore"></a> `checksum_glob_ignore`
 
  `(<glob ignore expressions...> [--algorithm <hash algorithm> = "MD5"])-><checksum>`
- 
+
  calculates the checksum for the specified glob ignore expressIONS
  uses checksum_files internally. the checksum is unique to file content
  and relative file structure
- 
+
 
 
 
@@ -66,11 +66,11 @@
 ## <a name="checksum_layout"></a> `checksum_layout`
 
  `(<directory> [--algorithm <hash algorithm> "MD5"])-><checksum>`
- 
+
  this method generates the checksum for the specified directory
  it is done by taking every file's relative path into consideration
  and generating the hash.  The file's content does not influence the hash
- 
+
 
 
 
@@ -80,9 +80,9 @@
  `(<any> [--algorithm <hash algorithm> = "MD5"])-><checksum>`
 
  this function takes any value and generates its hash
- the difference to string hash is that it serializes the specified object 
- which lets you create the hash for the whoile object graph.  
- 
+ the difference to string hash is that it serializes the specified object
+ which lets you create the hash for the whoile object graph.
+
 
 
 
@@ -92,10 +92,10 @@
  `(<string> [--algorithm <hash algorithm> = MD5])-><checksum>`
  `<hash algorithm> ::= "MD5"|"SHA1"|"SHA224"|"SHA256"|"SHA384"|"SHA512"`
 
- this function takes any string and computes the hash value of it using the 
+ this function takes any string and computes the hash value of it using the
  hash algorithm specified (which defaults to  MD5)
  returns the checksum
- 
+
 
 
 

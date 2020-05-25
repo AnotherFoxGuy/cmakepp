@@ -4,17 +4,17 @@ function(shell cmd)
 
     shell_get()
     ans(shell)
-    if ("${shell}" STREQUAL "cmd")
+    if("${shell}" STREQUAL "cmd")
         fwrite_temp("@echo off\n${cmd}" ".bat")
         ans(shell_script)
-    elseif ("${shell}" STREQUAL "bash")
+    elseif("${shell}" STREQUAL "bash")
         fwrite_temp("#!/bin/bash\n${cmd}" ".sh")
         ans(shell_script)
         # make script executable
         execute_process(COMMAND "chmod" "+x" "${shell_script}")
-    else ()
+    else()
         message(FATAL_ERROR "Shell not suported: ${shell}")
-    endif ()
+    endif()
 
     # execute shell script which write the keyboard input to the ${value_file}
     set(args ${ARGN})
@@ -27,17 +27,17 @@ function(shell cmd)
 
     # remove temp file
     file(REMOVE "${shell_script}")
-    if (return_process_handle)
+    if(return_process_handle)
         return_ref(res)
-    endif ()
+    endif()
 
     map_tryget(${res} exit_code)
     ans(exit_code)
 
-    if (NOT "_${exit_code}" STREQUAL "_0")
+    if(NOT "_${exit_code}" STREQUAL "_0")
         message(ERROR "Shell failed with exit code ${exit_code}")
         return()
-    endif ()
+    endif()
 
     map_tryget(${res} stdout)
     ans(stdout)

@@ -1,31 +1,30 @@
-
-## `(<path=".">)->"git"|"svn"|"hg"|<null>`
-##
-## returns the scm found `"git"|"svn"|"hg"` in specified directory
+# `(<path=".">)->"git"|"svn"|"hg"|<null>`
+#
+# returns the scm found `"git"|"svn"|"hg"` in specified directory
 function(scm_which)
-    #message(FATAL_ERROR notimplemented)
+    # message(FATAL_ERROR notimplemented)
     path("${ARGN}")
     ans(path)
     pushd("${path}")
     git(status --exit-code)
     ans(error)
-    if (NOT error)
+    if(NOT error)
         popd()
         return(git)
-    endif ()
+    endif()
     hg(status --exit-code)
     ans(error)
-    if (NOT error)
+    if(NOT error)
         popd()
         return(hg)
-    endif ()
+    endif()
     svn(info --depth=empty)
     ans(result)
 
-    if (NOT "${result}_" STREQUAL "_")
+    if(NOT "${result}_" STREQUAL "_")
         popd()
         return(svn)
-    endif ()
+    endif()
     popd()
     return()
 endfunction()

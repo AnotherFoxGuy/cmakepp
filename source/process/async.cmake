@@ -1,12 +1,12 @@
-## async(<callable>(<args...)) -> <process handle>
-##
-## executes a callable asynchroniously 
-##
-## todo: 
-##   capture necessary scope vars
-##   include further files for custom functions     
-##   environment vars
-  function(async callable)
+# async(<callable>(<args...)) -> <process handle>
+#
+# executes a callable asynchroniously
+#
+# todo:
+#   capture necessary scope vars
+#   include further files for custom functions
+#   environment vars
+function(async callable)
     cmakepp_config(base_dir)
     ans(base_dir)
     set(args ${ARGN})
@@ -19,7 +19,7 @@
     pwd()
     ans(pwd)
     set(code
-      "
+        "
         include(\"${base_dir}/cmakepp.cmake\")
         cd(\"${pwd}\")
         ${arguments}
@@ -36,4 +36,4 @@
     ans(process_handle)
     map_set(${process_handle} result_file "${result_file}")
     return_ref(process_handle)
-  endfunction()
+endfunction()

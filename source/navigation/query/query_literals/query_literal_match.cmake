@@ -1,9 +1,8 @@
 
-
-  function(query_literal_match expected)
-    #message("match ${expected} - ${ARGN}")
+function(query_literal_match expected)
+    # message("match ${expected} - ${ARGN}")
     if("${ARGN}" MATCHES "${expected}")
-      return(true)
+        return(true)
     endif()
     return(false)
-  endfunction()
+endfunction()
