@@ -23,7 +23,7 @@ jobs:
       - run: git config --global user.name "Test"
 
       - name: Run all test
-        run: cmake -P build/run-all-test.cmake
+        run: cmake -P tools/run-all-test.cmake
 
       - name: Build
-        run: cmake -P build/compile.cmake
+        run: cmake -P tools/compile.cmake
