@@ -1,6 +1,5 @@
 function(test)
 
-
     # multivalue
     map_equal("123;456" "123;456")
     ans(res)
@@ -9,7 +8,6 @@ function(test)
     map_equal("123;456" "123;678")
     ans(res)
     assert(NOT res)
-
 
     # with cycle
     map_new()
@@ -22,7 +20,6 @@ function(test)
     map_equal(${lhs} ${rhs})
     ans(res)
     assert(res)
-
 
     # with cross cycle
     map_new()
@@ -37,7 +34,6 @@ function(test)
     map_equal(${lhs} ${rhs})
     ans(res)
     assert(res)
-
 
     map_new()
     ans(uut)
@@ -58,9 +54,7 @@ function(test)
     map_append(${uut2} k1 b)
     map_append(${uut2} k1 c)
 
-
     map_append(${uut2} k3 "asd asda asd")
-
 
     map_equal(${uut} ${uut2})
     ans(res)
@@ -76,11 +70,9 @@ function(test)
     ans(res)
     assert(NOT res)
 
-
     map_equal(${uut2} ${uut})
     ans(res)
     assert(NOT res)
-
 
     map_new()
     ans(lhs)
@@ -126,13 +118,11 @@ function(test)
     kv(f f)
     end()
 
-
     end()
     ans(rhs)
 
     map_equal(${lhs} ${rhs})
     ans(res)
     assert(res)
-
 
 endfunction()

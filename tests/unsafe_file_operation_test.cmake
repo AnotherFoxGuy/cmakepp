@@ -1,14 +1,11 @@
 function(test)
 
-  function(unsafe_scope_lock)
+    function(unsafe_scope_lock)
 
-  endfunction()
+    endfunction()
 
+    function(unsafe_scope_unlock)
 
-
-  function(unsafe_scope_unlock)
-
-  endfunction()
-
+    endfunction()
 
 endfunction()

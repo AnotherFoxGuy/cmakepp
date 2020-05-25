@@ -1,7 +1,7 @@
 function(test)
 
-  function(environment)
+    function(environment)
 
-  endfunction()
+    endfunction()
 
 endfunction()

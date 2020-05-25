@@ -1,5 +1,5 @@
 function(test)
-  shell("echo hello")
-  ans(res)
-  assert("${res}" MATCHES "hello")
+    shell("echo hello")
+    ans(res)
+    assert("${res}" MATCHES "hello")
 endfunction()

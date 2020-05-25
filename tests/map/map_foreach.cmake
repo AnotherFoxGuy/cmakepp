@@ -10,16 +10,22 @@ function(test)
     end()
     ans(map)
 
-
     address_new()
     ans(myref)
     map_foreach("${map}" "[](key val)address_append({{myref}} {{key}} {{val}})")
     address_get(${myref})
     ans(vals)
 
-    assert(EQUALS ${vals} a 1 b 2 c 3)
+    assert(
+        EQUALS
+        ${vals}
+        a
+        1
+        b
+        2
+        c
+        3)
 
     map_foreach("" "[]() ")
-
 
 endfunction()

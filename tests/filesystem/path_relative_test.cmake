@@ -1,6 +1,6 @@
 function(test)
 
-    if (WIN32)
+    if(WIN32)
         path_relative("C:/test" "E:/test3")
         ans(res)
         assert("${res}" STREQUAL "E:/test3")
@@ -8,7 +8,7 @@ function(test)
         path_relative("C:/test1/test3" "C:/test1/test2/test3")
         ans(res)
         assert("${res}" STREQUAL "../test2/test3")
-    endif ()
+    endif()
 
     mkdir(test1)
     mkdir(test2)

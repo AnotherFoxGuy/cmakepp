@@ -3,7 +3,7 @@ function(test)
     set(var2 cde)
     unset(var3)
 
-#    string_eval("@var1@ \${var2} @var3@ \${var3}")
+    # string_eval("@var1@ \${var2} @var3@ \${var3}")
     string_eval("\${var2} \${var3}")
     ans(res)
 

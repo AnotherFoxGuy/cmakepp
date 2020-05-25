@@ -1,9 +1,9 @@
 function(test)
     find_package(Hg)
-    if (NOT HG_FOUND)
+    if(NOT HG_FOUND)
         message("Test Inconclusive, missing mercurial")
         return()
-    endif ()
+    endif()
 
     cd("${test_dir}")
 

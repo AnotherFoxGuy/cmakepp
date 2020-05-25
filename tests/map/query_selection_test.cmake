@@ -1,6 +1,5 @@
 function(test)
 
-
     function(test_query_select query)
         data("${ARGN}")
         ans(data)
@@ -19,27 +18,24 @@ function(test)
     test_uut("a;b" "{'[:]':{regex: 'a|b'}}" "a;b;c")
     test_uut("asd;bsd;csd" "{'$':{regex: {matchall: '[abc]sd'}}}" "asdbsdcsd")
 
-
     test_uut(
-            # expected result
-            "{
+        # expected result
+        "{
       a:['hello','world'],
       prop_cd:[4,5]
     }"
-            # query
-            "{
+        # query
+        "{
       a:{ regex:{matchall:'[^ ]+'}},
       'c.d[:]=>prop_cd':{where:{gt:'3'}}
     }"
-            # input data
-            "{
+        # input data
+        "{
        a: 'hello world',
        b: 'goodbye world',
        c: {
         d: [1,2,3,4,5]
-       } 
-    }"
-    )
-
+       }
+    }")
 
 endfunction()

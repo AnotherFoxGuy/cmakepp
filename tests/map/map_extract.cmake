@@ -1,12 +1,6 @@
 function(test)
 
-
-    # element(MAP)
-    #   value(KEY k1 v1)
-    #   value(KEY k2 v2)
-    #   value(KEY k3 v3)
-    #   value(KEY k4 v4)
-    # element(END uut)
+    # element(MAP) value(KEY k1 v1) value(KEY k2 v2) value(KEY k3 v3) value(KEY k4 v4) element(END uut)
 
     obj("{
   k1:'v1',

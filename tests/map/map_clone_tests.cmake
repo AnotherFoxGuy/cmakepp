@@ -1,6 +1,7 @@
 function(test)
 
-    script("{
+    script(
+        "{
     k1:'v1',
     k2:'v2',
     k3:{
@@ -14,18 +15,8 @@ function(test)
   }")
     ans(uut)
 
-    # element(MAP)
-    #   value(KEY "k1" "v1")
-    #   value(KEY "k2" "v2")
-    #   element(MAP k3)
-    #     value(KEY "k4" "v4")
-    #     value(KEY "k5" "v5")
-    #     element(MAP k6)
-    #       value(KEY "k7" "v7")
-    #       value(KEY "k8" "v8")
-    #     element(END)
-    #   element(END)
-    # element(END uut)
+    # element(MAP) value(KEY "k1" "v1") value(KEY "k2" "v2") element(MAP k3) value(KEY "k4" "v4") value(KEY "k5" "v5") element(MAP k6) value(KEY "k7" "v7") value(KEY "k8" "v8")
+    # element(END) element(END) element(END uut)
 
     map_clone(${uut} SHALLOW)
     ans(cloned)
@@ -35,7 +26,6 @@ function(test)
     assert(DEREF "{cloned.k1}" STREQUAL "{uut.k1}")
     assert(DEREF "{cloned.k2}" STREQUAL "{uut.k2}")
     assert(DEREF "{cloned.k3}" STREQUAL "{uut.k3}")
-
 
     map_clone(${uut} DEEP)
     ans(cloned)
@@ -49,7 +39,6 @@ function(test)
     assert(DEREF NOT "{cloned.k3.k6}" STREQUAL "{uut.k3.k6}")
     assert(DEREF "{cloned.k3.k6.k7}" STREQUAL "{uut.k3.k6.k7}")
     assert(DEREF "{cloned.k3.k6.k8}" STREQUAL "{uut.k3.k6.k8}")
-
 
     map_clone("" DEEP)
     ans(cloned)
@@ -94,6 +83,5 @@ function(test)
     address_get(${cloned})
     ans(res)
     assert(DEREF "${res}" STREQUAL "hello")
-
 
 endfunction()

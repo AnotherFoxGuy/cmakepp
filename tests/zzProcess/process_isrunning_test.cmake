@@ -1,32 +1,23 @@
 function(test)
-  
 
-  ## test the isrunning predicate for a process_handle
+    # test the isrunning predicate for a process_handle
 
-  
+    process_timeout(4)
+    ans(handle)
 
-process_timeout(4)
-ans(handle)
+    # act
 
-## act
+    #
+    process_isrunning(${handle})
+    ans(isrunning)
 
-## 
-process_isrunning(${handle})
-ans(isrunning)
+    sleep(5)
 
-sleep(5)
+    process_isrunning(${handle})
+    ans(stillrunning)
 
-process_isrunning(${handle})
-ans(stillrunning)
-
-
-## assert
-assert(isrunning)
-assert(NOT stillrunning)
-
-
-
-
-
+    # assert
+    assert(isrunning)
+    assert(NOT stillrunning)
 
 endfunction()

@@ -21,7 +21,6 @@ function(test)
     ans(generated_content)
     assert("${generated_content}" STREQUAL "My echo test returns: #Hello World")
 
-
     fwrite_temp("My echo test returns from file: <%= my_echo_func('Hello World') %>" ".in")
     ans(temppath)
     template_run_file("${temppath}")

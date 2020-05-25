@@ -1,6 +1,7 @@
 function(test)
 
-  cmake_token_range_comment_section_navigate("
+    cmake_token_range_comment_section_navigate(
+        "
 
     ## <section name=\"sec1\">
 
@@ -9,16 +10,14 @@ function(test)
 
     ## </section>
 
-    " "sec1.sec2")
+    "
+        "sec1.sec2")
 
-
-  ans(res)
-  assert(res)
-  cmake_token_range_serialize("${res}")
-  ans(res)
-  assert("${res}" STREQUAL "set(a 1)\n")
-  _message("${res}")
-
-
+    ans(res)
+    assert(res)
+    cmake_token_range_serialize("${res}")
+    ans(res)
+    assert("${res}" STREQUAL "set(a 1)\n")
+    _message("${res}")
 
 endfunction()

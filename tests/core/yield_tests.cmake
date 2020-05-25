@@ -10,6 +10,6 @@ function(test)
 
     my_func()
     ans(res)
-    ASSERT(EQUALS 1 2 3 4 ${res})
+    assert(EQUALS 1 2 3 4 ${res})
 
 endfunction()

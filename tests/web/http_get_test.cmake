@@ -2,10 +2,7 @@ function(test)
 
     message("Test inconclusive - too undeterministic")
     return()
-    ## fail test
-    # http_get("http://notahost.tld")
-    # ans(res)
-    # assert(NOT res)
+    # fail test http_get("http://notahost.tld") ans(res) assert(NOT res)
 
     http_get("http://httpbin.org/get")
     ans(content)
@@ -16,14 +13,12 @@ function(test)
     assert(content)
     assertf("{content.args.return_value}" STREQUAL "lalala")
 
-
     http_get("http://httpbin.org/get" "{val1:1,val2:2}" --json)
     ans(content)
     assertf("{content.args.val1}" EQUAL 1)
     assertf("{content.args.val2}" EQUAL 2)
 
-    ## fails if you have  a router that displays a custom search page
-    ## when it cannot resolve the host.  (*** t-online)
+    # fails if you have  a router that displays a custom search page when it cannot resolve the host.  (*** t-online)
     http_get("http://notahost.tld" --silent-fail)
     ans(res)
     assert(NOT res)

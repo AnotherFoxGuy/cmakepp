@@ -8,7 +8,6 @@ function(test)
     ans(res)
     assert(NOT res)
 
-
     obj("{}")
     ans(res)
     assert(res)

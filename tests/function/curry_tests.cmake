@@ -31,7 +31,6 @@ function(test)
     ans(res)
     assert("${res}" STREQUAL "hello you")
 
-
     curry3(() => address_set_new ("/0"))
     ans(res)
     assert(res)
@@ -47,7 +46,6 @@ function(test)
     call("${res}" (a b c))
     ans(res)
     assert("${res}" STREQUAL "2 3 b")
-
 
     curry3((a b c) => invocation_argument_string (/c /b /a))
     ans(res)
@@ -68,7 +66,20 @@ function(test)
     set(a 123)
     set(b 234)
     set(c 345)
-    curry3(myfunc (a b c) => [a;b] test_curry (/3 /4 /4 /a /c /b "1;2;3" /*))
+    curry3(
+        myfunc
+        (a b c)
+        =>
+        [a;b]
+        test_curry
+        (/3
+         /4
+         /4
+         /a
+         /c
+         /b
+         "1;2;3"
+         /*))
 
     set(a 456)
     set(c 567)
@@ -76,15 +87,31 @@ function(test)
     myfunc(9 8 7 p o i)
     ans(res)
 
-    assert(${res} EQUALS 123 234 567 p o o 9 7 8 1 2 3 p o i)
+    assert(
+        ${res}
+        EQUALS
+        123
+        234
+        567
+        p
+        o
+        o
+        9
+        7
+        8
+        1
+        2
+        3
+        p
+        o
+        i)
 
     # takes about 30 ms per curry call
     timer_start(curry_compile_100)
-    foreach (i RANGE 0 100)
+    foreach(i RANGE 0 100)
         curry3(myfunc (a b c) => invocation_argument_string ("ab;c" /* /c))
-    endforeach ()
+    endforeach()
     timer_print_elapsed(curry_compile_100)
-
 
     curry3([a;b;c] string_length (/c /b /a) => myfunc (a b c))
     ans(res)
@@ -95,20 +122,17 @@ function(test)
     curry3(string_length ("a;b;c;d") => myfunc (a b c))
     ans(res)
 
-
     function(funcA a b c)
         return("${a}${b}${c}")
     endfunction()
 
-
     curry3(funcB => funcA (/0 44 /1))
-    funcB("1" "2")
+    funcb("1" "2")
     ans(res)
     assert("${res}" STREQUAL 1442)
 
-
     curry3(funcB () => funcA (/1 nana /0))
-    funcB("1" "2")
+    funcb("1" "2")
     ans(res)
     assert("${res}" STREQUAL 2nana1)
 
@@ -123,8 +147,7 @@ function(test)
     set(var3 5)
     set(var4 6)
 
-
-    funcB(1 2)
+    funcb(1 2)
     ans(res)
     assert("${res}" STREQUAL "1234")
 

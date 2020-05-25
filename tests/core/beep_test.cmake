@@ -1,3 +1,3 @@
 function(beep_test)
-  beep()
+    beep()
 endfunction()

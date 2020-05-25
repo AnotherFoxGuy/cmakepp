@@ -16,5 +16,4 @@ function(Test)
     ans(res)
     assert("${res}" STREQUAL NO)
 
-
 endfunction()

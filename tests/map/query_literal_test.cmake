@@ -1,6 +1,5 @@
 function(test)
 
-
     function(query_literal_test literal)
         set(lit ${literal})
         data("${literal}")
@@ -14,13 +13,11 @@ function(test)
         ans(res)
         timer_print_elapsed(query_literal_timer "'${lit}' ")
 
-        #call2("${predicate}" ${ARGN})
+        # call2("${predicate}" ${ARGN})
         return_ref(res)
     endfunction()
 
-
     define_test_function(test_uut query_literal_test literal)
-
 
     test_uut("true" "a" "a")
     test_uut("false" "a" "b")
@@ -38,6 +35,5 @@ function(test)
     test_uut("false" "<3" 4)
     test_uut("true" "=3" 3)
     test_uut("false" "=3" 4)
-
 
 endfunction()

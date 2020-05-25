@@ -9,7 +9,7 @@ function(test)
     assert("${ret}" EQUAL 0)
     assert(EXISTS "${test_dir}/dir1/.git")
 
-    ## create a repo and add a file to it
+    # create a repo and add a file to it
     fwrite(README.md "hello world")
     git(add . --exit-code)
     ans(ret)
@@ -20,7 +20,7 @@ function(test)
 
     popd()
 
-    ## clone local repo
+    # clone local repo
     pushd(dir2 --create)
     git(clone ../dir1 . --exit-code)
     ans(ret)
@@ -28,8 +28,7 @@ function(test)
     assert(EXISTS "${test_dir}/dir2/README.md")
     popd()
 
-
-    ## clone remote repo (of cmakepp)
+    # clone remote repo (of cmakepp)
     pushd(dir3 --create)
     git(clone "https://github.com/AnotherFoxGuy/cmakepp" . --exit-code)
     ans(ret)

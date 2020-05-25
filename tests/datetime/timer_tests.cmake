@@ -1,17 +1,16 @@
 function(test)
 
-  message("test inconcolusive")
-  return()
+    message("test inconcolusive")
+    return()
 
-  timer_start(mytimer)
-  timer_start(mysecondtimer)
-  message("waiting")
-  timer_elapsed(mysecondtimer)
-  ans(res)
+    timer_start(mytimer)
+    timer_start(mysecondtimer)
+    message("waiting")
+    timer_elapsed(mysecondtimer)
+    ans(res)
 
-  assert("${res}" GREATER 0)
+    assert("${res}" GREATER 0)
 
-  timers_print_all()
-
+    timers_print_all()
 
 endfunction()

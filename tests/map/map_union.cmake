@@ -1,6 +1,5 @@
 function(test)
-    # creates two maps and merges them
-    # create two maps
+    # creates two maps and merges them create two maps
     map()
     kv(k1 1)
     kv(k2 1)
@@ -13,7 +12,7 @@ function(test)
     end()
     ans(uut2)
 
-    #merge by overwriting map2 with map1
+    # merge by overwriting map2 with map1
     map_new()
     ans(res)
     map_union(${res} ${uut2} ${uut1})
@@ -56,7 +55,6 @@ function(test)
 
     obj("{elem1:{k2:'v2'}}")
     ans(m2)
-
 
     set(res)
     map_merge(${m1} ${m2})
