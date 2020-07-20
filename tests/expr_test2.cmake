@@ -1,7 +1,5 @@
 function(test)
 
-
-
   # call
   set(callable_string "[](a b)return('{{a}}{{b}}')")
   script(" $callable_string(1,2)")
@@ -9,14 +7,14 @@ function(test)
   assert("${res}" STREQUAL "12")
 
 
-script("{valaa1:['asd']}")
-ans(res)
-assert(DEREF "{res.valaa1}" STREQUAL "asd")
+  script("{valaa1:['asd']}")
+  ans(res)
+  assert(DEREF "{res.valaa1}" STREQUAL "asd")
 
-script("{ include:'hello', exclude:'asd'}")
-ans(res)
-assert(DEREF "{res.include}" STREQUAL "hello")
-assert(DEREF "{res.exclude}" STREQUAL "asd")
+  script("{ include:'hello', exclude:'asd'}")
+  ans(res)
+  assert(DEREF "{res.include}" STREQUAL "hello")
+  assert(DEREF "{res.exclude}" STREQUAL "asd")
   
   function(TestClassX)
     message("instance x")

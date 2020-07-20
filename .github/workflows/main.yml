@@ -22,8 +22,13 @@ jobs:
       - run: git config --global user.email "Test@AnotherFoxGuy.com"
       - run: git config --global user.name "Test"
 
+      - name: Configure
+        run: cmake .
+
       - name: Run all test
-        run: cmake -P tools/run-all-test.cmake
+        run: ctest -C Release
+        env:
+          CTEST_OUTPUT_ON_FAILURE: 1
 
       - name: Build
-        run: cmake -P tools/compile.cmake
+        run: cmake --build . --target compile
