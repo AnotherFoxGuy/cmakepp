@@ -3,8 +3,6 @@
     assign(function_files = glob("**.cmake" --relative))
 %>
 
-## <a name="json"></a>Json Serialziation and Deserialization
-
 I have written five functions which you can use to serialize and deserialize json.  
 
 ### Functions
