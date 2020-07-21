@@ -1,8 +1,5 @@
 ## Json Serialization and Deserialization
 
-
-## <a name="json"></a>Json Serialziation and Deserialization
-
 I have written five functions which you can use to serialize and deserialize json.  
 
 ### Functions
