@@ -15,7 +15,7 @@
 # assert(<assertion> MESSAGE "hello") => if assertion fails prints "hello"
 # assert(<assertion> RESULT res) => sets result to false if assertion fails or to true if it holds
 # assert(EQUALS "1;3;4;6;7" "1;3;4;6;7") => nothing happens lists are equal
-# assert(EQUALS 1 2 3 4 1 2 3 4) =>nothing happes lists are equal (see list_equal)
+# assert(EQUALS 1 2 3 4 1 2 3 4) =>nothing happens lists are equal (see list_equal)
 # assert(EQUALS C<list> <list> COMPARATOR <comparator> )... todo
 # todo: using the variable result as a boolean check fails because the name is used inside assert
 
@@ -178,7 +178,7 @@ function(assert)
     if ("${_MESSAGE}_" STREQUAL "_")
         list_to_string(_UNPARSED_ARGUMENTS " ")
         ans(msg)
-        set(_MESSAGE "assertion failed1: '${_UNPARSED_ARGUMENTS}'")
+        set(_MESSAGE "assertion failed : '${_UNPARSED_ARGUMENTS}'")
     endif ()
 
     # print message if assertion failed, SILENT is not specified or message type is FATAL_ERROR
