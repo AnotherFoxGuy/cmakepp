@@ -1,7 +1,7 @@
 function(test)
 
-    message("Test inconclusive - too undeterministic")
-    return()
+    #message("Test inconclusive - too undeterministic")
+    #return()
     ## fail test
     # http_get("http://notahost.tld")
     # ans(res)
