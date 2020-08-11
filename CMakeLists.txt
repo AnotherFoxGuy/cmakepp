@@ -20,13 +20,14 @@ foreach (test ${test_files})
             COMMAND ${CMAKE_COMMAND} -P ${CMAKEPP_FILE} test_execute ${test})
 endforeach ()
 
-install(FILES "${CMAKE_SOURCE_DIR}/release/cmakepp.cmake" TYPE DATA)
+install(FILES "${CMAKE_BINARY_DIR}/release/cmakepp.cmake" DESTINATION ${CMAKE_INSTALL_PREFIX}/cmakepp)
 
 install(CODE [===[
-include("cmakepp.cmake")
-pushd("${installation_dir}")
-cmake(-P cmakepp.cmake cmakepp_setup_environment)
-popd()
+    include("${CMAKE_INSTALL_PREFIX}/cmakepp/cmakepp.cmake")
+    pushd("${CMAKE_INSTALL_PREFIX}/cmakepp/")
+    cmake(-P cmakepp.cmake cmakepp_setup_environment)
+    popd()
+    message("Installed CMake++ to: ${CMAKE_INSTALL_PREFIX}/cmakepp/")
 ]===])
 
 # CPack
