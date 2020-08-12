@@ -1,7 +1,15 @@
 cmake_minimum_required(VERSION 3.2)
 project(cmakepp VERSION 1.0 LANGUAGES NONE)
 
-set(CMAKEPP_FILE "${CMAKE_SOURCE_DIR}/cmakepp.cmake")
+option(FAST_TESTS "Use compiled CMake++ module in tests" OFF)
+
+if (FAST_TESTS)
+    set(CMAKEPP_FILE "${CMAKE_CURRENT_LIST_DIR}/tmp/cmakepp.cmake")
+    execute_process(COMMAND ${CMAKE_COMMAND} -P ${CMAKE_SOURCE_DIR}/cmakepp.cmake cmakepp_compile ${CMAKEPP_FILE})
+    file(COPY "${CMAKE_SOURCE_DIR}/resources/expr-definition.json" DESTINATION "${CMAKE_CURRENT_LIST_DIR}/tmp/resources/")
+else ()
+    set(CMAKEPP_FILE "${CMAKE_SOURCE_DIR}/cmakepp.cmake")
+endif ()
 
 include("${CMAKEPP_FILE}")
 
