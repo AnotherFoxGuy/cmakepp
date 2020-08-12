@@ -38,7 +38,7 @@ function(svn_cached_checkout uri)
     set(ref_type tags)
   endif()
   
-  cmakepp_config(cache_dir)
+  cmakepp_config(temp_dir)
   ans(cache_dir)
 
   string(MD5 cache_key "${base_uri}@${revision}@${ref_type}@${ref}")

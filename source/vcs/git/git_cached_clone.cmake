@@ -21,7 +21,7 @@
 
       path_qualify(target_dir)
 
-      cmakepp_config(cache_dir)
+      cmakepp_config(temp_dir)
       ans(cache_dir)
 
       string(MD5 cache_key "${remote_uri}" )

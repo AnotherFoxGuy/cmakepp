@@ -28,7 +28,7 @@ function(hg_cached_clone remote_uri)
     path_qualify(target_dir)
 
     ## create a cache directory for the uri
-    cmakepp_config(cache_dir)
+    cmakepp_config(temp_dir)
     ans(cache_dir)
 
     string(MD5 cache_key "${remote_uri}")

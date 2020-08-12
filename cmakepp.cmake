@@ -41,6 +41,15 @@ endif ()
 list(GET cmakepp_tmp_dir 0 cmakepp_tmp_dir)
 file(TO_CMAKE_PATH "${cmakepp_tmp_dir}" cmakepp_tmp_dir)
 
+# get cache dir (Used for storing executables/tools)
+if (UNIX)
+    set(cmakepp_cache_dir $ENV{XDG_CACHE_HOME} $ENV{HOME}/.cache)
+else ()
+    set(cmakepp_cache_dir $ENV{LOCALAPPDATA} ${CMAKE_CURRENT_LIST_DIR}/tmp)
+endif ()
+list(GET cmakepp_cache_dir 0 cmakepp_cache_dir)
+file(TO_CMAKE_PATH "${cmakepp_cache_dir}" cmakepp_cache_dir)
+
 # dummy function which is overwritten and in this form just returns the temp_dir
 function(cmakepp_config key)
     return("${cmakepp_tmp_dir}")
@@ -87,13 +96,13 @@ kv(temp_dir
         LABELS --temp-dir
         MIN 1 MAX 1
         DESCRIPTION "the directory used for temporary files"
-        DEFAULT "${cmakepp_tmp_dir}/cutil/temp"
+        DEFAULT "${cmakepp_tmp_dir}/cmakepp"
         )
 kv(cache_dir
         LABELS --cache-dir
         MIN 1 MAX 1
         DESCRIPTION "the directory used for caching data"
-        DEFAULT "${cmakepp_tmp_dir}/cutil/cache"
+        DEFAULT "${cmakepp_cache_dir}/cmakepp"
         )
 kv(bin_dir
         LABELS --bin-dir
