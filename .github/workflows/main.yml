@@ -23,7 +23,7 @@ jobs:
       - run: git config --global user.name "Test"
 
       - name: Configure
-        run: cmake .
+        run: cmake -DFAST_TESTS=ON .
 
       - name: Run all test
         run: ctest -C Release
