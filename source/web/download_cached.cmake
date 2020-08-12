@@ -10,7 +10,7 @@
     list_extract_flag(args --readonly)
     ans(readonly)
     
-    cmakepp_config(cache_dir)
+    cmakepp_config(temp_dir)
     ans(cache_dir)
 
     string(MD5 cache_key "${uri}")
