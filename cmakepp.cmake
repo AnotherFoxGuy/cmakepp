@@ -1,4 +1,4 @@
-## cmakepp 
+## Cmake++
 ##
 ## An enhancement suite for CMake
 ## 
@@ -142,7 +142,7 @@ endif ()
 set(CMAKEPP_FOUND true)
 
 set(CMAKEPP_VERSION_MAJOR "0")
-set(CMAKEPP_VERSION_MINOR "0")
+set(CMAKEPP_VERSION_MINOR "9")
 set(CMAKEPP_VERSION_PATCH "0")
 set(CMAKEPP_VERSION "${CMAKEPP_VERSION_MAJOR}.${CMAKEPP_VERSION_MINOR}.${CMAKEPP_VERSION_PATCH}")
 set(CMAKEPP_BASE_DIR "${cmakepp_base_dir}")
