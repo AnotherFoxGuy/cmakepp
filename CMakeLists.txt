@@ -19,6 +19,12 @@ add_custom_target(
         VERBATIM
 )
 
+add_custom_target(
+        compile_docs
+        COMMAND ${CMAKE_COMMAND} -P ${CMAKEPP_FILE} cmakepp_compile_docs
+        VERBATIM
+)
+
 enable_testing()
 glob("${CMAKE_SOURCE_DIR}/tests/**.cmake" --recurse)
 ans(test_files)

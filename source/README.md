@@ -4,8 +4,6 @@
 
 
 
-* [Buildserver](buildserver/README.md)
-
 * [Creating Checksums](checksum/README.md)
 
 * [CMake handling functions](cmake/README.md)
