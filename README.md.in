@@ -12,7 +12,7 @@ Look through the files in the package.  Most functions will be commented and the
 
 <%=template_run_file('source/README.md.in')%>
 
-<%=template_run_file('samples/README.md.in')%>
+<!--template_run_file('samples/README.md.in')-->
 
 # Getting `cmakepp` 
 
