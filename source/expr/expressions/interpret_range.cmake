@@ -1,5 +1,3 @@
-
-
 function(interpret_range tokens)
   interpret_literal("${tokens}")
   ans(index)
@@ -21,10 +19,7 @@ function(interpret_range tokens)
     "${value}"
     "true"
     "true"
-    ""
-    )
+    "")
   ans(ast)
   return_ref(ast)
 endfunction()
-
-

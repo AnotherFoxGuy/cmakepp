@@ -1,7 +1,7 @@
 function(test)
 
-  ## shows that the file frome where a map comes is stored along the data
-  
+  # shows that the file frome where a map comes is stored along the data
+
   fwrite_data("test.json" "{ value1:'asd', value2:'bsd'}")
   ans(obj)
 
@@ -9,15 +9,12 @@ function(test)
 
   fwrite_data("${obj}")
 
-
   fread_data("test.json")
   ans(obj2)
 
-
   json_print(${obj2})
 
-  ##fwrite_data("${obj}")
-
+  # fwrite_data("${obj}")
 
   assertf("{obj2.hello}" STREQUAL "world")
 
@@ -28,14 +25,9 @@ function(test)
 
   fwrite_data("${obj2}")
 
-
   fread_data(test.json)
   ans(obj3)
 
   json_print(${obj3})
-
-
-
-
 
 endfunction()

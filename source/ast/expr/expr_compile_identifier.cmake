@@ -1,10 +1,11 @@
-function(expr_compile_identifier)# ast context
-  
-#message("ast: ${ast}")
-  
-  map_tryget(${ast}  data)
+function(expr_compile_identifier) # ast context
+
+  # message("ast: ${ast}")
+
+  map_tryget(${ast} data)
   ans(data)
-  set(res "
+  set(res
+      "
   # expr_compile_identifier
   #map_tryget(\"\${local}\" \"${data}\")
   scope_resolve(\"${data}\")

@@ -1,18 +1,19 @@
-## `(<cmakelists> <target:<target name regex>|<cmake target>)-><cmake target> v {target_invocations: <target invocations>}`
-##
-## tries to find the single target identified by the regex and returns it. 
-## 
-## ```
-## <target> ::= {
-##    target_name: <string>
-##    target_type: "library"|"executable"|"test"|"custom_target"|...
-##    target_source_files
-##    target_include_directories
-##    target_link_libraries
-##    target_compile_definitions
-##    target_compile_options
-## }
-## ```
+# `(<cmakelists> <target:<target name regex>|<cmake target>)-><cmake target> v
+# {target_invocations: <target invocations>}`
+#
+# tries to find the single target identified by the regex and returns it.
+#
+# ~~~
+# <target> ::= {
+#    target_name: <string>
+#    target_type: "library"|"executable"|"test"|"custom_target"|...
+#    target_source_files
+#    target_include_directories
+#    target_link_libraries
+#    target_compile_definitions
+#    target_compile_options
+# }
+# ~~~
 function(cmakelists_target cmakelists target)
   is_address("${target}")
   ans(is_ref)

@@ -1,15 +1,12 @@
 function(interpret_elements tokens separator_type element_types)
-    
-  
-  ## initialize variables
-  set(elements)         # stores all single elements
-  set(current_tokens)   # set list of current tokens
 
+  # initialize variables
+  set(elements) # stores all single elements
+  set(current_tokens) # set list of current tokens
 
-  ## loop through all tokens 
-  ## and collection non-separators inside `current_tokens`
-  ## if a separator or `end` is reached parse the `current_tokens`
-  ## to obtain an element
+  # loop through all tokens and collection non-separators inside
+  # `current_tokens` if a separator or `end` is reached parse the
+  # `current_tokens` to obtain an element
   if(tokens)
     list(APPEND tokens end)
     foreach(token ${tokens})
@@ -22,8 +19,8 @@ function(interpret_elements tokens separator_type element_types)
         ans(element)
 
         if(NOT element)
-            throw("failed to interpret element" --function interpret_elements)
-        endif() 
+          throw("failed to interpret element" --function interpret_elements)
+        endif()
 
         set(current_tokens)
         list(APPEND elements "${element}")
@@ -37,8 +34,5 @@ function(interpret_elements tokens separator_type element_types)
     endforeach()
   endif()
 
-  return_ref(elements)  
+  return_ref(elements)
 endfunction()
-
-
-

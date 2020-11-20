@@ -1,7 +1,7 @@
-## `(<start:<token>> <end:<token>> [<limit:<uint>>])-><token>...` 
-##
-## returns the tokens which match type
-## maximum tokens retunred is limit if specified
+# `(<start:<token>> <end:<token>> [<limit:<uint>>])-><token>...`
+#
+# returns the tokens which match type maximum tokens retunred is limit if
+# specified
 function(cmake_token_range_find_by_type start end type)
   set(limit ${ARGN})
   set(current ${start})
@@ -20,6 +20,6 @@ function(cmake_token_range_find_by_type start end type)
     endif()
     map_tryget(${current} next)
     ans(current)
-  endwhile()  
+  endwhile()
   return_ref(result)
 endfunction()

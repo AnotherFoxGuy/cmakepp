@@ -1,5 +1,4 @@
-
-  ## removes the specified value from the registry value
+# removes the specified value from the registry value
 function(reg_remove_value key value_name)
   reg_read_value("${key}" "${value_name}")
   ans(values)

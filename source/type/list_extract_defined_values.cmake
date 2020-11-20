@@ -1,5 +1,4 @@
-##
-## 
+#
 function(list_extract_defined_values __lst defs)
   if(NOT defs)
     message(FATAL_ERROR "no definitions map specified")
@@ -11,7 +10,7 @@ function(list_extract_defined_values __lst defs)
   map_new()
   ans(result)
   foreach(def ${nonpositionals} ${positionals})
-    list_extract_defined_value(${__lst} "${def}")    
+    list_extract_defined_value(${__lst} "${def}")
     ans(value)
     map_tryget(${def} variable_name)
     ans(variable_name)

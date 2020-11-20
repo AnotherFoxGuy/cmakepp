@@ -1,12 +1,12 @@
-## creates a handler 
-## 
+# creates a handler
+#
 function(request_handler handler)
   data("${handler}")
   ans(handler)
   is_map(${handler})
   ans(is_map)
-  
-  if(is_map)  
+
+  if(is_map)
     map_tryget(${handler} callable)
     ans(callable)
     if(NOT COMMAND "${callable}")
@@ -30,8 +30,6 @@ function(request_handler handler)
     function_import(${handler} as ${callable} REDEFINE)
     set(callable ${callable})
   endif()
-  map_capture_new(
-    callable
-  )
+  map_capture_new(callable)
   return_ans()
 endfunction()

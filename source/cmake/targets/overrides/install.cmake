@@ -1,6 +1,5 @@
-# overwrites install command
-#  emits event install and on_target_added(install ${ARGN)
-# registers install target globally
+# overwrites install command emits event install and on_target_added(install
+# ${ARGN) registers install target globally
 macro(install)
   _install(${ARGN})
   event_emit(install ${ARGN})

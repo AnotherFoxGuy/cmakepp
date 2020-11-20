@@ -11,6 +11,4 @@ function(test)
   assertf({env.os.version} ISNOTNULL)
   assertf({env.os.family} ISNOTNULL)
 
-
-
 endfunction()

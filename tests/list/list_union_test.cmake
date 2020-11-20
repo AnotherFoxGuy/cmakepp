@@ -18,7 +18,13 @@ function(test)
 
   list_union(lstA lstB lstC)
   ans(res)
-  assert(EQUALS ${res} 1 2 3 4 5)
-
+  assert(
+    EQUALS
+    ${res}
+    1
+    2
+    3
+    4
+    5)
 
 endfunction()

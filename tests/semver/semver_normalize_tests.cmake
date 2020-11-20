@@ -1,6 +1,5 @@
 function(test)
 
-
   semver_normalize("1")
   ans(res)
   semver_format(${res})

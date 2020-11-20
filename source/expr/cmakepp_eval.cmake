@@ -1,6 +1,6 @@
-## `(<cmakepp code>)-><any>`
-##
-## evaluates the specified cmakepp code
+# `(<cmakepp code>)-><any>`
+#
+# evaluates the specified cmakepp code
 function(cmakepp_eval input)
   cmakepp_expr_compile("${input}")
   ans(____code____)

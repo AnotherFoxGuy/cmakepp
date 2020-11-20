@@ -1,5 +1,3 @@
-
-
 function(assertf)
   set(args ${ARGN})
   list_extract_flag(args DEREF)

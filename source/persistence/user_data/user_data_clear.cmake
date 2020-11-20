@@ -1,7 +1,7 @@
-## signature user_data_clear(<id:identifier>^"--all")
-### removes the user data associated to identifier id
-## WARNING: if --all flag is specified instead of an id all user data is deleted
-## 
+# signature user_data_clear(<id:identifier>^"--all") removes the user data
+# associated to identifier id WARNING: if --all flag is specified instead of an
+# id all user data is deleted
+#
 function(user_data_clear)
   set(args ${ARGN})
   list_extract_flag(args --all)

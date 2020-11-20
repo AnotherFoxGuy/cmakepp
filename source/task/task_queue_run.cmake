@@ -1,8 +1,7 @@
-## 
-##
-## runs the task queue until it is either empty, maximum number of ticks reached or times out
-## returns the number of tasks that where run
-## at least one task is run
+#
+# runs the task queue until it is either empty, maximum number of ticks reached
+# or times out returns the number of tasks that where run at least one task is
+# run
 function(task_queue_run task_queue)
   set(args ${ARGN})
   list_extract_labelled_value(args --ticks)

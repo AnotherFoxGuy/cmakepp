@@ -1,6 +1,5 @@
-##
-##
-## pushes a task onto the back of the task queue
+#
+# pushes a task onto the back of the task queue
 function(task_queue_push task_queue task)
   task("${task}" ${ARGN})
   ans(task)

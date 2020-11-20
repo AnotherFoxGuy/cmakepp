@@ -1,5 +1,4 @@
-# returns a list of ref maps containing the fields 
-# name type and revision
+# returns a list of ref maps containing the fields name type and revision
 function(git_remote_refs uri)
   git_uri("${uri}")
   ans(uri)
@@ -12,7 +11,7 @@ function(git_remote_refs uri)
     return()
   endif()
 
-  string_split( "${stdout}" "\n")
+  string_split("${stdout}" "\n")
   ans(lines)
   set(res)
   foreach(line ${lines})
@@ -24,14 +23,14 @@ function(git_remote_refs uri)
       list_extract(parts revision ref)
       git_ref_parse("${ref}")
       ans(ref_map)
-      
+
       map_set("${ref_map}" uri "${uri}")
       if(ref_map)
         map_set(${ref_map} revision ${revision})
         set(res ${res} ${ref_map})
-        #address_print(${ref_map})
+        # address_print(${ref_map})
       endif()
     endif()
-  endforeach()   
+  endforeach()
   return_ref(res)
 endfunction()

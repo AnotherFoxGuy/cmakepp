@@ -11,26 +11,21 @@ function(test)
   fwrite("src/dir1/impl4.cpp" "")
   fwrite("src/dir2/impl5.cpp" "")
 
-  
 endfunction()
-
 
 function(generator_cmake_source_group name)
   set(globs ${ARGN})
   glob_ignore(${globs} --relative)
   ans(files)
 
-
-  set(template "## 
+  set(template
+      "##
 
 
     ")
 
 endfunction()
 
-
 function(generator_cmake_add_library config)
-
-
 
 endfunction()

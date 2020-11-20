@@ -5,9 +5,11 @@ function(call2 callable)
   return_ans()
 endfunction()
 
-## faster version
+# faster version
 function(call2 callable)
   callable_function("${callable}")
   eval("${__ans}(${ARGN})")
-  set(__ans ${__ans} PARENT_SCOPE)
+  set(__ans
+      ${__ans}
+      PARENT_SCOPE)
 endfunction()

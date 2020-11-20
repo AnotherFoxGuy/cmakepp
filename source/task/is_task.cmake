@@ -1,4 +1,3 @@
-
 function(is_task)
   map_get_special("${ARGN}" $type)
   ans(type)

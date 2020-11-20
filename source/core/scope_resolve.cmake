@@ -8,4 +8,4 @@ function(scope_resolve key)
 
   obj_get("${this}" "${key}")
   return_ans()
-endfunction()   
+endfunction()

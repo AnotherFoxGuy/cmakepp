@@ -2,7 +2,7 @@
 function(scope_clear)
   scope_keys()
   ans(vars)
-  foreach (var ${vars})
+  foreach(var ${vars})
     set(${var} PARENT_SCOPE)
   endforeach()
 endfunction()

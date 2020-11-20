@@ -1,6 +1,5 @@
-## `log_print`
-##
-##
+# `log_print`
+#
 function(log_print)
   set(limit ${ARGN})
 
@@ -8,8 +7,6 @@ function(log_print)
   ans(entries)
 
   list(LENGTH entries len)
-
-
 
   if("${limit}_" STREQUAL "_")
     math(EXPR limit "${len}")

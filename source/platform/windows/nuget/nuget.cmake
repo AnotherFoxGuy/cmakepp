@@ -1,12 +1,14 @@
-## ''
-##
-## wraps nuget inside an easy to use function, downloading it if it does not exist
+# ''
+#
+# wraps nuget inside an easy to use function, downloading it if it does not
+# exist
 function(nuget)
   if(NOT WIN32)
     message(FATAL_ERROR "you currently cannot use nuget on non windows systems")
   endif()
 
-  download_cached("https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" --readonly)
+  download_cached("https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+                  --readonly)
   ans(nuget_exe)
 
   if(NOT EXISTS "${nuget_exe}")
@@ -16,4 +18,4 @@ function(nuget)
   wrap_executable(nuget "${nuget_exe}")
   nuget(${ARGN})
   return_ans()
-endfunction()  
+endfunction()

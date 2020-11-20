@@ -8,6 +8,4 @@ function(test)
   list_swap(lstA 0 2)
   assert(${lstA} EQUALS c b a)
 
-  
-
 endfunction()

@@ -1,6 +1,5 @@
 function(test)
 
-
   set(str "aa bb cc \"d e\" f \"ll\\\"oo\"")
   string_take_commandline_arg(str)
   ans(res)
@@ -22,7 +21,5 @@ function(test)
   string_take_commandline_arg(str)
   ans(res)
   assert("${res}" STREQUAL "ll\"oo")
-
-
 
 endfunction()

@@ -4,4 +4,3 @@ function(bash)
   bash(${ARGN})
   return_ans()
 endfunction()
-

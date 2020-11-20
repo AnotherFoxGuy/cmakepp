@@ -3,7 +3,8 @@ function(status_line_clear)
   string_repeat(" " 100)
   ans(whitespace)
 
-  eval("
+  eval(
+    "
 
     function(status_line_clear)
       map_tryget(global status)
@@ -17,4 +18,3 @@ function(status_line_clear)
   ")
   status_line_clear()
 endfunction()
-

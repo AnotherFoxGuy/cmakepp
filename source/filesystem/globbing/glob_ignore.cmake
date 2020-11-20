@@ -1,13 +1,11 @@
-## `(<glob ignore expression...> [--relative] [--recurse]) -> <path...>`
-##
-## 
+# `(<glob ignore expression...> [--relative] [--recurse]) -> <path...>`
+#
 function(glob_ignore)
   set(args ${ARGN})
   list_extract_flag_name(args --relative)
   ans(relative)
   list_extract_flag_name(args --recurse)
   ans(recurse)
-
 
   glob_expression_parse(${args})
   ans(glob_expression)
@@ -24,4 +22,3 @@ function(glob_ignore)
   endif()
   return_ref(included_paths)
 endfunction()
-

@@ -1,6 +1,5 @@
-
 function(json)
-# define callbacks for building result
+  # define callbacks for building result
   function(json_obj_begin)
     map_append_string(${context} json "{")
   endfunction()
@@ -35,7 +34,8 @@ function(json)
   function(json_literal)
     if(NOT content_length)
       map_append_string(${context} json "null")
-    elseif("_${node}" MATCHES "^_((([1-9][0-9]*)([.][0-9]+([eE][+-]?[0-9]+)?)?)|true|false)$")
+    elseif("_${node}" MATCHES
+           "^_((([1-9][0-9]*)([.][0-9]+([eE][+-]?[0-9]+)?)?)|true|false)$")
       map_append_string(${context} json "${node}")
     else()
       cmake_string_to_json("${node}")
@@ -46,28 +46,28 @@ function(json)
 
   endfunction()
 
-   map()
-    kv(value              json_literal)
-    kv(map_begin          json_obj_begin)
-    kv(map_end            json_obj_end)
-    kv(list_begin         json_array_begin)
-    kv(list_end           json_array_end)
-    kv(map_element_begin  json_obj_keyvalue_begin)
-    kv(map_element_end    json_obj_keyvalue_end)
-    kv(list_element_end   json_array_element_end)
+  map()
+  kv(value json_literal)
+  kv(map_begin json_obj_begin)
+  kv(map_end json_obj_end)
+  kv(list_begin json_array_begin)
+  kv(list_end json_array_end)
+  kv(map_element_begin json_obj_keyvalue_begin)
+  kv(map_element_end json_obj_keyvalue_end)
+  kv(list_element_end json_array_element_end)
   end()
   ans(json_cbs)
   function_import_table(${json_cbs} json_callback)
 
   # function definition
-  function(json)        
+  function(json)
     map_new()
     ans(context)
     dfs_callback(json_callback ${ARGN})
     map_tryget(${context} json)
-    return_ans()  
+    return_ans()
   endfunction()
-  #delegate
+  # delegate
   json(${ARGN})
   return_ans()
 endfunction()

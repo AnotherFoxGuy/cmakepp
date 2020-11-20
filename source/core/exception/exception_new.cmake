@@ -1,8 +1,8 @@
-##
-##
-## an exception is map `<exception> ::= { message: <string> }` of $type `exception` 
-## if checked in an if statement it evaluates to false because it ends with -NOTFOUND
-## 
+#
+# an exception is map `<exception> ::= { message: <string> }` of $type
+# `exception` if checked in an if statement it evaluates to false because it
+# ends with -NOTFOUND
+#
 function(exception_new message)
   address_new()
   ans(error)

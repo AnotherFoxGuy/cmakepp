@@ -24,7 +24,7 @@ function(test)
     return()
   endfunction()
   temp_fu3()
-  
+
   assert(NOT __ans)
 
 endfunction()

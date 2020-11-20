@@ -1,6 +1,4 @@
-
-# returns true if map has any of the keys
-# specified as varargs
+# returns true if map has any of the keys specified as varargs
 function(map_has_any map)
   foreach(key ${ARGN})
     map_has("${map}" "${key}")

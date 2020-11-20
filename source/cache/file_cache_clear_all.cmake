@@ -1,4 +1,3 @@
-
 function(file_cache_clear_all)
   cmakepp_config(temp_dir)
   ans(temp_dir)

@@ -1,7 +1,13 @@
 function(test)
 
-
-  set(lst a b c d e f g)
+  set(lst
+      a
+      b
+      c
+      d
+      e
+      f
+      g)
   list_find_flags(lst a d f)
   ans(res)
   assertf("{res.a}")

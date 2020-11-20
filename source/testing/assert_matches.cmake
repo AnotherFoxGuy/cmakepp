@@ -1,5 +1,4 @@
-## fails if ARGN does not match expected value
-## see map_match
+# fails if ARGN does not match expected value see map_match
 function(assert_matches expected)
   assign(expected = ${expected})
   assign(actual = ${ARGN})

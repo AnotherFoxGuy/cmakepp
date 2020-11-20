@@ -1,5 +1,5 @@
 function(test)
- 
+
   set(lst 0 1)
   list_combinations(lst lst lst)
   ans(res)
@@ -12,7 +12,6 @@ function(test)
   assert(${res} CONTAINS 110)
   assert(${res} CONTAINS 111)
 
-
   set(listA a b)
   set(listB 1 2)
   set(listC I II)
@@ -21,7 +20,6 @@ function(test)
   list_combinations()
   ans(res)
   assert(NOT res)
-
 
   list_combinations(listD)
   ans(res)
@@ -37,10 +35,16 @@ function(test)
 
   list_combinations(listA listB listC)
   ans(res)
-  assert(EQUALS ${res} a1I a1II a2I a2II b1I b1II b2I b2II)
-
-
-
-
+  assert(
+    EQUALS
+    ${res}
+    a1I
+    a1II
+    a2I
+    a2II
+    b1I
+    b1II
+    b2I
+    b2II)
 
 endfunction()

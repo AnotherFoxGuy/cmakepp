@@ -1,5 +1,5 @@
 function(t_data)
-  
+
   fopen_data("${ARGN}")
   ans(data)
 

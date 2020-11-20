@@ -1,5 +1,4 @@
-
-## returns all identifiers for specified file data directory
+# returns all identifiers for specified file data directory
 function(file_data_ids dir)
   path("${dir}")
   ans(dir)

@@ -1,6 +1,6 @@
-## `(<promise> <inline cmake code>)-><promise>`
-##
-## adds an inline continuation to the specified promise
+# `(<promise> <inline cmake code>)-><promise>`
+#
+# adds an inline continuation to the specified promise
 function(promise_then_anonymous promise)
   arguments_anonymous_function(1 ${ARGC})
   ans(function)
@@ -9,4 +9,3 @@ function(promise_then_anonymous promise)
   promise_then("${promise}" "${continuation}")
   return_ans()
 endfunction()
-

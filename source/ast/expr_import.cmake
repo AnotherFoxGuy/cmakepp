@@ -2,7 +2,8 @@ function(expr_import str function_name)
   expr_compile("${str}")
   ans(symbol)
   set_ans("")
-  eval("
+  eval(
+    "
 function(${function_name})
   is_map(\"${global}\" )
   ans(ismap)

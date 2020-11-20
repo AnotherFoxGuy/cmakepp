@@ -11,21 +11,19 @@ function(val)
   map_append("${current_map}" "${current_key}" "${ARGN}")
 endfunction()
 
-
-
-## val(<val ...>) -> <any...>
-##
-## adds a val to current property or ref
-##
+# val(<val ...>) -> <any...>
+#
+# adds a val to current property or ref
+#
 function(val)
   set(args ${ARGN})
   stack_peek(quickmap)
   ans(current_ref)
-  
+
   if(NOT current_ref)
     return()
   endif()
-  ## todo check if map 
+  # todo check if map
   address_append("${current_ref}" ${args})
   return_ref(args)
 endfunction()

@@ -1,5 +1,5 @@
 function(expr_compile_list)
-  map_tryget(${ast}  children) 
+  map_tryget(${ast} children)
   ans(element_asts)
   set(arguments)
   set(evaluation)
@@ -12,13 +12,15 @@ function(expr_compile_list)
     ast_eval(${element_ast} ${context})
     ans(element)
 
-    set(evaluation "${evaluation}
+    set(evaluation
+        "${evaluation}
   ${element}
   ans(${symbol}_arg${i})")
-    set(elements "${elements}\"\${${symbol}_arg${i}}\" " )
+    set(elements "${elements}\"\${${symbol}_arg${i}}\" ")
     math(EXPR i "${i} + 1")
   endforeach()
-  set(res "
+  set(res
+      "
   #expr_compile_list
   ${evaluation}
   set(${symbol} ${elements})

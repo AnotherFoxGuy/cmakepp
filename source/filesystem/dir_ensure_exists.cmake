@@ -1,6 +1,5 @@
-
-## ensures that the directory specified exists 
-## the directory is qualified with path()
+# ensures that the directory specified exists the directory is qualified with
+# path()
 function(dir_ensure_exists path)
   path("${path}")
   ans(path)

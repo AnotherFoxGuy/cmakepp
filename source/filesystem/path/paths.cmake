@@ -1,4 +1,3 @@
-
 # qualify multiple paths (argn)
 function(paths)
   set(res)

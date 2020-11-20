@@ -1,12 +1,11 @@
-
-#creates a unique id
+# creates a unique id
 function(make_guid)
   string(RANDOM LENGTH 10 id)
-   return_ref(id)
+  return_ref(id)
 endfunction()
 
-## faster
+# faster
 macro(make_guid)
   string(RANDOM LENGTH 10 __ans)
-  #set(__ans ${id} PARENT_SCOPE)
+  # set(__ans ${id} PARENT_SCOPE)
 endmacro()

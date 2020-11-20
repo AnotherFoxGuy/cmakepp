@@ -1,6 +1,6 @@
-## `(...)->...`
-## 
-## wrapper for cmakelists_cli
+# `(...)->...`
+#
+# wrapper for cmakelists_cli
 function(cml)
   set(args ${ARGN})
   cmakelists_cli(${args})

@@ -1,5 +1,3 @@
-
-
 # removes all properties from map
 function(map_clear map)
   map_keys("${map}")

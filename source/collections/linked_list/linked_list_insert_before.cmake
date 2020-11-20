@@ -1,7 +1,8 @@
-
-## `(<linked list> <where: <linked list node> = <linked list>.head)-><linked list node>`
-##
-## inserts a new linked list node into the linked list before where and returns it.
+# `(<linked list> <where: <linked list node> = <linked list>.head)-><linked list
+# node>`
+#
+# inserts a new linked list node into the linked list before where and returns
+# it.
 function(linked_list_insert_before linked_list where)
   linked_list_node_new(${ARGN})
   ans(node)
@@ -14,7 +15,7 @@ function(linked_list_insert_before linked_list where)
       map_set(${linked_list} tail ${node})
       return(${node})
     endif()
-  endif() 
+  endif()
 
   map_tryget(${where} previous)
   ans(previous)

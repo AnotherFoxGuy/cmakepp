@@ -1,28 +1,28 @@
-## `(<f:<cnf>> <clauses:{<<index>:<literal index...>...>}> <assignments:{<<literal index>:<bool>...>} <decisions:<literal index>...>)`
-## 
-## propagates the unit clauses in the cnf consisting of clauses
-## 
-## propagates assignment values for the specified `<decisions>`
-## sets literal assignments in <assignments>
-## returns the indices of the deduced literals
-## returns "conflict" if an assignment conflicts with an existing one in <assignments>
-## returns "unsatisfied" if cnf is unsatisfiable 
-## 
+# `(<f:<cnf>> <clauses:{<<index>:<literal index...>...>}>
+# <assignments:{<<literal index>:<bool>...>} <decisions:<literal index>...>)`
+#
+# propagates the unit clauses in the cnf consisting of clauses
+#
+# propagates assignment values for the specified `<decisions>` sets literal
+# assignments in <assignments> returns the indices of the deduced literals
+# returns "conflict" if an assignment conflicts with an existing one in
+# <assignments> returns "unsatisfied" if cnf is unsatisfiable
+#
 function(bcp f clauses assignments)
-  #map_import_properties(${f} literal_inverse_map) ## simplification inverse = i+-1
+  # map_import_properties(${f} literal_inverse_map) ## simplification inverse =
+  # i+-1
 
   # bcp_deduce_assignments("${f}" "${clauses}" "${assignments}")
   # ans(deduced_assignments)
 
   # if("${deduced_assignments}" MATCHES "(conflict)|(unsatisfied)")
-  #   return_ref(deduced_assignments)
-  # endif()
-  
-  # set(all_deductions ${deduced_assignments})
- #set(propagation_queue ${deduced_assignments} ${ARGN})
- set(propagation_queue ${ARGN})
+  # return_ref(deduced_assignments) endif()
+
+  # set(all_deductions ${deduced_assignments}) set(propagation_queue
+  # ${deduced_assignments} ${ARGN})
+  set(propagation_queue ${ARGN})
   while(true)
-    ## dedpuce assignments
+    # dedpuce assignments
     bcp_deduce_assignments("${f}" "${clauses}" "${assignments}")
     ans(deduced_assignments)
 
@@ -39,8 +39,6 @@ function(bcp f clauses assignments)
       break()
     endif()
 
-
-    
     list_pop_front(propagation_queue)
     ans(li)
 

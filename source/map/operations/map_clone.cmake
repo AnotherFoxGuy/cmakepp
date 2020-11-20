@@ -1,9 +1,8 @@
-
-function(map_clone original type) 
+function(map_clone original type)
   if("${type}" STREQUAL "DEEP")
     map_clone_deep("${original}")
     return_ans()
-  elseif("${type}" STREQUAL "SHALLOW") 
+  elseif("${type}" STREQUAL "SHALLOW")
     map_clone_shallow("${original}")
     return_ans()
   else()

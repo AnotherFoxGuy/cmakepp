@@ -1,6 +1,5 @@
-
 function(encoded_list_to_cmake_string)
-  ## free token 
+  # free token 
   set(result "${ARGN}")
   string(REPLACE ";" "" result "${result}")
   cmake_string_escape2("${result}")

@@ -1,11 +1,11 @@
 function(json2 input)
-  
+
   json2_definition()
   ans(lang)
   language_initialize(${lang})
   address_set(json2_language_definition "${lang}")
-  function(json2 input) 
-    checksum_string("${input}")   
+  function(json2 input)
+    checksum_string("${input}")
     ans(ck)
     file_cache_return_hit("${ck}")
     address_get(json2_language_definition)
@@ -16,7 +16,7 @@ function(json2 input)
     map_set(${ctx} def "json")
     obj_setprototype(${ctx} "${lang}")
 
-    #lang2(output json2 input "${input}" def "json")
+    # lang2(output json2 input "${input}" def "json")
 
     lang(output ${ctx})
     ans(res)

@@ -1,4 +1,4 @@
-function(test) 
+function(test)
   # single word changed to upper case
   set(str "else")
   string_to_title("${str}")
@@ -17,7 +17,7 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "This v That")
 
-  # Example sentence 
+  # Example sentence
   set(str "the function string_totitle works")
   string_to_title("${str}")
   ans(res)
@@ -69,7 +69,7 @@ function(test)
   string_to_title("${str}")
   ans(res)
   assert("${res}" STREQUAL "Subsentence: A Sub")
-  
+
   # small after a subsentence (2/2)
   set(str "Subsentence! a Sub")
   string_to_title("${str}")

@@ -1,7 +1,5 @@
 function(test)
 
-
-
   path_split("c:/dir1/dir2/file.ext")
   ans(res)
   assert(EQUALS ${res} c: dir1 dir2 file.ext)
@@ -14,11 +12,8 @@ function(test)
   ans(res)
   assert(EQUALS ${res} test test test)
 
-
   path_split("test")
   ans(res)
   assert(EQUALS ${res} test)
-
-
 
 endfunction()

@@ -38,7 +38,7 @@ function(test)
   ans(res)
   assert("${res}_" STREQUAL "_")
   assert("${input}" STREQUAL "word")
-  
+
   set(res "")
   # Empty input string
   set(input "")

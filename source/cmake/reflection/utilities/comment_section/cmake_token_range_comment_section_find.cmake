@@ -1,18 +1,17 @@
-## `(<cmake token range> <section_name:<string>>)-><cmake token range>`
-##
-## finds the correct comment section or returns nothing 
+# `(<cmake token range> <section_name:<string>>)-><cmake token range>`
+#
+# finds the correct comment section or returns nothing
 function(cmake_token_range_comment_section_find range regex_section_name)
 
-  set(regex_section_begin_specific "^[# ]*<section[ ]+name[ ]*=[ ]*\"${regex_section_name}\"[ ]*>[ #]*$")
+  set(regex_section_begin_specific
+      "^[# ]*<section[ ]+name[ ]*=[ ]*\"${regex_section_name}\"[ ]*>[ #]*$")
   set(regex_section_begin_any "^[# ]*<section.*>[ #]*$")
   set(regex_section_end "^[# ]*<\\/[ ]*section[ ]*>[# ]*$")
 
-
-
   list_extract(range current end)
 
-
-  cmake_token_range_find_next_by_type("${current};${end}" "^line_comment$" "${regex_section_begin_specific}")
+  cmake_token_range_find_next_by_type("${current};${end}" "^line_comment$"
+                                      "${regex_section_begin_specific}")
   ans(current)
 
   if(NOT current)
@@ -24,13 +23,14 @@ function(cmake_token_range_comment_section_find range regex_section_name)
 
   cmake_token_advance(current)
 
-
   set(section_depth 1)
   set(section_end_token)
 
   while(current)
 
-    cmake_token_range_find_next_by_type("${current};${end}" "^line_comment$" "(${regex_section_begin_any})|(${regex_section_end})")
+    cmake_token_range_find_next_by_type(
+      "${current};${end}" "^line_comment$"
+      "(${regex_section_begin_any})|(${regex_section_end})")
     ans(current)
 
     map_tryget(${current} literal_value)
@@ -56,8 +56,8 @@ function(cmake_token_range_comment_section_find range regex_section_name)
     error("unbalanced section close")
     return()
   endif()
-  
-  ## advance twice: comment->newline->begin of section
+
+  # advance twice: comment->newline->begin of section
   cmake_token_advance(section_begin_token)
   cmake_token_advance(section_begin_token)
 

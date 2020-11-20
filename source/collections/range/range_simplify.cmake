@@ -1,7 +1,7 @@
-## `(<length:<int>> <range...>)-><instanciated range...>`
-##
-## tries to simplify the specified range for the given length
-## his is done by getting the indices and then getting the range from indices
+# `(<length:<int>> <range...>)-><instanciated range...>`
+#
+# tries to simplify the specified range for the given length his is done by
+# getting the indices and then getting the range from indices
 function(range_simplify length)
   set(args ${ARGN})
 
@@ -11,7 +11,7 @@ function(range_simplify length)
   range_indices("${length}" "${current_range}")
   ans(indices)
 
-  ## get all indices
+  # get all indices
   while(true)
     list(LENGTH args indices_length)
     if(${indices_length} EQUAL 0)

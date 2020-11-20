@@ -1,14 +1,13 @@
-
 function(map_clone_shallow original)
-  is_map("${original}" )
+  is_map("${original}")
   ans(ismap)
   if(ismap)
     map_new()
     ans(result)
-    map_keys("${original}" )
+    map_keys("${original}")
     ans(keys)
     foreach(key ${keys})
-      map_get("${original}"  "${key}")
+      map_get("${original}" "${key}")
       ans(value)
       map_set("${result}" "${key}" "${value}")
     endforeach()
@@ -32,4 +31,3 @@ function(map_clone_shallow original)
   return_ref(original)
 
 endfunction()
-

@@ -1,10 +1,8 @@
 function(test)
 
-
   dir_isempty("${test_dir}")
   ans(res)
   assert(res)
-
 
   dir_isempty(.)
   ans(res)
@@ -16,10 +14,8 @@ function(test)
   ans(res)
   assert(NOT res)
 
-
   dir_isempty("${test_dir}")
   ans(res)
   assert(NOT res)
-
 
 endfunction()

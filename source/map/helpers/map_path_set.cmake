@@ -11,7 +11,7 @@ function(map_path_set map path value)
 
   foreach(arg ${path})
     map_tryget("${current}" "${arg}")
-    ans(current) 
+    ans(current)
 
   endforeach()
 

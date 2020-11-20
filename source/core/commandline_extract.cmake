@@ -1,8 +1,6 @@
-
-# extracts the specified values from the command line (see list extract)
-# returns the rest of the command line
-# the first three arguments of commandline_get are cmake command, -P, script file 
-# these are ignored
+# extracts the specified values from the command line (see list extract) returns
+# the rest of the command line the first three arguments of commandline_get are
+# cmake command, -P, script file these are ignored
 function(commandline_extract)
   commandline_get()
   ans(args)
@@ -12,4 +10,3 @@ function(commandline_extract)
   set(res ${cmd} ${p} ${script} ${res})
   return_ref(res)
 endfunction()
-

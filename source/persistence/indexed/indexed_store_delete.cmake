@@ -1,4 +1,3 @@
-
 function(indexed_store_delete)
   set(key ${ARGN})
   this_get(store_dir)
@@ -9,5 +8,3 @@ function(indexed_store_delete)
   file(REMOVE ${files})
   return(true)
 endfunction()
-
-

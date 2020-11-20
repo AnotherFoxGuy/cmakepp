@@ -1,7 +1,5 @@
 function(test)
 
-  
-
   json_string_to_cmake("\";\"")
   ans(res)
   string(REPLACE ";" "1" res "${res}")
@@ -15,7 +13,7 @@ function(test)
   json_string_to_cmake("\"\\n\"")
   ans(res)
   assert("${res}" STREQUAL "${char}")
-    
+
   string(ASCII 9 char)
   json_string_to_cmake("\"\\t\"")
   ans(res)
@@ -36,18 +34,14 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "${char}")
 
-
   json_string_to_cmake("\"\\\\\"")
   ans(res)
   string(REPLACE "\\" "1" res "${res}")
   assert("${res}" STREQUAL "1")
 
-
   json_string_to_cmake("\"\\\"\"")
   ans(res)
   assert("${res}" STREQUAL "\"")
-
-
 
   string(ASCII 8 bs)
   string(ASCII 12 ff)

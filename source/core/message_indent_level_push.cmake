@@ -1,12 +1,10 @@
-
-
 function(message_indent_push)
-  
+
   set(new_level ${ARGN})
   if("${new_level}_" STREQUAL "_")
     set(new_level +1)
   endif()
-  
+
   if("${new_level}" MATCHES "[+\\-]")
     message_indent_level()
     ans(previous_level)

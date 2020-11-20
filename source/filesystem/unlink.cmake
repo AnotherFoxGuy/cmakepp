@@ -1,17 +1,15 @@
-## `(<path>)-><bool>`
-## 
-## unlinks the specified link without removing the links content.
+# `(<path>)-><bool>`
+#
+# unlinks the specified link without removing the links content.
 function(unlink)
   wrap_platform_specific_function(unlink)
   unlink(${ARGN})
   return_ans()
 endfunction()
 
-
-
 function(unlink_Windows symlink)
   path_qualify(symlink)
-  string(REPLACE "/" "\\" symlink "${symlink}") 
+  string(REPLACE "/" "\\" symlink "${symlink}")
   win32_cmd_lean("/C" "rmdir" "${symlink}")
   ans_extract(res)
   if(res)
@@ -19,7 +17,6 @@ function(unlink_Windows symlink)
   endif()
   return(true)
 endfunction()
-
 
 function(unlink_Linux symlink)
   path_qualify(symlink)

@@ -1,7 +1,5 @@
-
-
 function(file_data_read dir id)
-  file_data_path("${dir}" "${id}")      
+  file_data_path("${dir}" "${id}")
   ans(path)
   if(NOT EXISTS "${path}")
     return()

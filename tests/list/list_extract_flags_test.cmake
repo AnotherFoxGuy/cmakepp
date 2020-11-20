@@ -8,6 +8,4 @@ function(test)
   assertf("{res.e}")
   assertf("{res.f}")
 
-
-
 endfunction()

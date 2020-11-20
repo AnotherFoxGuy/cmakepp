@@ -1,13 +1,13 @@
-##
-## extracts a single typed value defined by def
-##
+#
+# extracts a single typed value defined by def
+#
 function(list_extract_defined_value lst def)
   map_tryget(${def} kind)
   ans(kind)
   map_tryget("${def}" type)
   ans(type)
   set(value)
-  if("${kind}" STREQUAL "nonpositional")  
+  if("${kind}" STREQUAL "nonpositional")
     map_tryget("${def}" name)
     ans(name)
     if(NOT type)
@@ -16,7 +16,7 @@ function(list_extract_defined_value lst def)
     else()
       list_extract_labelled_value(${lst} ${name})
       ans(value)
-    endif()    
+    endif()
   else()
     list_pop_front(${lst})
     ans(value)
@@ -27,14 +27,16 @@ function(list_extract_defined_value lst def)
 
   if("${value}_" STREQUAL "_")
     map_tryget("${def}" default_value)
-    ans(value)    
+    ans(value)
   endif()
 
   map_tryget("${def}" optional)
   ans(optional)
 
-  if(NOT optional AND NOT "${value}_" STREQUAL "_" )
-    if(type AND NOT "${type}" MATCHES "^(any)|(string)$" AND COMMAND "t_${type}")  
+  if(NOT optional AND NOT "${value}_" STREQUAL "_")
+    if(type
+       AND NOT "${type}" MATCHES "^(any)|(string)$"
+       AND COMMAND "t_${type}")
       eval("t_${type}(\"${value}\")")
       ans_extract(success)
       ans(value)
@@ -44,9 +46,11 @@ function(list_extract_defined_value lst def)
       endif()
     endif()
   else()
-    ## optional
+    # optional
   endif()
-  
-  set(${__lst} ${${__lst}} PARENT_SCOPE)
+
+  set(${__lst}
+      ${${__lst}}
+      PARENT_SCOPE)
   return_ref(value)
 endfunction()

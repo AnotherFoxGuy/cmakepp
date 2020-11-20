@@ -1,7 +1,6 @@
-## 
-##
-## returns all elements whose index are specfied
-## 
+#
+# returns all elements whose index are specfied
+#
 function(list_at __list_at_lst)
   set(__list_at_result)
   foreach(__list_at_idx ${ARGN})

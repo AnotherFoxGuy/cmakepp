@@ -1,17 +1,16 @@
-
-## registers a parameter definition for the specified function name
-## the function may parse the input values from this definition
-## help function can parse the input parameters
+# registers a parameter definition for the specified function name the function
+# may parse the input values from this definition help function can parse the
+# input parameters
 function(parameter_definition name)
   if(name)
-    ## cache values until cmakepp is loaded
+    # cache values until cmakepp is loaded
     set_property(GLOBAL APPEND PROPERTY __param_defs ${name})
     set_property(GLOBAL PROPERTY "__param_defs.${name}" "${ARGN}")
     if(NOT cmakepp_is_loaded)
       return()
     endif()
 
-    ## actual function
+    # actual function
     function(parameter_definition name)
       typed_value_definitions("${name}" ${ARGN})
       ans(definitions)
@@ -23,12 +22,11 @@ function(parameter_definition name)
     return()
   endif()
 
-  ## load cached values
+  # load cached values
   get_property(names GLOBAL PROPERTY __param_defs)
   foreach(name ${names})
     get_property(defstring GLOBAL PROPERTY "__param_defs.${name}")
     parameter_definition("${name}" ${defstring})
   endforeach()
-
 
 endfunction()

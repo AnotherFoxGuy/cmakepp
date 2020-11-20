@@ -1,4 +1,3 @@
-
 function(map_peek_back map prop)
   map_tryget("${map}" "${prop}")
   ans(lst)

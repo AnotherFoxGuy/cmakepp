@@ -1,6 +1,5 @@
-
-# fully qualifies the path into a unix path (even windows paths)
-# transforms C:/... to /C/...
+# fully qualifies the path into a unix path (even windows paths) transforms
+# C:/... to /C/...
 function(unix_path path)
   path("${path}")
   ans(path)

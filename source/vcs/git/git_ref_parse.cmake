@@ -1,5 +1,5 @@
 # parses a git ref and retruns a map with the fields type and name
-function(git_ref_parse  ref)
+function(git_ref_parse ref)
   set(res)
   if(${ref} STREQUAL HEAD)
     map_new()

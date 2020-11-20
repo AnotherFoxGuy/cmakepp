@@ -1,6 +1,6 @@
-## `(<~task>)-><task>`
-##
-## coerces taskish to `<task>`
+# `(<~task>)-><task>`
+#
+# coerces taskish to `<task>`
 function(task taskish)
   map_get_special("${taskish}" $type)
   ans(type)

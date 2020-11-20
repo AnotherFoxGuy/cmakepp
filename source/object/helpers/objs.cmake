@@ -1,5 +1,3 @@
-
-
 # converts the <structured data?!...> into  <structured data...>
 function(objs)
   set(res)

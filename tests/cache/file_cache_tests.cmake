@@ -14,7 +14,6 @@ function(test)
 
   # set cache entry
   file_cache_update("test_value" 123)
-  
 
   file_cache_exists("test_value")
   ans(res)
@@ -24,7 +23,6 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL 123)
 
-
   # clear entry
   file_cache_clear("test_value")
   ans(res)
@@ -33,32 +31,32 @@ function(test)
   ans(res)
   assert(NOT res)
 
-return()
+  return()
 
-function(cached_get)
+  function(cached_get)
 
-  file_cache_return_hit("myval")
-set(len 30)
-  map()
-  foreach(i RANGE ${len})
+    file_cache_return_hit("myval")
+    set(len 30)
+    map()
+    foreach(i RANGE ${len})
 
-    map("map_${i}")
+      map("map_${i}")
 
-    foreach(j RANGE ${len})
-      kv("k1" "v1")
-      kv("k2" "v2")
+      foreach(j RANGE ${len})
+        kv("k1" "v1")
+        kv("k2" "v2")
+      endforeach()
+      end()
     endforeach()
+
     end()
-  endforeach()
+    ans(val)
+    file_cache_update("myval" "${val}")
+    return_ref(val)
 
-  end()
-  ans(val)
-  file_cache_update("myval" "${val}")
-  return_ref(val)
-
-endfunction()
+  endfunction()
   foreach(i RANGE 10)
-cached_get()
+    cached_get()
 
   endforeach()
 

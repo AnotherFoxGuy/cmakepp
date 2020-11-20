@@ -1,5 +1,5 @@
-## returns a temporary path in the specified directory
-## if no directory is given the global temp_dir is used isntead
+# returns a temporary path in the specified directory if no directory is given
+# the global temp_dir is used isntead
 function(path_temp)
   set(args ${ARGN})
 

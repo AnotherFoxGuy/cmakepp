@@ -1,5 +1,5 @@
-## returns the item at the specified index
-## the index is normalized (see list_normalize_index)
+# returns the item at the specified index the index is normalized (see
+# list_normalize_index)
 function(list_get __list_get_lst idx)
   list_normalize_index("${__list_get_lst}" "${idx}")
   ans(index)

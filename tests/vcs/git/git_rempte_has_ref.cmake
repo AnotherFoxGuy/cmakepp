@@ -4,12 +4,11 @@ function(test)
   message("${res}")
 
   pushd("repo" --create)
-    git(init)
-    fwrite(README.md "hello world")
-    git(add .)
-    git(commit -m "initial commit")    
+  git(init)
+  fwrite(README.md "hello world")
+  git(add .)
+  git(commit -m "initial commit")
   popd()
-
 
   git_remote_has_ref("repo" HEAD *)
   ans(res)
@@ -22,8 +21,5 @@ function(test)
   git_remote_has_ref("repo" nonono *)
   ans(res)
   assert(NOT res)
-
-
-
 
 endfunction()

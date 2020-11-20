@@ -8,14 +8,13 @@ function(list_pop_back __list_pop_back_lst)
   math(EXPR len "${len} - 1")
   list(GET "${__list_pop_back_lst}" "${len}" res)
   list(REMOVE_AT "${__list_pop_back_lst}" ${len})
-  set("${__list_pop_back_lst}" ${${__list_pop_back_lst}} PARENT_SCOPE)
+  set("${__list_pop_back_lst}"
+      ${${__list_pop_back_lst}}
+      PARENT_SCOPE)
   return_ref(res)
 endfunction()
 
-
-
-  # removes the last element from list and returns it
-  ## faster version
+# removes the last element from list and returns it faster version
 macro(list_pop_back __list_pop_back_lst)
   if("${${__list_pop_back_lst}}_" STREQUAL "_")
     set(__ans)

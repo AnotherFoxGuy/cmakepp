@@ -1,4 +1,3 @@
-
 function(archive_read_file_match archive regex)
   path_qualify(archive)
   archive_match_files("${archive}" "${regex}")
@@ -11,4 +10,3 @@ function(archive_read_file_match archive regex)
   archive_read_file("${archive}" "${file_path}")
   return_ans()
 endfunction()
-

@@ -1,5 +1,3 @@
-
-
 function(map_push_back map prop)
   map_tryget("${map}" "${prop}")
   ans(lst)

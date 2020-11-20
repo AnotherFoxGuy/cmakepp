@@ -1,6 +1,5 @@
 function(test)
 
-
   semver_component_compare("" "")
   ans(res)
   assert(${res} EQUAL 0)
@@ -31,7 +30,6 @@ function(test)
   semver_component_compare(2 11)
   ans(res)
   assert(${res} EQUAL 1)
-
 
   semver_component_compare(alpha rc1)
   ans(res)

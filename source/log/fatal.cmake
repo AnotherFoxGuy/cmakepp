@@ -1,4 +1,4 @@
-## reports an error and stops program exection 
+# reports an error and stops program exection
 function(fatal)
   log(--error ${ARGN})
   ans(entry)
@@ -8,5 +8,5 @@ function(fatal)
 
   _message(FATAL_ERROR "aborting exectution because of error '${message}'")
   return()
-    
+
 endfunction()

@@ -1,4 +1,3 @@
-
 function(anonymous_function)
   is_anonymous_function(${ARGN})
   ans(is_anonymous_function)

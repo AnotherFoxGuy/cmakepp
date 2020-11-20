@@ -1,8 +1,7 @@
-## `(<cmakepp code file>)-><cmake code file>`
-##
-## compiles the specified source file to enable expressions
-## the target file can be specified. by default a temporary file is created
-## todo:  cache result
+# `(<cmakepp code file>)-><cmake code file>`
+#
+# compiles the specified source file to enable expressions the target file can
+# be specified. by default a temporary file is created todo:  cache result
 function(cmakepp_compile_file source)
   set(target ${ARGN})
 

@@ -1,6 +1,6 @@
-## `(<~event>)-><void>`
-##
-## removes all handlers from the specified event
+# `(<~event>)-><void>`
+#
+# removes all handlers from the specified event
 function(event_clear event)
   event_get("${event}")
   ans(event)
@@ -10,8 +10,7 @@ function(event_clear event)
 
   foreach(handler ${handlers})
     event_removehandler("${event}" "${handler}")
-  endforeach()  
+  endforeach()
 
   return()
 endfunction()
-

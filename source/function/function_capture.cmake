@@ -1,4 +1,4 @@
-## captures variables from the current scope in the function
+# captures variables from the current scope in the function
 function(function_capture callable)
   set(args ${ARGN})
   list_extract_labelled_value(args as)
@@ -16,7 +16,8 @@ function(function_capture callable)
   function_import("${callable}")
   ans(callable)
 
-  eval("
+  eval(
+    "
     function(${func_name})
       ${captured_var_string}
       ${callable}(\${ARGN})
@@ -25,5 +26,3 @@ function(function_capture callable)
   ")
   return_ref(func_name)
 endfunction()
-
-

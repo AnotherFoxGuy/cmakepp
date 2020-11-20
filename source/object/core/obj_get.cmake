@@ -1,11 +1,10 @@
-
 # returns the objects value at ${key}
 function(obj_get this key)
   map_get_special("${this}" "get_${key}")
   ans(getter)
   if(NOT getter)
     map_get_special("${this}" "getter")
-    ans(getter)    
+    ans(getter)
     if(NOT getter)
       obj_default_getter("${this}" "${key}")
       return_ans()
@@ -16,5 +15,3 @@ function(obj_get this key)
   eval("${getter}(\"\${this}\" \"\${key}\")")
   return_ans()
 endfunction()
-
-

@@ -1,13 +1,12 @@
-## prints help for specified function
+# prints help for specified function
 function(help)
-  
 
   parameter_definition_get("${ARGN}")
   ans(res)
   if(NOT res)
     message(INFO "no help found for function ${ARGN}")
     return()
-  endif() 
+  endif()
 
   map_import_properties(${res} positionals nonpositionals name description)
 
@@ -22,7 +21,8 @@ function(help)
   message("\tpositional parameters: ")
   set(counter 0)
   foreach(positional ${positionals})
-    map_import_properties(${positional} name type comment optional default_value)
+    map_import_properties(${positional} name type comment optional
+                          default_value)
     if(comment)
       set(comment "  --  ${comment}")
     endif()
@@ -33,44 +33,44 @@ function(help)
       set(optional)
     else()
       set(optional " *required* ")
-    endif()    
+    endif()
     if(default_value)
       set(default_value "(= '${default_value}')")
     endif()
 
-    message("\t\t[${counter}] ${name}${optional}${type}${default_value}${comment}")
+    message(
+      "\t\t[${counter}] ${name}${optional}${type}${default_value}${comment}")
     math(EXPR counter "${counter} + 1")
 
   endforeach()
   message("\tnonpositional parameters: ")
 
   foreach(nonpositional ${nonpositionals})
-    map_import_properties(${nonpositional} name type comment optional default_value)
+    map_import_properties(${nonpositional} name type comment optional
+                          default_value)
     if(comment)
       set(comment "  --  ${comment}")
     endif()
     if(type)
-      set(type ": <${type}>")      
+      set(type ": <${type}>")
     else()
       set(type)
     endif()
 
     if(optional)
       set(optional)
-    else()  
-      if(type)    
+    else()
+      if(type)
         set(optional " *required* ")
       else()
         set(optional)
         set(type ": <flag>")
       endif()
-    endif()        
+    endif()
     if(default_value)
       set(default_value "(default = '${default_value}')")
     endif()
     message("\t\t${name}${optional}${type}${default_value}${comment}")
   endforeach()
 
-
 endfunction()
-

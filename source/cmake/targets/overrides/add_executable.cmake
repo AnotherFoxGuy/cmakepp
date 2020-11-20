@@ -1,4 +1,3 @@
-
 macro(add_executable)
   _add_executable(${ARGN})
   event_emit(add_executable ${ARGN})

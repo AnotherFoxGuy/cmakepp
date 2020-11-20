@@ -12,11 +12,11 @@ function(test)
     map_clone_deep(${clauses})
     ans(clauses)
 
-#   cnf_print(${cnf})
-   timer_start(bcp_deduce_assignments)
+    # cnf_print(${cnf})
+    timer_start(bcp_deduce_assignments)
     bcp_deduce_assignments("${cnf}" "${clauses}" "${assignments}")
     ans(result)
-   timer_print_elapsed(bcp_deduce_assignments)
+    timer_print_elapsed(bcp_deduce_assignments)
 
     map_capture_new(result assignments)
     return_ans()
@@ -24,7 +24,7 @@ function(test)
 
   define_test_function(test_uut test_bcp_deduce_assignments assignments)
 
-  test_uut("{assignments:{}, result:null}" "{}" )
+  test_uut("{assignments:{}, result:null}" "{}")
   test_uut("{assignments:{'0':'true','1':'false'}, result:['0','1']}" "{}" 0)
   test_uut("{assignments:{'0':'false', '1':'true'}, result:['1','0']}" "{}" !0)
   test_uut("{result:'conflict'}" "{'0':'false'}" 0)

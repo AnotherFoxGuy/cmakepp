@@ -1,4 +1,3 @@
-
 function(message_indent_pop)
   map_pop_back(global message_indent_level)
   ans(old_level)

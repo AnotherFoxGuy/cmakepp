@@ -25,11 +25,10 @@ function(test)
   string_lines("a b\nc")
   ans(res)
   assert(COUNT 2 ${res})
-  assert(EQUALS "${res}" "a b;c")  
+  assert(EQUALS "${res}" "a b;c")
 
-  ## Todo: Fails for string_split too.
-  ##       In unit test for string_split 
-  ##       we don't check for list length.
+  # Todo: Fails for string_split too. In unit test for string_split we don't
+  # check for list length.
   return()
   string_lines("\n")
   ans(res)

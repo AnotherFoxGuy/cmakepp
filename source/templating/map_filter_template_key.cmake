@@ -1,4 +1,3 @@
-
 function(map_filter_template_key map scope)
   map_keys("${map}")
   ans(keys)
@@ -10,6 +9,6 @@ function(map_filter_template_key map scope)
     if(result)
       return_ref(key)
     endif()
-  endforeach()  
+  endforeach()
   return()
 endfunction()

@@ -1,4 +1,3 @@
-
 function(fexists)
   path("${ARGN}")
   ans(path)

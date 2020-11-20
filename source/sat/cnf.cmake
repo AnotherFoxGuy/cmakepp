@@ -1,35 +1,33 @@
-## `(<clause map: <sequence>>)-> <cnf>`
-##
-##  
-## 
-## creates a conjunctive normal form from the specified input
-## ```
-## <cnf> ::= {
-##   c_n : <uint>  # the number of clauses
-##   c_last : <int>  # c_n - 1
-##   clause_map : { <<clause index>:<clause>>... }
-##   clause_atom_map : { <<clause index> : <atom index>... >...}
-##   clause_literal_map : { <<clause index> : <literal index>...>...}
-##   
-##   a_n : <uint> # the number of atoms
-##   a_last : <int>  # a_n - 1 
-##   atom_map : { <<atom index>:<atom>>... }
-##   atom_clause_map  : { <<atom index>:<clause index>...>...}
-##   atom_literal_map :  {}
-##   atom_literal_negated_map : {}
-##   atom_literal_identity_map : {}
-##   atom_index_map : {}
-##   
-##   l_n : <uint>
-##   l_last : <int>
-##   literal_map : {}
-##   literal_atom_map : {}
-##   literal_inverse_map : {}
-##   literal_negated_map : {}
-##   literal_index_map : {}
-##   literal_clause_map : {}
-## }
-## ```
+# `(<clause map: <sequence>>)-> <cnf>`
+#
+# creates a conjunctive normal form from the specified input
+# ~~~
+# <cnf> ::= {
+#   c_n : <uint>  # the number of clauses
+#   c_last : <int>  # c_n - 1
+#   clause_map : { <<clause index>:<clause>>... }
+#   clause_atom_map : { <<clause index> : <atom index>... >...}
+#   clause_literal_map : { <<clause index> : <literal index>...>...}
+#
+#   a_n : <uint> # the number of atoms
+#   a_last : <int>  # a_n - 1
+#   atom_map : { <<atom index>:<atom>>... }
+#   atom_clause_map  : { <<atom index>:<clause index>...>...}
+#   atom_literal_map :  {}
+#   atom_literal_negated_map : {}
+#   atom_literal_identity_map : {}
+#   atom_index_map : {}
+#
+#   l_n : <uint>
+#   l_last : <int>
+#   literal_map : {}
+#   literal_atom_map : {}
+#   literal_inverse_map : {}
+#   literal_negated_map : {}
+#   literal_index_map : {}
+#   literal_clause_map : {}
+# }
+# ~~~
 function(cnf clause_map)
 
   map_keys("${clause_map}")
@@ -67,29 +65,29 @@ function(cnf clause_map)
   list_remove_duplicates(literals)
 
   foreach(literal ${literals})
-      sequence_add(${atom_map} "${literal}")
-      ans(ai)
-      sequence_add(${literal_map} "${literal}")
-      ans(li)
-      sequence_add(${literal_map} "!${literal}")
-      ans(li_neg)
+    sequence_add(${atom_map} "${literal}")
+    ans(ai)
+    sequence_add(${literal_map} "${literal}")
+    ans(li)
+    sequence_add(${literal_map} "!${literal}")
+    ans(li_neg)
 
-      sequence_add(${literal_negated_map} false)
-      sequence_add(${literal_negated_map} true)
-      sequence_add(${atom_literal_map} ${li} ${li_neg})
+    sequence_add(${literal_negated_map} false)
+    sequence_add(${literal_negated_map} true)
+    sequence_add(${atom_literal_map} ${li} ${li_neg})
 
-      sequence_add(${literal_atom_map} ${ai})
-      sequence_add(${literal_atom_map} ${ai})
-      
-      sequence_add(${atom_literal_negated_map} ${li_neg})
-      sequence_add(${atom_literal_identity_map} ${li})
+    sequence_add(${literal_atom_map} ${ai})
+    sequence_add(${literal_atom_map} ${ai})
 
-      sequence_add(${literal_inverse_map} ${li_neg})
-      sequence_add(${literal_inverse_map} ${li})
+    sequence_add(${atom_literal_negated_map} ${li_neg})
+    sequence_add(${atom_literal_identity_map} ${li})
 
-      map_set(${literal_index_map} "${literal}" ${li})
-      map_set(${literal_index_map} "!${literal}" ${li_neg})
-      map_set(${atom_index_map} "${literal}" "${ai}")
+    sequence_add(${literal_inverse_map} ${li_neg})
+    sequence_add(${literal_inverse_map} ${li})
+
+    map_set(${literal_index_map} "${literal}" ${li})
+    map_set(${literal_index_map} "!${literal}" ${li_neg})
+    map_set(${atom_index_map} "${literal}" "${ai}")
 
   endforeach()
 
@@ -111,7 +109,7 @@ function(cnf clause_map)
     map_set(${clause_atom_map} ${ci})
     map_set(${clause_literal_map} ${ci})
     foreach(literal ${clause})
-      
+
       map_tryget(${literal_index_map} "${literal}")
       ans(li)
 
@@ -136,7 +134,7 @@ function(cnf clause_map)
   sequence_count(${atom_map})
   ans(a_n)
   math(EXPR a_last "${a_n} - 1")
-  #json_print(${clause_map})
+  # json_print(${clause_map})
 
   map_capture_new(
     c_n
@@ -144,7 +142,6 @@ function(cnf clause_map)
     clause_map
     clause_atom_map
     clause_literal_map
-
     a_n
     a_last
     atom_map
@@ -153,16 +150,14 @@ function(cnf clause_map)
     atom_literal_negated_map
     atom_literal_identity_map
     atom_index_map
-
-    l_n 
+    l_n
     l_last
     literal_map
     literal_atom_map
     literal_inverse_map
     literal_negated_map
     literal_index_map
-    literal_clause_map
-  )
+    literal_clause_map)
   ans(cnf)
 
   return_ref(cnf)

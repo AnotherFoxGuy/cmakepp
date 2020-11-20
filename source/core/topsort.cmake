@@ -1,9 +1,9 @@
-# executes the topological sort for a list of nodes (passed as varargs)
-# get_hash is a function to be provided which returns the unique id for a node
-# this is used to check if a node was visited previously
-# expand should take a node and return its successors
-# this function will return nothing if there was a cycle or if no input was given
-# else it will return the topological order of the graph
+# executes the topological sort for a list of nodes (passed as varargs) get_hash
+# is a function to be provided which returns the unique id for a node this is
+# used to check if a node was visited previously expand should take a node and
+# return its successors this function will return nothing if there was a cycle
+# or if no input was given else it will return the topological order of the
+# graph
 function(topsort get_hash expand)
   function_import("${get_hash}" as __topsort_get_hash REDEFINE)
   function_import("${expand}" as __topsort_expand REDEFINE)
@@ -15,9 +15,9 @@ function(topsort get_hash expand)
 
     map_tryget("${visited}" "${hash}")
     ans(mark)
-    
+
     if("${mark}" STREQUAL "temp")
-      #cycle found
+      # cycle found
       return(true)
     endif()
     if(NOT mark)
@@ -29,12 +29,12 @@ function(topsort get_hash expand)
         topsort_visit("${result}" "${visited}" "${successor}")
         ans(cycle)
         if(cycle)
-      #    message("cycle found")
+          # message("cycle found")
           return(true)
         endif()
       endforeach()
 
-      #mark permanently
+      # mark permanently
       map_set("${visited}" "${hash}" permanent)
 
       # add to front of result
@@ -42,7 +42,6 @@ function(topsort get_hash expand)
     endif()
     return(false)
   endfunction()
-
 
   map_new()
   ans(visited)
@@ -54,21 +53,21 @@ function(topsort get_hash expand)
     # get hash for node
     __topsort_get_hash("${node}")
     ans(hash)
-    
-    # get marking      
+
+    # get marking
     map_tryget("${visited}" "${hash}")
     ans(mark)
     if(NOT mark)
       topsort_visit("${result}" "${visited}" "${node}")
       ans(cycle)
       if(cycle)
-       # message("stopping with cycle")
+        # message("stopping with cycle")
         return()
       endif()
     endif()
 
   endforeach()
-#  message("done")
+  # message("done")
   address_get(${result})
 
   return_ans()

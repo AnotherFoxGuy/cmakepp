@@ -1,5 +1,4 @@
-# pushes the specfied directory (or .) onto the 
-# directory stack
+# pushes the specfied directory (or .) onto the directory stack
 function(pushd)
   pwd()
   ans(pwd)

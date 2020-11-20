@@ -1,5 +1,5 @@
 function(expr_compile_new)
-#json_print(${ast})
+  # json_print(${ast})
   map_tryget(${ast} children)
   ans(children)
 
@@ -11,8 +11,7 @@ function(expr_compile_new)
   map_tryget(${call_ast} children)
   ans(argument_asts)
 
-
- # message("class name is ${className} ")
+  # message("class name is ${className} ")
 
   set(arguments)
   set(evaluation)
@@ -25,20 +24,21 @@ function(expr_compile_new)
     ast_eval(${argument_ast} ${context})
     ans(argument)
 
-    set(evaluation "${evaluation}
+    set(evaluation
+        "${evaluation}
   ${argument}
   ans(${symbol}_arg${i})")
-    set(arguments "${arguments}\"\${${symbol}_arg${i}}\" " )
+    set(arguments "${arguments}\"\${${symbol}_arg${i}}\" ")
     math(EXPR i "${i} + 1")
   endforeach()
 
-  set(res "
+  set(res
+      "
 #expr_compile_new
 ${evaluation}
 obj_new(\"${className}\" ${arguments})
 #end of expr_compile_new
   ")
 
-
-return_ref(res)
+  return_ref(res)
 endfunction()

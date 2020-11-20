@@ -1,5 +1,5 @@
-## writes all var args into user data, accepts any typ of data 
-## maps are serialized
+# writes all var args into user data, accepts any typ of data maps are
+# serialized
 function(user_data_write id)
   user_data_path("${id}")
   ans(path)

@@ -1,10 +1,9 @@
-## 
-## permutates the specified input map 
-## takes every key of the input map and treats the value as a list
-## the result is n maps which contain one value per key
+#
+# permutates the specified input map takes every key of the input map and treats
+# the value as a list the result is n maps which contain one value per key
 
 function(map_permutate input)
-  
+
   map_keys("${input}")
   ans(keys)
 
@@ -22,7 +21,7 @@ function(map_permutate input)
         ans(current)
         map_set(${current} ${key} ${value})
         list(APPEND result ${current})
-      endforeach()      
+      endforeach()
     endforeach()
   endforeach()
   return_ref(result)

@@ -1,4 +1,3 @@
-
 function(string_cache_update cache_location key value)
   string_cache_location("${cache_location}" "${key}")
   ans(location)

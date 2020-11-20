@@ -1,4 +1,3 @@
-
 # windows implementation for process kill
 function(process_kill_Windows process_handle)
   process_handle("${process_handle}")

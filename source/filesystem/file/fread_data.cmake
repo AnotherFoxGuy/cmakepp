@@ -1,11 +1,9 @@
-
-
-## tries to read the spcified file format
+# tries to read the spcified file format
 function(fread_data path)
   set(args ${ARGN})
 
   path_qualify(path)
-  
+
   list_pop_front(args)
   ans(mime_type)
 
@@ -33,9 +31,9 @@ function(fread_data path)
     return()
   endif()
 
-  ## set target file property which allows identification of where the map was read
-  ## if it was a single map
-  map_source_file_set("${result}" "${path}")      
+  # set target file property which allows identification of where the map was
+  # read if it was a single map
+  map_source_file_set("${result}" "${path}")
 
   return(${result})
 

@@ -1,4 +1,3 @@
-
 function(markdown_compile_function file)
   path_qualify(file)
   if(NOT "${file}" MATCHES "(.+)\\.cmake")

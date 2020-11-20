@@ -1,10 +1,8 @@
-## `(...)->...` 
-##
-## 
-## assigns all pure literals (and there inverse) 
-## removes all clauses an containing one from clauses
-## returns all indices of pure literals
-## returns conflict if a pure literal assignment conflicts with an existing one
+# `(...)->...`
+#
+# assigns all pure literals (and there inverse) removes all clauses an
+# containing one from clauses returns all indices of pure literals returns
+# conflict if a pure literal assignment conflicts with an existing one
 function(bcp_pure_literals_assign f clauses assignments)
   bcp_pure_literals_find(${f} ${clauses})
   ans(pure_literals)
@@ -15,9 +13,9 @@ function(bcp_pure_literals_assign f clauses assignments)
 
   map_import_properties(${f} literal_inverse_map)
 
- # print_vars(assignments pure_literals)
+  # print_vars(assignments pure_literals)
 
-  ## set assignments
+  # set assignments
   foreach(pure_literal ${pure_literals})
     bcp_assignment_add(${f} ${assignments} ${pure_literal} true)
     ans(ok)
@@ -35,7 +33,7 @@ function(bcp_pure_literals_assign f clauses assignments)
     endif()
   endforeach()
 
-  ## remove clauses containing pure literal
+  # remove clauses containing pure literal
   map_keys(${clauses})
   ans(clause_indices)
 
@@ -45,10 +43,10 @@ function(bcp_pure_literals_assign f clauses assignments)
 
     list_contains_any(clause ${pure_literals})
     ans(contains_any)
-  
+
     if(contains_any)
       map_remove(${clauses} ${ci})
-    endif()      
+    endif()
   endforeach()
   return_ref(pure_literals)
 endfunction()

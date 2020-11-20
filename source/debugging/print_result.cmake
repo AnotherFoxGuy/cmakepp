@@ -1,7 +1,6 @@
-
-#prints result
+# prints result
 function(print_result result)
-  list(LENGTH argc "${result}" )
+  list(LENGTH argc "${result}")
   if("${argc}" LESS 2)
     message("${result}")
   else()

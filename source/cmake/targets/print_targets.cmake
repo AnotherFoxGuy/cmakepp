@@ -1,4 +1,4 @@
-# prints the list of known targets 
+# prints the list of known targets
 function(print_targets)
   target_list()
   ans(res)
@@ -8,7 +8,6 @@ function(print_targets)
 
 endfunction()
 
-
 function(print_project_tree)
   map_tryget(global project_map)
   ans(pmap)
@@ -17,7 +16,6 @@ function(print_project_tree)
   return()
 
 endfunction()
-
 
 function(print_target target_name)
   target_get_properties(${target_name})

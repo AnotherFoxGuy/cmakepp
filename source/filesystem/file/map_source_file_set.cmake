@@ -1,4 +1,3 @@
-
 function(map_source_file_set map file_name)
   is_map("${map}")
   ans(is_map)

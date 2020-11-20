@@ -1,5 +1,3 @@
-
-
 function(cmake_string_to_json str)
   string_decode_semicolon("${str}")
   ans(str)

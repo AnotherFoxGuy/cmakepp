@@ -40,7 +40,7 @@ function(test)
   string_contains("astring" "astring")
   ans(res)
   assert(res)
-  
+
   set(res "")
   # Contains string a -> true
   string_contains("abc" "a")

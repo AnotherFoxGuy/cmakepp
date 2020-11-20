@@ -1,7 +1,5 @@
-
-
-  function(listing_append_lines listing)
-   foreach(line ${ARGN})
+function(listing_append_lines listing)
+  foreach(line ${ARGN})
     listing_append(${listing} "${line}")
-   endforeach()
-  endfunction()
+  endforeach()
+endfunction()

@@ -1,4 +1,3 @@
-
 function(address_pop_front ref)
   address_get(${ref})
   ans(value)

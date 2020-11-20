@@ -1,7 +1,5 @@
 function(test)
 
-
-
   indent_level_push(0)
 
   indent("asd" "...")
@@ -22,22 +20,16 @@ function(test)
   ans(res)
   assert(${res} STREQUAL "......asd")
 
-
   indent_level_push()
   indent_level()
   ans(lvl)
   assert(${lvl} EQUAL 3)
-
 
   indent_level_restore(${storedlevel})
   indent_level()
   ans(lvl)
   assert(${lvl} EQUAL 1)
 
-  
-  
-
   indent_level_pop()
-
 
 endfunction()

@@ -1,4 +1,3 @@
-
 function(address_peek_back ref)
   address_get(${ref})
   ans(value)

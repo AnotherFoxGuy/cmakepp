@@ -1,9 +1,8 @@
-
-
-## faster
+# faster
 function(encoded_list_decode str)
   string_codes()
-  eval("
+  eval(
+    "
   function(encoded_list_decode str)
     if(\"\${str}_\" STREQUAL \"${empty_code}_\")
       return()

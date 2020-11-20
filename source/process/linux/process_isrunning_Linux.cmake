@@ -1,4 +1,3 @@
-
 function(process_isrunning_Linux handle)
   process_handle("${handle}")
   ans(handle)

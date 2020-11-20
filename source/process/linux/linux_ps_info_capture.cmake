@@ -1,5 +1,3 @@
-
-
 function(linux_ps_info_capture pid map)
 
   foreach(key ${ARGN})

@@ -1,4 +1,3 @@
-
 macro(add_test)
   _add_test(${ARGN})
   event_emit(add_test ${ARGN})

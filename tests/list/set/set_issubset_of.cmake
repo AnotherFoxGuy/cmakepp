@@ -13,7 +13,6 @@ function(test)
   ans(res)
   assert(res)
 
-
   set_issubset(set1 nullSet)
   ans(res)
   assert(NOT res)
@@ -22,12 +21,8 @@ function(test)
   ans(res)
   assert(res)
 
-
   set_issubset(setB setA)
   ans(res)
   assert(NOT res)
-
-
-
 
 endfunction()

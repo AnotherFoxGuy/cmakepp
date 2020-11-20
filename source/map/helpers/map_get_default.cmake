@@ -1,8 +1,7 @@
-## `(<map> <key> <any...>)-><any...>`
-##
-## returns the value stored in map.key or 
-## sets the value at map.key to ARGN and returns 
-## the value
+# `(<map> <key> <any...>)-><any...>`
+#
+# returns the value stored in map.key or sets the value at map.key to ARGN and
+# returns the value
 function(map_get_default map key)
   map_has("${map}" "${key}")
   ans(has_key)

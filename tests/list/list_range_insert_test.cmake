@@ -1,6 +1,5 @@
 function(test)
 
-
   function(list_range_insert lst_ref range)
     range_parse("${range}")
     ans(range)
@@ -9,7 +8,6 @@ function(test)
 
     set(removed)
     list_range_remove(${lst_ref} "${range}")
- 
 
     message("range '${range}'")
     message("removed ${removed}")
@@ -22,18 +20,10 @@ function(test)
   list_range_insert(lstA "")
   ans(res)
 
-
   set(lstA)
   list_range_insert(lstA "" 1)
   ans(res)
 
-
-
-
   return_ref(removed)
-  
-
-
-
 
 endfunction()

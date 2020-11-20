@@ -38,13 +38,11 @@ function(interpret_assign tokens)
   rethrow()
   ans(lhs)
 
-
   map_tryget("${lhs}" value)
   ans(value)
 
   map_tryget("${lhs}" ref)
   ans(ref)
-
 
   map_tryget("${lhs}" value_type)
   ans(value_type)
@@ -52,17 +50,8 @@ function(interpret_assign tokens)
   map_tryget("${lhs}" const)
   ans(const)
 
-
   set(code "set(${ref} ${rhs_value})\n")
-  # tokens 
-  # expression_type 
-  # value_type 
-  # ref 
-  # code
-  # value 
-  # const 
-  # pure_value
-  # children
+  # tokens expression_type value_type ref code value const pure_value children
 
   ast_new(
     "${tokens}"
@@ -73,11 +62,8 @@ function(interpret_assign tokens)
     "${value}"
     "${const}"
     "false"
-    "${rhs};${lhs}"
-    )
+    "${rhs};${lhs}")
   ans(ast)
 
   return_ref(ast)
 endfunction()
-
-

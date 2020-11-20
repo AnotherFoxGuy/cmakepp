@@ -16,7 +16,8 @@ function(environment_processor_count)
       find_program(cmd_sys_pro "system_profiler")
       if(cmd_sys_pro)
         execute_process(COMMAND ${cmd_sys_pro} OUTPUT_VARIABLE info)
-        string(REGEX REPLACE "^.*Total Number Of Cores: ([0-9]+).*$" "\\1" processor_count "${info}")
+        string(REGEX REPLACE "^.*Total Number Of Cores: ([0-9]+).*$" "\\1"
+                             processor_count "${info}")
       endif()
     endif()
 
@@ -26,7 +27,8 @@ function(environment_processor_count)
     endif()
   endif()
 
-  eval("
+  eval(
+    "
   function(environment_processor_count)
     set(__ans ${processor_count} PARENT_SCOPE)
   endfunction()

@@ -1,4 +1,3 @@
-  
 function(cmake_token_eof)
   map_new()
   ans(token)

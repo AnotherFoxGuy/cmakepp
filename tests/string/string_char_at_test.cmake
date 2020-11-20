@@ -9,8 +9,7 @@ function(test)
   assert("${res}" STREQUAL "e")
 
   set(res "")
-  # Test for negative indexing
-  # index of -2 is last char of string
+  # Test for negative indexing index of -2 is last char of string
   string_char_at(${str} -2)
   ans(res)
   assert("${res}" STREQUAL "o")
@@ -36,8 +35,7 @@ function(test)
   set(str "hello three words")
 
   set(res "")
-  # Test for negative indexing
-  # Multi word string
+  # Test for negative indexing Multi word string
   string_char_at(${str} -2)
   ans(res)
   assert("${res}" STREQUAL "s")
@@ -58,5 +56,5 @@ function(test)
   # Get last char of input string
   string_char_at(${str} -2 "")
   ans(res)
-  assert("${res}" STREQUAL "s") 
+  assert("${res}" STREQUAL "s")
 endfunction()

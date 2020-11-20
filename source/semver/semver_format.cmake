@@ -1,9 +1,8 @@
- function(semver_format version)
+function(semver_format version)
   semver_normalize("${version}")
   ans(version)
 
-  #format("{version.major}.{version.minor}.{version.patch}")
-  #ans(res)
+  # format("{version.major}.{version.minor}.{version.patch}") ans(res)
   map_tryget(${version} major)
   ans(major)
   map_tryget(${version} minor)
@@ -26,4 +25,4 @@
 
   return_ref(res)
 
- endfunction()
+endfunction()

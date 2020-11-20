@@ -1,4 +1,3 @@
-
 function(is_anonymous_function)
   if(NOT ARGN)
     return(false)

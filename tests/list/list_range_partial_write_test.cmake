@@ -7,7 +7,6 @@ function(test)
   list_range_partial_write(lst "[1]" 234)
   assert(${lst} EQUALS 123 234)
 
-
   list_range_partial_write(lst "[1[" 234)
   assert(${lst} EQUALS 123 234 234)
-  endfunction()
+endfunction()

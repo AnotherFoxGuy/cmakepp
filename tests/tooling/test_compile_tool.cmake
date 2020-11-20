@@ -1,13 +1,15 @@
 function(test)
-    compile_tool("testXDXD123" "
+  compile_tool(
+    "testXDXD123"
+    "
     #include <iostream>
     int main(int argc, const char ** argv){
         std::cout<< \"echo(hello)\";
         return 0;
     }")
-    testXDXD123()
-    ans(res)
+  testxdxd123()
+  ans(res)
 
-    assert(${res} EQUALS "echo(hello)")
+  assert(${res} EQUALS "echo(hello)")
 
 endfunction()

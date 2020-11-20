@@ -1,9 +1,5 @@
 function(test)
 
-  
-
-
-
   mkdir("dir1")
   mkdir("dir11")
   fwrite("f11.txt" "asd")
@@ -22,15 +18,10 @@ function(test)
   glob_up(2 *.txt)
   ans(res_gl)
 
-
   popd()
   popd()
-
 
   glob("${test_dir}/**" --recurse)
   ans(res)
-
-
-
 
 endfunction()

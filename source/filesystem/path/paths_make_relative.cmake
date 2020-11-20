@@ -11,6 +11,3 @@ function(paths_make_relative base_dir)
 
   return_ref(res)
 endfunction()
-
-
-

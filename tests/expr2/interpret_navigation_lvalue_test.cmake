@@ -4,13 +4,9 @@ function(test)
 
   define_test_function2(test_uut expr_parse interpret_navigation_lvalue "")
 
-
-  ## no token
+  # no token
   test_uut("${exception}" "")
-  ## to few tokens
+  # to few tokens
   test_uut("${exception}" "a")
-  
-
-
 
 endfunction()

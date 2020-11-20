@@ -1,4 +1,4 @@
-# converts a map to a key value list 
+# converts a map to a key value list
 function(map_to_keyvaluelist map)
   map_keys(${map})
   ans(keys)

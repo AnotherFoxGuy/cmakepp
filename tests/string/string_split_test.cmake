@@ -33,9 +33,9 @@ function(test)
   string_split("${input}" "@")
   ans(res)
   set(expected a b)
-  #assert_list_equal(res expected)
+  # assert_list_equal(res expected)
   assert(EQUALS "${res}" "${expected}")
-  
+
   set(res "")
   # Two split chars
   set(input "a@b@c")

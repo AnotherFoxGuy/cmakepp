@@ -1,6 +1,5 @@
 function(test)
 
-
   set(lstA a b c d)
   set(lstB a d b c)
   set(lstC a d b c k)

@@ -1,4 +1,3 @@
-
 # returns the git directory for pwd or specified path
 function(git_dir)
   set(path ${ARGN})
@@ -10,7 +9,7 @@ function(git_dir)
   git(rev-parse --show-toplevel)
   ans(res)
   message("${res}")
-  
+
   popd()
   string(STRIP "${res}" res)
   set(res "${res}/.git")

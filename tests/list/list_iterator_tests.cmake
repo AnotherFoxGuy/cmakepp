@@ -42,7 +42,7 @@ function(test)
   ans(res)
   assert(NOT res)
   assert(${it.length} EQUAL 3)
-  assert(${it.value}  ISNULL)
+  assert(${it.value} ISNULL)
   assert(${it.list_ref} STREQUAL lstA)
   assert(${it.index} EQUAL 3)
 
@@ -50,13 +50,21 @@ function(test)
   list_iterator(lstA)
   ans(it)
   set(res)
-  list_iterator(lstA) 
+  list_iterator(lstA)
   ans(it)
   while(true)
     list_iterator_break(it)
     list(APPEND res ${it.index} ${it.value})
   endwhile()
-  
-  assert(${res} EQUALS 0 a 1 b 2 c)
+
+  assert(
+    ${res}
+    EQUALS
+    0
+    a
+    1
+    b
+    2
+    c)
 
 endfunction()

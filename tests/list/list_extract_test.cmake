@@ -7,8 +7,6 @@ function(test)
   assert(${v2} STREQUAL 0)
   assert(${v3} STREQUAL 0)
 
-
-
   set(thelist 2 3 0 0 1)
   list_extract(thelist v1 v2 v3 v4 v5)
   assert("${v1}" STREQUAL 2)
@@ -26,7 +24,6 @@ function(test)
   assert(${val3} STREQUAL c)
   assert(${val4} STREQUAL d)
   assert(NOT val5)
-
 
   set(thelist 1)
   list_extract(thelist val1 val2)

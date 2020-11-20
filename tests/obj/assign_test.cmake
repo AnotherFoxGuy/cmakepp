@@ -1,6 +1,5 @@
 function(test)
 
-
   script("{a:{b:{c:3}}}")
   ans(obj)
 
@@ -16,8 +15,7 @@ function(test)
   endforeach()
   timer_print_elapsed(t2)
 
-
-#return()
+  # return()
 
   script("{a:{b:{c:3}}}")
   ans(obj)
@@ -33,7 +31,7 @@ function(test)
   assign(res = obj.a.b.c)
   assert("${res}" STREQUAL "3")
 
-  ## some data structures for testing
+  # some data structures for testing
 
   function(some_class)
     this_set(asd 123)
@@ -56,8 +54,6 @@ function(test)
   map_set(${uut2} func2 a testfunc2 c)
   map_set(${uut2} func3 testfunc2 testfunc2 testfunc2)
 
-
-
   function(some_other_type)
     this_declare_call(call)
     function(${call})
@@ -67,11 +63,9 @@ function(test)
   new(some_other_type)
   ans(uut3)
 
-
   map_new()
   ans(uut4)
-  ### assertions:
-
+  # assertions:
 
   # concats
   set(res asd)
@@ -92,7 +86,6 @@ function(test)
   assign(res[0[ = '345')
   assert(${res} EQUALS 345 123 234)
 
-
   assign(uut4.a[] = '123')
   assign(uut4.a[] = '234')
   assign(uut4.a[0[ = '345')
@@ -105,7 +98,6 @@ function(test)
   assign(res = "{a:1}")
   assert(${res} MAP_MATCHES "{a:1}")
 
-
   assign(res.a = '{a:23}')
   assert(${res} MAP_MATCHES "{a:23}")
 
@@ -113,44 +105,39 @@ function(test)
   data("{a:{b:[1,2,3,4,5,{c:6}]}}")
   ans(data)
   assign(!res.a.b.c.d.e = data.a.b[5].c)
-  assertf({res.a.b.c.d.e} EQUAL 6) 
+  assertf({res.a.b.c.d.e} EQUAL 6)
 
   set(input 123)
   assign(res = input)
   assert(${res} EQUALS 123)
 
-
-
-  ## calls
-  assign(res = testfunc2())
+  # calls
+  assign(res = testfunc2 ())
   assert(${res} EQUALS 234)
 
-  assign(res = uut1.mymethod(876))
+  assign(res = uut1.mymethod (876))
   assert(${res} EQUALS 123 321 876)
 
-  assign(res = "[]()return(100)"())
+  assign(res = "[]()return(100)" ())
   assert(${res} EQUALS 100)
 
-  assign(res = uut2.func())
+  assign(res = uut2.func ())
   assert(${res} EQUALS 234)
 
-  assign(res = uut2.func2[1]())
-  assert(${res} EQUALS 234) 
+  assign(res = uut2.func2[1] ())
+  assert(${res} EQUALS 234)
 
-  assign(res = uut2.func3[:]())
+  assign(res = uut2.func3[:] ())
   assert(${res} EQUALS 234 234 234)
 
-
-
-  assign(res = uut3(hello))
+  assign(res = uut3 (hello))
   assert(${res} EQUALS hello)
 
   function(identity)
     return(${ARGN})
   endfunction()
 
-  assign(res = identity("{a:123}"))
+  assign(res = identity ("{a:123}"))
   assertf({res.a} EQUALS 123)
-
 
 endfunction()

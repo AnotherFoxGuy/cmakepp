@@ -1,9 +1,9 @@
 function(expr_compile_expression)
-  #message("compiling expression")
-  map_get(${ast}  children)
+  # message("compiling expression")
+  map_get(${ast} children)
   ans(children)
   set(result "")
-  
+
   list(LENGTH children len)
   if(len GREATER 1)
 
@@ -13,14 +13,18 @@ function(expr_compile_expression)
       ast_eval(${rvalue_ast} ${context})
       ans(rvalue)
 
-      set(result "${result}
+      set(result
+          "${result}
   ${rvalue}
   ans(left)")
       map_set(${context} left ${rvalue})
       map_set(${context} left_ast ${rvalue_ast})
     endforeach()
-    
-    map_append_string(${context} code "
+
+    map_append_string(
+      ${context}
+      code
+      "
 #expr_compile_expression
 function(${symbol})
   set(left)
@@ -29,7 +33,8 @@ function(${symbol})
 endfunction()
 #end of expr_compile_expression")
 
-    set(symbol "
+    set(symbol
+        "
   #expr_compile_expression
   ${symbol}()
   #end of expr_compile_expression")
@@ -37,7 +42,6 @@ endfunction()
     ast_eval(${children} ${context})
     ans(symbol)
   endif()
-
 
   return_ref(symbol)
 endfunction()

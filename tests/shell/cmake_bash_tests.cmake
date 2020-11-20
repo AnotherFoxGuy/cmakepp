@@ -1,13 +1,11 @@
 function(test)
-  
-  
+
   path("${test_dir}")
-   ans(p)
+  ans(p)
   assert("${p}" STREQUAL "${test_dir}")
   if(NOT EXISTS "${test_dir}")
     file(MAKE_DIRECTORY "${test_dir}")
   endif()
-
 
   cd("${test_dir}")
   ans(res)
@@ -27,7 +25,6 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "${test_dir}/dir1")
 
-
   pwd()
   ans(res)
   assert("${res}" STREQUAL "${test_dir}/dir1")
@@ -41,36 +38,23 @@ function(test)
   assert("${test_dir}/mydir" STREQUAL "${res}")
   assert(EXISTS "${test_dir}/mydir")
 
-pwd()
-ans(pwd)
+  pwd()
+  ans(pwd)
 
-assert("${pwd}" STREQUAL "${test_dir}")
+  assert("${pwd}" STREQUAL "${test_dir}")
 
-path(test)
-ans(res)
-assert("${res}" STREQUAL "${test_dir}/test")
+  path(test)
+  ans(res)
+  assert("${res}" STREQUAL "${test_dir}/test")
 
   touch(test2)
   assert(EXISTS "${test_dir}/test2")
 
-# seems to cause problems
-#  dirs()
-#  ans(res)
-#  assert(NOT res)
-#  pushd()
-#  dirs()
-#  ans(res)
-#  assert("${res}" STREQUAL "${test_dir}")
-#  cd(mydir)
-#  pwd()
-#  ans(res)
-#  assert("${res}" STREQUAL "${test_dir}/mydir")
-#  popd()
-#  pwd()
-#  ans(res)
-#  assert("${res}" STREQUAL "${test_dir}")
-#
-
+  # seems to cause problems dirs() ans(res) assert(NOT res) pushd() dirs()
+  # ans(res) assert("${res}" STREQUAL "${test_dir}") cd(mydir) pwd() ans(res)
+  # assert("${res}" STREQUAL "${test_dir}/mydir") popd() pwd() ans(res)
+  # assert("${res}" STREQUAL "${test_dir}")
+  #
 
   touch(test1/f1.txt)
   touch(test1/f2.txt)
@@ -79,6 +63,6 @@ assert("${res}" STREQUAL "${test_dir}/test")
 
   message("ls ${res}")
 
-assert(COUNT 2 ${res})  
+  assert(COUNT 2 ${res})
 
 endfunction()

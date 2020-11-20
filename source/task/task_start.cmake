@@ -4,4 +4,3 @@ function(task_start task)
   task_queue_push("${task_queue}" "${task}")
   return()
 endfunction()
-

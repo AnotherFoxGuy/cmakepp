@@ -1,5 +1,5 @@
-
-# redirects the output of the specified shell to the result value of this function
+# redirects the output of the specified shell to the result value of this
+# function
 function(shell_redirect code)
   fwrite_temp("" ".txt")
   ans(tmp_file)

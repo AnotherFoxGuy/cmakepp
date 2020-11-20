@@ -1,8 +1,5 @@
 function(test)
 
-
-
-
   set(lst 1 2 3)
   list_extract_flag(lst 2)
   ans(res)
@@ -33,8 +30,5 @@ function(test)
   list_extract_flag(lst 1)
   ans(res)
   assert(NOT res)
-
-
-
 
 endfunction()

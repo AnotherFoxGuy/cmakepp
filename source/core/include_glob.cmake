@@ -1,5 +1,5 @@
-## includes all files identified by globbing expressions
-## see `glob` on globbing expressions
+# includes all files identified by globbing expressions see `glob` on globbing
+# expressions
 function(include_glob)
   set(args ${ARGN})
   glob(${args})

@@ -1,5 +1,4 @@
-
-## convenience function for accessing cpack
+# convenience function for accessing cpack
 function(cpack)
   path_parent_dir("${CMAKE_COMMAND}")
   ans(parentPath)
@@ -9,4 +8,4 @@ function(cpack)
   wrap_executable(cpack "${cpack_command}")
   cpack(${ARGN})
   return_ans()
-endfunction() 
+endfunction()

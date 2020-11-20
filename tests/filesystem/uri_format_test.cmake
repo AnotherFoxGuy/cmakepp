@@ -5,9 +5,4 @@ function(test)
 
   assert("${res}" STREQUAL "c:/test/a b/test.txt")
 
-
-
 endfunction()
-
-
-

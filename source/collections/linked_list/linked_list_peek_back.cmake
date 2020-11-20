@@ -7,7 +7,7 @@ function(linked_list_peek_back linked_list)
 
   if("${ARGN}" STREQUAL "--node")
     return(${tail})
-  endif() 
+  endif()
 
   address_get("${tail}")
   return_ans()

@@ -8,7 +8,6 @@ function(test)
   ans(res)
   assert(NOT res)
 
-
   index_range(-1 -1)
   ans(res)
   assert(NOT res)

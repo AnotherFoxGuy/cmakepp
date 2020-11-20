@@ -1,7 +1,7 @@
-## `(<event-id...>)-><event tracker>`
-##
-## sets up a function which listens only to the specified events
-## 
+# `(<event-id...>)-><event tracker>`
+#
+# sets up a function which listens only to the specified events
+#
 function(events_track)
   function_new()
   ans(function_name)
@@ -9,7 +9,8 @@ function(events_track)
   map_new()
   ans(map)
 
-  eval("
+  eval(
+    "
     function(${function_name})
       map_new()
       ans(event_args)

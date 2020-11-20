@@ -1,7 +1,5 @@
+function(csv_serialize)
+  set(args ${ARGN})
+  message(FATAL_ERROR)
 
-
-  function(csv_serialize )
-    set(args ${ARGN})
-    message(FATAL_ERROR)
-
-  endfunction()
+endfunction()

@@ -1,6 +1,5 @@
-
-# creates a shell script file containing the specified code and the correct extesion to execute
-# with execute_process
+# creates a shell script file containing the specified code and the correct
+# extesion to execute with execute_process
 function(shell_script_create path code)
   if(NOT ARGN)
     shell_get()
@@ -24,6 +23,6 @@ function(shell_script_create path code)
     message(WARNING "shell not supported: '${shell}' ")
     return()
   endif()
-    fwrite("${path}" "${code}")
-    return_ref(path)
+  fwrite("${path}" "${code}")
+  return_ref(path)
 endfunction()

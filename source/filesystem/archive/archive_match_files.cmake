@@ -1,5 +1,5 @@
-## returns all files which match the specified regex
-## the regex must match the whole filename
+# returns all files which match the specified regex the regex must match the
+# whole filename
 function(archive_match_files archive regex)
   set(args ${ARGN})
 
@@ -12,7 +12,6 @@ function(archive_match_files archive regex)
 
   mime_type("${archive}")
   ans(types)
-
 
   if("${types}" MATCHES "application/x-gzip")
 

@@ -1,6 +1,6 @@
-## `()-> <string..>`
-##
-## returns a list of available generators on current system
+# `()-> <string..>`
+#
+# returns a list of available generators on current system
 function(cmake_generator_list)
   cmake_lean(--help)
   ans(help_text)
@@ -12,7 +12,6 @@ function(cmake_generator_list)
   if("${help_text}" MATCHES "\nGenerators\n\n[^\n]*\n(.*)")
     set(generators_text "${CMAKE_MATCH_1}")
   endif()
-
 
   string(REGEX MATCHALL "(^|\n)  [^ \t][^=]*=" generators "${generators_text}")
   set(result)

@@ -1,15 +1,10 @@
 function(test)
 
-
-
-
-
   set(nullSet)
   set(oneSet a)
   set(setA a b c)
   set(setB a b c)
-  set(setC a b )
-
+  set(setC a b)
 
   set_isequal(nullSet nullSet)
   ans(res)
@@ -30,12 +25,5 @@ function(test)
   set_isequal(setB setC)
   ans(res)
   assert(NOT res)
-
-
-
-
-
-
-
 
 endfunction()

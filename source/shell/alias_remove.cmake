@@ -1,4 +1,3 @@
-
 function(alias_remove name)
   path("${CMAKE_CURRENT_LIST_DIR}/../bin")
   ans(path)

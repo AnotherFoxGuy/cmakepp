@@ -1,7 +1,18 @@
 function(test)
 
   set(lstA a b c d)
-  set(lstB a a b a c a b c c d d)
+  set(lstB
+      a
+      a
+      b
+      a
+      c
+      a
+      b
+      c
+      c
+      d
+      d)
   set(lstC a)
   set(lstD)
 
@@ -20,6 +31,5 @@ function(test)
   list_unique(lstD)
   ans(res)
   assert(${res} ISNULL)
-
 
 endfunction()

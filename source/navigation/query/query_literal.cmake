@@ -1,19 +1,15 @@
-
-
 function(query_literal)
-
 
   query_literal_definition_add(bool query_literal_bool "^((true)|(false))$")
   query_literal_definition_add(regex query_literal_regex "^/(.+)/$")
   query_literal_definition_add(gt query_literal_gt "^>([^=].*)")
   query_literal_definition_add(lt query_literal_lt "^<([^=].*)")
   query_literal_definition_add(eq query_literal_eq "^=([^=].*)")
-  query_literal_definition_add(match query_literal_match "^\\?/(.+)/$" )
-  query_literal_definition_add(strequal  query_literal_strequal "(.+)")  
-  query_literal_definition_add(where query_literal_where "" )
+  query_literal_definition_add(match query_literal_match "^\\?/(.+)/$")
+  query_literal_definition_add(strequal query_literal_strequal "(.+)")
+  query_literal_definition_add(where query_literal_where "")
 
-    
-  function(query_literal query_literal_instance )
+  function(query_literal query_literal_instance)
     if("${query_literal_instance}_" STREQUAL "_")
       return()
     endif()
@@ -31,7 +27,7 @@ function(query_literal)
     else()
       # is predicate?
       if(false)
-        
+
       else()
         query_literal_definitions_with_regex()
         ans(definitions)
@@ -42,24 +38,19 @@ function(query_literal)
           if("${query_literal_instance}" MATCHES "${regex}")
             set(query_literal_input ${CMAKE_MATCH_1})
           endif()
-        #   print_vars(query_literal_input query_literal_instance regex replace)
+          # print_vars(query_literal_input query_literal_instance regex replace)
           if(NOT "${query_literal_input}_" STREQUAL "_")
             set(query_literal_definition ${def})
             break()
           endif()
         endforeach()
 
-        # if("${query_literal_instance}" MATCHES "^(true)|(false)$")
-        #   ## boolish
-        #   map_new()
-        #   ans(query_literal_definition)
-        #   map_set(${query_literal_definition} bool ${query_literal_instance})
-        # else()
-        #   ## just a value -> strequal
-        #   map_new()
-        #   ans(query_literal_definition)
-        #   map_set(${query_literal_definition} strequal ${query_literal_instance})
-        # endif()
+        # if("${query_literal_instance}" MATCHES "^(true)|(false)$") ## boolish
+        # map_new() ans(query_literal_definition)
+        # map_set(${query_literal_definition} bool ${query_literal_instance})
+        # else() ## just a value -> strequal map_new()
+        # ans(query_literal_definition) map_set(${query_literal_definition}
+        # strequal ${query_literal_instance}) endif()
       endif()
     endif()
     if(NOT query_literal_definition)
@@ -76,8 +67,9 @@ function(query_literal)
       set(alias ${ARGN})
     endif()
 
-    ## create a curried function
-    eval( "
+    # create a curried function
+    eval(
+      "
     function(${alias})
       ${query_literal_function}(\"${query_literal_input}\" \${ARGN})
       set(__ans \${__ans} PARENT_SCOPE)

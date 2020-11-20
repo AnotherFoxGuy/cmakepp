@@ -30,21 +30,21 @@ function(test)
   set(res "")
   # Empty input string
   set(input "")
-  string_repeat("${input}" 3 )
+  string_repeat("${input}" 3)
   ans(res)
   assert("${res}_" STREQUAL "_")
 
   set(res "")
   # 0 repeat, returns empty string
   set(input "a")
-  string_repeat("${input}" 0 )
+  string_repeat("${input}" 0)
   ans(res)
   assert("${res}_" STREQUAL "_")
 
   set(res "")
   # 0 repeat and empty input string, returns empty string
   set(input "")
-  string_repeat("${input}" 0 )
+  string_repeat("${input}" 0)
   ans(res)
   assert("${res}_" STREQUAL "_")
 

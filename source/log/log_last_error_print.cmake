@@ -1,7 +1,7 @@
-## `log_last_error_print()-><void>`
-##
-## prints the last error message to the console  
-##
+# `log_last_error_print()-><void>`
+#
+# prints the last error message to the console
+#
 function(log_last_error_print)
   log_last_error_entry()
   ans(entry)

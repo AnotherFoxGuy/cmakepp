@@ -1,9 +1,8 @@
-
 macro(arguments_extract __arg_begin __arg_end)
- set(__arg_refs ${ARGN})
+  set(__arg_refs ${ARGN})
   if(${__arg_end} GREATER ${__arg_begin})
     math(EXPR __last_arg_index "${__arg_end} - 1")
-    foreach(i RANGE ${__arg_begin} ${__last_arg_index} )
+    foreach(i RANGE ${__arg_begin} ${__last_arg_index})
       if(NOT __arg_refs)
         break()
       endif()

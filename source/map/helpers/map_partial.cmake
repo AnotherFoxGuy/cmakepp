@@ -5,7 +5,6 @@ function(test)
   obj_set(${obj} "test2" "val2")
   obj_set(${obj} "test3" "val3")
 
-
   obj_pick("${obj}" test1 test3)
   ans(res)
   assert(DEREF {res.test1} STREQUAL "val1")
@@ -15,6 +14,5 @@ function(test)
   ans(res)
   assert(res)
   assert(DEREF "_{res.test4}" STREQUAL "_")
-
 
 endfunction()

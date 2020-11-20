@@ -1,4 +1,4 @@
-## returns the list of known timers
+# returns the list of known timers
 function(timers_get)
   map_keys(__timers)
   ans(timers)

@@ -1,12 +1,18 @@
 function(test)
 
-  set(lstA a b c d e f g)
+  set(lstA
+      a
+      b
+      c
+      d
+      e
+      f
+      g)
   set(lstB)
 
   list_find(lstA d)
   ans(res)
   assert("${res}" EQUAL 3)
-
 
   list_find(lstA a)
   ans(res)

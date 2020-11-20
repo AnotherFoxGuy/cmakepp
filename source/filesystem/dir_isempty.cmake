@@ -1,4 +1,4 @@
-## returns true iff specified path does not contain any files
+# returns true iff specified path does not contain any files
 function(dir_isempty path)
   ls("${path}")
   ans(files)

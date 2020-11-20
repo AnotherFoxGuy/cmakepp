@@ -1,4 +1,3 @@
-
 function(value_range_get value range)
   list(LENGTH value length)
   if("${range}" MATCHES "^(0|([1-9][0-9]*))$")
@@ -12,4 +11,3 @@ function(value_range_get value range)
   list_range_get(value "${range}")
   return_ans()
 endfunction()
-

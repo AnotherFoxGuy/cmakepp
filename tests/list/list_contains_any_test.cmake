@@ -1,9 +1,5 @@
 function(test)
 
-
-
-
-
   set(lstA)
   set(lstB a)
   set(lstC a b c)
@@ -44,7 +40,7 @@ function(test)
   ans(res)
   assert(res)
 
-  list_contains_any(lstC a c )
+  list_contains_any(lstC a c)
   ans(res)
   assert(res)
 

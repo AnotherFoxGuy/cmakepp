@@ -4,7 +4,7 @@ function(test)
   ans(res)
   assert(NOT res)
 
-  anonymous_function(() return(hi))
+  anonymous_function(() return (hi))
   ans(res)
   assert(res)
   is_anonymous_function("${res}")

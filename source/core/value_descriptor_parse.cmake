@@ -1,14 +1,5 @@
-# creates a value descriptor
-# available options are
-# REQUIRED
-# available Single Value args
-# DISPLAY_NAME
-# DESCRIPTION
-# MIN
-# MAX
-# Multi value args
-# LABELS
-# DEFAULT 
+# creates a value descriptor available options are REQUIRED available Single
+# Value args DISPLAY_NAME DESCRIPTION MIN MAX Multi value args LABELS DEFAULT
 
 function(value_descriptor_parse id)
   set(ismap)
@@ -18,7 +9,7 @@ function(value_descriptor_parse id)
     # it might be a map
     list_peek_front(args)
     ans(first)
-    is_map("${first}" )
+    is_map("${first}")
     ans(ismap)
 
     if(ismap)
@@ -31,7 +22,7 @@ function(value_descriptor_parse id)
     map_new()
     ans(descriptor)
   endif()
-  
+
   # set default values
   map_navigate_set_if_missing("descriptor.labels" "${id}")
   map_navigate_set_if_missing("descriptor.displayName" "${id}")
@@ -44,7 +35,8 @@ function(value_descriptor_parse id)
     return(${descriptor})
   endif()
 
-  cmake_parse_arguments("" "REQUIRED" "DISPLAY_NAME;DESCRIPTION;MIN;MAX" "LABELS;DEFAULT" ${ARGN})
+  cmake_parse_arguments("" "REQUIRED" "DISPLAY_NAME;DESCRIPTION;MIN;MAX"
+                        "LABELS;DEFAULT" ${ARGN})
 
   if(_DISPLAY_NAME)
     map_navigate_set(descriptor.displayName "${_DISPLAY_NAME}")
@@ -53,14 +45,13 @@ function(value_descriptor_parse id)
   if(_DESCRIPTION)
     map_navigate_set(descriptor.description "${_DESCRIPTION}")
   endif()
-  #message("_MIN ${_MIN}")
+  # message("_MIN ${_MIN}")
   if("_${_MIN}" MATCHES "^_[0-9]+$")
     map_navigate_set(descriptor.min "${_MIN}")
   endif()
 
-
-#  message("_MAX ${_MAX}")
-  if("_${_MAX}" MATCHES "^_[0-9]+|\\*$")        
+  # message("_MAX ${_MAX}")
+  if("_${_MAX}" MATCHES "^_[0-9]+|\\*$")
     map_navigate_set(descriptor.max "${_MAX}")
   endif()
 

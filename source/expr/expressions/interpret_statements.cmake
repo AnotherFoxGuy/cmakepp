@@ -12,11 +12,8 @@ function(interpret_statements tokens)
   map_tryget("${last}" argument)
   ans(last_argument)
 
-
-  
   set(ast ${separation})
   map_set(${ast} argument "${last_argument}")
-
 
   return(${ast})
 endfunction()

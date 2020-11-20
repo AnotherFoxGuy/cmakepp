@@ -1,6 +1,5 @@
 # removes the specified paths if -r is passed it will also remove subdirectories
-# rm([-r] [<path> ...])
-# files names are qualified using pwd() see path()
+# rm([-r] [<path> ...]) files names are qualified using pwd() see path()
 function(rm)
   set(args ${ARGN})
   list_extract_flag(args -r)
@@ -17,4 +16,3 @@ function(rm)
   file(${cmd} "${paths}")
   return()
 endfunction()
-

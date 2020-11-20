@@ -1,4 +1,3 @@
-
 function(cmake_script_parse_file path)
   fread("${path}")
   ans(content)

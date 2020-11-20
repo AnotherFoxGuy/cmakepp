@@ -1,7 +1,5 @@
-
-## list_split_at()
-##
-##
+# list_split_at()
+#
 function(list_split_at lhs rhs __lst key)
   list(LENGTH ${__lst} len)
   if(NOT len)
@@ -14,8 +12,12 @@ function(list_split_at lhs rhs __lst key)
 
   list_split(${lhs} ${rhs} ${__lst} ${idx})
 
-  set(${lhs} ${${lhs}} PARENT_SCOPE)
-  set(${rhs} ${${rhs}} PARENT_SCOPE)
+  set(${lhs}
+      ${${lhs}}
+      PARENT_SCOPE)
+  set(${rhs}
+      ${${rhs}}
+      PARENT_SCOPE)
 
   return()
 endfunction()

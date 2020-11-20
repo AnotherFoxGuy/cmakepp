@@ -1,6 +1,6 @@
-## `(<linked list> <where:<linked list node>> <any>...)-><linked list node>`
-##  
-## replaces the specified linked list node and returns new node
+# `(<linked list> <where:<linked list node>> <any>...)-><linked list node>`
+#
+# replaces the specified linked list node and returns new node
 function(linked_list_replace linked_list where)
   map_import_properties(${where} previous next)
   linked_list_node_new(${ARGN})

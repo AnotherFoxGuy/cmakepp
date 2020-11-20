@@ -1,4 +1,3 @@
-
 function(string_cache_location cache_location key)
   cmakepp_config(temp_dir)
   ans(cache_dir)

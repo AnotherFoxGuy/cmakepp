@@ -1,5 +1,3 @@
-
-
 function(shell_path_remove path)
   shell_path_get()
   ans(paths)

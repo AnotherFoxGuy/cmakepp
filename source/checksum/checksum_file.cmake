@@ -1,8 +1,8 @@
-## `(<file> [--algorithm <checksum algorithm> = "MD5"])-><checksum>`
-##
-## calculates the checksum for the specified file delegates the
-## call to `CMake`'s file(<algorithm>) function
-## 
+# `(<file> [--algorithm <checksum algorithm> = "MD5"])-><checksum>`
+#
+# calculates the checksum for the specified file delegates the call to `CMake`'s
+# file(<algorithm>) function
+#
 function(checksum_file file)
 
   path_qualify(file)
@@ -16,5 +16,3 @@ function(checksum_file file)
   file(${checksum_alg} "${file}" checksum)
   return_ref(checksum)
 endfunction()
-
-

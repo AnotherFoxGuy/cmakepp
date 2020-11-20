@@ -1,5 +1,3 @@
-
-
 # deserializes the specified file
 function(qm_deserialize_file quick_map_file)
   if(NOT EXISTS "${quick_map_file}")

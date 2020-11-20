@@ -2,7 +2,8 @@ function(next_id)
   address_new()
   ans(global_ref)
   address_set("${global_ref}" 0)
-  eval("
+  eval(
+    "
   function(next_id)
     address_get(${global_ref})
     math(EXPR __ans \"\${__ans} + 1\")

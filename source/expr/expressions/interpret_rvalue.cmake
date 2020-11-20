@@ -1,5 +1,4 @@
-
-## maybe use some kind of quick heuristic?
+# maybe use some kind of quick heuristic?
 function(interpret_rvalue tokens)
   set(inner_exceptions)
   interpret_paren("${tokens}")
@@ -37,8 +36,6 @@ function(interpret_rvalue tokens)
   endif()
   ans_append(inner_exceptions)
 
-
-
   interpret_literal("${tokens}")
   ans(ast)
   if(ast)
@@ -52,7 +49,7 @@ function(interpret_rvalue tokens)
     return(${ast})
   endif()
   ans_append(inner_exceptions)
-  
+
   interpret_bind_call("${tokens}")
   ans(ast)
   if(ast)
@@ -81,9 +78,7 @@ function(interpret_rvalue tokens)
   endif()
   ans_append(inner_exceptions)
 
-
-  ## needs to come before navigation rvalue because $ needs to bind
-  ## stronger
+  # needs to come before navigation rvalue because $ needs to bind stronger
   interpret_scope_rvalue("${tokens}")
   ans(ast)
   if(ast)
@@ -105,11 +100,6 @@ function(interpret_rvalue tokens)
   endif()
   ans_append(inner_exceptions)
 
-
-
-
-  throw("could not interpret rvalue" ${inner_exceptions} --function interpret_rvalue )
+  throw("could not interpret rvalue" ${inner_exceptions} --function
+        interpret_rvalue)
 endfunction()
-
-
-

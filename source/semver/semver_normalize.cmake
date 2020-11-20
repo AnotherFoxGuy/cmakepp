@@ -1,6 +1,6 @@
-# returns a normalized version for a string or a object
-# sets all missing version numbers to 0
-# even an empty string is transformed to a version: it will be version 0.0.0 
+# returns a normalized version for a string or a object sets all missing version
+# numbers to 0 even an empty string is transformed to a version: it will be
+# version 0.0.0
 function(semver_normalize version)
   semver("${version}")
   ans(version)
@@ -14,21 +14,19 @@ function(semver_normalize version)
   ans(current)
   if(NOT current)
     nav(version.major 0)
-  endif() 
-
+  endif()
 
   nav(version.minor)
   ans(current)
   if(NOT current)
     nav(version.minor 0)
-  endif() 
-
+  endif()
 
   nav(version.patch)
   ans(current)
   if(NOT current)
     nav(version.patch 0)
-  endif() 
+  endif()
 
   return(${version})
 endfunction()

@@ -1,8 +1,7 @@
-# deserializes a csv string 
-# currently expects the first line to be the column headers
-# rows are separated by \n or \r\n
-# every value is delimited by double quoutes ""
-function(csv_deserialize csv) 
+# deserializes a csv string currently expects the first line to be the column
+# headers rows are separated by \n or \r\n every value is delimited by double
+# quoutes ""
+function(csv_deserialize csv)
   set(args ${ARGN})
   list_extract_flag(args --headers)
   ans(first_line_headers)
@@ -29,12 +28,12 @@ function(csv_deserialize csv)
 
       string_take(line ",")
       ans(comma)
-        
+
       if(first)
         if(first_line_headers)
           list(APPEND headers "${val}")
         else()
-          list(APPEND headers ${i})            
+          list(APPEND headers ${i})
         endif()
         math(EXPR i "${i} + 1")
       else()
@@ -46,10 +45,10 @@ function(csv_deserialize csv)
     endwhile()
     if(NOT first)
       list(APPEND res ${current_line})
-    elseif(NOT  first_line_headers)
+    elseif(NOT first_line_headers)
       list(APPEND res ${current_line})
     endif()
-    if(first)        
+    if(first)
       set(first false)
     endif()
 

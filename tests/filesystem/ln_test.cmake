@@ -1,6 +1,5 @@
 function(test)
 
-  
   fwrite("dir1/test.txt" "abc")
 
   ln("dir1/test.txt" "kaka.txt")
@@ -14,7 +13,6 @@ function(test)
   fread("dir1/test.txt")
   ans(res)
   assert("${res}" STREQUAL "ksd")
-
 
   fwrite("dir1/test.txt" abc)
   fread("kaka.txt")
@@ -32,21 +30,17 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "abc")
 
-
   fwrite("${test_dir}/dir1/test.txt" "cde")
 
   fread("${test_dir}/dir2/test.txt")
   ans(res)
   assert("${res}" STREQUAL "cde")
 
-  
-
   fwrite("${test_dir}/dir2/test.txt" "ekd")
 
   fread("${test_dir}/dir1/test.txt")
   ans(res)
   assert("${res}" STREQUAL "ekd")
-
 
   ln("dir1/test.txt")
 
@@ -55,7 +49,5 @@ function(test)
   ans(res)
 
   assert("${res}" STREQUAL "ekd")
-
-
 
 endfunction()

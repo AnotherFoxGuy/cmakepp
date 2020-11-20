@@ -1,4 +1,3 @@
-
 function(try_call)
   set(args ${ARGN})
   list_pop_front(args)

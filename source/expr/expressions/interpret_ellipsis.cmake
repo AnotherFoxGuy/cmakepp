@@ -1,4 +1,3 @@
-
 function(interpret_ellipsis tokens)
   set(dots)
   list_pop_back(tokens)
@@ -11,21 +10,17 @@ function(interpret_ellipsis tokens)
   list_select_property(dots type)
   ans(dot_types)
 
-  if(NOT "${dot_types}" STREQUAL "dot;dot;dot")    
+  if(NOT "${dot_types}" STREQUAL "dot;dot;dot")
     throw("not ellipsis: ${dot_types}")
   endif()
 
   if(NOT tokens)
     throw("no left hand rvalue")
   endif()
-  
 
   interpret_rvalue("${tokens}")
   rethrow()
   ans(rvalue)
-
-
-
 
   map_tryget("${rvalue}" ref)
   ans(rvalue_ref)
@@ -42,19 +37,16 @@ function(interpret_ellipsis tokens)
   map_tryget("${rvalue}" pure_value)
   ans(rvalue_pure_value)
 
-
   ast_new(
     "${tokens}"
     ellipsis
     "${rvalue_value_type}"
     "${rvalue_ref}"
-    ""                      # code
+    "" # code
     "${rvalue_value}"
     "${rvalue_const}"
     "${rvalue_pure_value}"
-    "${rvalue}"
-    )
-
+    "${rvalue}")
 
   ans(ast)
   return_ref(ast)

@@ -7,6 +7,4 @@ function(test)
   assert(res)
   assert(${lstA} EQUALS a b e)
 
-  
-  
 endfunction()

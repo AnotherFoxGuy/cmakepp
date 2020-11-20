@@ -1,10 +1,10 @@
-## uncompresses the file specified into the current pwd()
+# uncompresses the file specified into the current pwd()
 function(uncompress file)
   mime_type("${file}")
   ans(types)
 
   if("${types}" MATCHES "application/x-gzip")
-    dir_ensure_exists(".")  
+    dir_ensure_exists(".")
     path_qualify(file)
     tar_lean(xzf "${file}" ${ARGN})
     ans_extract(error)
@@ -13,8 +13,3 @@ function(uncompress file)
     message(FATAL_ERROR "unsupported compression: '${types}'")
   endif()
 endfunction()
-
-
-
-
-

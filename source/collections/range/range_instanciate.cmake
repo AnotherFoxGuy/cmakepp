@@ -1,8 +1,8 @@
-## `(<length:<int>> <~range...>)-><instanciated range...>`
-## 
-## instanciates a range.  A uninstanciated range contains anchors
-## these are removed when a length is specified (`n`)
-## returns a valid range  with no anchors
+# `(<length:<int>> <~range...>)-><instanciated range...>`
+#
+# instanciates a range.  A uninstanciated range contains anchors these are
+# removed when a length is specified (`n`) returns a valid range  with no
+# anchors
 function(range_instanciate length)
   range_parse(${ARGN})
   ans(range)
@@ -30,7 +30,6 @@ function(range_instanciate length)
 
     math(EXPR range_length "${range_length}")
 
-
     string(REPLACE "n" "${length}" end "${end}")
     string(REPLACE "$" "${last}" end "${end}")
 
@@ -46,8 +45,12 @@ function(range_instanciate length)
       message(FATAL_ERROR "invalid range begin: ${begin}")
     endif()
 
-    list(APPEND result "${begin}:${end}:${increment}:${begin_inclusivity}:${end_inclusivity}:${range_length}:${reverse}")  
+    list(
+      APPEND
+      result
+      "${begin}:${end}:${increment}:${begin_inclusivity}:${end_inclusivity}:${range_length}:${reverse}"
+    )
   endforeach()
- # message("res ${result}")
+  # message("res ${result}")
   return_ref(result)
 endfunction()

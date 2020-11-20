@@ -1,6 +1,6 @@
-## `(<promise>)-><bool>`
-##
-## returns true if the promise is resolved
+# `(<promise>)-><bool>`
+#
+# returns true if the promise is resolved
 function(promise_is_resolved promise)
   promise_state("${promise}")
   ans(state)
@@ -9,4 +9,3 @@ function(promise_is_resolved promise)
   endif()
   return(false)
 endfunction()
-

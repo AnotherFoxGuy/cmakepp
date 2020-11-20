@@ -4,11 +4,8 @@ function(test)
 
   endfunction()
 
-
-
   function(unsafe_scope_unlock)
 
   endfunction()
-
 
 endfunction()

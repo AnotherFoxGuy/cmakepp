@@ -1,6 +1,6 @@
-## `()->{ <<identifier open>:<identifier close>...>... }`
-##
-## returns a map which contains all nesting pairs in cmake
+# `()->{ <<identifier open>:<identifier close>...>... }`
+#
+# returns a map which contains all nesting pairs in cmake
 function(cmake_ast_nesting_pairs)
   map_new()
   ans(nesting_start_end_pairs)
@@ -11,6 +11,6 @@ function(cmake_ast_nesting_pairs)
   map_set(${nesting_start_end_pairs} else endif)
   map_set(${nesting_start_end_pairs} macro endmacro)
   map_set(${nesting_start_end_pairs} foreach endforeach)
- 
- return_ref(nesting_start_end_pairs)
+
+  return_ref(nesting_start_end_pairs)
 endfunction()

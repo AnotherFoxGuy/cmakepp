@@ -2,8 +2,10 @@ function(test)
   index_range(0 8)
   ans(res)
 
-  ## select those elements which are uneven
-  list_where(res "
+  # select those elements which are uneven
+  list_where(
+    res
+    "
     function(i i)
       return_math(\"\${i} % 2\")
     endfunction()")

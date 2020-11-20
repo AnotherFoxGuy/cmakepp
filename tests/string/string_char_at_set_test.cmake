@@ -8,8 +8,7 @@ function(test)
   assert("${res}" STREQUAL "hallo")
 
   set(res "")
-  # Test for negative indexing
-  # index of -2 is last char of string
+  # Test for negative indexing index of -2 is last char of string
   string_char_at_set(${str} -2 a)
   ans(res)
   assert("${res}" STREQUAL "hella")
@@ -35,8 +34,7 @@ function(test)
   set(str "hello three words")
 
   set(res "")
-  # Test for negative indexing
-  # Multi word string
+  # Test for negative indexing Multi word string
   string_char_at_set(${str} -2 e)
   ans(res)
   assert("${res}" STREQUAL "hello three worde")

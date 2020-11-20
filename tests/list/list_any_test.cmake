@@ -1,11 +1,11 @@
 function(test)
 
-
-
   index_range(0 5)
   ans(range)
 
-  list_any(range "
+  list_any(
+    range
+    "
     function(func i)
       if(\${i} EQUAL 3)
         return(true)
@@ -17,10 +17,9 @@ function(test)
   ans(res)
   assert(res)
 
-
-
-
-  list_any(range "function(func i)
+  list_any(
+    range
+    "function(func i)
       if(\${i} EQUAL 98)
         return(true)
       endif()
@@ -30,7 +29,5 @@ function(test)
 
   ans(res)
   assert(NOT res)
-
-
 
 endfunction()

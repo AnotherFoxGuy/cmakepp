@@ -1,16 +1,15 @@
 function(expr_eval_cmake_identifier)
-  #message("cmake_identifier")
-  #address_print(${ast})
-  map_get(${ast}  children)
+  # message("cmake_identifier") address_print(${ast})
+  map_get(${ast} children)
   ans(identifier)
-  map_get(${identifier}  data)
+  map_get(${identifier} data)
   ans(identifier)
 
   if(NOT "${identifier}" AND COMMAND "${identifier}")
-    
+
   else()
     set(identifier "${${identifier}}")
   endif()
-#  message("returning ${identifier}")
+  # message("returning ${identifier}")
   return_ref(identifier)
 endfunction()

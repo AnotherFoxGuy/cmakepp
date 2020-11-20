@@ -1,6 +1,4 @@
-
-
-## returns a map of known mime types
+# returns a map of known mime types
 function(mime_type_map)
   map_new()
   ans(mime_type_map)
@@ -12,8 +10,6 @@ function(mime_type_map)
   endfunction()
 
   mime_types_register_default()
-
-
 
   mime_type_map()
   return_ans()

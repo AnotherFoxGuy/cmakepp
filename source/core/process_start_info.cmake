@@ -1,5 +1,5 @@
-## takes a ~<command line> or ~<process start info>
-## and returns a valid  process start info
+# takes a ~<command line> or ~<process start info> and returns a valid  process
+# start info
 function(process_start_info)
   set(__args ${ARGN})
 
@@ -13,7 +13,6 @@ function(process_start_info)
     return()
   endif()
 
-
   obj("${ARGN}")
   ans(obj)
 
@@ -21,7 +20,6 @@ function(process_start_info)
     command_line(${__args})
     ans(obj)
   endif()
-
 
   if(NOT obj)
     message(FATAL_ERROR "invalid process start info ${ARGN}")
@@ -45,7 +43,8 @@ function(process_start_info)
   if("${command}_" STREQUAL "_")
     set(command "${path}")
     if("${command}_" STREQUAL "_")
-      message(FATAL_ERROR "invalid <process start info> missing command property")
+      message(
+        FATAL_ERROR "invalid <process start info> missing command property")
     endif()
   endif()
 
@@ -53,12 +52,9 @@ function(process_start_info)
     set(timeout "${timeout_arg}")
   endif()
 
-  if("${timeout}_" STREQUAL "_" )
+  if("${timeout}_" STREQUAL "_")
     set(timeout -1)
   endif()
-
-
-
 
   if(cwd_arg)
     set(cwd "${cwd_arg}")
@@ -69,13 +65,15 @@ function(process_start_info)
 
   if(EXISTS "${cwd}")
     if(NOT IS_DIRECTORY "${cwd}")
-      message(FATAL_ERROR "specified working directory path is a file not a directory: '${cwd}'")
+      message(
+        FATAL_ERROR
+          "specified working directory path is a file not a directory: '${cwd}'"
+      )
     endif()
   else()
-    message(FATAL_ERROR "specified workind directory path does not exist : '${cwd}'")
+    message(
+      FATAL_ERROR "specified workind directory path does not exist : '${cwd}'")
   endif()
-
-
 
   # create a map from the normalized input vars
   map_capture_new(command args cwd timeout)

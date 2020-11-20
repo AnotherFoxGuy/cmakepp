@@ -1,10 +1,10 @@
-
-## `()-><ms guid>`
-##
-## queries the windows registry for packages installed with msi
-## returns their ids (which are microsoft guid)
+# `()-><ms guid>`
+#
+# queries the windows registry for packages installed with msi returns their ids
+# (which are microsoft guid)
 function(msi_package_ids)
-  reg_lean(query "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall")
+  reg_lean(query
+           "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall")
   ans_extract(error)
   ans(entries)
   if(error)

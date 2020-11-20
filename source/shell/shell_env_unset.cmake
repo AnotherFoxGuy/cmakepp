@@ -1,6 +1,3 @@
-
-
-
 # removes a system wide environment variable
 function(shell_env_unset key)
   # set to nothing
@@ -10,6 +7,7 @@ function(shell_env_unset key)
   if("${shell}_" STREQUAL "cmd_")
     shell("REG delete HKCU\Environment /V ${key}")
   else()
-    message(WARNING "shell_env_unset not implemented for anything else than windows")
+    message(
+      WARNING "shell_env_unset not implemented for anything else than windows")
   endif()
 endfunction()

@@ -17,13 +17,11 @@ function(map)
   map_new()
   ans(new_map)
 
-
   # add map to existing map
   if(current_map)
     key("${current_key}")
     val("${new_map}")
   endif()
-
 
   # push new map and new current key on stacks
   stack_push(:quick_map_map_stack ${new_map})
@@ -32,12 +30,9 @@ function(map)
   return_ref(new_map)
 endfunction()
 
-
-
-## map() -> <address>
-## 
-## begins a new map returning its address
-## map needs to be ended via end()
+# map() -> <address>
+#
+# begins a new map returning its address map needs to be ended via end()
 function(map)
   if(NOT ARGN STREQUAL "")
     key("${ARGN}")

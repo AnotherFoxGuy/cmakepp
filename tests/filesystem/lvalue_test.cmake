@@ -1,17 +1,14 @@
 function(test)
 
-
-
-
-
-
   # ref property? indexer
   function(lvalue)
     list(LENGTH ARGN len)
     if(${len} EQUAL 4)
-      set(__ans ${ARGN} PARENT_SCOPE)
+      set(__ans
+          ${ARGN}
+          PARENT_SCOPE)
     endif()
-    
+
     string(REGEX REPLACE "([a-zA-Z0-9_\\-]+).*" "\\1" ref "${ARGN}")
     string(REGEX REPLACE "[^\\[]*\\[(.*)\\]" "\\1" indexer "${ARGN}")
     if("${indexer}" STREQUAL "${ARGN}")
@@ -27,8 +24,8 @@ function(test)
         if("${indexer}_" STREQUAL _)
           math(EXPR indexer "${low} + 1")
         elseif(NOT "${indexer}_" STREQUAL "*_")
-          matH(EXPR indexer "${indexer} + 1")
-        endif()          
+          math(EXPR indexer "${indexer} + 1")
+        endif()
         set(indexer "${low}" "${indexer}")
       endif()
     endif()
@@ -40,19 +37,13 @@ function(test)
     return_ref(res)
   endfunction()
 
-
-
-
-
-
-
   macro(lvalue_unpack __lvalue)
     lvalue(${${__lvalue}})
     ans(${__lvalue})
     list(GET ${__lvalue} 0 ${__lvalue}.ref)
     list(GET ${__lvalue} 1 2 ${__lvalue}.indexer)
     list(GET ${__lvalue} 3 ${__lvalue}.prop)
-    if("${${__lvalue}.prop}_" STREQUAL "_" )
+    if("${${__lvalue}.prop}_" STREQUAL "_")
       set(${__lvalue}.has_prop false)
     else()
       set(${__lvalue}.has_prop true)
@@ -72,25 +63,18 @@ function(test)
       set(val ${${lvalue.ref}})
     endif()
 
-
     list_slice(val ${lvalue.indexer})
     ans(result)
 
     return_ref(result)
 
-
-
-
   endfunction()
-
-
-
 
   function(lvalue_set lvalue)
     lvalue_unpack(lvalue)
     if(lvalue.has_prop)
       if(NOT lvalue.is_map)
-        ## cause an error here if path should not be created
+        # cause an error here if path should not be created
         map_new()
         ans(${lvalue.ref})
       endif()
@@ -101,18 +85,18 @@ function(test)
     else()
       list_replace_slice(${lvalue.ref} ${lvalue.indexer} ${ARGN})
     endif()
-    set(${lvalue.ref} ${${lvalue.ref}} PARENT_SCOPE)
+    set(${lvalue.ref}
+        ${${lvalue.ref}}
+        PARENT_SCOPE)
   endfunction()
-
-
-
-
 
   return()
 
   set(uut "prop")
   arg_unpack(uut)
-  message("is_range '${uut.is_range}', is_property '${uut.is_property}', range '${uut.range}', '${uut.range.begin}:${uut.range.increment}:${uut.range.end}', property '${uut.property}'")
+  message(
+    "is_range '${uut.is_range}', is_property '${uut.is_property}', range '${uut.range}', '${uut.range.begin}:${uut.range.increment}:${uut.range.end}', property '${uut.property}'"
+  )
 
   return()
   set(asd "abc")
@@ -130,7 +114,7 @@ function(test)
   assert(${arg.range} EQUALS *:*)
   assert(${arg.property} ISNULL)
   assert(${arg.is_range} EQUALS true)
-  assert(${arg.is_property} EQUALS false) 
+  assert(${arg.is_property} EQUALS false)
 
   set(asd "[3]")
   arg_unpack(asd)
@@ -138,7 +122,6 @@ function(test)
   assert(${arg.property} ISNULL)
   assert(${arg.is_range} EQUALS true)
   assert(${arg.is_property} EQUALS false)
-
 
   set(asd [3-4])
   arg_unpack(asd)
@@ -155,23 +138,15 @@ function(test)
   function(path_create)
     map_new()
     ans(current_map)
-    
-
 
     foreach(arg ${ARGN})
       arg_unpack("${arg}")
 
     endforeach()
-    
 
     set(${first})
 
   endfunction()
-
-
-
-
-
 
   return()
 
@@ -180,7 +155,6 @@ function(test)
     map_new()
     ans(root_map)
     map_set(${root_map} ${first} ${${first}})
-
 
     set(current_map ${root_map})
     set(current_prop ${first})
@@ -200,20 +174,17 @@ function(test)
         set(property "${arg}")
       endif()
 
-
-
-
     endforeach()
 
     map_set("${current_map}" "${current_prop}" "${value}")
 
-
     map_tryget(${root_map} ${first})
     ans(res)
-    set(${first} ${res} PARENT_SCOPE)
+    set(${first}
+        ${res}
+        PARENT_SCOPE)
     return()
   endfunction()
-
 
   set(a)
   lvalue_path(a b)
@@ -223,10 +194,7 @@ function(test)
   lvalue_path(a [] b)
   assert(${a} EQUALS b)
 
-
-
-
-return()
+  return()
 
   set(a)
   lvalue_set(a.b hi)
@@ -249,7 +217,6 @@ return()
   lvalue_set(a.b kakaka)
   assertf({a.b} STREQUAL kakaka)
 
-
   obj("{b:'asd'}")
   ans(a)
   lvalue_set(a.b[] kakaka)
@@ -259,7 +226,6 @@ return()
   ans(a)
   lvalue_set(a.b[1-2] a b)
   assertf({a.b} EQUALS 1 a b 4)
-
 
   obj("{b:[1,2,3,4]}")
   ans(a)
@@ -282,56 +248,53 @@ return()
   lvalue_set(a[] hello)
   assert(${a} EQUALS byby hello)
 
-
   set(a a b c)
   lvalue_set(a[1] gaga)
   assert(${a} EQUALS a gaga c)
 
   set(a a b c d)
   lvalue_set(a[1-2] 1 2 3 4)
-  assert(${a} EQUALS a 1 2 3 4 d)
+  assert(
+    ${a}
+    EQUALS
+    a
+    1
+    2
+    3
+    4
+    d)
 
   set(a k b c d)
   lvalue_set(a[1-*])
   assert(${a} EQUALS k)
 
-
-
   return()
-
-
 
   set(a 2)
   lvalue_get(a)
   ans(res)
   assert(${res} EQUAL 2)
 
-
   set(a 2 3 4)
   lvalue_get(a)
   ans(res)
   assert(${res} EQUALS 2 3 4)
-
 
   set(a 2 3 4)
   lvalue_get(a[1])
   ans(res)
   assert(${res} EQUALS 3)
 
-
   set(a 2 3 4 5)
   lvalue_get(a[1-2])
   ans(res)
   assert(${res} EQUALS 3 4)
-
-
 
   obj("{b:3}")
   ans(a)
   lvalue_get(a.b)
   ans(res)
   assert(${res} EQUALS 3)
-
 
   obj("{b:[3,4,5]}")
   ans(a)
@@ -345,19 +308,14 @@ return()
   ans(res)
   assert(${res} EQUALS 3 4 5)
 
-
-
-
-
   return()
-
 
   lvalue(a)
   ans(res)
   assert(${res} EQUALS a 0 * "")
 
   lvalue(a[2])
-  ans(res) 
+  ans(res)
   assert(${res} EQUALS a 2 3 "")
 
   lvalue(a.b)
@@ -376,12 +334,9 @@ return()
   ans(res)
   assert(${res} EQUALS a 1 * b)
 
-
   return()
 
-
   function(lvalue_set lvalue)
-
 
   endfunction()
   function(lvalue_get)
@@ -390,13 +345,11 @@ return()
 
   lvalue("{a:{b:{c:1}}}")
 
-return()
-
+  return()
 
   obj("{d:1,c:2}")
   ans(a)
   json_print(${a})
-
 
   map_path_set(a d)
 
@@ -406,22 +359,12 @@ return()
   map_path_set(x y [2] d)
 
   message("${a}")
-return()
-
-
+  return()
 
   define_test_function(test_uut map_path_set)
 
-
-  #test_uut("asd" thevar asd --print)
-  #test_uut("{a:'b'}" thevar a b)
-  #test_uut("1" thevar [] 1)
-
-
-
-
-
-
+  # test_uut("asd" thevar asd --print) test_uut("{a:'b'}" thevar a b)
+  # test_uut("1" thevar [] 1)
 
   return()
 
@@ -432,7 +375,9 @@ return()
     ans(value)
 
     if(NOT args)
-      set(${first} ${${first}} ${value} PARENT_SCOPE)
+      set(${first}
+          ${${first}} ${value}
+          PARENT_SCOPE)
       return()
     endif()
 
@@ -440,9 +385,7 @@ return()
 
     if(NOT current)
 
-
     endif()
-
 
   endfunction()
 endfunction()

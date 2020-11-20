@@ -1,16 +1,14 @@
-
 function(list_contains_any __lst)
-    if("${ARGC}" EQUAL "1")
-    ## no items specified 
+  if("${ARGC}" EQUAL "1")
+    # no items specified
     return(true)
   endif()
 
   list(LENGTH ${__lst} list_len)
   if(NOT list_len)
-    ## list is empty and items are specified -> list does not contain
+    # list is empty and items are specified -> list does not contain
     return(false)
   endif()
-
 
   foreach(item ${ARGN})
     list(FIND ${__lst} ${item} idx)
@@ -18,6 +16,6 @@ function(list_contains_any __lst)
       return(true)
     endif()
 
-  endforeach() 
+  endforeach()
   return(false)
 endfunction()

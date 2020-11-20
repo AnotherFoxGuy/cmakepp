@@ -1,6 +1,6 @@
-## `(<task>)-><bool>`
-##
-## returns true if task is complete
+# `(<task>)-><bool>`
+#
+# returns true if task is complete
 function(task_is_completed task)
   task_state("${task}")
   ans(state)

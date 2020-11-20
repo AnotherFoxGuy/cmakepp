@@ -6,4 +6,3 @@ function(anonymous_function_new code)
   eval("function${code}endfunction()")
   return_ref(function_name)
 endfunction()
-

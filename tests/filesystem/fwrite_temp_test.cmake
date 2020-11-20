@@ -1,6 +1,5 @@
 function(test)
 
-
   fwrite_temp("thedata")
   ans(path)
 
@@ -9,11 +8,8 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "thedata")
 
-
   fwrite_temp("thedata2" ".bat")
   ans(res)
   assert("${res}" MATCHES "\\.bat$")
-
-  
 
 endfunction()

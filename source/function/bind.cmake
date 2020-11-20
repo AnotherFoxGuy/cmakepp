@@ -1,13 +1,9 @@
-# is the same as function_capture.
-# deprecate one of the two
+# is the same as function_capture. deprecate one of the two
 #
-# binds variables to the function
-# by caputring their current value and storing
-# them
-# let funcA : ()->res
-# bind(funcA var1 var2)
-# will store var1 and var2 and provide them to the funcA call
-function(bind func )
+# binds variables to the function by caputring their current value and storing
+# them let funcA : ()->res bind(funcA var1 var2) will store var1 and var2 and
+# provide them to the funcA call
+function(bind func)
   cmake_parse_arguments("" "" "as" "" ${ARGN})
   if(NOT _as)
     function_new()
@@ -30,9 +26,10 @@ function(bind func )
     set(bound_args "${bound_args}\nset(${arg} \"${${arg}}\")")
   endforeach()
 
-  set(evaluate "function(${_as})
+  set(evaluate
+      "function(${_as})
 ${bound_args}
-${original_func}(\${ARGN})    
+${original_func}(\${ARGN})
 return_ans()
 endfunction()")
   set_ans("")

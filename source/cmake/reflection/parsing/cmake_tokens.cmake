@@ -1,6 +1,6 @@
-## `(<cmake code>|<cmake token>...)-><cmake token>...`
-##
-## coerces the input to a token list
+# `(<cmake code>|<cmake token>...)-><cmake token>...`
+#
+# coerces the input to a token list
 function(cmake_tokens tokens)
   string_codes()
 

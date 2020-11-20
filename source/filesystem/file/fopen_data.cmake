@@ -1,12 +1,11 @@
-##
-##
-## tries to deserialize a file file.*  
+#
+# tries to deserialize a file file.*
 function(fopen_data file)
   glob_path("${file}")
   ans(file)
 
   if(NOT EXISTS "${file}" OR IS_DIRECTORY "${file}")
-    glob("${file}.*") 
+    glob("${file}.*")
     ans(file)
     list(LENGTH file len)
     if(NOT ${len} EQUAL 1)

@@ -1,4 +1,3 @@
-
 function(stack_pop stack)
   map_tryget("${stack}" back)
   ans(current_index)

@@ -1,4 +1,4 @@
-## prints the specified file to the console
+# prints the specified file to the console
 function(fprint path)
   fread("${path}")
   ans(res)
@@ -6,11 +6,10 @@ function(fprint path)
   return()
 endfunction()
 
-
 function(fprint_try path)
   path_qualify(path)
   if(EXISTS "${path}")
     fprint("${path}")
   endif()
-  returN()
+  return()
 endfunction()

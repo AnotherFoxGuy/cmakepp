@@ -1,6 +1,4 @@
-##
-##
-##
+#
 function(query_where query)
   data("${query}")
   ans(query)
@@ -28,8 +26,6 @@ function(query_where query)
 
     query_literal("${predicate}" __query_predicate)
     ans(success)
-
-
 
     if(success)
       set(matched_values)

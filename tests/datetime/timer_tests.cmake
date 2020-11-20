@@ -13,5 +13,4 @@ function(test)
 
   timers_print_all()
 
-
 endfunction()

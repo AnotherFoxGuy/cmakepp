@@ -1,5 +1,3 @@
-
-
 function(shell_path_set)
   set(args ${ARGN})
   if(WIN32)

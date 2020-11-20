@@ -1,11 +1,11 @@
-## 
-## 
-## for special cases eval unique will create a new file for every code
-## 
+#
+# for special cases eval unique will create a new file for every code
+#
 function(eval_unique __unique_eval_code)
   mk_temp()
   ans(dir)
-  eval("
+  eval(
+    "
   function(eval_unique __unique_eval_code)
     string(MD5 file \"\${__unique_eval_code}\")
     file(WRITE \"${dir}/\${file}\" \"\${__unique_eval_code}\")
@@ -15,5 +15,3 @@ function(eval_unique __unique_eval_code)
   eval_unique("${__unique_eval_code}")
   return_ans()
 endfunction()
-
-

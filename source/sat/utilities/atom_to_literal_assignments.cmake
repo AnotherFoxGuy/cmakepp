@@ -1,7 +1,7 @@
-##
-##
+#
 function(atom_to_literal_assignments f atom_assignments)
-  map_import_properties(${f} atom_index_map atom_literal_identity_map atom_literal_negated_map)
+  map_import_properties(${f} atom_index_map atom_literal_identity_map
+                        atom_literal_negated_map)
 
   map_keys(${atom_assignments})
   ans(atoms)

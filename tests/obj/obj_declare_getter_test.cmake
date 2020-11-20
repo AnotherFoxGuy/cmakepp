@@ -10,7 +10,6 @@ function(test)
   new(TestClass)
   ans(uut)
 
-
   obj_get(${uut} someprop)
   ans(res)
   assert(${res} STREQUAL "value of someprop")
@@ -18,8 +17,5 @@ function(test)
   obj_get(${uut} someprop2)
   ans(res)
   assert(${res} STREQUAL "value of someprop2")
-
-
-
 
 endfunction()

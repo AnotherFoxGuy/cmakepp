@@ -1,8 +1,8 @@
-## `(<any>)-><bool>`
-##
-## returns true if the specified value is an event
-## an event is a ref which is callable and has an event_id
-##
+# `(<any>)-><bool>`
+#
+# returns true if the specified value is an event an event is a ref which is
+# callable and has an event_id
+#
 function(is_event event)
   is_address("${event}")
   ans(is_ref)

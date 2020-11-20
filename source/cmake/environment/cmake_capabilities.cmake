@@ -1,5 +1,3 @@
-
-
 function(cmake_capabilities)
   cmake(-E capabilities)
   ans(res)

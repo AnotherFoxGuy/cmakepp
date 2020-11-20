@@ -1,5 +1,5 @@
 macro(check_host url)
- 
+
   # expect webservice to be reachable
   http_get("${url}" --exit-code)
   ans(error)

@@ -1,4 +1,5 @@
-## parses the query field of uri and sets  the uri.params field to the parsed data
+# parses the query field of uri and sets  the uri.params field to the parsed
+# data
 function(uri_parse_query uri)
   map_tryget(${uri} query)
   ans(query)

@@ -1,4 +1,3 @@
-
 function(queue_pop queue)
   map_tryget("${queue}" front)
   ans(front)
@@ -13,4 +12,4 @@ function(queue_pop queue)
     return_ref(res)
   endif()
   return()
- endfunction()
+endfunction()

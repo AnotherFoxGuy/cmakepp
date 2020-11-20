@@ -1,4 +1,3 @@
-
 function(list_select_property __lst __prop)
   set(__result)
   foreach(__itm ${${__lst}})

@@ -1,4 +1,4 @@
-function(test) 
+function(test)
   # "lhs " should be removed in both strings
   set(in_lhs "lhs test")
   set(in_rhs "lhs a")

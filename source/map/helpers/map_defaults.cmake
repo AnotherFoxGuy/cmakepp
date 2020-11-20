@@ -1,4 +1,3 @@
-
 # sets all undefined properties of map to the default value
 function(map_defaults map defaults)
   obj("${defaults}")
@@ -17,7 +16,6 @@ function(map_defaults map defaults)
 
   map_keys("${defaults}")
   ans(default_keys)
-
 
   if(default_keys AND keys)
     list(REMOVE_ITEM default_keys ${keys})

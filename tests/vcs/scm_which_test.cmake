@@ -8,14 +8,12 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL git)
 
-
   pushd("hg" --create)
-    hg(init)
-    scm_which()
-    ans(res)
-    assert("${res}" STREQUAL "hg")
+  hg(init)
+  scm_which()
+  ans(res)
+  assert("${res}" STREQUAL "hg")
   popd()
-
 
   scm_which()
   ans(res)

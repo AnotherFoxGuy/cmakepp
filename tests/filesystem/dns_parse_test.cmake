@@ -1,6 +1,5 @@
 function(test)
 
-
   function(dns_test dns expected)
     dns_parse("${dns}")
     ans(dns)
@@ -42,11 +41,9 @@ function(test)
   dns_test("s1231231.host.de" "{labels:['s1231231','host','de']}")
   dns_test("asdasd" "{labels:'asdasd'}")
 
-
   # domain
   dns_test("www.google.de" "{domain:'google.de'}")
   dns_test("mydomain" "{domain:'mydomain'}")
-
 
   # top_label
   dns_test("www.google.de" "{top_label:'de'}")

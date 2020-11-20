@@ -1,4 +1,3 @@
-
 function(interpret_key_value tokens)
   set(rhs_tokens)
   set(colon_token)
@@ -38,19 +37,17 @@ function(interpret_key_value tokens)
   rethrow()
   ans(key)
 
-
-
   ast_new(
-    "${tokens}"         # tokens
-    "key_value"         # expression_type
-    "key_value"         # value_type
-    ""                  # ref
-    ""                  # code
-    ""                  # value
-    "false"             # const
-    "false"             # pure_value
-    "${key};${rhs}"     # children
-    )
+    "${tokens}" # tokens
+    "key_value" # expression_type
+    "key_value" # value_type
+    "" # ref
+    "" # code
+    "" # value
+    "false" # const
+    "false" # pure_value
+    "${key};${rhs}" # children
+  )
   ans(ast)
 
   map_set("${ast}" key_ast ${key})

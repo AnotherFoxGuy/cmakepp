@@ -1,4 +1,3 @@
-
 function(linux_ps_info_get pid)
   map_new()
   ans(map)

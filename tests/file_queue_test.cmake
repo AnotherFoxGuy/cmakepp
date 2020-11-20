@@ -1,6 +1,5 @@
 function(test)
 
-
   return()
   function(file_queue_new)
     set(args ${ARGN})
@@ -9,7 +8,6 @@ function(test)
 
   function(file_queue_push)
 
-
   endfunction()
 
   function(file_queue_pop)
@@ -17,15 +15,14 @@ function(test)
     file_lock("${queue}")
     ans(lock)
 
-
     file_unlock("${lock}")
   endfunction()
-
 
   function(pid)
     string_random()
     ans(pid)
-    eval("
+    eval(
+      "
       macro(pid)
         set(__ans ${pid})
       endmacro()
@@ -54,8 +51,5 @@ function(test)
     ans(pid)
 
   endfunction()
-
-
-
 
 endfunction()

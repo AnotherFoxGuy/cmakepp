@@ -1,13 +1,13 @@
-## `(<list&> <query...>)-><bool>`
-##  
-## `<query> := <value>|'!'<value>|<value>'?'`
-## 
-## * checks to see that every value specified is contained in the list 
-## * if the value is preceded by a `!` checks that the value is not in the list
-## * if the value is succeeded by a `?` the value may or may not be contained
-##
-## returns true if all queries match
-## 
+# `(<list&> <query...>)-><bool>`
+#
+# `<query> := <value>|'!'<value>|<value>'?'`
+#
+# * checks to see that every value specified is contained in the list
+# * if the value is preceded by a `!` checks that the value is not in the list
+# * if the value is succeeded by a `?` the value may or may not be contained
+#
+# returns true if all queries match
+#
 function(list_check_items __lst)
   set(lst ${${__lst}})
   set(result 0)
@@ -29,25 +29,50 @@ function(list_check_items __lst)
     ans(is_contained)
 
     if(false)
-    elseif(    is_contained AND     negate AND     optional)
+
+    elseif(
+      is_contained
+      AND negate
+      AND optional)
       list_remove(lst "${item}")
-    elseif(    is_contained AND     negate AND NOT optional)
+    elseif(
+      is_contained
+      AND negate
+      AND NOT optional)
       return(false)
-    elseif(    is_contained AND NOT negate AND     optional)
+    elseif(
+      is_contained
+      AND NOT negate
+      AND optional)
       list_remove(lst "${item}")
-    elseif(    is_contained AND NOT negate AND NOT optional)
+    elseif(
+      is_contained
+      AND NOT negate
+      AND NOT optional)
       list_remove(lst "${item}")
-    elseif(NOT is_contained AND     negate AND     optional)
+    elseif(
+      NOT is_contained
+      AND negate
+      AND optional)
       list_remove(lst "${item}")
-    elseif(NOT is_contained AND     negate AND NOT optional)
+    elseif(
+      NOT is_contained
+      AND negate
+      AND NOT optional)
       list_remove(lst "${item}")
-    elseif(NOT is_contained AND NOT negate AND     optional)
+    elseif(
+      NOT is_contained
+      AND NOT negate
+      AND optional)
       list_remove(lst "${item}")
-    elseif(NOT is_contained AND NOT negate AND NOT optional)
+    elseif(
+      NOT is_contained
+      AND NOT negate
+      AND NOT optional)
       return()
     endif()
 
-   # print_vars(lst item is_contained negate optional)
+    # print_vars(lst item is_contained negate optional)
   endforeach()
 
   list(LENGTH lst len)

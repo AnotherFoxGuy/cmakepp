@@ -1,8 +1,7 @@
-## `(<cmakelists> <file>... [--glob] )-> <relative path>...`
-##
-## qualifies the paths relative to the cmakelists directory 
-## if `--glob` is specified then the `<file>...` will be treated
-## as glob expressions
+# `(<cmakelists> <file>... [--glob] )-> <relative path>...`
+#
+# qualifies the paths relative to the cmakelists directory if `--glob` is
+# specified then the `<file>...` will be treated as glob expressions
 function(cmakelists_paths cmakelists)
   set(args ${ARGN})
   list_extract_flag(args --glob)

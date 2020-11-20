@@ -1,34 +1,33 @@
-# compiles a tool (single cpp file with main method)
-# and create a cmake function (if the tool is not yet compiled)
-# expects tool to print cmake code to stdout. this code will 
-# be evaluated and the result is returned  by the tool function
-# the tool function's name is name
-# currently only allows default headers
+# compiles a tool (single cpp file with main method) and create a cmake function
+# (if the tool is not yet compiled) expects tool to print cmake code to stdout.
+# this code will be evaluated and the result is returned  by the tool function
+# the tool function's name is name currently only allows default headers
 function(compile_tool name src)
-    if (WIN32)
-        set(exe_name "${name}.exe")
-    else ()
-        set(exe_name "${name}")
-    endif ()
+  if(WIN32)
+    set(exe_name "${name}.exe")
+  else()
+    set(exe_name "${name}")
+  endif()
 
+  checksum_string("${src}")
+  ans(chksum)
 
-    checksum_string("${src}")
-    ans(chksum)
+  cmakepp_config(temp_dir)
+  ans(temp_dir)
 
-    cmakepp_config(temp_dir)
-    ans(temp_dir)
+  cmakepp_config(cache_dir)
+  ans(cache_dir)
 
-    cmakepp_config(cache_dir)
-    ans(cache_dir)
+  set(build_dir "${temp_dir}/tools/${chksum}")
+  set(tool_dir "${cache_dir}/tools/${chksum}")
 
-    set(build_dir "${temp_dir}/tools/${chksum}")
-    set(tool_dir "${cache_dir}/tools/${chksum}")
-
-    if (NOT EXISTS "${tool_dir}")
-        mkdir("${tool_dir}")
-        pushd("${build_dir}" --create)
-        fwrite("main.cpp" "${src}")
-        fwrite("CMakeLists.txt" "
+  if(NOT EXISTS "${tool_dir}")
+    mkdir("${tool_dir}")
+    pushd("${build_dir}" --create)
+    fwrite("main.cpp" "${src}")
+    fwrite(
+      "CMakeLists.txt"
+      "
 project(${name})
 if (\"\${CMAKE_CXX_COMPILER_ID}\" STREQUAL \"GNU\")
     include(CheckCXXCompilerFlag)
@@ -54,31 +53,32 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY \${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY \${CMAKE_BINARY_DIR}/bin)
 add_executable(${name} main.cpp)
       ")
-        mkdir(build)
-        cd(build)
-        cmake(../ --process-handle)
-        ans(configure_result)
-        cmake(--build . --process-handle)
-        ans(build_result)
+    mkdir(build)
+    cd(build)
+    cmake(../ --process-handle)
+    ans(configure_result)
+    cmake(--build . --process-handle)
+    ans(build_result)
 
-        map_tryget(${build_result} exit_code)
-        ans(error)
-        map_tryget(${build_result} stdout)
-        ans(log)
-        popd()
+    map_tryget(${build_result} exit_code)
+    ans(error)
+    map_tryget(${build_result} stdout)
+    ans(log)
+    popd()
 
-        if (NOT "${error}" STREQUAL "0")
-            rm("${build_dir}")
-            rm("${tool_dir}")
-            message(FATAL_ERROR "failed to compile tool :\n ${log}")
-        endif ()
+    if(NOT "${error}" STREQUAL "0")
+      rm("${build_dir}")
+      rm("${tool_dir}")
+      message(FATAL_ERROR "failed to compile tool :\n ${log}")
+    endif()
 
-        cp("${build_dir}/build/bin/${exe_name}" "${tool_dir}/${exe_name}")
-    endif ()
+    cp("${build_dir}/build/bin/${exe_name}" "${tool_dir}/${exe_name}")
+  endif()
 
-    wrap_executable_bare("__${name}" "${tool_dir}/${exe_name}")
+  wrap_executable_bare("__${name}" "${tool_dir}/${exe_name}")
 
-    eval("
+  eval(
+    "
 function(${name})
     __${name}(\${ARGN})
     ans_extract(error)
@@ -92,6 +92,3 @@ function(${name})
 endfunction()
     ")
 endfunction()
-
-
-

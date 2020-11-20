@@ -3,7 +3,6 @@ function(test)
   ans(res)
   assert("abcdefg" STREQUAL "${res}")
 
-
   cmake_string_escape("\\")
   ans(res)
   string(REPLACE "\\" "1" res "${res}")
@@ -14,7 +13,6 @@ function(test)
   string(REPLACE "\\" "1" res "${res}")
   assert("${res}" STREQUAL "1")
 
-
   cmake_string_escape("\"")
   ans(res)
   assert("${res}" STREQUAL "\\\"")
@@ -22,7 +20,6 @@ function(test)
   cmake_string_unescape("\\\"")
   ans(res)
   assert("${res}" STREQUAL "\"")
-
 
   cmake_string_escape("(")
   ans(res)
@@ -42,21 +39,19 @@ function(test)
 
   cmake_string_escape("$")
   ans(res)
-  assert("${res}" STREQUAL "\\$" )
+  assert("${res}" STREQUAL "\\$")
 
   cmake_string_unescape("\\$")
   ans(res)
   assert("${res}" STREQUAL "$")
 
-
   cmake_string_escape("#")
   ans(res)
-  assert("${res}" STREQUAL "\\#" )
+  assert("${res}" STREQUAL "\\#")
 
   cmake_string_unescape("\\#")
   ans(res)
   assert("${res}" STREQUAL "#")
-
 
   cmake_string_escape("^")
   ans(res)
@@ -66,7 +61,9 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "^")
 
-  set(complex "\\!@#$%^ &*()__)( *&^%$\"# \" \ @!   ;'\\'][[]/.,.,m,[!@#$%^&*()_++_)(*&^%$#@!]{}]]][[][]{}{}\\|###")
+  set(complex
+      "\\!@#$%^ &*()__)( *&^%$\"# \" \ @!   ;'\\'][[]/.,.,m,[!@#$%^&*()_++_)(*&^%$#@!]{}]]][[][]{}{}\\|###"
+  )
 
   cmake_string_escape("${complex}")
   ans(res1)
@@ -74,6 +71,6 @@ function(test)
   ans(res)
   cmake_string_escape("${res}")
   ans(res2)
- string(COMPARE EQUAL "${res1}" "${res2}" res)
- assert(res)
+  string(COMPARE EQUAL "${res1}" "${res2}" res)
+  assert(res)
 endfunction()

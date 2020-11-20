@@ -1,9 +1,8 @@
-## `(<base dir> <file...>)-><checksum>`
-##
-## create a checksum from specified files relative to <dir>
-## the checksum is influenced by the files relative paths 
-## and the file content 
-## 
+# `(<base dir> <file...>)-><checksum>`
+#
+# create a checksum from specified files relative to <dir> the checksum is
+# influenced by the files relative paths and the file content
+#
 function(checksum_files dir)
   set(args ${ARGN})
   list_extract_labelled_keyvalue(args --algorithm)
@@ -14,7 +13,7 @@ function(checksum_files dir)
     list(REMOVE_DUPLICATES args)
     list(SORT args)
   endif()
-  
+
   set(checksums)
   foreach(file ${ARGN})
     if(EXISTS "${dir}/${file}")

@@ -1,4 +1,3 @@
-
 function(file_anchor_require_dir anchorName)
   file_find_anchor(.packages)
   ans(packageAnchor)
@@ -9,5 +8,5 @@ function(file_anchor_require_dir anchorName)
     mkdir("${packageAnchor}")
   endif()
 
-  return_ref(packageAnchor) 
+  return_ref(packageAnchor)
 endfunction()

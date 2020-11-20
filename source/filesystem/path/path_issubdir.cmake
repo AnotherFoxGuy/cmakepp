@@ -1,6 +1,6 @@
-## `(<subdir:<path>> <?path> )-><bool>`
-##
-## returns true iff subdir is or is below path
+# `(<subdir:<path>> <?path> )-><bool>`
+#
+# returns true iff subdir is or is below path
 function(path_issubdir subdir path)
   set(path ${ARGN})
   path_qualify(path)

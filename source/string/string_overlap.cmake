@@ -1,16 +1,12 @@
-## `(<lhs:<string>> <rhs:<string>>)-><string>`
-##  
-## Returns the overlapping part of input strings "lhs" and "rhs".
-## Starts at first char and continues until chars don't match.
-##
-## **Examples**
-##  set(input1 "abcd")
-##  set(input2 "abyx")
-##  string_overlap("${input1}" "${input2}") # => "ab"
-##  set(input2 "wxyz")
-##  string_overlap("${input1}" "${input2}") # => ""
-##
-##
+# `(<lhs:<string>> <rhs:<string>>)-><string>`
+#
+# Returns the overlapping part of input strings "lhs" and "rhs". Starts at first
+# char and continues until chars don't match.
+#
+# **Examples** set(input1 "abcd") set(input2 "abyx") string_overlap("${input1}"
+# "${input2}") # => "ab" set(input2 "wxyz") string_overlap("${input1}"
+# "${input2}") # => ""
+#
 function(string_overlap lhs rhs)
   string(LENGTH "${lhs}" lhs_length)
   string(LENGTH "${rhs}" rhs_length)

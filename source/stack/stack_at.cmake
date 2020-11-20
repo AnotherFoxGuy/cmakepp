@@ -1,4 +1,3 @@
-
 # returns the specified element of the stack
 function(stack_at stack idx)
   map_tryget("${stack}" back)

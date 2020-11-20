@@ -1,5 +1,3 @@
-
-
 function(archive_read_file archive file)
   path_qualify(archive)
   mktemp()
@@ -8,6 +6,5 @@ function(archive_read_file archive file)
   fread("${temp_dir}/${file}")
   ans(content)
   rm("${temp_dir}")
-  return_ref(content) 
+  return_ref(content)
 endfunction()
-

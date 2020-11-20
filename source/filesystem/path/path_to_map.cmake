@@ -1,8 +1,7 @@
-
 # writes the path the map creating submaps for every directory
 
 function(path_to_map map path)
-  
+
   path_split("${path}")
   ans(path_parts)
 
@@ -11,14 +10,12 @@ function(path_to_map map path)
     list_pop_front(path_parts)
     ans(current_part)
 
-
-    
     map_tryget(${current} "${current_part}")
     ans(current_map)
 
     if(NOT path_parts)
       if(NOT current_map)
-      map_set(${current} "${current_part}" "${path}")
+        map_set(${current} "${current_part}" "${path}")
       endif()
       return()
     endif()

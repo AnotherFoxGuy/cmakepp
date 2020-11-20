@@ -1,15 +1,14 @@
-
 function(map_clone_deep original)
   map_clone_shallow("${original}")
   ans(result)
-    
-  is_map("${result}" )
+
+  is_map("${result}")
   ans(ismap)
-  if(ismap) 
-    map_keys("${result}" )
+  if(ismap)
+    map_keys("${result}")
     ans(keys)
     foreach(key ${keys})
-      map_get(${result}  ${key})
+      map_get(${result} ${key})
       ans(value)
       map_clone_deep("${value}")
       ans(cloned_value)

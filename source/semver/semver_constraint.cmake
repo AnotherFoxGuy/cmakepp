@@ -1,5 +1,3 @@
-
-
 function(semver_constraint constraint_ish)
   map_get_special(${constraint_ish} "semver_constraint")
   ans(is_semver_constraint)
@@ -13,8 +11,7 @@ function(semver_constraint constraint_ish)
     return()
   endif()
 
-  # return cached value if it exists
- # cache_return_hit("${constraint_ish}")
+  # return cached value if it exists cache_return_hit("${constraint_ish}")
 
   # compute and cache value
   semver_constraint_compile("${constraint_ish}")

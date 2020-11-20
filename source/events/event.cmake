@@ -1,9 +1,9 @@
-## `(<event-id>):<event>`
-##
-## tries to get the `<event>` identified by `<event-id>`
-## if it does not exist a new `<event>` is created by  @markdown_see_function("event_new(...)")
-function(event )
-  set(event_id ${ARGN}) 
+# `(<event-id>):<event>`
+#
+# tries to get the `<event>` identified by `<event-id>` if it does not exist a
+# new `<event>` is created by  @markdown_see_function("event_new(...)")
+function(event)
+  set(event_id ${ARGN})
   set(event)
   if(event_id)
     event_get("${event_id}")

@@ -1,18 +1,15 @@
 function(test)
-    
-
 
   queue_new()
   ans(queue)
 
   queue_isempty(${queue})
   ans(isempty)
-  assert( isempty)
+  assert(isempty)
 
   queue_peek(${queue})
   ans(res)
   assert(NOT res)
-
 
   queue_push(${queue} "my;long;value")
 
@@ -31,9 +28,5 @@ function(test)
   queue_isempty(${queue})
   ans(res)
   assert(res)
-
-
-  
-
 
 endfunction()

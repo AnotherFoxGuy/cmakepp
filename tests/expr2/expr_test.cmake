@@ -12,11 +12,11 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL a)
 
-  expr(my_echo_func("Some echo"))
+  expr(my_echo_func ("Some echo"))
   ans(res)
   assert("${res}" STREQUAL "Some echo")
 
-  expr(my_echo_func_2_args("Some", "echo"))
+  expr(my_echo_func_2_args ("Some", "echo"))
   ans(res)
   assert("${res}" STREQUAL "echo Some")
 

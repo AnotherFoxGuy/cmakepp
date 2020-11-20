@@ -1,7 +1,6 @@
-## `(<exception>|<any>)-> <exception>`
-##
-## transforms the input into an exception
-## or returns the input exception
+# `(<exception>|<any>)-> <exception>`
+#
+# transforms the input into an exception or returns the input exception
 function(exception)
   is_exception("${ARGN}")
   ans(is_exception)

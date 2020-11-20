@@ -1,5 +1,5 @@
 function(test)
-  
+
   linked_list_new()
   ans(uut)
 
@@ -11,17 +11,13 @@ function(test)
   assertf("{uut.head}" STREQUAL "${node}")
   assertf("{uut.tail}" STREQUAL "${node}")
 
-
-
   linked_list_insert_after(${uut} "" hello2)
   ans(node2)
   assertf("{uut.head}" STREQUAL "${node}")
-  assertf("{uut.tail}" STREQUAL "${node2}") 
-
+  assertf("{uut.tail}" STREQUAL "${node2}")
 
   assertf("{uut.head.next}" STREQUAL "${node2}")
   assertf("{uut.tail.previous}" STREQUAL "${node}")
-
 
   linked_list_insert_after(${uut} "${node}" hello3)
   ans(node3)

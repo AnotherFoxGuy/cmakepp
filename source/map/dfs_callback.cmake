@@ -1,64 +1,35 @@
-
-# emits events parsing a list of map type elements 
-# expects a callback function that takes the event type string as a first argument
-# follwowing events are called (available context variables are listed as subelements: 
-# value
-#   - list_length (may be 0 or 1 which is good for a null check)
-#   - content_length (contains the length of the content)
-#   - node (contains the value)
-# list_begin
-#   - list_length (number of elements the list contains)
-#   - content_length (accumulated length of list elements + semicolon separators)
-#   - node (contains all values of the lsit)
-# list_end
-#   - list_length(number of elements in list)
-#   - node (whole list)
-#   - list_char_length (length of list content)
-#   - content_length (accumulated length of list elements + semicolon separators)
-# list_element_begin
-#   - list_length(number of elements in list)
-#   - node (whole list)
-#   - list_char_length (length of list content)
-#   - content_length (accumulated length of list elements + semicolon separators)
-#   - list_element (contains current list element)
-#   - list_element_index (contains current index )   
-# list_element_end
-#   - list_length(number of elements in list)
-#   - node (whole list)
-#   - list_char_length (length of list content)
-#   - content_length (accumulated length of list elements + semicolon separators)
-#   - list_element (contains current list element)
-#   - list_element_index (contains current index )
-# visited_reference
-#   - node (contains ref to revisited map)
-# unvisited_reference
-#   - node (contains ref to unvisited map)
-# map_begin
-#   - node( contains ref to map)
-#   - map_keys (contains all keys of map)
-#   - map_length (contains number of keys of map)
-# map_end
-#   - node( contains ref to map)
-#   - map_keys (contains all keys of map)
-#   - map_length (contains number of keys of map)
-# map_element_begin
-#   - node( contains ref to map)
-#   - map_keys (contains all keys of map)
-#   - map_length (contains number of keys of map)
-#   - map_element_key (current key)
-#   - map_element_value (current value)
-#   - map_element_index (current index)
-# map_element_end
-#   - node( contains ref to map)
-#   - map_keys (contains all keys of map)
-#   - map_length (contains number of keys of map)
-#   - map_element_key (current key)
-#   - map_element_value (current value)
-#   - map_element_index (current index)
+# emits events parsing a list of map type elements expects a callback function
+# that takes the event type string as a first argument follwowing events are
+# called (available context variables are listed as subelements: value -
+# list_length (may be 0 or 1 which is good for a null check) - content_length
+# (contains the length of the content) - node (contains the value) list_begin -
+# list_length (number of elements the list contains) - content_length
+# (accumulated length of list elements + semicolon separators) - node (contains
+# all values of the lsit) list_end - list_length(number of elements in list) -
+# node (whole list) - list_char_length (length of list content) - content_length
+# (accumulated length of list elements + semicolon separators)
+# list_element_begin - list_length(number of elements in list) - node (whole
+# list) - list_char_length (length of list content) - content_length
+# (accumulated length of list elements + semicolon separators) - list_element
+# (contains current list element) - list_element_index (contains current index )
+# list_element_end - list_length(number of elements in list) - node (whole list)
+# - list_char_length (length of list content) - content_length (accumulated
+# length of list elements + semicolon separators) - list_element (contains
+# current list element) - list_element_index (contains current index )
+# visited_reference - node (contains ref to revisited map) unvisited_reference -
+# node (contains ref to unvisited map) map_begin - node( contains ref to map) -
+# map_keys (contains all keys of map) - map_length (contains number of keys of
+# map) map_end - node( contains ref to map) - map_keys (contains all keys of
+# map) - map_length (contains number of keys of map) map_element_begin - node(
+# contains ref to map) - map_keys (contains all keys of map) - map_length
+# (contains number of keys of map) - map_element_key (current key) -
+# map_element_value (current value) - map_element_index (current index)
+# map_element_end - node( contains ref to map) - map_keys (contains all keys of
+# map) - map_length (contains number of keys of map) - map_element_key (current
+# key) - map_element_value (current value) - map_element_index (current index)
 function(dfs_callback callback)
   # inner function
   function(dfs_callback_inner node)
- 
 
     is_map("${node}")
     ans(ismap)
@@ -68,7 +39,7 @@ function(dfs_callback callback)
       if(${list_length} LESS 2)
         dfs_callback_emit(value)
       else()
-        dfs_callback_emit(list_begin) 
+        dfs_callback_emit(list_begin)
         set(list_element_index 0)
         foreach(list_element ${node})
           list_push_back(path "${list_element_index}")
@@ -93,7 +64,6 @@ function(dfs_callback callback)
       dfs_callback_emit("unvisited_reference")
     endif()
 
-
     map_set(${visited} "${node}" true)
 
     map_keys("${node}")
@@ -103,7 +73,6 @@ function(dfs_callback callback)
 
     dfs_callback_emit(map_begin)
 
-    
     set(map_element_index 0)
     foreach(map_element_key ${map_keys})
       map_tryget("${node}" ${map_element_key})
@@ -119,14 +88,13 @@ function(dfs_callback callback)
       math(EXPR map_element_index "${map_element_index} + 1")
     endforeach()
 
-
-    dfs_callback_emit(map_end "${node}" )
+    dfs_callback_emit(map_end "${node}")
   endfunction()
 
   function(dfs_callback callback)
-#    curry3(dfs_callback_emit => "${callback}"(/0) as dfs_callback_emit)
-    # faster
-    eval("
+    # curry3(dfs_callback_emit => "${callback}"(/0) as dfs_callback_emit) faster
+    eval(
+      "
 function(dfs_callback_emit)
   ${callback}(\${ARGN})
 endfunction()
@@ -134,10 +102,10 @@ endfunction()
     map_new()
     ans(visited)
 
-   # foreach(arg ${ARGN})
-   set(path)
+    # foreach(arg ${ARGN})
+    set(path)
     dfs_callback_inner("${ARGN}")
-   # endforeach()
+    # endforeach()
     return()
   endfunction()
   dfs_callback("${callback}" ${ARGN})

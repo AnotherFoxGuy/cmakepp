@@ -12,19 +12,29 @@ function(promise_all)
     map_tryget("${promise}" task_queue)
     map_set("${promise_all}" task_queue "${__ans}")
 
-    promise_then_anonymous("${promise}" ()
-      map_set(${accu} ${promise} \${ARGN})
-      map_count(${accu})
-      ans(count)
-      if(\${count} EQUAL ${count})
-        ## this orders the keys in the correct order
-        map_set_special("${accu}" keys ${promises})
-        map_values("${accu}")
-        ans(values)
-        promise_resolve("${promise_all}" "\${values}")
-      endif()
-      )
-    
+    promise_then_anonymous(
+      "${promise}"
+      ()
+      map_set
+      (${accu} ${promise} \${ARGN})
+      map_count
+      (${accu})
+      ans
+      (count)
+      if
+      (\${count} EQUAL ${count})
+      # this orders the keys in the correct order
+      map_set_special
+      ("${accu}" keys ${promises})
+      map_values
+      ("${accu}")
+      ans
+      (values)
+      promise_resolve
+      ("${promise_all}" "\${values}")
+      endif
+      ())
+
   endforeach()
   return_ref(promise_all)
 endfunction()

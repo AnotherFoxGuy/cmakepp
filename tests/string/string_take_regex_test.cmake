@@ -1,4 +1,4 @@
-function(test)  
+function(test)
   set(res "")
   # Whitespaces at beginning are removed
   set(input "  whitespaces")
@@ -6,7 +6,7 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "  ")
   assert("${input}" STREQUAL "whitespaces")
-  
+
   set(res "")
   # Whitespaces at the end are not removed
   set(input " whitespaces  ")

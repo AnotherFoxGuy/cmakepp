@@ -1,14 +1,11 @@
-## commandline_args_get([--no-script])-> <string...>
-## 
-## returns the command line arguments with which cmake 
-## was without the executable
-##
-## --no-script flag removes the script file from the command line args
-##
-## Example:
-## command line: 'cmake -P myscript.cmake a s d'
-## commandline_args_get() -> -P;myscript;a;s;d
-## commandline_args_get(--no-script) -> a;s;d
+# commandline_args_get([--no-script])-> <string...>
+#
+# returns the command line arguments with which cmake was without the executable
+#
+# --no-script flag removes the script file from the command line args
+#
+# Example: command line: 'cmake -P myscript.cmake a s d' commandline_args_get()
+# -> -P;myscript;a;s;d commandline_args_get(--no-script) -> a;s;d
 
 function(commandline_args_get)
   set(args ${ARGN})

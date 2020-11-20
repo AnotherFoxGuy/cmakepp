@@ -1,8 +1,7 @@
-
-## ref() -> <address> 
-## 
-## begins a new reference value and returns its address
-## ref needs to be ended via end() call
+# ref() -> <address>
+#
+# begins a new reference value and returns its address ref needs to be ended via
+# end() call
 function(ref)
   if(NOT ARGN STREQUAL "")
     key("${ARGN}")
@@ -10,6 +9,6 @@ function(ref)
   address_new()
   ans(ref)
   val(${ref})
-  stack_push(quickmap ${ref})   
+  stack_push(quickmap ${ref})
   return_ref(ref)
 endfunction()

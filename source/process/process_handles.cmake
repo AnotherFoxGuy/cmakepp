@@ -1,4 +1,4 @@
-## transforms a list of <process handle?!> into a list of <process handle>  
+# transforms a list of <process handle?!> into a list of <process handle>
 function(process_handles)
   set(handles)
   foreach(arg ${ARGN})

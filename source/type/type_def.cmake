@@ -1,5 +1,4 @@
-
-## parses and registers a type or returns an existing one by type_name
+# parses and registers a type or returns an existing one by type_name
 
 function(type_def)
   function(type_def)
@@ -10,7 +9,6 @@ function(type_def)
       set(type any)
     endif()
 
-
     list(LENGTH type length)
     if(length GREATER 1)
       map_new()
@@ -18,7 +16,6 @@ function(type_def)
       map_set(${t} properties ${type})
       set(type ${t})
     endif()
-
 
     is_map("${type}")
     ans(ismap)
@@ -28,17 +25,17 @@ function(type_def)
       if("${type_name}_" STREQUAL "_")
         string(RANDOM type_name)
         map_set("${type}" "anonymous" true)
-        #map_set(${type} "type_name" "${type_name}")
+        # map_set(${type} "type_name" "${type_name}")
       else()
         map_set("${type}" "anonymous" false)
       endif()
-    
+
       map_tryget(data_type_map "${type_name}")
       ans(registered_type)
       if(NOT registered_type)
         map_set(data_type_map "${type_name}" "${type}")
       endif()
-      
+
       map_tryget("${type}" properties)
       ans(props)
       is_map("${props}")
@@ -57,17 +54,13 @@ function(type_def)
 
       return_ref(type)
 
-
-
     endif()
-
 
     map_tryget(data_type_map "${type}")
     ans(res)
     if(res)
       return_ref(res)
     endif()
-
 
     map_new()
     ans(res)
@@ -81,8 +74,8 @@ function(type_def)
     type_name:'string'
     }")
 
-
-  type_def("{
+  type_def(
+    "{
     type_name:'int',
     regex:'[0-9]+'
   }")
@@ -91,13 +84,12 @@ function(type_def)
     type_name:'any'
   }")
 
-
-  type_def("{
+  type_def(
+    "{
     type_name:'bool',
     regex:'true|false'
   }")
 
-  
   type_def(${ARGN})
   return_ans()
 endfunction()

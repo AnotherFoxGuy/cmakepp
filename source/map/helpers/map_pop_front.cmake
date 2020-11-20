@@ -1,5 +1,3 @@
-
-
 function(map_pop_front map prop)
   map_tryget("${map}" "${prop}")
   ans(lst)

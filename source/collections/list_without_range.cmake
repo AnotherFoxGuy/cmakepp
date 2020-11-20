@@ -1,5 +1,4 @@
-# removes the specifed range from the list
-# and returns remaining elements
+# removes the specifed range from the list and returns remaining elements
 function(list_without_range __list_without_range_lst start_index end_index)
 
   list_normalize_index(${__list_without_range_lst} -1)

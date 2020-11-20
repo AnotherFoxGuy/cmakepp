@@ -1,10 +1,9 @@
-## refreshes the fields of the process handle
-## returns true if the process is still running false otherwise
-## this is the only function which is allowed to change the state of a process handle
+# refreshes the fields of the process handle returns true if the process is
+# still running false otherwise this is the only function which is allowed to
+# change the state of a process handle
 function(process_refresh_handle handle)
   process_handle("${handle}")
   ans(handle)
-
 
   process_isrunning("${handle}")
   ans(isrunning)
@@ -25,14 +24,8 @@ function(process_refresh_handle handle)
     map_capture("${handle}" exit_code stdout stderr)
   endif()
 
-
   process_handle_change_state("${handle}" "${state}")
   ans(state_changed)
-
-  
-
-
-
 
   return_ref(isrunning)
 

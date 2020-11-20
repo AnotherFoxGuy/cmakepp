@@ -1,20 +1,20 @@
-## `(<cmake token range> <predicate> [--reverse] [--skip <uint>] [--take <uint>])-><cmake token>...`
-##
-## filters the specified token range for tokens matching the predicate (access to value and type)
-## e.g. `cmake_token_range_filter("set(a b c d)" type MATCHES "^argument$" AND value MATCHES "[abd]" --reverse --skip 1 --take 1 )` 
-## <% 
-##   cmake_token_range_filter("set(a b c d)" type MATCHES "^argument$" AND value MATCHES "[abd]" --reverse --skip 1 --take 1 ) 
-##   ans(res)
-##   #template_out_json(${res})
-## %>
-## 
-function(cmake_token_range_filter range )
+# `(<cmake token range> <predicate> [--reverse] [--skip <uint>] [--take
+# <uint>])-><cmake token>...`
+#
+# filters the specified token range for tokens matching the predicate (access to
+# value and type) e.g. `cmake_token_range_filter("set(a b c d)" type MATCHES
+# "^argument$" AND value MATCHES "[abd]" --reverse --skip 1 --take 1 )` <%
+# cmake_token_range_filter("set(a b c d)" type MATCHES "^argument$" AND value
+# MATCHES "[abd]" --reverse --skip 1 --take 1 ) ans(res)
+# #template_out_json(${res}) %>
+#
+function(cmake_token_range_filter range)
   arguments_encoded_list(1 ${ARGC})
   ans(args)
-  
+
   list_extract_flag(args --reverse)
   ans(reverse)
-  
+
   cmake_token_range("${range}")
   if(reverse)
     ans_extract(end current)
@@ -31,7 +31,10 @@ function(cmake_token_range_filter range )
   endif()
   set(predicate ${args})
   set(result)
-  while(take AND current AND NOT "${current}" STREQUAL "${end}")
+  while(
+    take
+    AND current
+    AND NOT "${current}" STREQUAL "${end}")
     map_tryget("${current}" literal_value)
     ans(value)
     map_tryget("${current}" type)
@@ -42,11 +45,13 @@ function(cmake_token_range_filter range )
     eval_predicate(${predicate})
     ans(predicate_holds)
 
-    #print_vars(reverse line value type predicate predicate_holds value type )
-    #string(REPLACE "{type}" "${type}" current _predicate "${args}")
-    #string(REPLACE "{value}" "${value}" current_predicate "${current_predicate}")
+    # print_vars(reverse line value type predicate predicate_holds value type )
+    # string(REPLACE "{type}" "${type}" current _predicate "${args}")
+    # string(REPLACE "{value}" "${value}" current_predicate
+    # "${current_predicate}")
     if(predicate_holds)
-    #print_vars(reverse line value type predicate predicate_holds value type )
+      # print_vars(reverse line value type predicate predicate_holds value type
+      # )
 
       if(skip)
         math(EXPR skip "${skip} - 1")
@@ -64,6 +69,4 @@ function(cmake_token_range_filter range )
     endif()
   endwhile()
   return_ref(result)
-endfunction() 
-
-
+endfunction()

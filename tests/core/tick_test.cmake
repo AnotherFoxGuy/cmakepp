@@ -1,10 +1,8 @@
 function(test)
 
-
-
-foreach(i RANGE 1000)
- tick()
-endforeach()
+  foreach(i RANGE 1000)
+    tick()
+  endforeach()
   tick()
   tick()
   message("asd")
@@ -13,4 +11,4 @@ endforeach()
   tick()
   tock()
 
-endfunction() 
+endfunction()

@@ -1,4 +1,3 @@
-
 function(alias_exists name)
   alias_list()
   ans(aliases)

@@ -1,5 +1,3 @@
-
-
 function(paths_relative path_base)
   set(res)
   foreach(path ${ARGN})

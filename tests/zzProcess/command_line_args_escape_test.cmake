@@ -15,15 +15,18 @@ function(test)
   command_line_args_escape("dada\"asdasd")
   ans(res)
   assert("${res}" STREQUAL "\"dada\\\"asdasd\"")
-  
-
-
 
   command_line_args_escape(a b c "hallo du" "asdfdef" "lalala\"\"")
   ans(res)
 
-  assert(${res} a b c "\"hallo du\"" asdfdef "\"lalala\\\"\\\"\"" ARE_EQUAL)
-
-
+  assert(
+    ${res}
+    a
+    b
+    c
+    "\"hallo du\""
+    asdfdef
+    "\"lalala\\\"\\\"\""
+    ARE_EQUAL)
 
 endfunction()

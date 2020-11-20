@@ -7,6 +7,4 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "dir1")
 
-
-
 endfunction()

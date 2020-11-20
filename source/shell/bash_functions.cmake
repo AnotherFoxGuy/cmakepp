@@ -1,10 +1,11 @@
-
-
-
-
-#C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Git\cmd;C:\Program Files\Mercurial\;C:\Program Files\nodejs\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\
-#C:\ProgramData\chocolatey\bin;C:\Program Files\Mercurial;C:\Users\Tobi\AppData\Roaming\npm
-
+# C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program
+# Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files
+# (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft
+# SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Git\cmd;C:\Program
+# Files\Mercurial\;C:\Program Files\nodejs\;C:\Program Files (x86)\Microsoft
+# SDKs\TypeScript\1.0\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\
+# C:\ProgramData\chocolatey\bin;C:\Program
+# Files\Mercurial;C:\Users\Tobi\AppData\Roaming\npm
 
 # creates the bash string using the map env which contains key value pairs
 function(bash_profile_compile env)
@@ -79,8 +80,8 @@ function(bash_autostart_unregister)
   return()
 endfunction()
 
-
-# returs true if the cmakepp session profile (environment variables)are registered
+# returs true if the cmakepp session profile (environment variables)are
+# registered
 function(bash_autostart_isregistered)
   set(session_profile_path "$ENV{HOME}/.profile")
   if(NOT EXISTS "${session_profile_path}")

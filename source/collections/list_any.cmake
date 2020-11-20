@@ -1,6 +1,7 @@
-## `[](<list&> <predicate:<[](<any>)->bool>)-><bool>`
-##
-## returns true if there exists an element in `<list>` for which the `<predicate>` holds
+# `[](<list&> <predicate:<[](<any>)->bool>)-><bool>`
+#
+# returns true if there exists an element in `<list>` for which the
+# `<predicate>` holds
 function(list_any __list_any_lst __list_any_predicate)
   function_import("${__list_any_predicate}" as __list_any_predicate REDEFINE)
 
@@ -13,5 +14,3 @@ function(list_any __list_any_lst __list_any_predicate)
   endforeach()
   return(false)
 endfunction()
-
-

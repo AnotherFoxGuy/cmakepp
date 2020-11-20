@@ -1,4 +1,3 @@
-
 function(cmake_is_configure_mode)
   cmake_is_script_mode()
   ans(res)
@@ -8,4 +7,3 @@ function(cmake_is_configure_mode)
     return(true)
   endif()
 endfunction()
-

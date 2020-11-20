@@ -9,11 +9,9 @@ function(test)
   ans(res)
   assert(NOT res)
 
-
   string_decode_empty("asdasd")
   ans(res)
 
   assert("${res}" STREQUAL "asdasd")
-
 
 endfunction()

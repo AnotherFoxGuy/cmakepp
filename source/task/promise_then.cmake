@@ -1,7 +1,7 @@
-## `(<promise> <continuation:<promise>>)-><promise>`
-##
-## adds the continuation to the specified promise. 
-## when the promise is resolved it will schedule continuation to be executed
+# `(<promise> <continuation:<promise>>)-><promise>`
+#
+# adds the continuation to the specified promise. when the promise is resolved
+# it will schedule continuation to be executed
 function(promise_then promise continuation)
   promise("${promise}")
   ans(promise)

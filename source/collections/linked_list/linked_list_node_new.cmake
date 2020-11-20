@@ -1,8 +1,7 @@
-
-## `(<any>...)-><linked list node>`
-## 
-## creates a new linked list node which contains the value specified
-## 
+# `(<any>...)-><linked list node>`
+#
+# creates a new linked list node which contains the value specified
+#
 function(linked_list_node_new)
   map_new()
   ans(node)

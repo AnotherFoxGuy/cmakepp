@@ -1,6 +1,5 @@
-## 
-##
-## creates a new task queue which is a linked list of tasks.
+#
+# creates a new task queue which is a linked list of tasks.
 function(task_queue_new)
   linked_list_new()
   ans(task_queue)

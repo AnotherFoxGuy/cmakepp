@@ -1,4 +1,3 @@
-
 function(process_handle_change_state process_handle new_state)
   map_tryget("${process_handle}" state)
   ans(old_state)
@@ -11,8 +10,6 @@ function(process_handle_change_state process_handle new_state)
 
   event_emit(${on_state_change_event} ${process_handle})
 
-
-
   map_set(${process_handle} state "${new_state}")
 
   if("${new_state}" STREQUAL "terminated")
@@ -21,16 +18,16 @@ function(process_handle_change_state process_handle new_state)
     if(error)
       map_tryget("${process_handle}" on_error)
       ans(on_error_event)
-      event_emit("${on_error_event}" ${process_handle})  
+      event_emit("${on_error_event}" ${process_handle})
     else()
       map_tryget("${process_handle}" on_success)
       ans(on_success_event)
-      event_emit("${on_success_event}" ${process_handle})  
+      event_emit("${on_success_event}" ${process_handle})
     endif()
     map_tryget("${process_handle}" on_terminated)
     ans(on_terminated_event)
     event_emit("${on_terminated_event}" ${process_handle})
-endif()
+  endif()
 
   return(true)
 endfunction()

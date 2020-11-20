@@ -1,5 +1,3 @@
-
-    
 function(list_modify __list_name)
   set(args ${ARGN})
   list_extract_flag(args --append)
@@ -46,5 +44,7 @@ function(list_modify __list_name)
     endif()
   endif()
 
-  set(${__list_name} ${value} PARENT_SCOPE)
+  set(${__list_name}
+      ${value}
+      PARENT_SCOPE)
 endfunction()

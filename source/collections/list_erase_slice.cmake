@@ -6,9 +6,5 @@ macro(list_erase_slice __list_erase_slice_lst start_index end_index)
   list_without_range(${__list_erase_slice_lst} ${start_index} ${end_index})
   ans(${__list_erase_slice_lst})
   set(__ans ${__res})
-  #set(${__list_erase_slice_lst} ${rest} PARENT_SCOPE)
-  #return_ref(res)
+  # set(${__list_erase_slice_lst} ${rest} PARENT_SCOPE) return_ref(res)
 endmacro()
-
-
-

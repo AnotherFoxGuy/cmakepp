@@ -1,6 +1,4 @@
 function(test)
-  
-  
 
   function(TestClass)
     this_declare_get_keys(thefunc)

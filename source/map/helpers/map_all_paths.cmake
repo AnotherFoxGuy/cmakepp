@@ -1,8 +1,4 @@
-
-
-
-# returns all possible paths for the map
-# (currently crashing on cycles cycles)
+# returns all possible paths for the map (currently crashing on cycles cycles)
 # todo: implement
 function(map_all_paths)
   message(FATAL_ERROR "map_all_paths is not implemented yet")

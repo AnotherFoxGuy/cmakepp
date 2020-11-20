@@ -1,5 +1,4 @@
-
-function(indexed_store_load )
+function(indexed_store_load)
   set(key ${ARGN})
   this_get(store_dir)
   set(path "${store_dir}/${key}-${key}-${key}")

@@ -1,5 +1,4 @@
-
-## convenience function for accessing ctest
+# convenience function for accessing ctest
 function(ctest)
   path_parent_dir("${CMAKE_COMMAND}")
   ans(parentPath)
@@ -9,4 +8,4 @@ function(ctest)
   wrap_executable(ctest "${ctest_command}")
   ctest(${ARGN})
   return_ans()
-endfunction() 
+endfunction()

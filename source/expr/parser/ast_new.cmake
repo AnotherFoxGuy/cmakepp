@@ -1,16 +1,14 @@
-
-function(ast_new 
-  tokens 
-  expression_type 
-  value_type 
-  ref 
+function(
+  ast_new
+  tokens
+  expression_type
+  value_type
+  ref
   code
-  value 
-  const 
+  value
+  const
   pure_value
-  children
-
-  )
+  children)
   map_new()
   ans(ast)
   map_set(${ast} expression_type "${expression_type}")

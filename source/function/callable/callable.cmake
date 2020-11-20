@@ -1,6 +1,6 @@
 function(callable input)
-  string(MD5  input_key "${input}" )
-  get_propertY(callable GLOBAL PROPERTY "__global_callables.${input_key}")
+  string(MD5 input_key "${input}")
+  get_property(callable GLOBAL PROPERTY "__global_callables.${input_key}")
 
   if(NOT callable)
     callable_new("${input}")
@@ -19,5 +19,7 @@ function(callable input)
     map_set_hidden(__global_callable_functions "${callable_key}" ${function})
 
   endif()
-  set(__ans ${callable} PARENT_SCOPE)
+  set(__ans
+      ${callable}
+      PARENT_SCOPE)
 endfunction()

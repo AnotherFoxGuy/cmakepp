@@ -4,7 +4,7 @@ function(test)
   ans(stack)
   stack_isempty(${stack})
   ans(res)
-  assert( res)
+  assert(res)
 
   stack_push(${stack} "")
   stack_isempty(${stack})
@@ -31,7 +31,6 @@ function(test)
   stack_isempty(${stack})
   ans(res)
   assert(res)
-  
 
   stack_at(${stack} 3)
   ans(res)

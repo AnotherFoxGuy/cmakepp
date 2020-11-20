@@ -1,6 +1,6 @@
-## `(<ast: <cmake code> |<cmake ast>>)-><cmake ast>`
-##
-## tries to parse the cmake code to an ast or returns the existign ast
+# `(<ast: <cmake code> |<cmake ast>>)-><cmake ast>`
+#
+# tries to parse the cmake code to an ast or returns the existign ast
 function(cmake_ast ast)
   is_address("${ast}")
   ans(isref)
@@ -10,4 +10,3 @@ function(cmake_ast ast)
   endif()
   return_ref(ast)
 endfunction()
-

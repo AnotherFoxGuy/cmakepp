@@ -10,15 +10,15 @@ function(interpret_paren paren_token)
   endif()
 
   map_tryget("${paren_token}" tokens)
-  ans(tokens) 
+  ans(tokens)
 
   interpret_expression("${tokens}")
-  rethrow() ## rethrow if inner is invalid
+  rethrow() # rethrow if inner is invalid
   ans(inner_expression)
 
   map_tryget("${inner_expression}" ref)
   ans(ref)
-  
+
   map_tryget("${inner_expression}" value)
   ans(value)
 
@@ -27,7 +27,7 @@ function(interpret_paren paren_token)
 
   map_tryget("${inner_expression}" value_type)
   ans(value_type)
-  
+
   map_tryget("${inner_expression}" pure_value)
   ans(pure_value)
 
@@ -40,16 +40,14 @@ function(interpret_paren paren_token)
     "${value_type}"
     "${ref}"
     "${code}"
-    "${value}" #value
+    "${value}" # value
     "${const}" # const
     "${pure_value}" # pure value
     "${inner_expression}" # children
-    )
+  )
   ans(ast)
   map_set("${ast}" this "${this}")
 
   return_ref(ast)
 
 endfunction()
-
-

@@ -1,6 +1,5 @@
 function(test)
 
-
   function(search_paths)
     set(args ${ARGN})
 
@@ -50,10 +49,8 @@ function(test)
     endforeach()
     popd()
 
-
-
     list_remove_duplicates(found)
-      
+
     if(only_directories)
       directories(${found})
       ans(found)
@@ -77,15 +74,12 @@ function(test)
   timer_print_elapsed(t1)
   message("${res}")
 
-
   return()
   wrap_executable(vbox "VBoxManage.exe")
-
 
   vbox()
   ans(res)
 
   message("${res}")
-
 
 endfunction()

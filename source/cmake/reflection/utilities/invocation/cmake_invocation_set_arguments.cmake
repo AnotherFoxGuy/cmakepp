@@ -1,7 +1,7 @@
-## `(<command invocation token> <values: <any...>>)-><void>`
-##
-## replaces the arguments for the specified invocation by the
-## specified values. The values are quoted if necessary
+# `(<command invocation token> <values: <any...>>)-><void>`
+#
+# replaces the arguments for the specified invocation by the specified values.
+# The values are quoted if necessary
 function(cmake_invocation_token_set_arguments invocation_token)
   cmake_invocation_get_arguments_range("${invocation_token}")
   ans_extract(begin end)
@@ -11,7 +11,6 @@ function(cmake_invocation_token_set_arguments invocation_token)
 
   list(LENGTH ARGN count)
   string(LENGTH "${ARGN}" len)
-  
 
   if(${len} LESS 70 OR ${count} LESS 2)
     string_combine(" " ${arguments})
@@ -31,7 +30,6 @@ function(cmake_invocation_token_set_arguments invocation_token)
 
   cmake_token_range("${argument_string}")
   ans(argument_token_range)
-
 
   cmake_token_range_replace("${begin};${end}" "${argument_token_range}")
   return()

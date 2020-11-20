@@ -1,6 +1,4 @@
-
-
-## https://www.ietf.org/rfc/rfc2045.txt
+# https://www.ietf.org/rfc/rfc2045.txt
 function(mime_type_register mime_type)
   data("${mime_type}")
   ans(mime_type)
@@ -23,7 +21,6 @@ function(mime_type_register mime_type)
   map_tryget("${mime_type}" extensions)
   ans(extensions)
 
-
   foreach(key ${name} ${extensions})
     map_append(${mime_types} "${key}" "${mime_type}")
   endforeach()
@@ -31,4 +28,3 @@ function(mime_type_register mime_type)
   return_ref(mime_type)
 
 endfunction()
-

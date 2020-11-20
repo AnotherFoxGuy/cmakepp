@@ -3,10 +3,9 @@ function(test)
   function(test_0)
     arguments_expression(0 ${ARGC})
     ans(rest)
-    assert(${rest} ISNULL )
+    assert(${rest} ISNULL)
   endfunction()
   test_0()
-
 
   function(test_1)
     arguments_expression(0 ${ARGC})
@@ -18,8 +17,7 @@ function(test)
 
   test_1([a,b,c])
 
-
-  ## checks wether spreading arguments correclty works
+  # checks wether spreading arguments correclty works
   function(test_2)
     arguments_expression(0 ${ARGC} v1 v2)
     ans(rest)
@@ -29,8 +27,7 @@ function(test)
   endfunction()
   test_2([a,b,c], [d,e]..., f,g)
 
-
-  ## test wether named args are correctly added
+  # test wether named args are correctly added
   function(test_3)
     arguments_expression(0 ${ARGC} v1 v2)
     assert(${v1} EQUALS a)
@@ -38,8 +35,7 @@ function(test)
   endfunction()
   test_3(v1:a, v2:[b,c])
 
-
-  ## test wehter unused named args are igored
+  # test wehter unused named args are igored
   function(test_4)
     set(v1 asd)
     arguments_expression(0 ${ARGC} v2)
@@ -49,7 +45,7 @@ function(test)
   endfunction()
   test_4(v1:bsd, v2:csd)
 
-  ## test wether positional args are extracted correclty
+  # test wether positional args are extracted correclty
   function(test_5)
     arguments_expression(0 ${ARGC} v1 v2 v3)
     ans(rest)
@@ -60,14 +56,5 @@ function(test)
 
   endfunction()
   test_5(asd, v1: bsd, v3: csd, dsd)
-
-
-
-
-
-
-
-
-
 
 endfunction()

@@ -1,7 +1,5 @@
 function(test)
 
-
-
   set(var Tobias)
   function(func)
     return_ref(var)
@@ -19,5 +17,5 @@ function(test)
   func()
   ans(res)
   assert(res STREQUAL "Becker")
-  
+
 endfunction()

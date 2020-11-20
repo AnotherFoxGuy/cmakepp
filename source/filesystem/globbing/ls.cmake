@@ -1,7 +1,7 @@
-## `(<?path>)-> <qualified path...>`
-##
-## returns a list of files and folders in the specified directory
-##
+# `(<?path>)-> <qualified path...>`
+#
+# returns a list of files and folders in the specified directory
+#
 function(ls)
   path("${ARGN}")
   ans(path)
@@ -13,5 +13,3 @@ function(ls)
   file(GLOB files "${path}")
   return_ref(files)
 endfunction()
-
-

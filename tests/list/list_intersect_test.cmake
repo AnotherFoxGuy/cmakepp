@@ -1,5 +1,5 @@
 function(test)
-    set(lstA 1 2 3 3)
+  set(lstA 1 2 3 3)
   set(lstB 2 3 4)
   set(lstC 3 4 5)
 
@@ -19,7 +19,4 @@ function(test)
   ans(res)
   assert(EQUALS ${res} 3)
 
-
-
-  
 endfunction()

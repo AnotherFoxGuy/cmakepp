@@ -1,14 +1,11 @@
 function(test)
 
-
-
-
   function(test_bcp_extract_unit_clauses)
     cnf(${arguments_sequence})
     ans(cnf)
     map_tryget(${cnf} clause_literal_map)
     ans(clauses)
-   # cnf_print(${cnf})
+    # cnf_print(${cnf})
     map_clone_deep("${clauses}")
     ans(clauses)
 
@@ -24,7 +21,7 @@ function(test)
       assign(result[] = "cnf.literal_map.${r}")
     endforeach()
 
-    #print_vars(result res clauses )
+    # print_vars(result res clauses )
     return_ref(result)
   endfunction()
 

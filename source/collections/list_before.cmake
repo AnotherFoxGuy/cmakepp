@@ -1,6 +1,6 @@
-## `(<list&> <key:<string>>)-><any ....>`
-##
-## returns the elements before key
+# `(<list&> <key:<string>>)-><any ....>`
+#
+# returns the elements before key
 function(list_before __lst __key)
   list(LENGTH ${__lst} __len)
   if(NOT __len)

@@ -1,8 +1,5 @@
 function(test)
 
-
-
-
   function(MyClass)
     this_set(input ${ARGN})
 
@@ -15,7 +12,6 @@ function(test)
     function(${mysetter} obj key)
       return(${this} ${obj} ${key} ${ARGN})
     endfunction()
-
 
     obj_declare_property(${this} prop2)
     function(${get_prop2})
@@ -40,7 +36,7 @@ function(test)
     endfunction()
 
     obj_declare_property(${this} prop5 --setter setp5 --getter getp5)
-    function(${setp5}) 
+    function(${setp5})
       list(REVERSE ARGN)
       return(${ARGN})
     endfunction()
@@ -50,8 +46,6 @@ function(test)
       return(${ARGN})
     endfunction()
 
-
-
     property(prop6)
     function(${get_prop6})
       return(${ARGN})
@@ -60,7 +54,6 @@ function(test)
       return(${ARGN})
     endfunction()
   endfunction()
-
 
   new(MyClass 123)
   ans(uut)
@@ -85,7 +78,6 @@ function(test)
   ans(res)
   assert(${res} ISNULL)
 
-
   obj_get(${uut} prop5)
   ans(res)
   assert(${res} EQUALS prop5 ${uut})
@@ -93,7 +85,6 @@ function(test)
   obj_set(${uut} prop5 123)
   ans(res)
   assert(${res} EQUALS 123 prop5 ${uut})
-
 
   obj_get(${uut} testprop)
   ans(res)
@@ -109,6 +100,6 @@ function(test)
 
   obj_get(${uut} prop6)
   ans(res)
-  assert(${res} EQUALS ${uut} prop6) 
+  assert(${res} EQUALS ${uut} prop6)
 
 endfunction()

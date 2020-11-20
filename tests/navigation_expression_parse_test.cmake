@@ -10,7 +10,14 @@ function(test)
 
   navigation_expression_parse("a.b[3][34].c")
   ans(res)
-  assert(${res} EQUALS a b <3> <34> c)
+  assert(
+    ${res}
+    EQUALS
+    a
+    b
+    <3>
+    <34>
+    c)
 
   navigation_expression_parse("[1]")
   ans(res)
@@ -27,6 +34,5 @@ function(test)
   navigation_expression_parse("[1]" "[0]")
   ans(res)
   assert(${res} EQUALS <1> <0>)
-
 
 endfunction()

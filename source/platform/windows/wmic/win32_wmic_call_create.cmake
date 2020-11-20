@@ -1,23 +1,20 @@
-# returns a <process handle>
-# currently does not play well with arguments
+# returns a <process handle> currently does not play well with arguments
 function(win32_wmic_call_create command)
   path("${command}")
   ans(cmd)
   pwd()
-  ans(cwd)  
+  ans(cwd)
   set(args)
-
 
   message("cmd ${cmd}")
   file(TO_NATIVE_PATH "${cwd}" cwd)
   file(TO_NATIVE_PATH "${cmd}" cmd)
 
-
   if(ARGN)
     string(REPLACE ";" " " args "${ARGN}")
     set(args ",${args}")
   endif()
-  win32_wmic(process call create ${cmd},${cwd})#${args}
+  win32_wmic(process call create ${cmd},${cwd}) # ${args}
   ans(res)
   set(pidregex "ProcessId = ([1-9][0-9]*)\;")
   set(retregex "ReturnValue = ([0-9]+)\;")
@@ -28,7 +25,7 @@ function(win32_wmic_call_create command)
   string(REGEX REPLACE "${pidregex}" "\\1" pid "${pid_match}")
   if(NOT "${ret}" EQUAL 0)
     return()
-  endif() 
+  endif()
   process_handle(${pid})
   ans(res)
   map_set(${res} status running)

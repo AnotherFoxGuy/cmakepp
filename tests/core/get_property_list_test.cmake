@@ -9,12 +9,10 @@ function(test)
     string(REPLACE "\n" ";" stdout "${stdout}")
     list_pop_front(stdout)
 
-    
     return(${stdout})
   endfunction()
 
   get_property_list()
   ans(res)
-
 
 endfunction()

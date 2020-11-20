@@ -1,7 +1,5 @@
-
-
-# returns a list key;value;key;value;...
-# only works if key and value are not lists (ie do not contain ;)
+# returns a list key;value;key;value;... only works if key and value are not
+# lists (ie do not contain ;)
 function(map_pairs map)
   map_keys("${map}")
   ans(keys)

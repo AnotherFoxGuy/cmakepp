@@ -1,7 +1,7 @@
 function(stack_push stack)
   map_tryget("${stack}" back)
   ans(current_index)
-  
+
   # increase stack pointer
   if(NOT current_index)
     set(current_index 0)

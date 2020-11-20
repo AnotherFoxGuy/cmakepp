@@ -4,7 +4,6 @@ function(test)
   set(lstB c d e)
   set(lstC a b k)
 
-
   set_issubset(lstB lstA)
   ans(res)
   assert(res)

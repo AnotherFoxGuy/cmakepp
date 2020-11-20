@@ -1,5 +1,5 @@
 function(test)
-#http://en.wikipedia.org/wiki/INI_file
+  # http://en.wikipedia.org/wiki/INI_file
   function(ini_parse text)
 
   endfunction()
@@ -10,7 +10,6 @@ function(test)
 
   function(ini_parse_file)
 
-
   endfunction()
 
   # lists are serialized as multi properties
@@ -18,7 +17,6 @@ function(test)
     set(args ${ARGN})
     list_extract_flag(args --blanklines)
     ans(blanklines)
-
 
     obj("${obj}")
     ans(obj)
@@ -38,7 +36,7 @@ function(test)
       if(NOT ismap)
         foreach(v ${val})
           list(APPEND ini "${key} = ${v}")
-        endforeach()  
+        endforeach()
       else()
         list(APPEND sections "${key}" "${val}")
       endif()
@@ -63,7 +61,6 @@ function(test)
         list(APPEND ini "[${section}]")
       endif()
     endforeach()
-
 
     string(REPLACE ";" "\n" res "${ini}")
     return_ref(res)

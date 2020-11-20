@@ -15,7 +15,4 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "${node1}")
 
-
-
-
 endfunction()

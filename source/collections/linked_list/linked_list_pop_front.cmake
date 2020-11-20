@@ -1,4 +1,4 @@
-function(linked_list_pop_front linked_list) 
+function(linked_list_pop_front linked_list)
   map_tryget("${linked_list}" head)
   ans(head)
   if(NOT head)

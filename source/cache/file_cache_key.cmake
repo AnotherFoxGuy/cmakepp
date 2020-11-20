@@ -1,4 +1,3 @@
-
 function(file_cache_key cache_key)
   is_address("${cache_key}")
   ans(isref)

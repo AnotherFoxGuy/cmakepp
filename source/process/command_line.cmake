@@ -1,4 +1,3 @@
-
 function(command_line)
   is_map("${ARGN}")
   ans(ismap)
@@ -12,6 +11,5 @@ function(command_line)
   endif()
   command_line_parse(${ARGN})
   return_ans()
-
 
 endfunction()

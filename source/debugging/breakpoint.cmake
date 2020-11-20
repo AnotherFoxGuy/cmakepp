@@ -1,6 +1,6 @@
-# creates a breakpoint 
-# usage: breakpoint(${CMAKE_CURRENT_LIST_FILE} ${CMAKE_CURRENT_LIST_LINE})
-function(breakpoint file line) 
+# creates a breakpoint usage: breakpoint(${CMAKE_CURRENT_LIST_FILE}
+# ${CMAKE_CURRENT_LIST_LINE})
+function(breakpoint file line)
   if(NOT DEBUG_CMAKE)
     return()
   endif()
@@ -14,10 +14,8 @@ function(breakpoint file line)
       break()
     endif()
 
-    
     if("${cmd}" MATCHES "^\\$.*")
       string(SUBSTRING "${cmd}" 1 -1 var)
-      
 
       get_cmake_property(_variableNames VARIABLES)
       foreach(v ${_variableNames})
@@ -28,9 +26,6 @@ function(breakpoint file line)
       endforeach()
 
     endif()
-    
-
-
 
   endwhile()
 endfunction()

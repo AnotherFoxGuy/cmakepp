@@ -1,10 +1,5 @@
-## prints the specified variables names and their values in a single line
-## e.g.
-## set(varA 1)
-## set(varB abc)
-## print_vars(varA varB)
-## output:
-##  varA: '1' varB: 'abc'
+# prints the specified variables names and their values in a single line e.g.
+# set(varA 1) set(varB abc) print_vars(varA varB) output: varA: '1' varB: 'abc'
 function(print_vars)
   set(__print_vars_args "${ARGN}")
   list_extract_flag(__print_vars_args --plain)

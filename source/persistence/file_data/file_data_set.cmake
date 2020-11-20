@@ -1,5 +1,3 @@
-
-
 function(file_data_set dir id nav)
   set(args ${ARGN})
 
@@ -13,7 +11,3 @@ function(file_data_set dir id nav)
   file_data_write("${dir}" "${id}" ${res})
   return_ans()
 endfunction()
-
-
-   
-  

@@ -1,5 +1,3 @@
-
-
 function(linked_list_pop_back linked_list)
   map_tryget(${linked_list} tail)
   ans(tail)

@@ -1,5 +1,3 @@
-
-
 function(file_cache_get cache_key)
   file_cache_key("${cache_key}")
   ans(path)

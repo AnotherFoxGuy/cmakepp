@@ -1,5 +1,5 @@
 function(test)
-  
+
   function(TheTestClass)
 
     proto_declarefunction(method)
@@ -9,8 +9,7 @@ function(test)
     endfunction()
   endfunction()
 
-
-  obj_new( TheTestClass)
+  obj_new(TheTestClass)
   ans(uut)
   obj_member_call(${uut} method)
   ans(res)

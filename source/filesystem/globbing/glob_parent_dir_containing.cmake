@@ -1,10 +1,8 @@
-## `(<directory> <glob expression>)-><qualified director>`
-## 
-## 
-## finds the closest parent dir (or dir itself)
-## that contains any of the specified glob expressions
-## (also see file_glob for syntax)
-function(glob_parent_dir_containing )
+# `(<directory> <glob expression>)-><qualified director>`
+#
+# finds the closest parent dir (or dir itself) that contains any of the
+# specified glob expressions (also see file_glob for syntax)
+function(glob_parent_dir_containing)
   glob_up(0 ${ARGN})
   ans(matches)
   list_peek_front(matches)

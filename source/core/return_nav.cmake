@@ -1,5 +1,4 @@
-
-  macro(return_nav)
-    assign(result = ${ARGN})
-    return_ref(result)
-  endmacro()
+macro(return_nav)
+  assign(result = ${ARGN})
+  return_ref(result)
+endmacro()

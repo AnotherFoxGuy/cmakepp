@@ -1,14 +1,12 @@
-## returns the runtime unique process handle
-## information may differ depending on os but the following are the same for any os
-## * pid
-## * status
+# returns the runtime unique process handle information may differ depending on
+# os but the following are the same for any os * pid * status
 function(process_handle handlish)
   is_map("${handlish}")
   ans(ismap)
 
   if(ismap)
     set(handle ${handlish})
-  elseif( "${handlish}" MATCHES "[0-9]+")
+  elseif("${handlish}" MATCHES "[0-9]+")
     string(REGEX MATCH "[0-9]+" handlish "${handlish}")
 
     map_tryget(__process_handles ${handlish})
@@ -16,7 +14,7 @@ function(process_handle handlish)
     if(NOT handle)
       map_new()
       ans(handle)
-      map_set(${handle} pid "${handlish}")          
+      map_set(${handle} pid "${handlish}")
       map_set(${handle} state "unknown")
       map_set(__process_handles ${handlish} ${handle})
     endif()

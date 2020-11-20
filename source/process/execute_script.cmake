@@ -1,10 +1,11 @@
-## `(<cmake code> [--pure] <args...>)-><execute result>`
-##
-## equivalent to `execute(...)->...` runs the specified code using `cmake -P`.  
-## prepends the current `cmakepp.cmake` to the script  (this default behaviour can be stopped by adding `--pure`)
-##
-## all not specified `args` are forwarded to `execute`
-##
+# `(<cmake code> [--pure] <args...>)-><execute result>`
+#
+# equivalent to `execute(...)->...` runs the specified code using `cmake -P`.
+# prepends the current `cmakepp.cmake` to the script  (this default behaviour
+# can be stopped by adding `--pure`)
+#
+# all not specified `args` are forwarded to `execute`
+#
 function(execute_script script)
   set(args ${ARGN})
 
@@ -18,8 +19,8 @@ function(execute_script script)
   endif()
   fwrite_temp("${script}" ".cmake")
   ans(script_file)
-  ## execute add callback to delete temporary file
-  execute("${CMAKE_COMMAND}" -P "${script_file}"  --on-terminated-callback "[]() rm(${script_file})" ${args}) 
+  # execute add callback to delete temporary file
+  execute("${CMAKE_COMMAND}" -P "${script_file}" --on-terminated-callback
+          "[]() rm(${script_file})" ${args})
   return_ans()
 endfunction()
-

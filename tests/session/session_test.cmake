@@ -1,5 +1,5 @@
 function(test)
-    set(session_file ".cmakepp-session")
+  set(session_file ".cmakepp-session")
 
   function(get_session)
 
@@ -23,7 +23,6 @@ function(test)
     json_print("${sessionData}")
     return_ref(sessionData)
 
-
   endfunction()
 
   function(session_write)
@@ -32,23 +31,12 @@ function(test)
     cmake_write("${session_file}" "${sess}")
   endfunction()
 
-
-
   set_session(asdasdasd)
   session_write()
-
-  
-
-
-
 
   session()
   ans(session)
 
-
-
-
   assert(EXISTS "${test_dir}/.cmakepp-session")
-
 
 endfunction()

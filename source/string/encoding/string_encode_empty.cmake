@@ -8,7 +8,3 @@ function(string_encode_empty str)
   endif()
   return_ref(str)
 endfunction()
-
-
-
-

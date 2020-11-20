@@ -5,19 +5,18 @@ function(list_select __list_select_lst selector)
   set(__list_select_result_list)
 
   foreach(item ${${__list_select_lst}})
-		rcall(res = "${selector}"("${item}"))
-		list(APPEND __list_select_result_list ${res})
+    rcall(res = "${selector}" ("${item}"))
+    list(APPEND __list_select_result_list ${res})
 
-	endforeach()
+  endforeach()
   message("list_select end")
-	return_ref(__list_select_result_list)
+  return_ref(__list_select_result_list)
 endfunction()
 
-
-
-## fast implementation of list_select
+# fast implementation of list_select
 function(list_select __list_select_lst __list_select_selector)
-  function_import("${__list_select_selector}" as __list_select_selector REDEFINE)
+  function_import("${__list_select_selector}" as __list_select_selector
+                  REDEFINE)
 
   set(__res)
   set(__ans)
@@ -25,5 +24,5 @@ function(list_select __list_select_lst __list_select_selector)
     __list_select_selector(${__list_select_current_arg})
     list(APPEND __res ${__ans})
   endforeach()
-  return_ref(__res)  
+  return_ref(__res)
 endfunction()

@@ -1,7 +1,6 @@
-## `(<start:<token>> <token type> [<value:<regex>>])-><token>`  
-##
-## returns the next token that has the specified token type
-## or null
+# `(<start:<token>> <token type> [<value:<regex>>])-><token>`
+#
+# returns the next token that has the specified token type or null
 function(cmake_token_range_find_next_by_type range type)
   list_extract(range current end)
   set(regex ${ARGN})
@@ -13,10 +12,10 @@ function(cmake_token_range_find_next_by_type range type)
         map_tryget(${current} literal_value)
         ans(current_value)
         if("${current_value}" MATCHES "${regex}")
-     #   print_vars(current_value regex match)
+          # print_vars(current_value regex match)
           return_ref(current)
         endif()
-     #   print_vars(current_value regex nomatch)
+        # print_vars(current_value regex nomatch)
       else()
         return_ref(current)
       endif()
@@ -25,4 +24,3 @@ function(cmake_token_range_find_next_by_type range type)
     ans(current)
   endwhile()
 endfunction()
-

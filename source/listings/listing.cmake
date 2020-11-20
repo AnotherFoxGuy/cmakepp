@@ -1,7 +1,4 @@
-
-  function(listing)
-    address_new()
-    return_ans()    
-  endfunction()
-
-
+function(listing)
+  address_new()
+  return_ans()
+endfunction()

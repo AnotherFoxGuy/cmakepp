@@ -1,6 +1,5 @@
-
 # converts the varargs list of pahts to a map
-function(paths_to_map )
+function(paths_to_map)
   map_new()
   ans(map)
   foreach(path ${ARGN})

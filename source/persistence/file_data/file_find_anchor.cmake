@@ -1,12 +1,11 @@
-## `(<search file:<file name>> [<location:<path>>])-><path>|<null>`
-##
-## an anchor file is what I call a file that exists somewhere in the
-## specified location, any parent directory, or in the current directory
-## for example git normally uses an anchorfile in every repository
-## (in that cast the `.git` folder)
-## also alot of projects use a local file system and in the project;'s
-## root folder there exists an anchor file e.g. `.cps` `.cps/project.scmake` 
-##
+# `(<search file:<file name>> [<location:<path>>])-><path>|<null>`
+#
+# an anchor file is what I call a file that exists somewhere in the specified
+# location, any parent directory, or in the current directory for example git
+# normally uses an anchorfile in every repository (in that cast the `.git`
+# folder) also alot of projects use a local file system and in the project;'s
+# root folder there exists an anchor file e.g. `.cps` `.cps/project.scmake`
+#
 function(file_find_anchor search_file)
   set(search ${ARGN})
   path("${search}")

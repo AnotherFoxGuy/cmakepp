@@ -1,6 +1,7 @@
-##  `(<clauses: <clause: { <selector>:<literal...> }>...> <any...>)-><bool>`
-## 
-##  queries the specified args for the specified clauses in conjunctive normal form
+# `(<clauses: <clause: { <selector>:<literal...> }>...> <any...>)-><bool>`
+#
+# queries the specified args for the specified clauses in conjunctive normal
+# form
 function(query_match_cnf clauses)
   data("${clauses}")
   ans(clauses)

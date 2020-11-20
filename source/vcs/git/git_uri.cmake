@@ -1,8 +1,6 @@
-## returns the git uri for the given ARGN
-## if its empty emtpy is returned
-## if it exists it is returned
-## if it exists after qualification the qualifed path is returned
-## else it is retunred
+# returns the git uri for the given ARGN if its empty emtpy is returned if it
+# exists it is returned if it exists after qualification the qualifed path is
+# returned else it is retunred
 function(git_uri)
 
   set(uri ${ARGN})
@@ -19,5 +17,3 @@ function(git_uri)
   endif()
   return_ref(uri)
 endfunction()
-
-

@@ -1,5 +1,4 @@
-
-# 
+#
 function(shell_path_add path)
   set(args ${ARGN})
   list_extract_flag(args "--prepend")
@@ -14,7 +13,6 @@ function(shell_path_add path)
   if(res)
     return(false)
   endif()
-
 
   if(prepend)
     set(paths "${path};${paths}")

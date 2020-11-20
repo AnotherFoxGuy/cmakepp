@@ -1,4 +1,3 @@
-
 function(tock)
   map_tryget(globaltick val)
   ans(res)

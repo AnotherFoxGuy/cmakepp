@@ -1,6 +1,6 @@
-## `(<list ref> <key:<string>>)-><any ....>`
-##
-## returns the elements after the specified key
+# `(<list ref> <key:<string>>)-><any ....>`
+#
+# returns the elements after the specified key
 function(list_after __lst __key)
   list(LENGTH ${__lst} __len)
   if(NOT __len)

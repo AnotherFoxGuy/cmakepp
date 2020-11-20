@@ -11,11 +11,9 @@ function(test)
   linked_list_push_back(${uut} d)
   ans(d)
 
-
   linked_list_remove(${uut} ${c})
   assertf("{b.next}" STREQUAL "${d}")
   assertf("{d.previous}" STREQUAL "${b}")
-
 
   linked_list_remove(${uut} ${d})
   assertf("{uut.tail}" STREQUAL "${b}")
@@ -26,6 +24,5 @@ function(test)
   linked_list_remove(${uut} ${b})
   assertf({uut.head} ISNULL)
   assertf({uut.tail} ISNULL)
-
 
 endfunction()

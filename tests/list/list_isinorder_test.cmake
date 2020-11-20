@@ -6,7 +6,7 @@ function(test)
   ans(res)
   assert(res)
 
-  list_isinorder(lstA b d )
+  list_isinorder(lstA b d)
   ans(res)
   assert(res)
 

@@ -1,8 +1,6 @@
-
-
-# queries the system for the current datetime
-# returns a map containing all elements of the current date
-# {yyyy: <>, MM:<>, dd:<>, hh:<>, mm:<>, ss:<>, ms:<>}
+# queries the system for the current datetime returns a map containing all
+# elements of the current date {yyyy: <>, MM:<>, dd:<>, hh:<>, mm:<>, ss:<>,
+# ms:<>}
 
 function(datetime)
   fwrite_temp("")
@@ -11,23 +9,35 @@ function(datetime)
   ans(timestamp)
   rm("${file}")
 
+  string(
+    REGEX
+    REPLACE
+      "([0-9][0-9][0-9][0-9])\\-([0-9][0-9])\\-([0-9][0-9])T([0-9][0-9]):([0-9][0-9]):([0-9][0-9])"
+      "\\1;\\2;\\3;\\4;\\5;\\6"
+    timestamp "${timestamp}")
 
-  string(REGEX REPLACE "([0-9][0-9][0-9][0-9])\\-([0-9][0-9])\\-([0-9][0-9])T([0-9][0-9]):([0-9][0-9]):([0-9][0-9])"
-   "\\1;\\2;\\3;\\4;\\5;\\6" 
-   timestamp 
-   "${timestamp}")
-  
-  list_extract(timestamp yyyy MM dd hh mm ss)
+  list_extract(
+    timestamp
+    yyyy
+    MM
+    dd
+    hh
+    mm
+    ss)
   set(ms 0)
 
   map_new()
   ans(dt)
-  map_capture(${dt} yyyy MM dd hh mm ss ms)
+  map_capture(
+    ${dt}
+    yyyy
+    MM
+    dd
+    hh
+    mm
+    ss
+    ms)
   return_ref(dt)
-
-
-
-
 
   # old implementation
   shell_get()
@@ -39,15 +49,25 @@ function(datetime)
     ans(time)
     shell_env_get("date")
     ans(date)
-    
-    string(REGEX REPLACE "([0-9][0-9])\\.([0-9][0-9])\\.([0-9][0-9][0-9][0-9]).*" "\\1;\\2;\\3" date "${date}")
-    list_extract(date dd MM yyyy)
-    
 
-    string(REGEX REPLACE "([0-9][0-9]):([0-9][0-9]):([0-9][0-9]),([0-9][0-9]).*" "\\1;\\2;\\3;\\4" time "${time}")
+    string(REGEX
+           REPLACE "([0-9][0-9])\\.([0-9][0-9])\\.([0-9][0-9][0-9][0-9]).*"
+                   "\\1;\\2;\\3" date "${date}")
+    list_extract(date dd MM yyyy)
+
+    string(REGEX REPLACE "([0-9][0-9]):([0-9][0-9]):([0-9][0-9]),([0-9][0-9]).*"
+                         "\\1;\\2;\\3;\\4" time "${time}")
     list_extract(time hh mm ss ms)
 
-    map_capture(${dt} yyyy MM dd hh mm ss ms)
+    map_capture(
+      ${dt}
+      yyyy
+      MM
+      dd
+      hh
+      mm
+      ss
+      ms)
 
     return("${dt}")
   else()
@@ -60,8 +80,16 @@ function(datetime)
     set(mm)
     set(ss)
     set(ms)
-    
-    map_capture(${dt} yyyy MM dd hh mm ss ms)
+
+    map_capture(
+      ${dt}
+      yyyy
+      MM
+      dd
+      hh
+      mm
+      ss
+      ms)
 
     return("${dt}")
 

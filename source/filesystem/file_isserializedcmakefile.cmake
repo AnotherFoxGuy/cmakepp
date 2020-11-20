@@ -1,4 +1,3 @@
-
 function(file_isserializedcmakefile file)
   path_qualify(file)
   if(NOT EXISTS "${file}" OR IS_DIRECTORY "${file}")

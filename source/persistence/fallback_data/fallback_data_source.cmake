@@ -1,4 +1,4 @@
-## returns the source dir for the specified navigation argument
+# returns the source dir for the specified navigation argument
 function(fallback_data_source dirs id)
   set(res)
   foreach(dir ${dirs})

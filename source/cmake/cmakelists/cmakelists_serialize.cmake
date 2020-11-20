@@ -1,6 +1,6 @@
-## `(<cmakelists>)-> <cmake code>`
-##
-## serializes the specified cmakelists into its textual representation.
+# `(<cmakelists>)-> <cmake code>`
+#
+# serializes the specified cmakelists into its textual representation.
 function(cmakelists_serialize cmakelists)
   map_tryget(${cmakelists} begin)
   ans(begin)

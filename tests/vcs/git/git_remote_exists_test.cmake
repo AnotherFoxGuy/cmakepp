@@ -3,12 +3,10 @@ function(test)
   git(init)
   popd()
 
-
   # remote web repo
   git_remote_exists("https://github.com/AnotherFoxGuy/cmakepp.git")
   ans(res)
   assert(res)
-
 
   # non existing repo in existing path
   git_remote_exists("${test_dir}")
@@ -31,7 +29,4 @@ function(test)
   ans(res)
   assert(NOT res)
 
-
-
-  
 endfunction()

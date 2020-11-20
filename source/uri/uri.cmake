@@ -8,4 +8,3 @@ function(uri uri)
   ans(uri)
   return_ref(uri)
 endfunction()
-

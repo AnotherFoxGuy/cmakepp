@@ -1,5 +1,4 @@
-
-function(semver_constraint_compiled_evaluate compiled_constraint version )
+function(semver_constraint_compiled_evaluate compiled_constraint version)
   map_import_properties(${compiled_constraint} elements template)
 
   foreach(element ${elements})

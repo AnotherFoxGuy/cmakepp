@@ -1,21 +1,18 @@
 function(test)
 
-
-return()
+  return()
   function(list_iterator_next)
-
 
   endfunction()
 
-return()
-
+  return()
 
   map()
 
-    foreach(i RANGE 1 50)
-      math(EXPR r "${i} * ${i}")
-      kv("${i}" "${r}")
-    endforeach()
+  foreach(i RANGE 1 50)
+    math(EXPR r "${i} * ${i}")
+    kv("${i}" "${r}")
+  endforeach()
   end()
 
   ans(map)
@@ -23,7 +20,7 @@ return()
   map_iterator(${map})
   ans(mapit)
   timer_print_elapsed(init)
- 
+
   timer_start(mapit)
   while(true)
     map_iterator_break(mapit)
@@ -31,17 +28,13 @@ return()
   endwhile()
   timer_print_elapsed(mapit)
 
-  
+  return()
 
-return()
-
-  
   function(iterator)
     map_new()
     ans(it)
 
     set(args ${ARGN})
-    
 
     set(i 0)
     foreach(arg ${args})
@@ -70,9 +63,7 @@ return()
       math(EXPR idx "${idx} + 1")
     endif()
 
-
-    
-    list(INSERT "${it_ref}" 1 ${idx}) 
+    list(INSERT "${it_ref}" 1 ${idx})
     list(REMOVE_AT "${it_ref}" 2)
 
     set(end false)
@@ -82,23 +73,22 @@ return()
       set(end true)
     endif()
 
-    set(${it_ref} ${${it_ref}} PARENT_SCOPE)
+    set(${it_ref}
+        ${${it_ref}}
+        PARENT_SCOPE)
 
     return(${end})
   endfunction()
 
-
-  
-
   return()
 
-file(GLOB files "C:/Windows/System32/**")
+  file(GLOB files "C:/Windows/System32/**")
   list(LENGTH files len)
 
   timer_start(foreac)
   set(res)
   foreach(file ${files})
-  #  message("file ${file}")
+    # message("file ${file}")
     string(REGEX MATCH "exe" m "c${file}")
     list(APPEND res ${m})
   endforeach()
@@ -123,64 +113,50 @@ file(GLOB files "C:/Windows/System32/**")
     list(APPEND res ${m})
   endwhile()
   timer_print_elapsed(loop)
-message(len ${len})
-
-
+  message(len ${len})
 
   return()
 
-
-#  timer_start(generate)
+  # timer_start(generate)
   index_range(0 500)
   ans(res)
- # timer_print_elapsed(generate)
- # timer_start(init)
+  # timer_print_elapsed(generate) timer_start(init)
   iterator(${res})
   ans(it)
- # timer_print_elapsed(init)
+  # timer_print_elapsed(init)
 
-  #timer_start(asd)
+  # timer_start(asd)
   foreach(i ${res})
     list(GET res "${i}" i2)
     math(EXPR i "${i} + ${i}")
   endforeach()
-  #timer_print_elapsed(asd)
-  #timer_start(bsd)
+  # timer_print_elapsed(asd) timer_start(bsd)
 
-
-
-  while("${it}" MATCHES "active" )
+  while("${it}" MATCHES "active")
     iterator_next(it)
     iterator_current(it)
     ans(element)
 
-
-
   endwhile()
-  #timer_print_elapsed(bsd)
+  # timer_print_elapsed(bsd)
 
   return()
   string(ASCII 1 ok)
-  
 
-  function(file_stream_open  path)
+  function(file_stream_open path)
 
     return("[eof]")
   endfunction()
 
   ans(file_stream)
 
-
-
   set(eof "eof")
 
   while(NOT "${file_stream}" MATCHES "[eof]")
-  #  file_stream_read()
+    # file_stream_read()
 
   endwhile()
 
-# iterator ref;idx;state
-
-
+  # iterator ref;idx;state
 
 endfunction()

@@ -1,4 +1,4 @@
-# 
+#
 function(project_register name)
   map_new()
   ans(pmap)
@@ -28,7 +28,7 @@ function(project_object)
       set(name "${PROJECT_NAME}")
     endif()
   endif()
-  
+
   map_tryget(global project_map)
   ans(res)
   if(NOT res)

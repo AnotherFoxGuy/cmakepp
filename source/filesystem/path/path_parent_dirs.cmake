@@ -1,8 +1,7 @@
-# returns the specified max n (all if n = 0)
-# parent directories of path
+# returns the specified max n (all if n = 0) parent directories of path
 function(path_parent_dirs path)
   set(continue 99999)
-  if(ARGN )
+  if(ARGN)
     set(continue "${ARGN}")
 
     if("${continue}" EQUAL 0)
@@ -21,7 +20,6 @@ function(path_parent_dirs path)
   path_split("${path}")
   ans(parts)
 
-
   set(parent_dirs)
   while(true)
     if(NOT parts OR ${continue} LESS 1)
@@ -29,12 +27,12 @@ function(path_parent_dirs path)
     endif()
     list_pop_back(parts)
     path_combine(${parts})
-    ans(current)      
+    ans(current)
 
     if(isrooted)
       set(current "/${current}")
     endif()
-    
+
     if("_${current}" STREQUAL "_")
       break()
     endif()
@@ -44,4 +42,3 @@ function(path_parent_dirs path)
   endwhile()
   return_ref(parent_dirs)
 endfunction()
-

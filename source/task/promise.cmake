@@ -1,15 +1,14 @@
-## `(<task>|<promise>|<any>)-><promise>` 
-##
-## transforms the input into a promise
-## if the input is a promise it is directly retunred
-## if input is  a task it is transformed into a promise
-## if input is anything else it is wrapped inside a resolved promise
+# `(<task>|<promise>|<any>)-><promise>`
+#
+# transforms the input into a promise if the input is a promise it is directly
+# retunred if input is  a task it is transformed into a promise if input is
+# anything else it is wrapped inside a resolved promise
 function(promise)
   set(promise "${ARGN}")
   is_promise("${promise}")
   ans(is_promise)
   if(NOT is_promise)
-    
+
     is_task("${promise}")
     ans(is_task)
     if(is_task)
@@ -22,7 +21,7 @@ function(promise)
   endif()
   task_queue_global()
   ans(task_queue)
-  map_set_default("${promise}" task_queue "${task_queue}")  
+  map_set_default("${promise}" task_queue "${task_queue}")
 
   return_ref(promise)
 endfunction()
@@ -42,7 +41,7 @@ function(promise_from_value)
   map_set("${promise}" value "${ARGN}")
   return_ref(promise)
 endfunction()
-  
+
 function(promise_from_task)
   promise_new()
   ans(promise)
@@ -55,10 +54,9 @@ function(promise_from_task)
   endif()
 
   map_set("${promise}" task "${task}")
-  
+
   return(${promise})
 endfunction()
-
 
 function(promise_from_callable callable)
   task_new("${callable}")
@@ -74,6 +72,3 @@ function(promise_from_anonymous)
   promise_from_callable("${function}")
   return_ans()
 endfunction()
-
-
-

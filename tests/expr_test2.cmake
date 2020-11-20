@@ -6,7 +6,6 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "12")
 
-
   script("{valaa1:['asd']}")
   ans(res)
   assert(DEREF "{res.valaa1}" STREQUAL "asd")
@@ -15,7 +14,7 @@ function(test)
   ans(res)
   assert(DEREF "{res.include}" STREQUAL "hello")
   assert(DEREF "{res.exclude}" STREQUAL "asd")
-  
+
   function(TestClassX)
     message("instance x")
     this_set(x 3)
@@ -28,24 +27,21 @@ function(test)
   assert(DEREF "{res.y}" STREQUAL asd)
   assert(DEREF "{res.z}" STREQUAL bsd)
 
-
   message("${lang}:'${package_dir}/resources/expr.json'")
-  
+
   function(testfu)
     message("argn ${ARGN}")
   endfunction()
 
   script("  $testfu(()->'muhkuh', ()->'nuhkuh')")
-  
 
   script("(asd_asd, bsd_bsd)->{[bsd_bsd,asd_asd]; }")
   ans(res)
-  call("${res}"(a 1))
+  call("${res}" (a 1))
   ans(res)
   assert(EQUALS ${res} 1 a)
 
-#return()
-  # statements
+  # return() statements
   script("$test1 = 'asd'; $test2='bsd'")
 
   ans(res)
@@ -54,14 +50,14 @@ function(test)
   assert("${test1}" STREQUAL "asd")
   assert(test2)
   assert("${test2}" STREQUAL "bsd")
-  
+
   # null coalescing
   set(someMap)
   script("$someMap = $someMap ?? {a:123}")
   ans(res1)
   script("$someMap = $someMap ?? {a:234}")
   ans(res2)
-  is_map(${res1} )
+  is_map(${res1})
   ans(ismap)
   assert(ismap)
   assert("${res1}" STREQUAL "${res2}")
@@ -74,17 +70,15 @@ function(test)
 
   # assign bound value
   map_new()
-    ans(someMap)
+  ans(someMap)
   script("$someMap.value1 = 123")
   ans(res)
   assert(${res} STREQUAL "123")
-  assert(DEREF "{someMap.value1}" STREQUAL 123) 
-  
-
+  assert(DEREF "{someMap.value1}" STREQUAL 123)
 
   # assign indexer
   map_new()
-    ans(this)
+  ans(this)
   script("['testvalue'] = 33")
   ans(res)
   assert("${res}" STREQUAL "33")
@@ -92,7 +86,7 @@ function(test)
 
   # chain multiple assign
   map_new()
-    ans(this)
+  ans(this)
   script("asd = bsd = csd = 3")
   ans(res)
   assert("${res}" STREQUAL 3)
@@ -115,7 +109,6 @@ function(test)
   assert(${res} STREQUAL "hula")
   assert(DEREF "{this.bsd}" STREQUAL "hula")
 
-
   # complicated sample
   script(" {a:{b:{c:'[]()return({{this}})',d:'hello'}}}.a.b.c().d")
   ans(res)
@@ -124,22 +117,21 @@ function(test)
   # object
   script("{}")
   ans(res)
-  is_map(${res} )
+  is_map(${res})
   ans(ismap)
   assert(ismap)
-
 
   # object with value
   script("{asd:312}")
   ans(res)
-  is_map(${res} )
+  is_map(${res})
   ans(ismap)
   assert(ismap)
   assert(DEREF "{res.asd}" STREQUAL "312")
 
-  #object with multiple values
+  # object with multiple values
   script("{asd:'asd', bsd:'bsd', csd:{a:1,b:2}}")
-  
+
   ans(res)
   assert(DEREF "{res.asd}" STREQUAL "asd")
   assert(DEREF "{res.bsd}" STREQUAL "bsd")
@@ -175,7 +167,7 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "1234")
 
-  # bind 
+  # bind
   map_new()
   ans(this)
   map_new()
@@ -186,7 +178,6 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "9876")
 
-
   # indexation
   map_new()
   ans(a)
@@ -194,8 +185,5 @@ function(test)
   script("$a['a']")
   ans(res)
   assert("${res}" STREQUAL "1234")
-
-
-
 
 endfunction()

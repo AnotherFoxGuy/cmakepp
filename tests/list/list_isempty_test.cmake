@@ -1,6 +1,5 @@
 function(test)
 
-
   set(lstA)
   set(lstB a)
   set(lstC a b)
@@ -12,7 +11,6 @@ function(test)
   list_isempty(lstB)
   ans(res)
   assert(NOT res)
-
 
   list_isempty(lstC)
   ans(res)

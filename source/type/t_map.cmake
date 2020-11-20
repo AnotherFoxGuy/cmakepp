@@ -6,6 +6,3 @@ function(t_map)
   endif()
   return(true ${map})
 endfunction()
-
-
-

@@ -9,7 +9,7 @@ function(test)
 
     process_handle_new(${startinfo})
     ans(handle)
-    
+
     process_start(${handle})
     return_ans()
   endfunction()
@@ -20,8 +20,5 @@ function(test)
   process_kill("${handle}")
 
   process_wait(${handle})
-
-
-
 
 endfunction()

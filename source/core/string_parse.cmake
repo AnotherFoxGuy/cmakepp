@@ -1,4 +1,4 @@
- function(expr_string_parse str)
+function(expr_string_parse str)
   set(regex_single_quote_string "'[^']*'")
   set(regex_double_quote_string "\"[^\"]*\"")
   if("${str}" MATCHES "^${regex_single_quote_string}$")

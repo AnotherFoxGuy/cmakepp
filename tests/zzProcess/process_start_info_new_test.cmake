@@ -1,7 +1,5 @@
 function(test)
 
-
-
   timer_start(t1)
   foreach(i RANGE 0 100)
     process_start_info_new(COMMAND cmake -E echo "a;b" "c;d")
@@ -26,7 +24,6 @@ function(test)
   assertf({res.working_directory} STREQUAL "${test_dir}")
   assertf({res.timeout} STREQUAL "-1")
 
-
   process_start_info_new(cmake -E echo "a;b" "c;d")
   ans(res)
   assert(res)
@@ -36,8 +33,14 @@ function(test)
   assertf({res.working_directory} STREQUAL "${test_dir}")
   assertf({res.timeout} STREQUAL "-1")
 
-
-  process_start_info_new(cmake -E echo "a;b" "c;d" TIMEOUT 2)
+  process_start_info_new(
+    cmake
+    -E
+    echo
+    "a;b"
+    "c;d"
+    TIMEOUT
+    2)
   ans(res)
   assert(res)
   assertf({res.command} STREQUAL "cmake")
@@ -47,10 +50,16 @@ function(test)
   assertf({res.timeout} STREQUAL "2")
   assertf({res.passthru} STREQUAL "false")
 
-
-
-  process_start_info_new(cmake -E echo "a;b" "c;d" TIMEOUT 2 --passthru)  
+  process_start_info_new(
+    cmake
+    -E
+    echo
+    "a;b"
+    "c;d"
+    TIMEOUT
+    2
+    --passthru)
   ans(res)
   assertf({res.passthru} STREQUAL "true")
-return()
+  return()
 endfunction()

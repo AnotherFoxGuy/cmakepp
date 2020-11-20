@@ -1,6 +1,3 @@
-
-
-
 # wraps the win32 console executable cmd.exe
 function(msiexec)
   if(NOT WIN32)

@@ -1,7 +1,7 @@
-## `log_last_error_entry()-><log entry>`
-##
-## returns the last log entry which is an error
-## 
+# `log_last_error_entry()-><log entry>`
+#
+# returns the last log entry which is an error
+#
 function(log_last_error_entry)
   address_get(log_record)
   ans(log_record)
@@ -21,4 +21,3 @@ function(log_last_error_entry)
   endwhile()
   return_ref(entry)
 endfunction()
-

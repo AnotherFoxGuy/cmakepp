@@ -1,7 +1,6 @@
-## `(<args...>)`[<exitcode>, <stdout>]
-##
-## a lean wrapper for git
-## does not take part in the process management of cmakepp
+# `(<args...>)`[<exitcode>, <stdout>]
+#
+# a lean wrapper for git does not take part in the process management of cmakepp
 function(git_lean)
   find_package(Git)
   if(NOT GIT_FOUND)
@@ -11,6 +10,5 @@ function(git_lean)
   wrap_executable_bare(git_lean "${GIT_EXECUTABLE}")
   git_lean(${ARGN})
   return_ans()
-
 
 endfunction()

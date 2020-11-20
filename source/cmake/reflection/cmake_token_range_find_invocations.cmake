@@ -1,8 +1,9 @@
-## `(<token range> <identifier:<regex>>  [<limmit>:<uint>])-><command invocation...>`
-##
-## returns all invocations which match the specified identifer regex
-## only look between begin and end
-function(cmake_token_range_find_invocations range identifier )
+# `(<token range> <identifier:<regex>>  [<limmit>:<uint>])-><command
+# invocation...>`
+#
+# returns all invocations which match the specified identifer regex only look
+# between begin and end
+function(cmake_token_range_find_invocations range identifier)
   set(args ${ARGN})
   list_extract(range begin end)
 
@@ -32,5 +33,5 @@ function(cmake_token_range_find_invocations range identifier )
     map_tryget(${current} next)
     ans(current)
   endwhile()
-  return_ref(result)  
+  return_ref(result)
 endfunction()

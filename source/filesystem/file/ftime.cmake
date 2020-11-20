@@ -1,5 +1,4 @@
-
-## returns the timestamp for the specified path
+# returns the timestamp for the specified path
 function(ftime path)
   path_qualify(path)
 

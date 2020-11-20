@@ -1,4 +1,4 @@
-# evaluates a truth expression 'if' and returns true or false 
+# evaluates a truth expression 'if' and returns true or false
 function(eval_truth)
   if(${ARGN})
     return(true)

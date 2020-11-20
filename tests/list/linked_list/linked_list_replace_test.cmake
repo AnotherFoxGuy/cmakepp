@@ -1,10 +1,7 @@
 function(test)
 
-
   linked_list_new()
   ans(uut)
-
-
 
   linked_list_insert_after("${uut}" "" a)
   ans(a)
@@ -29,20 +26,11 @@ function(test)
   assertf("{e.next}" STREQUAL "${c}")
   assertf("{c.previous}" STREQUAL "${e}")
 
-
   linked_list_replace("${uut}" "${c}")
   ans(f)
   assertf("{uut.head}" STREQUAL "${d}")
   assertf("{uut.tail}" STREQUAL "${f}")
   assertf("{f.previous}" STREQUAL "${e}")
   assertf("{e.next}" STREQUAL "${f}")
-  
-
-
-
-
-
-
-
 
 endfunction()

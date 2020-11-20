@@ -20,17 +20,18 @@ function(fread_lines path)
   list_extract_flag_name(args --no-hex-conversion NO_HEX_CONVERSION)
   ans(no_hex_conversion)
 
-
-  file(STRINGS "${path}" res 
-    ${limit_count} 
-    ${limit_input} 
-    ${limit_output} 
-    ${length_minimum} 
+  file(
+    STRINGS
+    "${path}"
+    res
+    ${limit_count}
+    ${limit_input}
+    ${limit_output}
+    ${length_minimum}
     ${length_maximum}
     ${newline_cosume}
     ${regex}
-    ${no_hex_conversion}
-  )
+    ${no_hex_conversion})
 
   return_ref(res)
 endfunction()

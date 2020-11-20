@@ -1,5 +1,5 @@
 function(test)
- environment_processor_count()
- ans(res)
- assert(NOT ${res} LESS 1)
+  environment_processor_count()
+  ans(res)
+  assert(NOT ${res} LESS 1)
 endfunction()

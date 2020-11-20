@@ -1,7 +1,4 @@
 function(test)
-  
-
-
 
   data("{a:1,b:{c:2}}")
   ans(data)
@@ -13,7 +10,6 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "1/2/1")
 
-
   return()
 
   obj("{id:1,b:{c:3}}")
@@ -22,15 +18,13 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "[1](1)")
 
-
-
-  ## this test shows a problem with cmake and template syntax 
-  ## @<identifier>@ is replaced by the variable during string evalutation
+  # this test shows a problem with cmake and template syntax @<identifier>@ is
+  # replaced by the variable during string evalutation
   set(val1 abc)
   template_run("@set(val1 def)@val1@")
   ans(res)
   assert("${res}" STREQUAL "abc")
-  ## however escaping the @ will alleviate the problem
+  # however escaping the @ will alleviate the problem
   set(val1 abc)
   template_run("@set(val1 def)\@val1@")
   ans(res)
@@ -41,21 +35,20 @@ function(test)
   ans(res)
   assert("${res}_" STREQUAL "_")
 
-  ## @ only works when escaped
+  # @ only works when escaped
   template_run("@@")
   ans(res)
   assert("${res}" STREQUAL "@")
-
 
   set(i 123)
   template_run("@foreach(i RANGE 1 3)\@i\@endforeach()")
   ans(res)
   assert("${res}" STREQUAL 123)
-  ## allow storage of code fragment in variable with '<%><varname> ' (space is importand)
+  # allow storage of code fragment in variable with '<%><varname> ' (space is
+  # importand)
   template_run("<%>hello_you template_out(\${hello_you})%>@hello_you")
   ans(res)
   assert("${res}" STREQUAL "template_out(\${hello_you})")
-
 
   template_run("@@")
   ans(res)
@@ -74,27 +67,27 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "hello Tobias Becker")
 
-
   template_run("<%% %%>")
   ans(res)
   assert("${res}" STREQUAL "<% %>")
 
-
-
-  template_run("
+  template_run(
+    "
     Hello My Friend
     <% foreach(i RANGE 1 3) %><%=\${i}%><% endforeach() %>
     ByBy!
   ")
   ans(res)
-  assert("${res}" STREQUAL "
+  assert(
+    "${res}"
+    STREQUAL
+    "
     Hello My Friend
     123
     ByBy!
   ")
 
-
-  ## tests wether the <%= expression works as expected
+  # tests wether the <%= expression works as expected
 
   template_run("<%={data.b.c}%>")
   ans(res)
@@ -109,16 +102,14 @@ function(test)
   ans(res)
   assert("${res}" STREQUAL "123")
 
-  ## spaces in string should be kep
+  # spaces in string should be kep
   template_run("<%=\"  123  ${input}  \"%>")
   ans(res)
   assert("${res}" STREQUAL "  123  123  ")
 
-  ## shoudl generate a list
+  # shoudl generate a list
   template_run("<%= 1 2 3%>")
   ans(res)
   assert(${res} EQUALS 1 2 3)
-
-
 
 endfunction()

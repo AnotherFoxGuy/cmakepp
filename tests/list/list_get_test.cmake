@@ -10,6 +10,4 @@ function(test)
   ans(res)
   assert(${res} STREQUAL "a")
 
-
-
 endfunction()

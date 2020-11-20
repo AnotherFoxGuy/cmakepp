@@ -1,5 +1,3 @@
-
-
 function(file_data_get dir id)
   set(nav ${ARGN})
   file_data_read("${dir}" "${id}")
