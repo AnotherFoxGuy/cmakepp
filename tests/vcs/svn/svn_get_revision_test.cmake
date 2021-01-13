@@ -1,5 +1,8 @@
 function(test)
 
+  # The llvm.org repo is gone
+  return()
+
   find_package(Subversion)
   if(NOT SUBVERSION_FOUND)
     message("test inconclusive svn not installed")
